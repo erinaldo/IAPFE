@@ -1,0 +1,1018 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://suarpe.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://suarpe.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://suarpe.com/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginUsuarioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="crearXML2">
+        <s:complexType />
+      </s:element>
+      <s:element name="crearXML2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="crearXML2Result">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consultar_pedidos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ruc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fechainicial" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fechafinal" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="estado" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consultar_pedidosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="consultar_pedidosResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consultar_pedidos_eliminar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ruc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fechainicial" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fechafinal" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="estado" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consultar_pedidos_eliminarResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="consultar_pedidos_eliminarResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="buscar_pedidos_aprobados_precios">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ruc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fechainicial" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fechafinal" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="buscar_pedidos_aprobados_preciosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="buscar_pedidos_aprobados_preciosResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listar_familias">
+        <s:complexType />
+      </s:element>
+      <s:element name="listar_familiasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="listar_familiasResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listar_subfamilias">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="familias" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listar_subfamiliasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="listar_subfamiliasResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listar_articulos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="subfamilias" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listar_articulosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="listar_articulosResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listar_articulos_stock">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="subfamilias" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listar_articulos_stockResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="listar_articulos_stockResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="iniciar_sesionv2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="iniciar_sesionv2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="iniciar_sesionv2Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="registrar_pedido">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pedido" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pedido_linea" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="registrar_pedidoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="registrar_pedidoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cancelar_pedido">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pedido" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="cancelar_pedidoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cancelar_pedidoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="resumen_pedido">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pedido" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="resumen_pedidoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="resumen_pedidoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="estados_cuenta_cliente">
+        <s:complexType />
+      </s:element>
+      <s:element name="estados_cuenta_clienteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="estados_cuenta_clienteResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_usuarios_android_pc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tabla" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Listar_usuarios_android_pcResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Listar_usuarios_android_pcResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consultar_pedidos_pc_cabecera">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fecha_inicial" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fecha_final" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ruc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cliente" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consultar_pedidos_pc_cabeceraResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="consultar_pedidos_pc_cabeceraResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consultar_pedidos_pc_detalle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pedido" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="consultar_pedidos_pc_detalleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="consultar_pedidos_pc_detalleResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="actualizar_pedidos_pc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cls_pedido" type="tns:cls_pedido" />
+            <s:element minOccurs="0" maxOccurs="1" name="dt_pedido_linea">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="cls_pedido">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Documento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Condicion_Pago" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estado" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Fecha" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre_Cliente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direccion_Cliente" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Total" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubTotal" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Igv" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fecha_Entrega" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Estado_Cliente" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="actualizar_pedidos_pcResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="actualizar_pedidos_pcResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaArticulos_pc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="familia" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="articulo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaArticulos_pcResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaArticulos_pcResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Actualizar_lista_articulos_pc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dt_articulos">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Actualizar_lista_articulos_pcResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Actualizar_lista_articulos_pcResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insertar_articulos_pc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dt_articulos">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insertar_articulos_pcResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Insertar_articulos_pcResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoginUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:LoginUsuario" />
+  </wsdl:message>
+  <wsdl:message name="LoginUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="crearXML2SoapIn">
+    <wsdl:part name="parameters" element="tns:crearXML2" />
+  </wsdl:message>
+  <wsdl:message name="crearXML2SoapOut">
+    <wsdl:part name="parameters" element="tns:crearXML2Response" />
+  </wsdl:message>
+  <wsdl:message name="consultar_pedidosSoapIn">
+    <wsdl:part name="parameters" element="tns:consultar_pedidos" />
+  </wsdl:message>
+  <wsdl:message name="consultar_pedidosSoapOut">
+    <wsdl:part name="parameters" element="tns:consultar_pedidosResponse" />
+  </wsdl:message>
+  <wsdl:message name="consultar_pedidos_eliminarSoapIn">
+    <wsdl:part name="parameters" element="tns:consultar_pedidos_eliminar" />
+  </wsdl:message>
+  <wsdl:message name="consultar_pedidos_eliminarSoapOut">
+    <wsdl:part name="parameters" element="tns:consultar_pedidos_eliminarResponse" />
+  </wsdl:message>
+  <wsdl:message name="buscar_pedidos_aprobados_preciosSoapIn">
+    <wsdl:part name="parameters" element="tns:buscar_pedidos_aprobados_precios" />
+  </wsdl:message>
+  <wsdl:message name="buscar_pedidos_aprobados_preciosSoapOut">
+    <wsdl:part name="parameters" element="tns:buscar_pedidos_aprobados_preciosResponse" />
+  </wsdl:message>
+  <wsdl:message name="listar_familiasSoapIn">
+    <wsdl:part name="parameters" element="tns:listar_familias" />
+  </wsdl:message>
+  <wsdl:message name="listar_familiasSoapOut">
+    <wsdl:part name="parameters" element="tns:listar_familiasResponse" />
+  </wsdl:message>
+  <wsdl:message name="listar_subfamiliasSoapIn">
+    <wsdl:part name="parameters" element="tns:listar_subfamilias" />
+  </wsdl:message>
+  <wsdl:message name="listar_subfamiliasSoapOut">
+    <wsdl:part name="parameters" element="tns:listar_subfamiliasResponse" />
+  </wsdl:message>
+  <wsdl:message name="listar_articulosSoapIn">
+    <wsdl:part name="parameters" element="tns:listar_articulos" />
+  </wsdl:message>
+  <wsdl:message name="listar_articulosSoapOut">
+    <wsdl:part name="parameters" element="tns:listar_articulosResponse" />
+  </wsdl:message>
+  <wsdl:message name="listar_articulos_stockSoapIn">
+    <wsdl:part name="parameters" element="tns:listar_articulos_stock" />
+  </wsdl:message>
+  <wsdl:message name="listar_articulos_stockSoapOut">
+    <wsdl:part name="parameters" element="tns:listar_articulos_stockResponse" />
+  </wsdl:message>
+  <wsdl:message name="iniciar_sesionv2SoapIn">
+    <wsdl:part name="parameters" element="tns:iniciar_sesionv2" />
+  </wsdl:message>
+  <wsdl:message name="iniciar_sesionv2SoapOut">
+    <wsdl:part name="parameters" element="tns:iniciar_sesionv2Response" />
+  </wsdl:message>
+  <wsdl:message name="registrar_pedidoSoapIn">
+    <wsdl:part name="parameters" element="tns:registrar_pedido" />
+  </wsdl:message>
+  <wsdl:message name="registrar_pedidoSoapOut">
+    <wsdl:part name="parameters" element="tns:registrar_pedidoResponse" />
+  </wsdl:message>
+  <wsdl:message name="cancelar_pedidoSoapIn">
+    <wsdl:part name="parameters" element="tns:cancelar_pedido" />
+  </wsdl:message>
+  <wsdl:message name="cancelar_pedidoSoapOut">
+    <wsdl:part name="parameters" element="tns:cancelar_pedidoResponse" />
+  </wsdl:message>
+  <wsdl:message name="resumen_pedidoSoapIn">
+    <wsdl:part name="parameters" element="tns:resumen_pedido" />
+  </wsdl:message>
+  <wsdl:message name="resumen_pedidoSoapOut">
+    <wsdl:part name="parameters" element="tns:resumen_pedidoResponse" />
+  </wsdl:message>
+  <wsdl:message name="estados_cuenta_clienteSoapIn">
+    <wsdl:part name="parameters" element="tns:estados_cuenta_cliente" />
+  </wsdl:message>
+  <wsdl:message name="estados_cuenta_clienteSoapOut">
+    <wsdl:part name="parameters" element="tns:estados_cuenta_clienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="Listar_usuarios_android_pcSoapIn">
+    <wsdl:part name="parameters" element="tns:Listar_usuarios_android_pc" />
+  </wsdl:message>
+  <wsdl:message name="Listar_usuarios_android_pcSoapOut">
+    <wsdl:part name="parameters" element="tns:Listar_usuarios_android_pcResponse" />
+  </wsdl:message>
+  <wsdl:message name="consultar_pedidos_pc_cabeceraSoapIn">
+    <wsdl:part name="parameters" element="tns:consultar_pedidos_pc_cabecera" />
+  </wsdl:message>
+  <wsdl:message name="consultar_pedidos_pc_cabeceraSoapOut">
+    <wsdl:part name="parameters" element="tns:consultar_pedidos_pc_cabeceraResponse" />
+  </wsdl:message>
+  <wsdl:message name="consultar_pedidos_pc_detalleSoapIn">
+    <wsdl:part name="parameters" element="tns:consultar_pedidos_pc_detalle" />
+  </wsdl:message>
+  <wsdl:message name="consultar_pedidos_pc_detalleSoapOut">
+    <wsdl:part name="parameters" element="tns:consultar_pedidos_pc_detalleResponse" />
+  </wsdl:message>
+  <wsdl:message name="actualizar_pedidos_pcSoapIn">
+    <wsdl:part name="parameters" element="tns:actualizar_pedidos_pc" />
+  </wsdl:message>
+  <wsdl:message name="actualizar_pedidos_pcSoapOut">
+    <wsdl:part name="parameters" element="tns:actualizar_pedidos_pcResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaArticulos_pcSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaArticulos_pc" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaArticulos_pcSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaArticulos_pcResponse" />
+  </wsdl:message>
+  <wsdl:message name="Actualizar_lista_articulos_pcSoapIn">
+    <wsdl:part name="parameters" element="tns:Actualizar_lista_articulos_pc" />
+  </wsdl:message>
+  <wsdl:message name="Actualizar_lista_articulos_pcSoapOut">
+    <wsdl:part name="parameters" element="tns:Actualizar_lista_articulos_pcResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insertar_articulos_pcSoapIn">
+    <wsdl:part name="parameters" element="tns:Insertar_articulos_pc" />
+  </wsdl:message>
+  <wsdl:message name="Insertar_articulos_pcSoapOut">
+    <wsdl:part name="parameters" element="tns:Insertar_articulos_pcResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServicioClientesSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginUsuario">
+      <wsdl:input message="tns:LoginUsuarioSoapIn" />
+      <wsdl:output message="tns:LoginUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="crearXML2">
+      <wsdl:input message="tns:crearXML2SoapIn" />
+      <wsdl:output message="tns:crearXML2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="consultar_pedidos">
+      <wsdl:input message="tns:consultar_pedidosSoapIn" />
+      <wsdl:output message="tns:consultar_pedidosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="consultar_pedidos_eliminar">
+      <wsdl:input message="tns:consultar_pedidos_eliminarSoapIn" />
+      <wsdl:output message="tns:consultar_pedidos_eliminarSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="buscar_pedidos_aprobados_precios">
+      <wsdl:input message="tns:buscar_pedidos_aprobados_preciosSoapIn" />
+      <wsdl:output message="tns:buscar_pedidos_aprobados_preciosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="listar_familias">
+      <wsdl:input message="tns:listar_familiasSoapIn" />
+      <wsdl:output message="tns:listar_familiasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="listar_subfamilias">
+      <wsdl:input message="tns:listar_subfamiliasSoapIn" />
+      <wsdl:output message="tns:listar_subfamiliasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="listar_articulos">
+      <wsdl:input message="tns:listar_articulosSoapIn" />
+      <wsdl:output message="tns:listar_articulosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="listar_articulos_stock">
+      <wsdl:input message="tns:listar_articulos_stockSoapIn" />
+      <wsdl:output message="tns:listar_articulos_stockSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="iniciar_sesionv2">
+      <wsdl:input message="tns:iniciar_sesionv2SoapIn" />
+      <wsdl:output message="tns:iniciar_sesionv2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="registrar_pedido">
+      <wsdl:input message="tns:registrar_pedidoSoapIn" />
+      <wsdl:output message="tns:registrar_pedidoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="cancelar_pedido">
+      <wsdl:input message="tns:cancelar_pedidoSoapIn" />
+      <wsdl:output message="tns:cancelar_pedidoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="resumen_pedido">
+      <wsdl:input message="tns:resumen_pedidoSoapIn" />
+      <wsdl:output message="tns:resumen_pedidoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="estados_cuenta_cliente">
+      <wsdl:input message="tns:estados_cuenta_clienteSoapIn" />
+      <wsdl:output message="tns:estados_cuenta_clienteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Listar_usuarios_android_pc">
+      <wsdl:input message="tns:Listar_usuarios_android_pcSoapIn" />
+      <wsdl:output message="tns:Listar_usuarios_android_pcSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="consultar_pedidos_pc_cabecera">
+      <wsdl:input message="tns:consultar_pedidos_pc_cabeceraSoapIn" />
+      <wsdl:output message="tns:consultar_pedidos_pc_cabeceraSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="consultar_pedidos_pc_detalle">
+      <wsdl:input message="tns:consultar_pedidos_pc_detalleSoapIn" />
+      <wsdl:output message="tns:consultar_pedidos_pc_detalleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="actualizar_pedidos_pc">
+      <wsdl:input message="tns:actualizar_pedidos_pcSoapIn" />
+      <wsdl:output message="tns:actualizar_pedidos_pcSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaArticulos_pc">
+      <wsdl:input message="tns:ConsultaArticulos_pcSoapIn" />
+      <wsdl:output message="tns:ConsultaArticulos_pcSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Actualizar_lista_articulos_pc">
+      <wsdl:input message="tns:Actualizar_lista_articulos_pcSoapIn" />
+      <wsdl:output message="tns:Actualizar_lista_articulos_pcSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insertar_articulos_pc">
+      <wsdl:input message="tns:Insertar_articulos_pcSoapIn" />
+      <wsdl:output message="tns:Insertar_articulos_pcSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServicioClientesSoap" type="tns:ServicioClientesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://suarpe.com/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginUsuario">
+      <soap:operation soapAction="http://suarpe.com/LoginUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="crearXML2">
+      <soap:operation soapAction="http://suarpe.com/crearXML2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultar_pedidos">
+      <soap:operation soapAction="http://suarpe.com/consultar_pedidos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultar_pedidos_eliminar">
+      <soap:operation soapAction="http://suarpe.com/consultar_pedidos_eliminar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="buscar_pedidos_aprobados_precios">
+      <soap:operation soapAction="http://suarpe.com/buscar_pedidos_aprobados_precios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listar_familias">
+      <soap:operation soapAction="http://suarpe.com/listar_familias" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listar_subfamilias">
+      <soap:operation soapAction="http://suarpe.com/listar_subfamilias" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listar_articulos">
+      <soap:operation soapAction="http://suarpe.com/listar_articulos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listar_articulos_stock">
+      <soap:operation soapAction="http://suarpe.com/listar_articulos_stock" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="iniciar_sesionv2">
+      <soap:operation soapAction="http://suarpe.com/iniciar_sesionv2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registrar_pedido">
+      <soap:operation soapAction="http://suarpe.com/registrar_pedido" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cancelar_pedido">
+      <soap:operation soapAction="http://suarpe.com/cancelar_pedido" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="resumen_pedido">
+      <soap:operation soapAction="http://suarpe.com/resumen_pedido" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="estados_cuenta_cliente">
+      <soap:operation soapAction="http://suarpe.com/estados_cuenta_cliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_usuarios_android_pc">
+      <soap:operation soapAction="http://suarpe.com/Listar_usuarios_android_pc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultar_pedidos_pc_cabecera">
+      <soap:operation soapAction="http://suarpe.com/consultar_pedidos_pc_cabecera" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultar_pedidos_pc_detalle">
+      <soap:operation soapAction="http://suarpe.com/consultar_pedidos_pc_detalle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="actualizar_pedidos_pc">
+      <soap:operation soapAction="http://suarpe.com/actualizar_pedidos_pc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaArticulos_pc">
+      <soap:operation soapAction="http://suarpe.com/ConsultaArticulos_pc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Actualizar_lista_articulos_pc">
+      <soap:operation soapAction="http://suarpe.com/Actualizar_lista_articulos_pc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insertar_articulos_pc">
+      <soap:operation soapAction="http://suarpe.com/Insertar_articulos_pc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServicioClientesSoap12" type="tns:ServicioClientesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://suarpe.com/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginUsuario">
+      <soap12:operation soapAction="http://suarpe.com/LoginUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="crearXML2">
+      <soap12:operation soapAction="http://suarpe.com/crearXML2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultar_pedidos">
+      <soap12:operation soapAction="http://suarpe.com/consultar_pedidos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultar_pedidos_eliminar">
+      <soap12:operation soapAction="http://suarpe.com/consultar_pedidos_eliminar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="buscar_pedidos_aprobados_precios">
+      <soap12:operation soapAction="http://suarpe.com/buscar_pedidos_aprobados_precios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listar_familias">
+      <soap12:operation soapAction="http://suarpe.com/listar_familias" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listar_subfamilias">
+      <soap12:operation soapAction="http://suarpe.com/listar_subfamilias" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listar_articulos">
+      <soap12:operation soapAction="http://suarpe.com/listar_articulos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listar_articulos_stock">
+      <soap12:operation soapAction="http://suarpe.com/listar_articulos_stock" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="iniciar_sesionv2">
+      <soap12:operation soapAction="http://suarpe.com/iniciar_sesionv2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="registrar_pedido">
+      <soap12:operation soapAction="http://suarpe.com/registrar_pedido" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cancelar_pedido">
+      <soap12:operation soapAction="http://suarpe.com/cancelar_pedido" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="resumen_pedido">
+      <soap12:operation soapAction="http://suarpe.com/resumen_pedido" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="estados_cuenta_cliente">
+      <soap12:operation soapAction="http://suarpe.com/estados_cuenta_cliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Listar_usuarios_android_pc">
+      <soap12:operation soapAction="http://suarpe.com/Listar_usuarios_android_pc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultar_pedidos_pc_cabecera">
+      <soap12:operation soapAction="http://suarpe.com/consultar_pedidos_pc_cabecera" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultar_pedidos_pc_detalle">
+      <soap12:operation soapAction="http://suarpe.com/consultar_pedidos_pc_detalle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="actualizar_pedidos_pc">
+      <soap12:operation soapAction="http://suarpe.com/actualizar_pedidos_pc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaArticulos_pc">
+      <soap12:operation soapAction="http://suarpe.com/ConsultaArticulos_pc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Actualizar_lista_articulos_pc">
+      <soap12:operation soapAction="http://suarpe.com/Actualizar_lista_articulos_pc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insertar_articulos_pc">
+      <soap12:operation soapAction="http://suarpe.com/Insertar_articulos_pc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServicioClientes">
+    <wsdl:port name="ServicioClientesSoap" binding="tns:ServicioClientesSoap">
+      <soap:address location="http://israelarevaloxx3-001-site1.ctempurl.com/ServicioClientes.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServicioClientesSoap12" binding="tns:ServicioClientesSoap12">
+      <soap12:address location="http://israelarevaloxx3-001-site1.ctempurl.com/ServicioClientes.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{13CB5626-8848-4D3C-88D9-18279C9BD005}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IAP.Win</RootNamespace>
+    <AssemblyName>IAP.Win</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publicar\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>VBBusinessApplication.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemGroup>
+    <Reference Include="DevExpress.BonusSkins.v16.1, Version=16.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Data.v16.1, Version=16.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Pdf.v16.1.Core, Version=16.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v16.1.Core, Version=16.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v16.1, Version=16.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v16.1, Version=16.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v16.1, Version=16.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v16.1, Version=16.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v16.1, Version=16.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v16.1, Version=16.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v16.1, Version=16.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Clases\GridColumnFormatClass.cs" />
+    <Compile Include="Administracion\frmborrar_documento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracion\frmborrar_documento.Designer.cs">
+      <DependentUpon>frmborrar_documento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comercial\frm_facturas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comercial\frm_facturas.Designer.cs">
+      <DependentUpon>frm_facturas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comercial\frm_facturasproceso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comercial\frm_facturasproceso.Designer.cs">
+      <DependentUpon>frm_facturasproceso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comercial\frm_PasswordVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comercial\frm_PasswordVentas.Designer.cs">
+      <DependentUpon>frm_PasswordVentas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario\frm_AccesoUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usuario\frm_AccesoUsuario.Designer.cs">
+      <DependentUpon>frm_AccesoUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\frm_cdn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\frm_cdn.Designer.cs">
+      <DependentUpon>frm_cdn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\frm_consultas_sql.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracion\frm_consultas_sql.Designer.cs">
+      <DependentUpon>frm_consultas_sql.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\frm_crear_backup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracion\frm_crear_backup.Designer.cs">
+      <DependentUpon>frm_crear_backup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\frm_Ejecuacion_Consultas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracion\frm_Ejecuacion_Consultas.Designer.cs">
+      <DependentUpon>frm_Ejecuacion_Consultas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comercial\frm_eliminacion_arqueo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comercial\frm_eliminacion_arqueo.Designer.cs">
+      <DependentUpon>frm_eliminacion_arqueo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contabilidad\frm_importar_asiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contabilidad\frm_importar_asiento.Designer.cs">
+      <DependentUpon>frm_importar_asiento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario\frm_menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usuario\frm_menu.Designer.cs">
+      <DependentUpon>frm_menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario\FRM_MENU_MAIN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usuario\FRM_MENU_MAIN.Designer.cs">
+      <DependentUpon>FRM_MENU_MAIN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\frm_statusSQL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracion\frm_statusSQL.Designer.cs">
+      <DependentUpon>frm_statusSQL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Android\frm_UsuariosAndroid.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Android\frm_UsuariosAndroid.Designer.cs">
+      <DependentUpon>frm_UsuariosAndroid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Android\frm_ws_android_aprobar_pedidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Android\frm_ws_android_aprobar_pedidos.Designer.cs">
+      <DependentUpon>frm_ws_android_aprobar_pedidos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Android\frm_ws_android_modificar_pedido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Android\frm_ws_android_modificar_pedido.Designer.cs">
+      <DependentUpon>frm_ws_android_modificar_pedido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Global.cs" />
+    <Compile Include="Comercial\ListaDePrecios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comercial\ListaDePrecios.Designer.cs">
+      <DependentUpon>ListaDePrecios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServicioAndroid\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Administracion\frmborrar_documento.resx">
+      <DependentUpon>frmborrar_documento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comercial\frm_facturas.resx">
+      <DependentUpon>frm_facturas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comercial\frm_facturasproceso.resx">
+      <DependentUpon>frm_facturasproceso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comercial\frm_PasswordVentas.resx">
+      <DependentUpon>frm_PasswordVentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usuario\frm_AccesoUsuario.resx">
+      <DependentUpon>frm_AccesoUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\frm_cdn.resx">
+      <DependentUpon>frm_cdn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administracion\frm_consultas_sql.resx">
+      <DependentUpon>frm_consultas_sql.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administracion\frm_crear_backup.resx">
+      <DependentUpon>frm_crear_backup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administracion\frm_Ejecuacion_Consultas.resx">
+      <DependentUpon>frm_Ejecuacion_Consultas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comercial\frm_eliminacion_arqueo.resx">
+      <DependentUpon>frm_eliminacion_arqueo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contabilidad\frm_importar_asiento.resx">
+      <DependentUpon>frm_importar_asiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usuario\frm_menu.resx">
+      <DependentUpon>frm_menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usuario\FRM_MENU_MAIN.resx">
+      <DependentUpon>FRM_MENU_MAIN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administracion\frm_statusSQL.resx">
+      <DependentUpon>frm_statusSQL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Android\frm_UsuariosAndroid.resx">
+      <DependentUpon>frm_UsuariosAndroid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Android\frm_ws_android_aprobar_pedidos.resx">
+      <DependentUpon>frm_ws_android_aprobar_pedidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Android\frm_ws_android_modificar_pedido.resx">
+      <DependentUpon>frm_ws_android_modificar_pedido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comercial\ListaDePrecios.resx">
+      <DependentUpon>ListaDePrecios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
+    <None Include="Properties\DataSources\System.Data.DataTable.datasource" />
+    <None Include="Properties\DataSources\System.Xml.Linq.XElement.datasource" />
+    <None Include="Properties\DataSources\System.Xml.XmlNode.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Service References\ServicioAndroid\ServicioClientes1.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IAP.BL\IAP.BL.csproj">
+      <Project>{8e467625-d8d0-4f70-ba69-0285999cbcfc}</Project>
+      <Name>IAP.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IAP.DL\IAP.DL.csproj">
+      <Project>{c6947a5f-1d5f-4534-971f-8eaf6f55a032}</Project>
+      <Name>IAP.DL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WS_ANDROID\IAP.BE.csproj">
+      <Project>{09827eeb-3ade-4b02-b83a-08a5bed1b568}</Project>
+      <Name>IAP.BE</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\android.png" />
+    <None Include="Resources\ImportExcel.png" />
+    <None Include="Service References\ServicioAndroid\configuration91.svcinfo" />
+    <None Include="Service References\ServicioAndroid\configuration.svcinfo" />
+    <None Include="Service References\ServicioAndroid\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ServicioAndroid\ServicioClientes1.disco" />
+    <Content Include="VBBusinessApplication.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="imagenes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServicioAndroid\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

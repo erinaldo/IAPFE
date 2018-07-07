@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d0611158-5d89-4890-a1e4-85d8a3676e38" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:35305/SUsuario.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SUsuario.disco" MetadataType="Disco" ID="77f23e40-9324-4675-b0a6-a5cd411ddf02" SourceId="1" SourceUrl="http://localhost:35305/SUsuario.svc?disco" />
+    <MetadataFile FileName="SUsuario2.xsd" MetadataType="Schema" ID="3435c9f8-412e-4a71-9dd2-457b1da8da34" SourceId="1" SourceUrl="http://localhost:35305/SUsuario.svc?xsd=xsd2" />
+    <MetadataFile FileName="SUsuario.wsdl" MetadataType="Wsdl" ID="fb128e84-f4e1-4e30-998c-253d9cda7c86" SourceId="1" SourceUrl="http://localhost:35305/SUsuario.svc?wsdl" />
+    <MetadataFile FileName="SUsuario1.xsd" MetadataType="Schema" ID="62e28b75-d5ef-4b23-a14c-2e316048a10e" SourceId="1" SourceUrl="http://localhost:35305/SUsuario.svc?xsd=xsd0" />
+    <MetadataFile FileName="SUsuario.xsd" MetadataType="Schema" ID="b7388498-85ba-4be1-bf6e-7e02ff720cd0" SourceId="1" SourceUrl="http://localhost:35305/SUsuario.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

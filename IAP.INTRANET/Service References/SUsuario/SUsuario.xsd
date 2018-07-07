@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/IAP.BE" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/IAP.BE" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfUsuario">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Usuario" nillable="true" type="tns:Usuario" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUsuario" nillable="true" type="tns:ArrayOfUsuario" />
+  <xs:complexType name="Usuario">
+    <xs:sequence>
+      <xs:element name="_x003C_Apellidos_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Contrasena_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Correo_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_FechaRegistro_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_Id_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Nombres_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_RazonSocial_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Usuario" nillable="true" type="tns:Usuario" />
+</xs:schema>

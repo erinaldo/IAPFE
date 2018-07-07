@@ -1,0 +1,15 @@
+﻿body {
+}
+.fila {
+    width:90%;
+    float:left;
+    margin:2px 5% 2px 5%;
+}
+.Error{
+    font-size:large;
+    color:red;
+    font-weight:bold;
+}
+.Borde{
+    padding-bottom:5px;
+}
