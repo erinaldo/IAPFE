@@ -160,6 +160,7 @@
     <Content Include="pages\mailbox\compose.html" />
     <Content Include="pages\mailbox\mailbox.html" />
     <Content Include="pages\mailbox\read-mail.html" />
+    <Content Include="pages\mantenimiento\frmarticulos.aspx" />
     <Content Include="pages\mantenimiento\frmproductos.aspx" />
     <Content Include="pages\mantenimiento\frmusuarios.aspx" />
     <Content Include="pages\mantenimiento\frmusuariosMant.aspx" />
@@ -891,6 +892,13 @@
     </Compile>
     <Compile Include="pages\comercial\frmpedidos.aspx.designer.cs">
       <DependentUpon>frmpedidos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\mantenimiento\frmarticulos.aspx.cs">
+      <DependentUpon>frmarticulos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\mantenimiento\frmarticulos.aspx.designer.cs">
+      <DependentUpon>frmarticulos.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\mantenimiento\frmproductos.aspx.cs">
       <DependentUpon>frmproductos.aspx</DependentUpon>
