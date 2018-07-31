@@ -45,10 +45,10 @@ namespace IAP.Win
 
         private void frm_AccesoUsuario_Load(object sender, EventArgs e)
         {
-            txtBaseDatos.Text = "Hans-PC";
-            //txtBaseDatos.Focus();
+            //txtBaseDatos.Text = "Hans-PC";
+            txtBaseDatos.Text = "ventas";
             cmbbd.SelectedIndex = 0;
-            txtUsuario.Text = "administrador";
+            txtUsuario.Text = "cliente";
             txtPassword.Focus();
         }
 

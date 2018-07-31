@@ -27,6 +27,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <asp:ContentPlaceHolder ID="head" runat="server">
+        <%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
     </asp:ContentPlaceHolder>
   </head>
   <body class="skin-blue sidebar-mini" runat="server">
@@ -35,11 +36,11 @@
 
     <form id="form1" runat="server">
     <telerik:RadScriptManager runat="server" ID="RadScriptManager1">
-        <%--<Scripts>
+        <Scripts>
             <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.Core.js" />
             <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQuery.js" />
             <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQueryInclude.js" />
-        </Scripts>--%>
+        </Scripts>
     </telerik:RadScriptManager>
     <telerik:RadSkinManager ID="RadSkinManager1" runat="server" ShowChooser="false" Visible="false" />
 
@@ -234,15 +235,14 @@
 
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-files-o"></i>
+                  <i class="fa fa-files-o"></i>
                 <span>Mantenimiento</span>
                 <span class="label label-primary pull-right">4</span>
               </a>
               <ul class="treeview-menu">
                 <li id="liusu"><a href="../../pages/mantenimiento/frmusuarios.aspx"><i class="fa fa-circle-o"></i> Usuarios</a></li>
-                <%--<li><a href="../layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-                <li><a href="../layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-                <li><a href="../layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>--%>
+                <li><a href="pages/mantenimiento/frmproductos.aspx"><i class="fa fa-circle-o"></i> Articulos</a></li>
+ 
               </ul>
             </li>
             
@@ -253,8 +253,8 @@
                 <small class="label pull-right bg-green">Hot</small>
               </a>
               <ul class="treeview-menu">
-                  <li id="life"><a href="../../pages/comercial/frmfacturacionelectronica.aspx"><i class="fa fa-circle-o"></i> Facturacion Electronica</a></li>
-                  <li id="liped"><a href="../../pages/comercial/frmpedidos.aspx"><i class="fa fa-circle-o"></i> Gestion de Pedidos</a></li>
+                  <li id="life"><a href="pages/comercial/frmfacturacionelectronica.aspx"><i class="fa fa-circle-o"></i> Facturacion Electronica</a></li>
+                  <li id="liped"><a href="pages/comercial/frmpedidos.aspx"><i class="fa fa-circle-o"></i> Pedidos</a></li>
               </ul>
             </li>
                           

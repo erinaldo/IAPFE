@@ -320,7 +320,8 @@ namespace IAP.BL
                 //string respuesta = ex.Message.ToString();// .Response.GetResponseStream()).ReadToEnd();
                 /// Y LO 'RETORNAMOS'
                 //return respuesta;
-                throw new Exception(ex.Message.ToString());
+                var respuesta = new StreamReader(ex.Response.GetResponseStream()).ReadToEnd();
+                throw new Exception(respuesta.ToString());
             }
         }
 

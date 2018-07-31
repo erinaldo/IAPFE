@@ -169,7 +169,6 @@
             this.comercial_FE.Caption = "Facturacion Electronica";
             this.comercial_FE.Name = "comercial_FE";
             this.comercial_FE.SmallImage = global::IAP.Win.Properties.Resources.Sunat;
-            this.comercial_FE.Visible = false;
             this.comercial_FE.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.comercial_FE_LinkClicked);
             // 
             // navBarGroupContabilidad
