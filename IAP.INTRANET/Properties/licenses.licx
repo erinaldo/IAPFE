@@ -1,10 +1,6 @@
+Telerik.Web.UI.RadTextBox, Telerik.Web.UI, Version=2018.2.710.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4
 Telerik.Web.UI.RadGrid, Telerik.Web.UI, Version=2017.2.621.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4
 Telerik.Web.UI.RadButton, Telerik.Web.UI, Version=2017.2.621.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4
 Telerik.Web.UI.RadTextBox, Telerik.Web.UI, Version=2017.2.621.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4
 Telerik.Web.UI.RadComboBox, Telerik.Web.UI, Version=2017.2.621.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4
 Telerik.Web.UI.RadLabel, Telerik.Web.UI, Version=2017.2.621.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4
-DevExpress.Web.ASPxButton, DevExpress.Web.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
-DevExpress.Web.ASPxTextBox, DevExpress.Web.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
-DevExpress.Web.ASPxDateEdit, DevExpress.Web.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
-DevExpress.Web.ASPxLabel, DevExpress.Web.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
-DevExpress.Web.ASPxGridView, DevExpress.Web.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a

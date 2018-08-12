@@ -62,9 +62,9 @@ namespace templateApp.pages.mantenimiento
             {
                 if (e.CommandName == "EditarUsuario")
                 {
-                    //Response.Redirect("~/pages/mantenimiento/frmusuariosmant.aspx?Id=" + e.CommandArgument.ToString());
+                    Response.Redirect("~/pages/mantenimiento/frmusuariosmant.aspx?Id=" + e.CommandArgument.ToString());
                     // ScriptManager.RegisterStartupScript(Page, this.GetType(), "mykey", "ShowInsertForm(" + e.CommandArgument + ");", true);
-                    txtusuario2.Text = "hola";
+                    //txtusuario2.Text = "hola";
                 }
             }
             catch (Exception ex)

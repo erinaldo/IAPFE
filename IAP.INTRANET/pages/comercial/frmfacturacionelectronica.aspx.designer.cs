@@ -82,7 +82,7 @@ namespace templateApp.pages.comercial {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rbtnestados;
+        protected global::Telerik.Web.UI.RadRadioButtonList rbtnestados;
         
         /// <summary>
         /// Control cmbtipodocumento.
@@ -112,12 +112,30 @@ namespace templateApp.pages.comercial {
         protected global::Telerik.Web.UI.RadButton btnbuscar;
         
         /// <summary>
-        /// Control gvwFE.
+        /// Control gvwcabecera.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid gvwFE;
+        protected global::Telerik.Web.UI.RadGrid gvwcabecera;
+        
+        /// <summary>
+        /// Control gvwdetalle.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid gvwdetalle;
+        
+        /// <summary>
+        /// Control lblmensaje.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblmensaje;
     }
 }

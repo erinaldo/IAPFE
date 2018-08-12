@@ -51,39 +51,67 @@
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
-    <Reference Include="DevExpress.BonusSkins.v16.1, Version=16.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.BonusSkins.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Data.v16.1, Version=16.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.Charts.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Dashboard.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Dashboard.v16.2.Win, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Pdf.v16.1.Core, Version=16.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.DataAccess.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.DataAccess.v16.2.UI, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Map.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Printing.v16.1.Core, Version=16.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.Pdf.v16.2.Drawing, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.PivotGrid.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Utils.v16.1, Version=16.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.RichEdit.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Sparkline.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.TreeMap.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraBars.v16.1, Version=16.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Utils.v16.2.UI, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraEditors.v16.1, Version=16.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.XtraCharts.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v16.2.UI, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v16.2.Wizard, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraGrid.v16.1, Version=16.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraGauges.v16.2.Core, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGauges.v16.2.Presets, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGauges.v16.2.Win, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGrid.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraLayout.v16.1, Version=16.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.XtraLayout.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraNavBar.v16.1, Version=16.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraMap.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraNavBar.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraPrinting.v16.1, Version=16.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+    <Reference Include="DevExpress.XtraPdfViewer.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPivotGrid.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPrinting.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.XtraReports.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraRichEdit.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraRichEdit.v16.2.Extensions, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeMap.v16.2, Version=16.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="System">
       <Private>False</Private>
     </Reference>
@@ -111,6 +139,12 @@
     <Compile Include="Administracion\frmborrar_documento.Designer.cs">
       <DependentUpon>frmborrar_documento.cs</DependentUpon>
     </Compile>
+    <Compile Include="Comercial\frm_ConsultaEstadoFe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comercial\frm_ConsultaEstadoFe.Designer.cs">
+      <DependentUpon>frm_ConsultaEstadoFe.cs</DependentUpon>
+    </Compile>
     <Compile Include="Comercial\frm_facturas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,11 +157,23 @@
     <Compile Include="Comercial\frm_facturasproceso.Designer.cs">
       <DependentUpon>frm_facturasproceso.cs</DependentUpon>
     </Compile>
+    <Compile Include="Comercial\frm_FacturasVisorPdf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comercial\frm_FacturasVisorPdf.Designer.cs">
+      <DependentUpon>frm_FacturasVisorPdf.cs</DependentUpon>
+    </Compile>
     <Compile Include="Comercial\frm_PasswordVentas.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Comercial\frm_PasswordVentas.Designer.cs">
       <DependentUpon>frm_PasswordVentas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comercial\frm_VisorArchivos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comercial\frm_VisorArchivos.Designer.cs">
+      <DependentUpon>frm_VisorArchivos.cs</DependentUpon>
     </Compile>
     <Compile Include="Usuario\frm_AccesoUsuario.cs">
       <SubType>Form</SubType>
@@ -229,15 +275,25 @@
     <EmbeddedResource Include="Administracion\frmborrar_documento.resx">
       <DependentUpon>frmborrar_documento.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Comercial\frm_ConsultaEstadoFe.resx">
+      <DependentUpon>frm_ConsultaEstadoFe.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Comercial\frm_facturas.resx">
       <DependentUpon>frm_facturas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comercial\frm_facturasproceso.resx">
       <DependentUpon>frm_facturasproceso.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Comercial\frm_FacturasVisorPdf.resx">
+      <DependentUpon>frm_FacturasVisorPdf.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Comercial\frm_PasswordVentas.resx">
       <DependentUpon>frm_PasswordVentas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Comercial\frm_VisorArchivos.resx">
+      <DependentUpon>frm_VisorArchivos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Usuario\frm_AccesoUsuario.resx">
       <DependentUpon>frm_AccesoUsuario.cs</DependentUpon>
     </EmbeddedResource>
@@ -285,6 +341,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
     <None Include="Properties\DataSources\System.Data.DataTable.datasource" />
     <None Include="Properties\DataSources\System.Xml.Linq.XElement.datasource" />
@@ -301,7 +358,9 @@
     <None Include="Service References\ServicioAndroid\ServicioClientes1.wsdl" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IAP.BL\IAP.BL.csproj">
@@ -318,6 +377,111 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\004.ico" />
+    <Content Include="Resources\046.ico" />
+    <Content Include="Resources\0461.ico" />
+    <Content Include="Resources\052.ico" />
+    <Content Include="Resources\085.ico" />
+    <Content Include="Resources\091.ico" />
+    <Content Include="Resources\1.png" />
+    <Content Include="Resources\1018.ico" />
+    <Content Include="Resources\1019.ico" />
+    <Content Include="Resources\1021.ico" />
+    <Content Include="Resources\1022.ico" />
+    <Content Include="Resources\1026.ico" />
+    <Content Include="Resources\103.ico" />
+    <Content Include="Resources\1034.ico" />
+    <Content Include="Resources\1053.ico" />
+    <Content Include="Resources\1105.ico" />
+    <Content Include="Resources\1107.ico" />
+    <Content Include="Resources\1109.ico" />
+    <Content Include="Resources\11091.ico" />
+    <Content Include="Resources\117.ico" />
+    <Content Include="Resources\118.ico" />
+    <Content Include="Resources\119.ico" />
+    <Content Include="Resources\120.ico" />
+    <Content Include="Resources\1214.ico" />
+    <Content Include="Resources\1215.ico" />
+    <Content Include="Resources\1222.ico" />
+    <Content Include="Resources\1231.ico" />
+    <Content Include="Resources\1245.gif" />
+    <Content Include="Resources\1245.ico" />
+    <Content Include="Resources\125.ico" />
+    <Content Include="Resources\126.ico" />
+    <Content Include="Resources\1281.ico" />
+    <Content Include="Resources\134.ico" />
+    <Content Include="Resources\135.ico" />
+    <Content Include="Resources\137.ico" />
+    <Content Include="Resources\159.ico" />
+    <Content Include="Resources\197.ico" />
+    <Content Include="Resources\199.ico" />
+    <Content Include="Resources\1_32x32.png" />
+    <Content Include="Resources\200.ico" />
+    <Content Include="Resources\230.ico" />
+    <Content Include="Resources\235.ico" />
+    <Content Include="Resources\239.ico" />
+    <Content Include="Resources\243.ico" />
+    <Content Include="Resources\244.ico" />
+    <Content Include="Resources\281.ico" />
+    <Content Include="Resources\299.ico" />
+    <Content Include="Resources\310.ico" />
+    <Content Include="Resources\323.ico" />
+    <Content Include="Resources\328.ico" />
+    <Content Include="Resources\374.ico" />
+    <Content Include="Resources\388.ico" />
+    <Content Include="Resources\389.ico" />
+    <Content Include="Resources\3DColumn_32x32.png" />
+    <Content Include="Resources\406.ico" />
+    <Content Include="Resources\416.ico" />
+    <Content Include="Resources\435.ico" />
+    <Content Include="Resources\439.ico" />
+    <Content Include="Resources\543.ico" />
+    <Content Include="Resources\547.ico" />
+    <Content Include="Resources\5471.ico" />
+    <Content Include="Resources\556.ico" />
+    <Content Include="Resources\557.ico" />
+    <Content Include="Resources\571.ico" />
+    <Content Include="Resources\572.ico" />
+    <Content Include="Resources\573.ico" />
+    <Content Include="Resources\574.ico" />
+    <Content Include="Resources\575.ico" />
+    <Content Include="Resources\586.ico" />
+    <Content Include="Resources\590.ico" />
+    <Content Include="Resources\625.ico" />
+    <Content Include="Resources\667.ico" />
+    <Content Include="Resources\671.ico" />
+    <Content Include="Resources\672.ico" />
+    <Content Include="Resources\688.ico" />
+    <Content Include="Resources\709.ico" />
+    <Content Include="Resources\732.ico" />
+    <Content Include="Resources\736.ico" />
+    <Content Include="Resources\749.ico" />
+    <Content Include="Resources\776.ico" />
+    <Content Include="Resources\778.ico" />
+    <Content Include="Resources\782.ico" />
+    <Content Include="Resources\783.ico" />
+    <Content Include="Resources\790.ico" />
+    <Content Include="Resources\798.ico" />
+    <Content Include="Resources\930.ico" />
+    <Content Include="Resources\931.ico" />
+    <Content Include="Resources\932.ico" />
+    <Content Include="Resources\9321.ico" />
+    <Content Include="Resources\933.ico" />
+    <Content Include="Resources\938.ico" />
+    <Content Include="Resources\946.ico" />
+    <Content Include="Resources\975.ico" />
+    <Content Include="Resources\976.ico" />
+    <Content Include="Resources\977.ico" />
+    <Content Include="Resources\983.ico" />
+    <Content Include="Resources\989.ico" />
+    <Content Include="Resources\991.ico" />
+    <Content Include="Resources\Add2_22x22.png" />
+    <Content Include="Resources\AddItem_32x32.png" />
+    <Content Include="Resources\Add_16x16.png" />
+    <Content Include="Resources\add_22x22.png" />
+    <Content Include="Resources\Add_32x32.png" />
+    <Content Include="Resources\Almacen2_32x32.ico" />
+    <Content Include="Resources\Almacen_22x22.ico" />
     <Content Include="Resources\android.png" />
     <None Include="Resources\ImportExcel.png" />
     <None Include="Service References\ServicioAndroid\configuration91.svcinfo" />
@@ -327,6 +491,147 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Service References\ServicioAndroid\ServicioClientes1.disco" />
+    <Content Include="Resources\Apply_32x32.png" />
+    <Content Include="Resources\Apptl.ico" />
+    <Content Include="Resources\Appts.ico" />
+    <Content Include="Resources\Asignacion de Guias.ico" />
+    <Content Include="Resources\Asignacion de Guias1.ico" />
+    <Content Include="Resources\Asignacion de Guias2.ico" />
+    <Content Include="Resources\AssignTo_32x32.png" />
+    <Content Include="Resources\ayuda.jpg" />
+    <Content Include="Resources\Backward_32x32.png" />
+    <Content Include="Resources\bobina2.jpg" />
+    <Content Include="Resources\BODepartment_32x32.png" />
+    <Content Include="Resources\Buscar.ico" />
+    <Content Include="Resources\Buscar_16X16.ico" />
+    <Content Include="Resources\Buscar_db.ico" />
+    <Content Include="Resources\CALENDAR.ICO" />
+    <Content Include="Resources\calendarb.png" />
+    <Content Include="Resources\calendarb2.png" />
+    <Content Include="Resources\calendarx.png" />
+    <Content Include="Resources\calendarx2.png" />
+    <Content Include="Resources\camionretorno.png" />
+    <Content Include="Resources\Cancelar.ico" />
+    <Content Include="Resources\CancelarBoton.ico" />
+    <Content Include="Resources\Cancel_32x32.png" />
+    <Content Include="Resources\check.png" />
+    <Content Include="Resources\ClearFilter_32x32.png" />
+    <Content Include="Resources\config20x19.png" />
+    <Content Include="Resources\config20x20.png" />
+    <Content Include="Resources\consultar.ico" />
+    <Content Include="Resources\Convert_32x32.png" />
+    <Content Include="Resources\correo.gif" />
+    <Content Include="Resources\Corte.gif" />
+    <Content Include="Resources\cortePrimario_x45.png" />
+    <Content Include="Resources\cortePrimario_x90.png" />
+    <Content Include="Resources\Customer_16x16.png" />
+    <Content Include="Resources\datos.ico" />
+    <Content Include="Resources\davico.ico" />
+    <Content Include="Resources\Delete_Proces.ico" />
+    <Content Include="Resources\Delete_Proces1.ico" />
+    <Content Include="Resources\Delete_Proces2.ico" />
+    <Content Include="Resources\diff.ico" />
+    <Content Include="Resources\DistribucionContainer.ico" />
+    <Content Include="Resources\DistribucionContainer2.png" />
+    <Content Include="Resources\Dividir.png" />
+    <Content Include="Resources\doc2.bmp" />
+    <Content Include="Resources\Edit_32x32.png" />
+    <Content Include="Resources\Eficiencia.gif" />
+    <Content Include="Resources\Eliminar2.ico" />
+    <Content Include="Resources\Eliminar21.ico" />
+    <Content Include="Resources\Eliminar2_18.ico" />
+    <Content Include="Resources\EmailTemplate_32x32.png" />
+    <Content Include="Resources\emisionnc_16x16.png" />
+    <Content Include="Resources\enviar_22x22.png" />
+    <Content Include="Resources\enviar_30x30.png" />
+    <Content Include="Resources\Envios.png" />
+    <Content Include="Resources\especialidades.gif" />
+    <Content Include="Resources\eternit.JPG" />
+    <Content Include="Resources\eventlogInfo.ico" />
+    <Content Include="Resources\excel-button.jpg" />
+    <Content Include="Resources\excel.jpg" />
+    <Content Include="Resources\Excel_20.ico" />
+    <Content Include="Resources\excel_ico.png" />
+    <Content Include="Resources\excel_ico2.png" />
+    <Content Include="Resources\excel_ico24.ico" />
+    <Content Include="Resources\Extrusora.gif" />
+    <Content Include="Resources\Filter_32x32.png" />
+    <Content Include="Resources\Financial_32x32.png" />
+    <Content Include="Resources\FindCustomers_16x16.png" />
+    <Content Include="Resources\FlechaIco.ico" />
+    <Content Include="Resources\FlechaIzq.png" />
+    <Content Include="Resources\flecha_22x22.png" />
+    <Content Include="Resources\Forward_32x32.png" />
+    <Content Include="Resources\Generator.png" />
+    <Content Include="Resources\Grabar.ico" />
+    <Content Include="Resources\Grabar1.ico" />
+    <Content Include="Resources\HighlightField_32x32.png" />
+    <Content Include="Resources\hoja.png" />
+    <Content Include="Resources\hoja2.png" />
+    <Content Include="Resources\house.ico" />
+    <Content Include="Resources\iconExport.png" />
+    <Content Include="Resources\iconImport.png" />
+    <Content Include="Resources\icono_recursosdocentes.png" />
+    <Content Include="Resources\importar.ico" />
+    <Content Include="Resources\importar1.ico" />
+    <Content Include="Resources\Imprimir.ico" />
+    <Content Include="Resources\intercambio19x19.png" />
+    <Content Include="Resources\Interrogacion.ico" />
+    <Content Include="Resources\Interrogación.png" />
+    <Content Include="Resources\Libro040.ico" />
+    <Content Include="Resources\Libro068.ico" />
+    <Content Include="Resources\limpiar20X21.png" />
+    <Content Include="Resources\logoOPP.jpg" />
+    <Content Include="Resources\mantmedico.jpg" />
+    <Content Include="Resources\Next_32x32.png" />
+    <Content Include="Resources\Note16.ico" />
+    <Content Include="Resources\Nuevo.ico" />
+    <Content Include="Resources\Obengroup.jpg" />
+    <Content Include="Resources\Open_16x16.png" />
+    <Content Include="Resources\OperadorLogistico.ico" />
+    <Content Include="Resources\OppFilm.jpg" />
+    <Content Include="Resources\opp_logo_footer.png" />
+    <Content Include="Resources\palet_sacos.jpg" />
+    <Content Include="Resources\PC2.ICO" />
+    <Content Include="Resources\PCCOM15B.ICO" />
+    <Content Include="Resources\pdf 16x16.jpg" />
+    <Content Include="Resources\pdf.png" />
+    <Content Include="Resources\Preview_32x32.png" />
+    <Content Include="Resources\Previous_32x32.png" />
+    <Content Include="Resources\Print.bmp" />
+    <Content Include="Resources\Printer.ico" />
+    <Content Include="Resources\Procesar 2.ico" />
+    <Content Include="Resources\Procesar.ico" />
+    <Content Include="Resources\recibir.png" />
+    <Content Include="Resources\refresh.png" />
+    <Content Include="Resources\Refresh_32x32.png" />
+    <Content Include="Resources\regresar.png" />
+    <Content Include="Resources\regresar1.png" />
+    <Content Include="Resources\regresar2.png" />
+    <Content Include="Resources\RemoveItem_32x32.png" />
+    <Content Include="Resources\Remove_16x16.png" />
+    <Content Include="Resources\Remove_32x32.png" />
+    <Content Include="Resources\Resta.png" />
+    <Content Include="Resources\rollo madre_x90.png" />
+    <Content Include="Resources\Rollo.png" />
+    <Content Include="Resources\Rollo2.png" />
+    <Content Include="Resources\Salir.ico" />
+    <Content Include="Resources\SaveAll_32x32.png" />
+    <Content Include="Resources\Sinsolucion_16x16.png" />
+    <Content Include="Resources\solucioncom_16x16.png" />
+    <Content Include="Resources\stop.gif" />
+    <Content Include="Resources\Suma.png" />
+    <Content Include="Resources\Sunat.jpg" />
+    <Content Include="Resources\tiempo.png" />
+    <Content Include="Resources\total_x32.png" />
+    <Content Include="Resources\total_x45.png" />
+    <Content Include="Resources\transfer.ico" />
+    <Content Include="Resources\Transfer2.ico" />
+    <Content Include="Resources\transportar.png" />
+    <Content Include="Resources\VistaPrevia.ico" />
+    <Content Include="Resources\VistaPrevia1.ico" />
+    <Content Include="Resources\Warning_32x32.png" />
+    <Content Include="Resources\Write 1.ico" />
     <Content Include="VBBusinessApplication.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -354,6 +659,18 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ServicioAndroid\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="ru\DevExpress.XtraPdfViewer.v16.2.resources">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Satellite</FileType>
+    </PublishFile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

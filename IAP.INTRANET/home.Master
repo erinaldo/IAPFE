@@ -240,8 +240,8 @@
                 <span class="label label-primary pull-right">4</span>
               </a>
               <ul class="treeview-menu">
-                <li id="liusu"><a href="../../pages/mantenimiento/frmusuarios.aspx"><i class="fa fa-circle-o"></i> Usuarios</a></li>
-                <li><a href="pages/mantenimiento/frmproductos.aspx"><i class="fa fa-circle-o"></i> Articulos</a></li>
+                <li id="liusu"><a href="/pages/mantenimiento/frmusuarios.aspx"><i class="fa fa-circle-o"></i> Usuarios</a></li>
+                <li><a href="/pages/mantenimiento/frmproductos.aspx"><i class="fa fa-circle-o"></i> Articulos</a></li>
  
               </ul>
             </li>
@@ -253,8 +253,8 @@
                 <small class="label pull-right bg-green">Hot</small>
               </a>
               <ul class="treeview-menu">
-                  <li id="life"><a href="pages/comercial/frmfacturacionelectronica.aspx"><i class="fa fa-circle-o"></i> Facturacion Electronica</a></li>
-                  <li id="liped"><a href="pages/comercial/frmpedidos.aspx"><i class="fa fa-circle-o"></i> Pedidos</a></li>
+                  <li id="life"><a href="/pages/comercial/frmfacturacionelectronica.aspx"><i class="fa fa-circle-o"></i> Facturacion Electronica</a></li>
+                  <li id="liped"><a href="/pages/comercial/frmpedidos.aspx"><i class="fa fa-circle-o"></i> Pedidos</a></li>
               </ul>
             </li>
                           

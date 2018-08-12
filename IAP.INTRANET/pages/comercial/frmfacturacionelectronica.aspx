@@ -274,4 +274,5 @@
         </telerik:RadAjaxPanel>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Variables" runat="server">
+    <asp:Label ID="lblmensaje" runat="server"></asp:Label>
 </asp:Content>
