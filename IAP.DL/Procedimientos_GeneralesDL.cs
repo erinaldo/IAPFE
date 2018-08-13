@@ -7,7 +7,7 @@ using System.Data;
 
 namespace IAP.DL
 {
-    public class Procedimientos_Generales
+    public class Procedimientos_GeneralesDL
     {
         public static DataSet CargaExcel(string RutaExcel, string NombreHoja)
         {

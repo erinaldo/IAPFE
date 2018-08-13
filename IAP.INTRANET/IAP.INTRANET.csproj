@@ -49,6 +49,9 @@
     <Reference Include="DevExpress.Web.Resources.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
@@ -859,6 +862,7 @@
     <Content Include="productos.aspx" />
     <Content Include="Properties\DataSources\IAP.BE.Usuario.datasource" />
     <Content Include="popup.Master" />
+    <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\intranet.pubxml" />
     <None Include="Service References\SUsuario\SUsuario.disco" />
     <None Include="Service References\SUsuario\configuration91.svcinfo" />
@@ -1130,6 +1134,10 @@
     <ProjectReference Include="..\IAP.BL\IAP.BL.csproj">
       <Project>{8e467625-d8d0-4f70-ba69-0285999cbcfc}</Project>
       <Name>IAP.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IAP.DL\IAP.DL.csproj">
+      <Project>{c6947a5f-1d5f-4534-971f-8eaf6f55a032}</Project>
+      <Name>IAP.DL</Name>
     </ProjectReference>
     <ProjectReference Include="..\WS_ANDROID\IAP.BE.csproj">
       <Project>{09827eeb-3ade-4b02-b83a-08a5bed1b568}</Project>

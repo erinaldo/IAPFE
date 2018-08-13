@@ -32,7 +32,7 @@ namespace IAP.Win
                     path = ofd.FileName;
                     DataSet dsexcel = new DataSet();
 
-                    dsexcel = BL.Procedimientos_Generales.CargaExcel(path, "asientos");
+                    dsexcel = BL.Procedimientos_GeneralesBL.CargaExcel(path, "asientos");
                     dt_asiento = dsexcel.Tables[0];
                     if (dsexcel.Tables.Count > 0)
                     {

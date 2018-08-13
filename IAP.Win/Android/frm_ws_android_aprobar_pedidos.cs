@@ -243,7 +243,7 @@ namespace IAP.Win
                 string path;
                 path = ofd.FileName;
                 DataSet dsexcel = new DataSet();
-                dsexcel = BL.Procedimientos_Generales.CargaExcel(path, "lista");
+                dsexcel = BL.Procedimientos_GeneralesBL.CargaExcel(path, "lista");
                 if (dsexcel.Tables.Count > 0)
                 {
                     gvw_lista.Columns.Clear();

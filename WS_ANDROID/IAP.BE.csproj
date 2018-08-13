@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiRestNavasoft.cs" />
     <Compile Include="ClaveVenta.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="CondicionVenta.cs" />

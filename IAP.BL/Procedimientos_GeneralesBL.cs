@@ -4,17 +4,20 @@ using System.Linq;
 using System.Data;
 using System.Net;
 using System.IO;
+using IAP.DL;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace IAP.BL
 {
-    public class Procedimientos_Generales
+    public class Procedimientos_GeneralesBL
     {
         public static DataSet CargaExcel(string RutaExcelBL, string NombreHojaBL)
         {
             try
             {
                 DataSet ds_le = new DataSet();
-                ds_le = DL.Procedimientos_Generales.CargaExcel(RutaExcelBL, NombreHojaBL);
+                ds_le = DL.Procedimientos_GeneralesDL.CargaExcel(RutaExcelBL, NombreHojaBL);
                 ds_le.Tables[0].TableName = "listaexcel";
                 return ds_le;
             }
@@ -23,10 +26,13 @@ namespace IAP.BL
                 throw new ArgumentException(ex.Message);
             }
         }
-        public string SendJson(string ruta, string json, string token)
+        public string ObtenerDataApiRest(string ruta, object entidad, string token)
         {
             try
             {
+                string json = JsonConvert.SerializeObject(entidad, Formatting.Indented);
+                byte[] bytes = Encoding.Default.GetBytes(json);
+                string json_en_utf_8 = Encoding.UTF8.GetString(bytes);
                 using (var client = new WebClient())
                 {
                     /// ESPECIFICAMOS EL TIPO DE DOCUMENTO EN EL ENCABEZADO
@@ -34,7 +40,7 @@ namespace IAP.BL
                     /// ASI COMO EL TOKEN UNICO
                     client.Headers[HttpRequestHeader.Authorization] = "Token token=" + token;
                     /// OBTENEMOS LA RESPUESTA
-                    string respuesta = client.UploadString(ruta, "POST", json);
+                    string respuesta = client.UploadString(ruta, "POST", json_en_utf_8);
                     /// Y LA 'RETORNAMOS'
                     return respuesta;
                 }
