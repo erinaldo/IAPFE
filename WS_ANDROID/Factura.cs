@@ -28,6 +28,7 @@ namespace IAP.BE
         public double Toti { get; set; }
         public double Totn { get; set; }
         public string Codven { get; set; }
+        public string NomVen { get; set; }
         public string Flag { get; set; }
         public string NumeroLetras { get; set; }
         public Byte[] CodigoQR { get; set; }
@@ -42,5 +43,23 @@ namespace IAP.BE
             this.RucCliente = ruccliente;
             this.CodigoQR = codigoqr;
         }
+    }
+
+    public class DetalleFactura
+    {
+        public string Cdocu { get; set; }
+        public string Ndocu { get; set; }
+        public int Item { get; set; }
+        public string Codi { get; set; }
+        public string Codf { get; set; }
+        public string Marca { get; set; }
+        public string Descrip { get; set; }
+        public string Umed { get; set; }
+        public double Cantidad { get; set; }
+        public double Preu { get; set; }
+        public double Tota { get; set; }
+        public double Totn { get; set; }
+        public string Mone { get; set; }
+
     }
 }

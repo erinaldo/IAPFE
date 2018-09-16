@@ -14,7 +14,7 @@ using IAP.Win.Comercial;
 using DevExpress.Utils;
 using DevExpress.XtraEditors;
 //using IAP.Win.Comercial;
-
+using IAP.Win.Administracion;
 namespace IAP.Win
 {
     
@@ -261,6 +261,13 @@ namespace IAP.Win
         {
             DevExpress.XtraTab.XtraTabPage tp = xtraTabControl1.SelectedTabPage;
             xtraTabControl1.TabPages.Remove(tp);
+        }
+
+        private void administracion_cargartxtFac_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            frm_cargartxtFacturas frm = new frm_cargartxtFacturas();
+            string nombreform = contabilidad_importarasiento.Caption;
+            AgregarFormularioEnTabPage(frm, nombreform);
         }
     }
 }

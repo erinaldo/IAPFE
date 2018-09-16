@@ -14,14 +14,19 @@ using Gma.QrCodeNet.Encoding;
 using Gma.QrCodeNet.Encoding.Windows.Render;
 using System.IO;
 using System.Drawing.Imaging;
+using System.Configuration;
 
 namespace FormatoFacturaFE
 {
     public partial class FtoImpFacFe : Form
     {
-        private List<Factura> lstfactura = new List<Factura>();
-        private string cdocu;
-        private string ndocu;
+        Factura _efactura = new Factura();
+        List<Factura> _lstfac = new List<Factura>();
+        List<DetalleFactura> _lstdet = new List<DetalleFactura>();
+        Comercial objCom = new Comercial();
+        NumLetra NumeroLetra = new NumLetra();
+        string cdocu;
+        string ndocu;
         public FtoImpFacFe()
         {
             InitializeComponent();
@@ -42,19 +47,30 @@ namespace FormatoFacturaFE
                 }
             }
             Byte[] img = GenerarCodigoQr();
-
-            lstfactura.Add(new Factura(cdocu, ndocu, "Andy Ex", "46119959", "", img));
+            //string cn = ConfigurationManager.AppSettings["bdNava01"];
+            objCom.ObtenerCabeceraFBNCND(cdocu, ndocu, "bdNava01", ref _efactura,ref _lstdet);
+            _efactura.CodigoQR = img;
+            _efactura.NumeroLetras = NumeroLetra.Convertir(_efactura.Totn.ToString(), true);
+            _efactura.NumeroLetras=_efactura.NumeroLetras + (_efactura.Moneda == "S" ? " SOLES" : "DOLARES");
+            _lstfac.Add(_efactura);
+            //lstfactura.Add(new Factura(cdocu, ndocu, "Andy Ex", "46119959", "", img));
             cargar_reportveawer();
             this.rpvwfactura.RefreshReport();
             GenerarCodigoQr();
         }
         private void cargar_reportveawer()
         {
-
+            
+            
             rpvwfactura.LocalReport.DataSources.Clear();
             ReportDataSource rds = new ReportDataSource();
             rds.Name = "dsCabFac";
-            rds.Value = lstfactura;
+            rds.Value = _lstfac;
+            this.rpvwfactura.LocalReport.DataSources.Add(rds);
+
+            rds = new ReportDataSource();
+            rds.Name = "dsDetFac";
+            rds.Value = _lstdet;
             this.rpvwfactura.LocalReport.DataSources.Add(rds);
 
             this.rpvwfactura.LocalReport.ReportEmbeddedResource =
@@ -91,6 +107,8 @@ namespace FormatoFacturaFE
             //Retornamos el arreglo de bytes
             return ms.ToArray();
         }
+
         
+
     }
 }

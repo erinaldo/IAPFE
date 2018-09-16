@@ -253,7 +253,8 @@
                 <small class="label pull-right bg-green">Hot</small>
               </a>
               <ul class="treeview-menu">
-                  <li id="life"><a href="/pages/comercial/frmfacturacionelectronica.aspx"><i class="fa fa-circle-o"></i> Facturacion Electronica</a></li>
+                  <%--<li id="life"><a href="/pages/comercial/frmfacturacionelectronica.aspx"><i class="fa fa-circle-o"></i> Facturacion Electronica</a></li>--%>
+                  <li id="life"><a href="/pages/comercial/frmFE.html"><i class="fa fa-circle-o"></i> Facturacion Electronica</a></li>
                   <li id="liped"><a href="/pages/comercial/frmpedidos.aspx"><i class="fa fa-circle-o"></i> Pedidos</a></li>
               </ul>
             </li>

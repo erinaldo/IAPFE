@@ -46,6 +46,7 @@
     <Compile Include="Documentov.cs" />
     <Compile Include="Factura.cs" />
     <Compile Include="listaprecio.cs" />
+    <Compile Include="Mst01facTxt.cs" />
     <Compile Include="pedido_linea.cs" />
     <Compile Include="pedido.cs" />
     <Compile Include="Producto.cs" />

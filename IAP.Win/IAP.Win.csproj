@@ -62,6 +62,7 @@
     </Reference>
     <Reference Include="DevExpress.DataAccess.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.DataAccess.v18.1.UI, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Dialogs.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Map.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Office.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Pdf.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
@@ -89,6 +90,7 @@
     <Reference Include="DevExpress.XtraCharts.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraCharts.v18.1.UI, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraCharts.v18.1.Wizard, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraDialogs.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
@@ -138,6 +140,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administracion\frm_cargartxtFacturas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracion\frm_cargartxtFacturas.Designer.cs">
+      <DependentUpon>frm_cargartxtFacturas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Clases\GridColumnFormatClass.cs" />
     <Compile Include="Administracion\frmborrar_documento.cs">
       <SubType>Form</SubType>
@@ -280,6 +288,9 @@
     </Compile>
     <EmbeddedResource Include="Administracion\frmborrar_documento.resx">
       <DependentUpon>frmborrar_documento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administracion\frm_cargartxtFacturas.resx">
+      <DependentUpon>frm_cargartxtFacturas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comercial\frm_ConsultaEstadoFe.resx">
       <DependentUpon>frm_ConsultaEstadoFe.cs</DependentUpon>

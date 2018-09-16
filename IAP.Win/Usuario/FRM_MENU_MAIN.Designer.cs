@@ -66,6 +66,7 @@
             this.dvwcxc = new DevExpress.DashboardWin.DashboardViewer(this.components);
             this.tp2 = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.administracion_cargartxtFac = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
@@ -78,7 +79,7 @@
             // 
             // navBarControl1
             // 
-            this.navBarControl1.ActiveGroup = this.navBarGroupComercial;
+            this.navBarControl1.ActiveGroup = this.navBarGroupProcesos;
             this.navBarControl1.Appearance.NavigationPaneHeader.BackColor = System.Drawing.Color.White;
             this.navBarControl1.Appearance.NavigationPaneHeader.Options.UseBackColor = true;
             this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -111,7 +112,8 @@
             this.comercial_eliminardocumento,
             this.contabilidad_importarasiento,
             this.comercial_cambioclave,
-            this.comercial_FE});
+            this.comercial_FE,
+            this.administracion_cargartxtFac});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 201;
@@ -125,72 +127,73 @@
             // navBarGroupComercial
             // 
             this.navBarGroupComercial.Caption = "Comercial";
-            this.navBarGroupComercial.Expanded = true;
+            this.navBarGroupComercial.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupComercial.ImageOptions.LargeImage")));
+            this.navBarGroupComercial.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupComercial.ImageOptions.SmallImage")));
             this.navBarGroupComercial.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_listaprecio),
             new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_eliminararqueo),
             new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_eliminardocumento),
             new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_cambioclave),
             new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_FE)});
-            this.navBarGroupComercial.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupComercial.LargeImage")));
             this.navBarGroupComercial.Name = "navBarGroupComercial";
-            this.navBarGroupComercial.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupComercial.SmallImage")));
             // 
             // comercial_listaprecio
             // 
             this.comercial_listaprecio.Caption = "Lista de Precios";
+            this.comercial_listaprecio.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("comercial_listaprecio.ImageOptions.SmallImage")));
             this.comercial_listaprecio.Name = "comercial_listaprecio";
-            this.comercial_listaprecio.SmallImage = ((System.Drawing.Image)(resources.GetObject("comercial_listaprecio.SmallImage")));
             this.comercial_listaprecio.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.comercial_listaprecio_LinkClicked);
             // 
             // comercial_eliminararqueo
             // 
             this.comercial_eliminararqueo.Caption = "Eliminar Arqueo";
+            this.comercial_eliminararqueo.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("comercial_eliminararqueo.ImageOptions.SmallImage")));
             this.comercial_eliminararqueo.Name = "comercial_eliminararqueo";
-            this.comercial_eliminararqueo.SmallImage = ((System.Drawing.Image)(resources.GetObject("comercial_eliminararqueo.SmallImage")));
             this.comercial_eliminararqueo.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.comercial_eliminararqueo_LinkClicked);
             // 
             // comercial_eliminardocumento
             // 
             this.comercial_eliminardocumento.Caption = "Eliminar Documento";
+            this.comercial_eliminardocumento.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("comercial_eliminardocumento.ImageOptions.SmallImage")));
             this.comercial_eliminardocumento.Name = "comercial_eliminardocumento";
-            this.comercial_eliminardocumento.SmallImage = ((System.Drawing.Image)(resources.GetObject("comercial_eliminardocumento.SmallImage")));
             this.comercial_eliminardocumento.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.comercial_eliminardocumento_LinkClicked);
             // 
             // comercial_cambioclave
             // 
             this.comercial_cambioclave.Caption = "Cambio de Clave Venta";
+            this.comercial_cambioclave.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("comercial_cambioclave.ImageOptions.SmallImage")));
             this.comercial_cambioclave.Name = "comercial_cambioclave";
-            this.comercial_cambioclave.SmallImage = ((System.Drawing.Image)(resources.GetObject("comercial_cambioclave.SmallImage")));
             this.comercial_cambioclave.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.comercial_cambioclave_LinkClicked);
             // 
             // comercial_FE
             // 
             this.comercial_FE.Caption = "Facturacion Electronica";
+            this.comercial_FE.ImageOptions.SmallImage = global::IAP.Win.Properties.Resources.Sunat;
             this.comercial_FE.Name = "comercial_FE";
-            this.comercial_FE.SmallImage = global::IAP.Win.Properties.Resources.Sunat;
             this.comercial_FE.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.comercial_FE_LinkClicked);
             // 
             // navBarGroupContabilidad
             // 
             this.navBarGroupContabilidad.Caption = "Contabilidad";
+            this.navBarGroupContabilidad.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupContabilidad.ImageOptions.LargeImage")));
+            this.navBarGroupContabilidad.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupContabilidad.ImageOptions.SmallImage")));
             this.navBarGroupContabilidad.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.contabilidad_importarasiento)});
-            this.navBarGroupContabilidad.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupContabilidad.LargeImage")));
             this.navBarGroupContabilidad.Name = "navBarGroupContabilidad";
-            this.navBarGroupContabilidad.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupContabilidad.SmallImage")));
             // 
             // contabilidad_importarasiento
             // 
             this.contabilidad_importarasiento.Caption = "Importar Asientos al ERP";
+            this.contabilidad_importarasiento.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("contabilidad_importarasiento.ImageOptions.SmallImage")));
             this.contabilidad_importarasiento.Name = "contabilidad_importarasiento";
-            this.contabilidad_importarasiento.SmallImage = ((System.Drawing.Image)(resources.GetObject("contabilidad_importarasiento.SmallImage")));
             this.contabilidad_importarasiento.Tag = "1";
             this.contabilidad_importarasiento.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.contabilidad_importarasiento_LinkClicked);
             // 
             // navBarGroupReportes
             // 
             this.navBarGroupReportes.Caption = "Reportes";
+            this.navBarGroupReportes.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupReportes.ImageOptions.LargeImage")));
+            this.navBarGroupReportes.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupReportes.ImageOptions.SmallImage")));
             this.navBarGroupReportes.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.reportes_cdn),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarSeparatorItem1),
@@ -198,15 +201,13 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.reportes_dw_articulos),
             new DevExpress.XtraNavBar.NavBarItemLink(this.reportes_dw_clientes),
             new DevExpress.XtraNavBar.NavBarItemLink(this.reportes_dw_ventas_cuota)});
-            this.navBarGroupReportes.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupReportes.LargeImage")));
             this.navBarGroupReportes.Name = "navBarGroupReportes";
-            this.navBarGroupReportes.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupReportes.SmallImage")));
             // 
             // reportes_cdn
             // 
             this.reportes_cdn.Caption = "Control Diario de Negocio";
+            this.reportes_cdn.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("reportes_cdn.ImageOptions.SmallImage")));
             this.reportes_cdn.Name = "reportes_cdn";
-            this.reportes_cdn.SmallImage = ((System.Drawing.Image)(resources.GetObject("reportes_cdn.SmallImage")));
             this.reportes_cdn.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem5_LinkClicked);
             // 
             // navBarSeparatorItem1
@@ -214,75 +215,72 @@
             this.navBarSeparatorItem1.CanDrag = false;
             this.navBarSeparatorItem1.Enabled = false;
             this.navBarSeparatorItem1.Hint = null;
-            this.navBarSeparatorItem1.LargeImageIndex = 0;
-            this.navBarSeparatorItem1.LargeImageSize = new System.Drawing.Size(0, 0);
             this.navBarSeparatorItem1.Name = "navBarSeparatorItem1";
-            this.navBarSeparatorItem1.SmallImageIndex = 0;
-            this.navBarSeparatorItem1.SmallImageSize = new System.Drawing.Size(0, 0);
             // 
             // reportes_dw_ventas
             // 
             this.reportes_dw_ventas.Caption = "Dashboard Ventas";
             this.reportes_dw_ventas.Enabled = false;
+            this.reportes_dw_ventas.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("reportes_dw_ventas.ImageOptions.SmallImage")));
             this.reportes_dw_ventas.Name = "reportes_dw_ventas";
-            this.reportes_dw_ventas.SmallImage = ((System.Drawing.Image)(resources.GetObject("reportes_dw_ventas.SmallImage")));
             // 
             // reportes_dw_articulos
             // 
             this.reportes_dw_articulos.Caption = "Dashboard Articulos";
             this.reportes_dw_articulos.Enabled = false;
+            this.reportes_dw_articulos.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("reportes_dw_articulos.ImageOptions.SmallImage")));
             this.reportes_dw_articulos.Name = "reportes_dw_articulos";
-            this.reportes_dw_articulos.SmallImage = ((System.Drawing.Image)(resources.GetObject("reportes_dw_articulos.SmallImage")));
             // 
             // reportes_dw_clientes
             // 
             this.reportes_dw_clientes.Caption = "Dashboard Clientes";
             this.reportes_dw_clientes.Enabled = false;
+            this.reportes_dw_clientes.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("reportes_dw_clientes.ImageOptions.SmallImage")));
             this.reportes_dw_clientes.Name = "reportes_dw_clientes";
-            this.reportes_dw_clientes.SmallImage = ((System.Drawing.Image)(resources.GetObject("reportes_dw_clientes.SmallImage")));
             // 
             // reportes_dw_ventas_cuota
             // 
             this.reportes_dw_ventas_cuota.Caption = "Dashboard Ventas vs Cuota";
             this.reportes_dw_ventas_cuota.Enabled = false;
+            this.reportes_dw_ventas_cuota.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("reportes_dw_ventas_cuota.ImageOptions.SmallImage")));
             this.reportes_dw_ventas_cuota.Name = "reportes_dw_ventas_cuota";
-            this.reportes_dw_ventas_cuota.SmallImage = ((System.Drawing.Image)(resources.GetObject("reportes_dw_ventas_cuota.SmallImage")));
             // 
             // navBarGroupSistema
             // 
             this.navBarGroupSistema.Caption = "SISTEMA";
+            this.navBarGroupSistema.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupSistema.ImageOptions.LargeImage")));
+            this.navBarGroupSistema.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupSistema.ImageOptions.SmallImage")));
             this.navBarGroupSistema.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.sistema_ejecucion_sql),
             new DevExpress.XtraNavBar.NavBarItemLink(this.sistema_backup),
             new DevExpress.XtraNavBar.NavBarItemLink(this.sistema_servicio)});
-            this.navBarGroupSistema.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupSistema.LargeImage")));
             this.navBarGroupSistema.Name = "navBarGroupSistema";
-            this.navBarGroupSistema.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupSistema.SmallImage")));
             // 
             // sistema_ejecucion_sql
             // 
             this.sistema_ejecucion_sql.Caption = "Ejecuacion de *.SQL";
+            this.sistema_ejecucion_sql.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("sistema_ejecucion_sql.ImageOptions.SmallImage")));
             this.sistema_ejecucion_sql.Name = "sistema_ejecucion_sql";
-            this.sistema_ejecucion_sql.SmallImage = ((System.Drawing.Image)(resources.GetObject("sistema_ejecucion_sql.SmallImage")));
             this.sistema_ejecucion_sql.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem3_LinkClicked);
             // 
             // sistema_backup
             // 
             this.sistema_backup.Caption = "Crear Backup de Base de Datos";
+            this.sistema_backup.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("sistema_backup.ImageOptions.SmallImage")));
             this.sistema_backup.Name = "sistema_backup";
-            this.sistema_backup.SmallImage = ((System.Drawing.Image)(resources.GetObject("sistema_backup.SmallImage")));
             this.sistema_backup.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem7_LinkClicked);
             // 
             // sistema_servicio
             // 
             this.sistema_servicio.Caption = "Estatus Servicio";
+            this.sistema_servicio.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("sistema_servicio.ImageOptions.SmallImage")));
             this.sistema_servicio.Name = "sistema_servicio";
-            this.sistema_servicio.SmallImage = ((System.Drawing.Image)(resources.GetObject("sistema_servicio.SmallImage")));
             this.sistema_servicio.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.sistema_servicio_LinkClicked);
             // 
             // navBarGroupAndroid
             // 
             this.navBarGroupAndroid.Caption = "Android";
+            this.navBarGroupAndroid.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupAndroid.ImageOptions.SmallImage")));
             this.navBarGroupAndroid.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.android_consulta),
             new DevExpress.XtraNavBar.NavBarItemLink(this.android_usuarios),
@@ -290,49 +288,51 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.android_importar_pedido),
             new DevExpress.XtraNavBar.NavBarItemLink(this.android_importar_articulos)});
             this.navBarGroupAndroid.Name = "navBarGroupAndroid";
-            this.navBarGroupAndroid.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupAndroid.SmallImage")));
             // 
             // android_consulta
             // 
             this.android_consulta.Caption = "Consultar Pedidos";
+            this.android_consulta.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("android_consulta.ImageOptions.SmallImage")));
             this.android_consulta.Name = "android_consulta";
-            this.android_consulta.SmallImage = ((System.Drawing.Image)(resources.GetObject("android_consulta.SmallImage")));
             this.android_consulta.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem8_LinkClicked);
             // 
             // android_usuarios
             // 
             this.android_usuarios.Caption = "Administrar Usuarios";
+            this.android_usuarios.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("android_usuarios.ImageOptions.SmallImage")));
             this.android_usuarios.Name = "android_usuarios";
-            this.android_usuarios.SmallImage = ((System.Drawing.Image)(resources.GetObject("android_usuarios.SmallImage")));
             this.android_usuarios.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.android_usuarios_LinkClicked);
             // 
             // android_estado_cuenta
             // 
             this.android_estado_cuenta.Caption = "Estado de Cuenta Cliente";
             this.android_estado_cuenta.Enabled = false;
+            this.android_estado_cuenta.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("android_estado_cuenta.ImageOptions.SmallImage")));
             this.android_estado_cuenta.Name = "android_estado_cuenta";
-            this.android_estado_cuenta.SmallImage = ((System.Drawing.Image)(resources.GetObject("android_estado_cuenta.SmallImage")));
             // 
             // android_importar_pedido
             // 
             this.android_importar_pedido.Caption = "Importar Pedidos al ERP";
             this.android_importar_pedido.Enabled = false;
+            this.android_importar_pedido.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("android_importar_pedido.ImageOptions.SmallImage")));
             this.android_importar_pedido.Name = "android_importar_pedido";
-            this.android_importar_pedido.SmallImage = ((System.Drawing.Image)(resources.GetObject("android_importar_pedido.SmallImage")));
             // 
             // android_importar_articulos
             // 
             this.android_importar_articulos.Caption = "Importar Articulos";
             this.android_importar_articulos.Enabled = false;
+            this.android_importar_articulos.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("android_importar_articulos.ImageOptions.SmallImage")));
             this.android_importar_articulos.Name = "android_importar_articulos";
-            this.android_importar_articulos.SmallImage = ((System.Drawing.Image)(resources.GetObject("android_importar_articulos.SmallImage")));
             // 
             // navBarGroupProcesos
             // 
             this.navBarGroupProcesos.Caption = "Administracion";
-            this.navBarGroupProcesos.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupProcesos.LargeImage")));
+            this.navBarGroupProcesos.Expanded = true;
+            this.navBarGroupProcesos.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupProcesos.ImageOptions.LargeImage")));
+            this.navBarGroupProcesos.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupProcesos.ImageOptions.SmallImage")));
+            this.navBarGroupProcesos.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.administracion_cargartxtFac)});
             this.navBarGroupProcesos.Name = "navBarGroupProcesos";
-            this.navBarGroupProcesos.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupProcesos.SmallImage")));
             // 
             // navBarItem1
             // 
@@ -376,7 +376,6 @@
             // 
             // dvwcxc
             // 
-            this.dvwcxc.CustomDBSchemaProviderEx = null;
             this.dvwcxc.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dvwcxc.Location = new System.Drawing.Point(0, 0);
             this.dvwcxc.Name = "dvwcxc";
@@ -398,6 +397,13 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(858, 694);
             this.panelControl1.TabIndex = 5;
+            // 
+            // administracion_cargartxtFac
+            // 
+            this.administracion_cargartxtFac.Caption = "Cargar Txt Facturas";
+            this.administracion_cargartxtFac.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("administracion_cargartxtFac.ImageOptions.SmallImage")));
+            this.administracion_cargartxtFac.Name = "administracion_cargartxtFac";
+            this.administracion_cargartxtFac.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.administracion_cargartxtFac_LinkClicked);
             // 
             // FRM_MENU_MAIN
             // 
@@ -462,5 +468,6 @@
         private DevExpress.DashboardWin.DashboardViewer dvwcxc;
         private DevExpress.XtraTab.XtraTabPage tp2;
         private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraNavBar.NavBarItem administracion_cargartxtFac;
     }
 }

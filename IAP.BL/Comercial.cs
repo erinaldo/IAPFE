@@ -9,6 +9,7 @@ using IAP.BE;
 using Newtonsoft.Json;
 using System.Net;
 using System.IO;
+using IAP.DL;
 
 namespace IAP.BL
 {
@@ -64,6 +65,15 @@ namespace IAP.BL
             {
                 //DProcProduccion dProcProduccion = new DProcProduccion();
                 return DL.Comercial.ObtenerXmlDashBoard(id_xml, dbconexion);
+            }
+        }
+
+        public void ObtenerCabeceraFBNCND(string cdocu, string ndocu, string dbconexion, ref Factura eFac, ref List<DetalleFactura> lstDet)
+        {
+            DL.Comercial eCom = new DL.Comercial();
+            using (TransactionScope ts = new TransactionScope(TransactionScopeOption.Required))
+            {
+                eCom.ObtenerCabeceraFBNCND(cdocu, ndocu, dbconexion, ref eFac, ref lstDet);
             }
         }
     }

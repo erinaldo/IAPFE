@@ -148,6 +148,68 @@ namespace IAP.DL
             return strm;
         }
 
+        public void ObtenerCabeceraFBNCND(string cdocu,string ndocu,string dbconexion,ref Factura eFac,ref List<DetalleFactura> lstDet)
+        {
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            DbCommand cmd;
+            cmd = db.GetStoredProcCommand("USP_Sel_ObtenerCabeceraDetalleFBNCND",cdocu,ndocu);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+
+            DataSet ds = db.ExecuteDataSet(cmd);
+
+            foreach(DataRow row in ds.Tables[0].Rows)
+            {
+                eFac = new Factura
+                {
+                    Fecha = Convert.ToDateTime(row["fecha"]),
+                    Cdocu = row["Cdocu"].ToString(),
+                    Ndocu = row["Ndocu"].ToString(),
+                    Crefe = row["Crefe"].ToString(),
+                    Nrefe = row["Nrefe"].ToString(),
+                    Orden = row["Orde"].ToString(),
+                    Codcli = row["Codcli"].ToString(),
+                    NombreCliente = row["Nomcli"].ToString(),
+                    RucCliente = row["Ruccli"].ToString(),
+                    Direccion = row["DirCli"].ToString(),
+                    Codcdv = row["codcdv"].ToString(),
+                    CondicionVenta = row["CondicionVenta"].ToString(),
+                    FechaVencimiento = Convert.ToDateTime(row["fven"].ToString()),
+                    Moneda = row["mone"].ToString(),
+                    TipoCambio = Convert.ToDouble(row["tcam"]),
+                    Tota = Convert.ToDouble(row["tota"]),
+                    Toti = Convert.ToDouble(row["toti"]),
+                    Totn = Convert.ToDouble(row["totn"]),
+                    Codven = row["codven"].ToString(),
+                    NomVen = row["nomven"].ToString(),
+                    Flag = row["flag"].ToString()
+                };
+
+            }
+
+            foreach (DataRow row in ds.Tables[1].Rows)
+            {
+                lstDet.Add(new DetalleFactura
+                {
+                    Cdocu = row["Cdocu"].ToString(),
+                    Ndocu = row["Ndocu"].ToString(),
+                    Item = Convert.ToInt32(row["Item"].ToString()),
+                    Codi = row["codi"].ToString(),
+                    Codf = row["Codf"].ToString(),
+                    Marca = row["Marc"].ToString(),
+                    Descrip = row["descr"].ToString(),
+                    Umed = row["Umed"].ToString(),
+                    Cantidad = Convert.ToDouble(row["Cant"].ToString()),
+                    Preu = Convert.ToDouble(row["preu"]),
+                    Tota = Convert.ToDouble(row["tota"]),
+                    Totn = Convert.ToDouble(row["totn"]),
+                    Mone = row["mone"].ToString()
+
+                });
+            }
+
+        }
+
 
 
     }
