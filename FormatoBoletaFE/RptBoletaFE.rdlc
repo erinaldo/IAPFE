@@ -7,27 +7,20 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>64ccda87-ac3e-4e22-94f1-aadc506726af</rd:DataSourceID>
+      <rd:DataSourceID>7d9e8c4a-b487-4da5-858d-9952610e2fad</rd:DataSourceID>
     </DataSource>
     <DataSource Name="IAPBE1">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>ee8d921c-3eee-4bd6-8b51-c97759f24bc5</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="IAPBE2">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>16e2a094-552a-48d3-abcb-69db46888fe2</rd:DataSourceID>
+      <rd:DataSourceID>00006eb5-e7b6-4545-a9cb-c54875751fb2</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="dsCabFac">
+    <DataSet Name="dsCabBol">
       <Query>
-        <DataSourceName>IAPBE1</DataSourceName>
+        <DataSourceName>IAPBE</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -134,9 +127,9 @@
         <rd:ObjectDataSourceType>IAP.BE.Factura, IAP.BE, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
-    <DataSet Name="dsDetFac">
+    <DataSet Name="dsDetBol">
       <Query>
-        <DataSourceName>IAPBE2</DataSourceName>
+        <DataSourceName>IAPBE1</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -223,8 +216,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.3846cm</Top>
-            <Left>0.0082cm</Left>
+            <Top>0.00099cm</Top>
+            <Left>0.08994cm</Left>
             <Height>0.52063cm</Height>
             <Width>8.46667cm</Width>
             <Style>
@@ -256,9 +249,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>0.90523cm</Top>
-            <Left>0.0082cm</Left>
-            <Height>0.38833cm</Height>
+            <Top>0.52162cm</Top>
+            <Left>0.08994cm</Left>
+            <Height>0.42361cm</Height>
             <Width>8.46667cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
@@ -273,11 +266,11 @@
           </Textbox>
           <Image Name="CodigoQR">
             <Source>Database</Source>
-            <Value>=First(Fields!CodigoQR.Value, "dsCabFac")</Value>
+            <Value>=First(Fields!CodigoQR.Value, "dsCabBol")</Value>
             <MIMEType>image/png</MIMEType>
             <Sizing>FitProportional</Sizing>
-            <Top>8.5947cm</Top>
-            <Left>3.10792cm</Left>
+            <Top>8.31692cm</Top>
+            <Left>3.15438cm</Left>
             <Height>2cm</Height>
             <Width>2cm</Width>
             <ZIndex>2</ZIndex>
@@ -306,8 +299,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>1.32884cm</Top>
-            <Left>0.0082cm</Left>
+            <Top>1.05106cm</Top>
+            <Left>0.05466cm</Left>
             <Height>0.44125cm</Height>
             <Width>8.46667cm</Width>
             <ZIndex>3</ZIndex>
@@ -328,7 +321,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>="FACTURA DE VENTA ELECTRONICA " &amp; First(Fields!Ndocu.Value, "dsCabFac")</Value>
+                    <Value>="BOLETA DE VENTA ELECTRONICA " &amp; First(Fields!Ndocu.Value, "dsCabBol")</Value>
                     <Style>
                       <FontSize>7pt</FontSize>
                       <FontWeight>Bold</FontWeight>
@@ -341,8 +334,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>1.80536cm</Top>
-            <Left>0.0082cm</Left>
+            <Top>1.52758cm</Top>
+            <Left>0.05466cm</Left>
             <Height>0.44125cm</Height>
             <Width>8.46667cm</Width>
             <ZIndex>4</ZIndex>
@@ -375,7 +368,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>2.7937cm</Top>
+            <Top>2.51592cm</Top>
+            <Left>0.04646cm</Left>
             <Height>0.44125cm</Height>
             <Width>2.03729cm</Width>
             <ZIndex>5</ZIndex>
@@ -408,7 +402,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>3.74675cm</Top>
+            <Top>3.46897cm</Top>
+            <Left>0.04646cm</Left>
             <Height>0.44125cm</Height>
             <Width>2.03729cm</Width>
             <ZIndex>6</ZIndex>
@@ -441,8 +436,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>2.31717cm</Top>
-            <Left>4.4894cm</Left>
+            <Top>2.03939cm</Top>
+            <Left>4.53586cm</Left>
             <Height>0.44125cm</Height>
             <Width>1.29646cm</Width>
             <ZIndex>7</ZIndex>
@@ -475,8 +470,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>2.35244cm</Top>
-            <Left>0.0082cm</Left>
+            <Top>2.07466cm</Top>
+            <Left>0.05466cm</Left>
             <Height>0.44125cm</Height>
             <Width>1.08479cm</Width>
             <ZIndex>8</ZIndex>
@@ -509,7 +504,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>3.23494cm</Top>
+            <Top>2.95716cm</Top>
+            <Left>0.04646cm</Left>
             <Height>0.44125cm</Height>
             <Width>2.03729cm</Width>
             <ZIndex>9</ZIndex>
@@ -542,8 +538,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>2.7937cm</Top>
-            <Left>4.4894cm</Left>
+            <Top>2.51592cm</Top>
+            <Left>4.53586cm</Left>
             <Height>0.44125cm</Height>
             <Width>1.56104cm</Width>
             <ZIndex>10</ZIndex>
@@ -1122,15 +1118,14 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <DataSetName>dsDetFac</DataSetName>
-            <Top>4.36439cm</Top>
-            <Left>0.0082cm</Left>
+            <DataSetName>dsDetBol</DataSetName>
+            <Top>4.08661cm</Top>
+            <Left>0.05466cm</Left>
             <Height>1.8cm</Height>
             <Width>8.47486cm</Width>
             <ZIndex>11</ZIndex>
             <Style>
               <Border>
-                <Color>White</Color>
                 <Style>None</Style>
               </Border>
             </Style>
@@ -1142,7 +1137,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=First(Fields!RucCliente.Value, "dsCabFac")</Value>
+                    <Value>=First(Fields!RucCliente.Value, "dsCabBol")</Value>
                     <Style>
                       <FontSize>7pt</FontSize>
                     </Style>
@@ -1154,8 +1149,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>RucCliente</rd:DefaultName>
-            <Top>2.35244cm</Top>
-            <Left>2.03729cm</Left>
+            <Top>2.07466cm</Top>
+            <Left>2.08375cm</Left>
             <Height>0.44125cm</Height>
             <Width>2.15604cm</Width>
             <ZIndex>12</ZIndex>
@@ -1176,7 +1171,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=First(Fields!Fecha.Value, "dsCabFac")</Value>
+                    <Value>=First(Fields!Fecha.Value, "dsCabBol")</Value>
                     <Style>
                       <FontSize>7pt</FontSize>
                       <Format>d</Format>
@@ -1189,8 +1184,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Fecha</rd:DefaultName>
-            <Top>2.7937cm</Top>
-            <Left>2.07257cm</Left>
+            <Top>2.51592cm</Top>
+            <Left>2.11903cm</Left>
             <Height>0.44125cm</Height>
             <Width>2.12076cm</Width>
             <ZIndex>13</ZIndex>
@@ -1211,7 +1206,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=First(Fields!NombreCliente.Value, "dsCabFac")</Value>
+                    <Value>=First(Fields!NombreCliente.Value, "dsCabBol")</Value>
                     <Style>
                       <FontSize>7pt</FontSize>
                     </Style>
@@ -1221,8 +1216,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>NombreCliente</rd:DefaultName>
-            <Top>3.23494cm</Top>
-            <Left>2.07257cm</Left>
+            <Top>2.95716cm</Top>
+            <Left>2.11903cm</Left>
             <Height>0.44125cm</Height>
             <Width>6.40229cm</Width>
             <ZIndex>14</ZIndex>
@@ -1243,7 +1238,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=First(Fields!Direccion.Value, "dsCabFac")</Value>
+                    <Value>=First(Fields!Direccion.Value, "dsCabBol")</Value>
                     <Style>
                       <FontSize>7pt</FontSize>
                     </Style>
@@ -1253,8 +1248,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Direccion</rd:DefaultName>
-            <Top>3.72911cm</Top>
-            <Left>2.07257cm</Left>
+            <Top>3.45133cm</Top>
+            <Left>2.11903cm</Left>
             <Height>0.45889cm</Height>
             <Width>6.40229cm</Width>
             <ZIndex>15</ZIndex>
@@ -1275,7 +1270,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=First(Fields!FechaVencimiento.Value, "dsCabFac")</Value>
+                    <Value>=First(Fields!FechaVencimiento.Value, "dsCabBol")</Value>
                     <Style>
                       <FontSize>7pt</FontSize>
                       <Format>d</Format>
@@ -1288,8 +1283,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>FechaVencimiento</rd:DefaultName>
-            <Top>2.7937cm</Top>
-            <Left>6.121cm</Left>
+            <Top>2.51592cm</Top>
+            <Left>6.16746cm</Left>
             <Height>0.40597cm</Height>
             <Width>2.35387cm</Width>
             <ZIndex>16</ZIndex>
@@ -1310,7 +1305,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=First(Fields!Moneda.Value, "dsCabFac")</Value>
+                    <Value>=First(Fields!Moneda.Value, "dsCabBol")</Value>
                     <Style>
                       <FontSize>7pt</FontSize>
                     </Style>
@@ -1322,8 +1317,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Moneda</rd:DefaultName>
-            <Top>2.24661cm</Top>
-            <Left>6.121cm</Left>
+            <Top>1.96883cm</Top>
+            <Left>6.16746cm</Left>
             <Height>0.51181cm</Height>
             <Width>2.35387cm</Width>
             <ZIndex>17</ZIndex>
@@ -1356,8 +1351,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>6.34078cm</Top>
-            <Left>4.97293cm</Left>
+            <Top>6.063cm</Top>
+            <Left>5.01939cm</Left>
             <Height>0.44125cm</Height>
             <Width>2.03729cm</Width>
             <ZIndex>18</ZIndex>
@@ -1390,8 +1385,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>6.78203cm</Top>
-            <Left>4.97293cm</Left>
+            <Top>6.50425cm</Top>
+            <Left>5.01939cm</Left>
             <Height>0.44125cm</Height>
             <Width>2.03729cm</Width>
             <ZIndex>19</ZIndex>
@@ -1424,8 +1419,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>7.25856cm</Top>
-            <Left>4.96031cm</Left>
+            <Top>6.98078cm</Top>
+            <Left>5.00677cm</Left>
             <Height>0.44125cm</Height>
             <Width>2.03729cm</Width>
             <ZIndex>20</ZIndex>
@@ -1446,7 +1441,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!Tota.Value, "dsCabFac")</Value>
+                    <Value>=Sum(Fields!Tota.Value, "dsCabBol")</Value>
                     <Style>
                       <FontSize>7pt</FontSize>
                     </Style>
@@ -1458,8 +1453,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>6.34987cm</Top>
-            <Left>7.0455cm</Left>
+            <Top>6.07209cm</Top>
+            <Left>7.09196cm</Left>
             <Height>0.43216cm</Height>
             <Width>1.42937cm</Width>
             <ZIndex>21</ZIndex>
@@ -1480,7 +1475,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!Toti.Value, "dsCabFac")</Value>
+                    <Value>=Sum(Fields!Toti.Value, "dsCabBol")</Value>
                     <Style>
                       <FontSize>7pt</FontSize>
                     </Style>
@@ -1492,8 +1487,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>6.78203cm</Top>
-            <Left>7.0455cm</Left>
+            <Top>6.50425cm</Top>
+            <Left>7.09196cm</Left>
             <Height>0.44125cm</Height>
             <Width>1.43756cm</Width>
             <ZIndex>22</ZIndex>
@@ -1514,7 +1509,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!Totn.Value, "dsCabFac")</Value>
+                    <Value>=Sum(Fields!Totn.Value, "dsCabBol")</Value>
                     <Style>
                       <FontSize>7pt</FontSize>
                     </Style>
@@ -1526,8 +1521,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>7.25856cm</Top>
-            <Left>7.0455cm</Left>
+            <Top>6.98078cm</Top>
+            <Left>7.09196cm</Left>
             <Height>0.44125cm</Height>
             <Width>1.43756cm</Width>
             <ZIndex>23</ZIndex>
@@ -1560,8 +1555,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>7.97706cm</Top>
-            <Left>0.0082cm</Left>
+            <Top>7.69928cm</Top>
+            <Left>0.05466cm</Left>
             <Height>0.44125cm</Height>
             <Width>0.74083cm</Width>
             <ZIndex>24</ZIndex>
@@ -1582,7 +1577,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=First(Fields!NumeroLetras.Value, "dsCabFac")</Value>
+                    <Value>=First(Fields!NumeroLetras.Value, "dsCabBol")</Value>
                     <Style>
                       <FontSize>7pt</FontSize>
                     </Style>
@@ -1592,8 +1587,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>NumeroLetras</rd:DefaultName>
-            <Top>7.97706cm</Top>
-            <Left>0.74903cm</Left>
+            <Top>7.69928cm</Top>
+            <Left>0.79549cm</Left>
             <Height>0.44125cm</Height>
             <Width>7.72584cm</Width>
             <ZIndex>25</ZIndex>
@@ -1628,8 +1623,8 @@ Autorizado mediante Resolución de Intendencia No.034-005-0005315
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>10.77109cm</Top>
-            <Left>0.0082cm</Left>
+            <Top>10.49331cm</Top>
+            <Left>0.05466cm</Left>
             <Height>1.42021cm</Height>
             <Width>8.46666cm</Width>
             <ZIndex>26</ZIndex>
@@ -1664,42 +1659,36 @@ Autorizado mediante Resolución de Intendencia No.034-005-0005315
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox2</rd:DefaultName>
-            <Top>8.90668cm</Top>
-            <Left>0.0082cm</Left>
-            <Height>0.70906cm</Height>
-            <Width>8.78857cm</Width>
+            <Top>11.91352cm</Top>
+            <Height>1.09583cm</Height>
+            <Width>8.55661cm</Width>
             <ZIndex>27</ZIndex>
             <Visibility>
-              <Hidden>=IIf(First(Fields!Flag.Value, "dsCabFac")="*",false,true)</Hidden>
+              <Hidden>=IIf(First(Fields!Flag.Value, "dsCabBol")="*",false,true)</Hidden>
             </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
-              <VerticalAlign>Middle</VerticalAlign>
+              <VerticalAlign>Top</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
               <PaddingBottom>2pt</PaddingBottom>
-              <WritingMode>Rotate270</WritingMode>
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>4.98611in</Height>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
+        <Height>5.26042in</Height>
+        <Style />
       </Body>
-      <Width>3.61842in</Width>
+      <Width>3.39757in</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
-        <PageWidth>5.7cm</PageWidth>
-        <LeftMargin>0.5cm</LeftMargin>
-        <RightMargin>0.5cm</RightMargin>
-        <TopMargin>0.5cm</TopMargin>
-        <BottomMargin>0.5cm</BottomMargin>
+        <PageWidth>21cm</PageWidth>
+        <LeftMargin>2cm</LeftMargin>
+        <RightMargin>2cm</RightMargin>
+        <TopMargin>2cm</TopMargin>
+        <BottomMargin>2cm</BottomMargin>
         <ColumnSpacing>0.13cm</ColumnSpacing>
         <Style />
       </Page>
@@ -1713,5 +1702,5 @@ Autorizado mediante Resolución de Intendencia No.034-005-0005315
   </ReportParametersLayout>
   <Language>es-PE</Language>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
-  <rd:ReportID>b864b2c6-fbf0-4781-803c-7e9ed42b2b39</rd:ReportID>
+  <rd:ReportID>44388808-c216-45a4-a8dc-8127bc3bc475</rd:ReportID>
 </Report>
