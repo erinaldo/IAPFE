@@ -1,6 +1,6 @@
-﻿namespace FormatoFacturaFE
+﻿namespace FormatoGuiaFE
 {
-    partial class FtoImpFacFe
+    partial class FtoImpGuiaFe
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -28,27 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.rpvwfactura = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.rpvwguia = new Microsoft.Reporting.WinForms.ReportViewer();
             this.SuspendLayout();
             // 
-            // rpvwfactura
+            // rpvwguia
             // 
-            this.rpvwfactura.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rpvwfactura.Location = new System.Drawing.Point(0, 0);
-            this.rpvwfactura.Name = "rpvwfactura";
-            this.rpvwfactura.ServerReport.BearerToken = null;
-            this.rpvwfactura.Size = new System.Drawing.Size(866, 537);
-            this.rpvwfactura.TabIndex = 0;
+            this.rpvwguia.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rpvwguia.Location = new System.Drawing.Point(0, 0);
+            this.rpvwguia.Name = "rpvwguia";
+            this.rpvwguia.ServerReport.BearerToken = null;
+            this.rpvwguia.Size = new System.Drawing.Size(800, 450);
+            this.rpvwguia.TabIndex = 0;
             // 
-            // FtoImpFacFe
+            // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(866, 537);
-            this.Controls.Add(this.rpvwfactura);
-            this.Name = "FtoImpFacFe";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = ".:: Impresion de Factura ::.";
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.rpvwguia);
+            this.Name = "Form1";
+            this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 
@@ -56,7 +55,7 @@
 
         #endregion
 
-        private Microsoft.Reporting.WinForms.ReportViewer rpvwfactura;
+        private Microsoft.Reporting.WinForms.ReportViewer rpvwguia;
     }
 }
 

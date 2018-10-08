@@ -76,5 +76,20 @@ namespace IAP.BL
                 eCom.ObtenerCabeceraFBNCND(cdocu, ndocu, dbconexion, ref eFac, ref lstDet);
             }
         }
+
+        public void ObtenerCabeceraGuia(string cdocu, string ndocu, string dbconexion, ref Guia eGuia, ref List<DetalleGuia> lstDet)
+        {
+            DL.Comercial eCom = new DL.Comercial();
+            using (TransactionScope ts = new TransactionScope(TransactionScopeOption.Required))
+            {
+                eCom.ObtenerCabeceraGuia(cdocu, ndocu, dbconexion, ref eGuia, ref lstDet);
+            }
+        }
+
+        public List<ParametrosFormatos> ObtenerParametroFormatosFB(string dbconexion)
+        {
+            DL.Comercial cls = new DL.Comercial();
+            return cls.ObtenerParametroFormatosFB(dbconexion);
+        }
     }
 }

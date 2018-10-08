@@ -60,7 +60,7 @@ namespace FormatoFacturaFE
         }
         private void cargar_reportveawer()
         {
-            
+            Comercial cls = new Comercial();
             
             rpvwfactura.LocalReport.DataSources.Clear();
             ReportDataSource rds = new ReportDataSource();
@@ -73,8 +73,19 @@ namespace FormatoFacturaFE
             rds.Value = _lstdet;
             this.rpvwfactura.LocalReport.DataSources.Add(rds);
 
-            this.rpvwfactura.LocalReport.ReportEmbeddedResource =
+            List<ParametrosFormatos> parametros = cls.ObtenerParametroFormatosFB("bdNava01");
+
+            if(parametros.Where(x=> x.IdParametro.Trim()== "FormatoFacturaElectronica" && x.Valor=="1").Any())
+            {
+                this.rpvwfactura.LocalReport.ReportEmbeddedResource =
                 "FormatoFacturaFE.RptFacturaFE.rdlc";
+            }
+            else
+            {
+                this.rpvwfactura.LocalReport.ReportEmbeddedResource =
+                "FormatoFacturaFE.RptFactura.rdlc";
+            }
+            
 
             //ReportParameter[] pa = new ReportParameter[1];
             //pa[0] = new ReportParameter("UsuarioEncargado", usuario.UsuCod.ToString());

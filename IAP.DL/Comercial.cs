@@ -210,6 +210,87 @@ namespace IAP.DL
 
         }
 
+        public void ObtenerCabeceraGuia(string cdocu,string ndocu,string dbconexion,ref Guia eGuia,ref List<DetalleGuia> lstDet)
+        {
+
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            DbCommand cmd;
+            cmd = db.GetStoredProcCommand("USP_Sel_ObtenerCabeceraDetalleGUIA", cdocu, ndocu);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+
+            DataSet ds = db.ExecuteDataSet(cmd);
+            foreach(DataRow row in ds.Tables[0].Rows)
+            {
+                eGuia = new Guia
+                {
+                    Fecha = Convert.ToDateTime(row["Fecha"].ToString()),
+                    Cdocu = row["Cdocu"].ToString(),
+                    Ndocu = row["Ndocu"].ToString(),
+                    Crefe = row["Crefe"].ToString(),
+                    Nrefe = row["Nrefe"].ToString(),
+                    Orde = row["Orde"].ToString(),
+                    Codcli = row["Codcli"].ToString(),
+                    Nomcli = row["Nomcli"].ToString(),
+                    Ruccli = row["Ruccli"].ToString(),
+                    Dircli = row["Dircli"].ToString(),
+                    Codcdv = row["Codcdv"].ToString(),
+                    Condicionventa = row["Condicionventa"].ToString(),
+                    Mone = row["Mone"].ToString(),
+                    Tcam = Convert.ToDouble(row["Tcam"].ToString()),
+                    Tota = Convert.ToDouble(row["Tota"].ToString()),
+                    Toti = Convert.ToDouble(row["Toti"].ToString()),
+                    Totn = Convert.ToDouble(row["Totn"].ToString()),
+                    Codven = row["Codven"].ToString(),
+                    Nomven = row["Nomven"].ToString(),
+                    Flag = row["Flag"].ToString()
+                };
+            }
+
+            foreach(DataRow row in ds.Tables[1].Rows)
+            {
+                lstDet.Add(new DetalleGuia
+                {
+                    Cdocu = row["Cdocu"].ToString(),
+                    Ndocu = row["Ndocu"].ToString(),
+                    Item=Convert.ToInt32(row["Item"]),
+                    Codi = row["codi"].ToString(),
+                    Codf = row["Codf"].ToString(),
+                    Marc = row["Marc"].ToString(),
+                    Descr = row["Descr"].ToString(),
+                    Umed = row["Umed"].ToString(),
+                    Cant=Convert.ToDouble(row["Cant"]),
+                    Preu=Convert.ToDouble(row["Preu"]),
+                    Tota = Convert.ToDouble(row["Tota"]),
+                    Totn = Convert.ToDouble(row["Totn"]),
+                    Mone = row["Mone"].ToString()
+                });
+            }
+        }
+
+        public List<ParametrosFormatos>  ObtenerParametroFormatosFB(string dbconexion)
+        {
+            List<ParametrosFormatos> lst = new List<ParametrosFormatos>();
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            DbCommand cmd;
+            cmd = db.GetStoredProcCommand("USP_SEL_ParametroFormato");
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+
+            DataSet ds = db.ExecuteDataSet(cmd);
+            
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                lst.Add(new ParametrosFormatos
+                {
+                    IdParametro = Convert.ToString(row["IDPARA"]),
+                    Valor = Convert.ToString(row["VALOR"])
+                });
+               
+            }
+            return lst;
+        }
+
 
 
     }
