@@ -89,6 +89,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RptBoleta.rdlc" />
     <EmbeddedResource Include="RptBoletaFE.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\IAP.BE.DetalleFactura.datasource" />

@@ -32,8 +32,15 @@ namespace FormatoGuiaFE
             InitializeComponent();
         }
 
+        void rpvwguia_Print(object sender, CancelEventArgs e)
+        {
+            MessageBox.Show("impreso");
+            if()
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.rpvwguia.Print += new ReportPrintEventHandler(rpvwguia_Print);
             if (Environment.GetCommandLineArgs().Length > 1)
             {
                 String[] parametros = Environment.GetCommandLineArgs();
@@ -74,7 +81,7 @@ namespace FormatoGuiaFE
             this.rpvwguia.LocalReport.DataSources.Add(rds);
 
             this.rpvwguia.LocalReport.ReportEmbeddedResource =
-                "FormatoGuiaFE.RptGuiaFE.rdlc";
+                "FormatoGuiaFE.RptGuia.rdlc";
 
             //ReportParameter[] pa = new ReportParameter[1];
             //pa[0] = new ReportParameter("UsuarioEncargado", usuario.UsuCod.ToString());

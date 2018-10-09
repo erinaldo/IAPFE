@@ -2,6 +2,40 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <Body>
     <ReportItems>
+      <Textbox Name="Fecha">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!Fecha.Value, "dsCabBol")</Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                  <Format>d</Format>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Fecha</rd:DefaultName>
+        <Top>4.04495cm</Top>
+        <Left>8.54287cm</Left>
+        <Height>0.44125cm</Height>
+        <Width>2.92333cm</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
       <Textbox Name="NombreCliente">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
@@ -9,9 +43,9 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=First(Fields!NombreCliente.Value, "dsCabFac")</Value>
+                <Value>=First(Fields!NombreCliente.Value, "dsCabBol")</Value>
                 <Style>
-                  <FontSize>9pt</FontSize>
+                  <FontSize>7pt</FontSize>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -19,10 +53,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>NombreCliente</rd:DefaultName>
-        <Top>5.25294cm</Top>
-        <Left>2.90724cm</Left>
-        <Height>0.49417cm</Height>
-        <Width>14.85605cm</Width>
+        <Top>5.7cm</Top>
+        <Left>2.51037cm</Left>
+        <Height>0.41479cm</Height>
+        <Width>8.95583cm</Width>
+        <ZIndex>1</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -40,9 +75,9 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=First(Fields!Direccion.Value, "dsCabFac")</Value>
+                <Value>=First(Mid(Fields!Direccion.Value,1,42), "dsCabBol")</Value>
                 <Style>
-                  <FontSize>9pt</FontSize>
+                  <FontSize>7pt</FontSize>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -50,42 +85,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Direccion</rd:DefaultName>
-        <Top>5.67655cm</Top>
-        <Left>2.90724cm</Left>
-        <Height>0.49417cm</Height>
-        <Width>14.85605cm</Width>
-        <ZIndex>1</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="RucCliente">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=First(Fields!RucCliente.Value, "dsCabFac")</Value>
-                <Style>
-                  <FontSize>9pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>RucCliente</rd:DefaultName>
-        <Top>6.15cm</Top>
-        <Left>2.90724cm</Left>
-        <Height>0.44153cm</Height>
-        <Width>3.82292cm</Width>
+        <Top>6.2cm</Top>
+        <Left>2.51037cm</Left>
+        <Height>0.38833cm</Height>
+        <Width>6.34528cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -97,95 +100,28 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="CondicionVenta">
+      <Textbox Name="DniCliente">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=First(Fields!CondicionVenta.Value, "dsCabFac")</Value>
+                <Value>=First(Fields!DniCliente.Value, "dsCabBol")</Value>
                 <Style>
-                  <FontSize>9pt</FontSize>
+                  <FontSize>7pt</FontSize>
                 </Style>
               </TextRun>
             </TextRuns>
             <Style />
           </Paragraph>
         </Paragraphs>
-        <rd:DefaultName>CondicionVenta</rd:DefaultName>
-        <Top>6.15cm</Top>
-        <Left>14.09912cm</Left>
-        <Height>0.46771cm</Height>
-        <Width>3.66417cm</Width>
+        <rd:DefaultName>DniCliente</rd:DefaultName>
+        <Top>6.2cm</Top>
+        <Left>9.03203cm</Left>
+        <Height>0.36187cm</Height>
+        <Width>2.43417cm</Width>
         <ZIndex>3</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Ndocu">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=First(Fields!Ndocu.Value, "dsCabFac")</Value>
-                <Style>
-                  <FontSize>9pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Ndocu</rd:DefaultName>
-        <Top>4.46828cm</Top>
-        <Left>15.50141cm</Left>
-        <Height>0.6cm</Height>
-        <Width>3.58479cm</Width>
-        <ZIndex>4</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Fecha">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=First(Fields!Fecha.Value, "dsCabFac")</Value>
-                <Style>
-                  <FontSize>9pt</FontSize>
-                  <Format>d</Format>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Fecha</rd:DefaultName>
-        <Top>6.15cm</Top>
-        <Left>17.76329cm</Left>
-        <Height>0.46771cm</Height>
-        <Width>2.15541cm</Width>
-        <ZIndex>5</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -200,56 +136,22 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.73176cm</Width>
+              <Width>1.44167cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.98111cm</Width>
+              <Width>6.43819cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>11.18033cm</Width>
+              <Width>1.20354cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.08984cm</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>1.90696cm</Width>
+              <Width>1.40701cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.52063cm</Height>
+              <Height>0.44125cm</Height>
               <TablixCells>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Codf">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!Codf.Value.ToString().Trim()</Value>
-                              <Style>
-                                <FontSize>9pt</FontSize>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Codf</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>None</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="Cantidad">
@@ -261,7 +163,7 @@
                             <TextRun>
                               <Value>=Fields!Cantidad.Value</Value>
                               <Style>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>7pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -292,9 +194,9 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Descrip.Value.ToString().Trim()</Value>
+                              <Value>=Mid(Fields!Descrip.Value,1,45)</Value>
                               <Style>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>7pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -325,14 +227,12 @@
                             <TextRun>
                               <Value>=Fields!Preu.Value</Value>
                               <Style>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>7pt</FontSize>
                                 <Format>#,0.00;(#,0.00)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
+                          <Style />
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Preu</rd:DefaultName>
@@ -350,16 +250,16 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Tota">
+                    <Textbox Name="Totn">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Tota.Value</Value>
+                              <Value>=Fields!Totn.Value</Value>
                               <Style>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>7pt</FontSize>
                                 <Format>#,0.00;(#,0.00)</Format>
                               </Style>
                             </TextRun>
@@ -369,7 +269,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Tota</rd:DefaultName>
+                      <rd:DefaultName>Totn</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -392,7 +292,6 @@
             <TablixMember />
             <TablixMember />
             <TablixMember />
-            <TablixMember />
           </TablixMembers>
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
@@ -402,150 +301,84 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>dsDetFac</DataSetName>
-        <Top>7.28cm</Top>
-        <Left>1.3462cm</Left>
-        <Height>0.52063cm</Height>
-        <Width>18.89cm</Width>
-        <ZIndex>6</ZIndex>
+        <DataSetName>dsDetBol</DataSetName>
+        <Top>7.39924cm</Top>
+        <Left>0.97578cm</Left>
+        <Height>0.44125cm</Height>
+        <Width>10.49042cm</Width>
+        <ZIndex>4</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Tablix>
+      <Textbox Name="Ndocu">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!Ndocu.Value, "dsCabBol")</Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Ndocu</rd:DefaultName>
+        <Top>2.88078cm</Top>
+        <Left>8.54287cm</Left>
+        <Height>0.41479cm</Height>
+        <Width>2.92333cm</Width>
+        <ZIndex>5</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>3.11458in</Height>
+    <Height>3.21875in</Height>
     <Style />
   </Body>
-  <Width>8.00059in</Width>
+  <Width>4.51425in</Width>
   <Page>
     <PageFooter>
-      <Height>3.52437cm</Height>
+      <Height>3.09562cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
-        <Textbox Name="NumeroLetras">
+        <Textbox Name="Totn1">
           <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
           <Paragraphs>
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!NumeroLetras.Value, "dsCabFac")</Value>
+                  <Value>=Sum(Fields!Totn.Value, "dsCabBol")</Value>
                   <Style>
-                    <FontSize>9pt</FontSize>
+                    <FontSize>8pt</FontSize>
+                    <Format>#,0.00;(#,0.00)</Format>
                   </Style>
                 </TextRun>
               </TextRuns>
               <Style>
-                <TextAlign>Left</TextAlign>
+                <TextAlign>Right</TextAlign>
               </Style>
             </Paragraph>
           </Paragraphs>
-          <rd:DefaultName>NumeroLetras</rd:DefaultName>
-          <Top>0.07513cm</Top>
-          <Left>2.5515cm</Left>
-          <Height>0.64834cm</Height>
-          <Width>13.69602cm</Width>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="Tota1">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>=Sum(Fields!Tota.Value, "dsCabFac")</Value>
-                  <Style>
-                    <FontSize>9pt</FontSize>
-                    <Format>#,0.00;(#,0.00)</Format>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Tota1</rd:DefaultName>
-          <Left>18.306cm</Left>
-          <Height>0.45889cm</Height>
-          <Width>2.0155cm</Width>
-          <ZIndex>1</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="Toti">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>=Sum(Fields!Toti.Value, "dsCabFac")</Value>
-                  <Style>
-                    <FontSize>9pt</FontSize>
-                    <Format>#,0.00;(#,0.00)</Format>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Toti</rd:DefaultName>
-          <Top>0.53402cm</Top>
-          <Left>18.306cm</Left>
-          <Height>0.45889cm</Height>
-          <Width>2.0155cm</Width>
-          <ZIndex>2</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="Totn">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>=Sum(Fields!Totn.Value, "dsCabFac")</Value>
-                  <Style>
-                    <FontSize>9pt</FontSize>
-                    <Format>#,0.00;(#,0.00)</Format>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Totn</rd:DefaultName>
-          <Top>0.99291cm</Top>
-          <Left>18.306cm</Left>
+          <rd:DefaultName>Totn1</rd:DefaultName>
+          <Left>9.28307cm</Left>
           <Height>0.46771cm</Height>
-          <Width>2.0155cm</Width>
-          <ZIndex>3</ZIndex>
+          <Width>2.18313cm</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -563,8 +396,8 @@
         </Border>
       </Style>
     </PageFooter>
-    <PageHeight>17cm</PageHeight>
-    <PageWidth>22cm</PageWidth>
+    <PageHeight>21cm</PageHeight>
+    <PageWidth>13cm</PageWidth>
     <LeftMargin>0cm</LeftMargin>
     <RightMargin>0cm</RightMargin>
     <TopMargin>0cm</TopMargin>
@@ -579,18 +412,18 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>1ec71fd6-7786-443c-b9bb-32545c199833</rd:DataSourceID>
+      <rd:DataSourceID>1a5fa6a8-aecf-4800-a4f1-e16b2270c5ed</rd:DataSourceID>
     </DataSource>
     <DataSource Name="IAPBE1">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>ea19a4b0-2a8c-4834-8f62-f7770dd95c1e</rd:DataSourceID>
+      <rd:DataSourceID>7ec0a12a-9977-4ab7-8e49-a91683cc1142</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="dsCabFac">
+    <DataSet Name="dsCabBol">
       <Query>
         <DataSourceName>IAPBE</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
@@ -699,7 +532,7 @@
         <rd:ObjectDataSourceType>IAP.BE.Factura, IAP.BE, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
-    <DataSet Name="dsDetFac">
+    <DataSet Name="dsDetBol">
       <Query>
         <DataSourceName>IAPBE1</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
@@ -767,5 +600,5 @@
   </DataSets>
   <Language>es-PE</Language>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
-  <rd:ReportID>143ebdc2-4207-4e93-be6f-086afc3ee4b0</rd:ReportID>
+  <rd:ReportID>b720bdd5-54c8-48b3-9815-5ef33f382039</rd:ReportID>
 </Report>

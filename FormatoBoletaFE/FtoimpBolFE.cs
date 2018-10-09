@@ -61,7 +61,7 @@ namespace FormatoBoletaFE
 
         private void cargar_reportveawer()
         {
-
+            Comercial cls = new Comercial();
 
             rpvwboleta.LocalReport.DataSources.Clear();
             ReportDataSource rds = new ReportDataSource();
@@ -74,8 +74,20 @@ namespace FormatoBoletaFE
             rds.Value = _lstdet;
             this.rpvwboleta.LocalReport.DataSources.Add(rds);
 
-            this.rpvwboleta.LocalReport.ReportEmbeddedResource =
+            List<ParametrosFormatos> parametros = cls.ObtenerParametroFormatosFB("bdNava01");
+
+            if (parametros.Where(x => x.IdParametro.Trim() == "FormatoBoletaElectronica" && x.Valor == "1").Any())
+            {
+                this.rpvwboleta.LocalReport.ReportEmbeddedResource =
                 "FormatoBoletaFE.RptBoletaFE.rdlc";
+            }
+            else
+            {
+                this.rpvwboleta.LocalReport.ReportEmbeddedResource =
+                "FormatoBoletaFE.RptBoleta.rdlc";
+            }
+
+           
 
             //ReportParameter[] pa = new ReportParameter[1];
             //pa[0] = new ReportParameter("UsuarioEncargado", usuario.UsuCod.ToString());

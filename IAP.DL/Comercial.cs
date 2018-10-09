@@ -171,6 +171,7 @@ namespace IAP.DL
                     Codcli = row["Codcli"].ToString(),
                     NombreCliente = row["Nomcli"].ToString(),
                     RucCliente = row["Ruccli"].ToString(),
+                    DniCliente= row["Ruccli"].ToString().Replace("DNI",""),
                     Direccion = row["DirCli"].ToString(),
                     Codcdv = row["codcdv"].ToString(),
                     CondicionVenta = row["CondicionVenta"].ToString(),
@@ -227,23 +228,37 @@ namespace IAP.DL
                     Fecha = Convert.ToDateTime(row["Fecha"].ToString()),
                     Cdocu = row["Cdocu"].ToString(),
                     Ndocu = row["Ndocu"].ToString(),
-                    Crefe = row["Crefe"].ToString(),
-                    Nrefe = row["Nrefe"].ToString(),
-                    Orde = row["Orde"].ToString(),
                     Codcli = row["Codcli"].ToString(),
                     Nomcli = row["Nomcli"].ToString(),
                     Ruccli = row["Ruccli"].ToString(),
-                    Dircli = row["Dircli"].ToString(),
-                    Codcdv = row["Codcdv"].ToString(),
-                    Condicionventa = row["Condicionventa"].ToString(),
+                    CodGlo = row["codGlo"].ToString(),
+                    MotivoTraslado= row["MotivoTraslado"].ToString(),
+                    CodTrans= row["codtra"].ToString(),
+                    Transportista= row["transporte"].ToString(),
+                    TelefonoTransp= row["teltra"].ToString(),
+                    DireccionTransp= row["direccionTransporte"].ToString(),
+                    RucTransp= row["ructra"].ToString(),
+                    TipoDocRefe= row["tipodocrefe"].ToString(),
+                    Crefe = row["Crefe"].ToString(),
+                    Nrefe = row["Nrefe"].ToString(),
                     Mone = row["Mone"].ToString(),
-                    Tcam = Convert.ToDouble(row["Tcam"].ToString()),
+                    TipoCambio= Convert.ToDouble(row["tcam"].ToString()),
                     Tota = Convert.ToDouble(row["Tota"].ToString()),
                     Toti = Convert.ToDouble(row["Toti"].ToString()),
                     Totn = Convert.ToDouble(row["Totn"].ToString()),
                     Codven = row["Codven"].ToString(),
-                    Nomven = row["Nomven"].ToString(),
-                    Flag = row["Flag"].ToString()
+                    Nomven = row["vendedor"].ToString(),
+                    DireccionPartida= row["direccionpartida"].ToString(),
+                    DireccionEntrega= row["direccionentrega"].ToString(),
+                    MarcaVehiculo= row["marveh"].ToString(),
+                    PlacaVehiculo= row["plaveh"].ToString(),
+                    NombreChofer= row["nomcho"].ToString(),
+                    NroLicencia= row["nrolic"].ToString(),
+                    Anno = row["Anno"].ToString(),
+                    Mes = row["Mes"].ToString(),
+                    Dia = row["Dia"].ToString(),
+                    NroFactura = row["NroFactura"].ToString(),
+                    DirCli= row["dircli"].ToString()
                 };
             }
 
@@ -251,19 +266,15 @@ namespace IAP.DL
             {
                 lstDet.Add(new DetalleGuia
                 {
-                    Cdocu = row["Cdocu"].ToString(),
-                    Ndocu = row["Ndocu"].ToString(),
+                   
                     Item=Convert.ToInt32(row["Item"]),
                     Codi = row["codi"].ToString(),
                     Codf = row["Codf"].ToString(),
                     Marc = row["Marc"].ToString(),
                     Descr = row["Descr"].ToString(),
                     Umed = row["Umed"].ToString(),
-                    Cant=Convert.ToDouble(row["Cant"]),
-                    Preu=Convert.ToDouble(row["Preu"]),
-                    Tota = Convert.ToDouble(row["Tota"]),
-                    Totn = Convert.ToDouble(row["Totn"]),
-                    Mone = row["Mone"].ToString()
+                    Cant=Convert.ToDouble(row["Cant"])
+                    
                 });
             }
         }
