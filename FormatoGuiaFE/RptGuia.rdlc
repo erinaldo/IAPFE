@@ -695,7 +695,7 @@
         <Top>9.08cm</Top>
         <Left>1.47912cm</Left>
         <Height>0.46771cm</Height>
-        <Width>18.40083cm</Width>
+        <Width>18.40084cm</Width>
         <ZIndex>16</ZIndex>
         <Style>
           <Border>
@@ -710,7 +710,7 @@
   <Width>8.30208in</Width>
   <Page>
     <PageFooter>
-      <Height>4.23333cm</Height>
+      <Height>11.35062cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -784,8 +784,12 @@
         </Border>
       </Style>
     </PageFooter>
-    <PageHeight>17cm</PageHeight>
+    <PageHeight>25cm</PageHeight>
     <PageWidth>22cm</PageWidth>
+    <LeftMargin>0cm</LeftMargin>
+    <RightMargin>0cm</RightMargin>
+    <TopMargin>0cm</TopMargin>
+    <BottomMargin>0cm</BottomMargin>
     <ColumnSpacing>0.13cm</ColumnSpacing>
     <Style />
   </Page>

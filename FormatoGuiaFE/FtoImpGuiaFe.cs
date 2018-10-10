@@ -34,8 +34,8 @@ namespace FormatoGuiaFE
 
         void rpvwguia_Print(object sender, CancelEventArgs e)
         {
-            MessageBox.Show("impreso");
-            if()
+            //MessageBox.Show("impreso");
+            //if()
         }
 
         private void Form1_Load(object sender, EventArgs e)
