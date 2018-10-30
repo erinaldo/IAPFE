@@ -76,7 +76,7 @@ namespace FormatoBoletaFE
 
             List<ParametrosFormatos> parametros = cls.ObtenerParametroFormatosFB("bdNava01");
 
-            if (parametros.Where(x => x.IdParametro.Trim() == "FormatoBoletaElectronica" && x.Valor == "1").Any())
+            if (parametros.Where(x => x.IdParametro.Trim() == "FormatoBoletaElectronica" && x.Valor.Trim() == "1").Any())
             {
                 this.rpvwboleta.LocalReport.ReportEmbeddedResource =
                 "FormatoBoletaFE.RptBoletaFE.rdlc";

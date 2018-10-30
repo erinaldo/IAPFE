@@ -48,6 +48,7 @@
     <Compile Include="Guia.cs" />
     <Compile Include="listaprecio.cs" />
     <Compile Include="Mst01facTxt.cs" />
+    <Compile Include="OrdenServicio.cs" />
     <Compile Include="ParametrosFormatos.cs" />
     <Compile Include="pedido_linea.cs" />
     <Compile Include="pedido.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProveedorFE.cs" />
     <Compile Include="Sunat.cs" />
+    <Compile Include="Telesoluciones.cs" />
     <Compile Include="Usuario.cs" />
   </ItemGroup>
   <ItemGroup>

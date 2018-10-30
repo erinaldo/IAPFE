@@ -85,8 +85,8 @@
             this.cmbbd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbbd.Properties.Items.AddRange(new object[] {
-            "IAP",
-            "GRUPO IAP"});
+            "PERFILES",
+            "PRUEBA"});
             this.cmbbd.Properties.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxEdit1_Properties_KeyPress);
             this.cmbbd.Size = new System.Drawing.Size(109, 20);
             this.cmbbd.TabIndex = 22;
@@ -113,7 +113,7 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptar.Image")));
+            this.btnAceptar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAceptar.ImageOptions.Image")));
             this.btnAceptar.Location = new System.Drawing.Point(133, 134);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(46, 36);
@@ -122,7 +122,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
+            this.btnCancelar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.ImageOptions.Image")));
             this.btnCancelar.Location = new System.Drawing.Point(51, 134);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(40, 36);

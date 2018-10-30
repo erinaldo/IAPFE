@@ -75,7 +75,7 @@ namespace FormatoFacturaFE
 
             List<ParametrosFormatos> parametros = cls.ObtenerParametroFormatosFB("bdNava01");
 
-            if(parametros.Where(x=> x.IdParametro.Trim()== "FormatoFacturaElectronica" && x.Valor=="1").Any())
+            if(parametros.Where(x=> x.IdParametro.Trim()== "FormatoFacturaElectronica" && x.Valor.Trim()=="1").Any())
             {
                 this.rpvwfactura.LocalReport.ReportEmbeddedResource =
                 "FormatoFacturaFE.RptFacturaFE.rdlc";

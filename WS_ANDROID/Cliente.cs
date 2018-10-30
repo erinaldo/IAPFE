@@ -11,6 +11,7 @@ namespace IAP.BE
         public string Ruc { get; set; }
         public string Nombre { get; set; }
 
+        public string CodCli { get; set; }
 
         public Cliente() { }
 

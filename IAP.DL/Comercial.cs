@@ -302,7 +302,71 @@ namespace IAP.DL
             return lst;
         }
 
+        public List<OrdenServicio> ObtenerOrdenesServicio (DateTime fechai,DateTime fechaf,string ndocu,string nomcli, string dbconexion)
+        {
+            List<OrdenServicio> lst = new List<OrdenServicio>();
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            DbCommand cmd;
+            cmd = db.GetStoredProcCommand("USP_SEL_ORDENSERVICIO",fechai,fechaf,ndocu,nomcli);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+
+            DataSet ds = db.ExecuteDataSet(cmd);
+
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                lst.Add(new OrdenServicio
+                {
+                    fecha = Convert.ToDateTime(row["fecha"]),
+                    cdocu=row["cdocu"].ToString(),
+                    ndocu=row["ndocu"].ToString(),
+                    codcli = row["codcli"].ToString().Trim(),
+                    nomcli = row["nomcli"].ToString().Trim(),
+                    ruccli=row["ruccli"].ToString().Trim(),
+                    tcam=Convert.ToDouble(row["tcam"]),
+                    tota= Convert.ToDouble(row["tota"]),
+                    toti= Convert.ToDouble(row["toti"]),
+                    totn= Convert.ToDouble(row["totn"]),
+                    flag=row["flag"].ToString(),
+                    flagnombre=row["flagnombre"].ToString()
+                });
+            }
+            return lst;
+        }
 
 
+
+        public List<Cliente> ObtenerClientesOS(string dbconexion)
+        {
+            List<Cliente> lst = new List<Cliente>();
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            DbCommand cmd;
+            cmd = db.GetStoredProcCommand("USP_SEL_CLIENTES_OS");
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+
+            DataSet ds = db.ExecuteDataSet(cmd);
+
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                lst.Add(new Cliente
+                {
+                    CodCli = Convert.ToString(row["codcli"]),
+                    Nombre = Convert.ToString(row["nomcli"]),
+                    Ruc= Convert.ToString(row["ruccli"])
+                });
+
+            }
+            return lst;
+        }
+
+        public void ActualizarClienteOS(List<OrdenServicio> lst,string dbconexion)
+        {
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            foreach (OrdenServicio o in lst)
+            {
+                db.ExecuteNonQuery("USP_UPD_ASIGNAR_CLIENTE_ORDENSERVICIO",o.codcli,o.ndocu);
+            }
+        }
     }
 }

@@ -15,6 +15,7 @@ namespace IAP.BE
         public string Clave     {get;set;}
         public string Ruta      {get;set;}
         public string Token     {get;set;}
+        public string IdEmpresa { get; set; }
 
         public ProveedorFE()
         { }

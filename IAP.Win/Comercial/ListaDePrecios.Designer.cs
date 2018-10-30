@@ -52,6 +52,7 @@
             this.Limpiatodo = new System.Windows.Forms.ToolStripMenuItem();
             this.gvwlista = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.label9 = new System.Windows.Forms.Label();
             this.btnincrementomasivo = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.txtbusqueda = new DevExpress.XtraEditors.TextEdit();
@@ -60,7 +61,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtfechatc = new DevExpress.XtraEditors.TextEdit();
             this.label6 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtcodf.Properties)).BeginInit();
@@ -189,8 +189,8 @@
             // btnguardar
             // 
             this.btnguardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnguardar.Image = ((System.Drawing.Image)(resources.GetObject("btnguardar.Image")));
-            this.btnguardar.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.btnguardar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnguardar.ImageOptions.Image")));
+            this.btnguardar.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             this.btnguardar.Location = new System.Drawing.Point(739, 9);
             this.btnguardar.Name = "btnguardar";
             this.btnguardar.Size = new System.Drawing.Size(36, 36);
@@ -201,8 +201,8 @@
             // btnobtenercostos
             // 
             this.btnobtenercostos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnobtenercostos.Image = ((System.Drawing.Image)(resources.GetObject("btnobtenercostos.Image")));
-            this.btnobtenercostos.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.btnobtenercostos.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnobtenercostos.ImageOptions.Image")));
+            this.btnobtenercostos.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             this.btnobtenercostos.Location = new System.Drawing.Point(697, 9);
             this.btnobtenercostos.Name = "btnobtenercostos";
             this.btnobtenercostos.Size = new System.Drawing.Size(36, 36);
@@ -335,10 +335,19 @@
             this.panelControl3.Size = new System.Drawing.Size(275, 63);
             this.panelControl3.TabIndex = 2;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(9, 24);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(126, 13);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "%INCREMENTO MASIVO";
+            // 
             // btnincrementomasivo
             // 
-            this.btnincrementomasivo.Image = ((System.Drawing.Image)(resources.GetObject("btnincrementomasivo.Image")));
-            this.btnincrementomasivo.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.btnincrementomasivo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnincrementomasivo.ImageOptions.Image")));
+            this.btnincrementomasivo.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             this.btnincrementomasivo.Location = new System.Drawing.Point(216, 19);
             this.btnincrementomasivo.Name = "btnincrementomasivo";
             this.btnincrementomasivo.Size = new System.Drawing.Size(26, 24);
@@ -428,15 +437,6 @@
             this.label6.Size = new System.Drawing.Size(148, 14);
             this.label6.TabIndex = 17;
             this.label6.Text = "Fecha del Tipo de Cambio";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(9, 24);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(126, 13);
-            this.label9.TabIndex = 16;
-            this.label9.Text = "%INCREMENTO MASIVO";
             // 
             // ListaDePrecios
             // 

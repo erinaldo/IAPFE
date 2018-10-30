@@ -46,7 +46,7 @@ namespace IAP.Win
         private void frm_AccesoUsuario_Load(object sender, EventArgs e)
         {
             //txtBaseDatos.Text = "Hans-PC";
-            txtBaseDatos.Text = "ventas";
+            txtBaseDatos.Text = "hans-pc";
             cmbbd.SelectedIndex = 0;
             txtUsuario.Text = "cliente";
             txtPassword.Focus();

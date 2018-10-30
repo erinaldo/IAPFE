@@ -15,6 +15,10 @@ using DevExpress.Utils;
 using DevExpress.XtraEditors;
 //using IAP.Win.Comercial;
 using IAP.Win.Administracion;
+using IAP.BL;
+using System.Configuration;
+using System.Collections.Specialized;
+
 namespace IAP.Win
 {
     
@@ -71,6 +75,7 @@ namespace IAP.Win
             //        MessageBox.Show("Parámetro :" + parametros[i]);
             //    }
             //}
+            BFacturacionElectronica eBL = new BFacturacionElectronica();
 
             xtraTabControl1.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders;
             DevExpress.UserSkins.BonusSkins.Register();
@@ -91,8 +96,11 @@ namespace IAP.Win
                 IAP.DL.ConexionDC.IpServidor = Global.vIpServidor;
                 Accessos_Usuario(Global.UserAdministrador);
 
+                string IdEmpresaFE = ConfigurationManager.AppSettings.Get("PROVEEDORFE");
+
+                Global.vDatosProveedor = eBL.ObtenerProveedorFE(Convert.ToInt32(IdEmpresaFE==string.Empty ? "0" : IdEmpresaFE), Global.vUserBaseDatos);
                 //this.dvw_costos.LoadDashboard(aOppFilm.Create<ISProcProduccion>().ObtenerXmlProcProduccion("CostosConsumo"));
-               
+                Global.vDatosProveedor.IdEmpresa = IdEmpresaFE;
 
                 try
                 {
@@ -268,6 +276,13 @@ namespace IAP.Win
             frm_cargartxtFacturas frm = new frm_cargartxtFacturas();
             string nombreform = contabilidad_importarasiento.Caption;
             AgregarFormularioEnTabPage(frm, nombreform);
+        }
+
+        private void comercial_OS_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            frm_OrdenServicio form = new frm_OrdenServicio();
+            string nombreForm = comercial_OS.Caption;
+            AgregarFormularioEnTabPage(form, nombreForm);
         }
     }
 }

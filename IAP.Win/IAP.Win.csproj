@@ -123,10 +123,12 @@
     <Reference Include="System">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -176,6 +178,12 @@
     </Compile>
     <Compile Include="Comercial\frm_FacturasVisorPdf.Designer.cs">
       <DependentUpon>frm_FacturasVisorPdf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comercial\frm_OrdenServicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comercial\frm_OrdenServicio.Designer.cs">
+      <DependentUpon>frm_OrdenServicio.cs</DependentUpon>
     </Compile>
     <Compile Include="Comercial\frm_PasswordVentas.cs">
       <SubType>Form</SubType>
@@ -303,6 +311,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Comercial\frm_FacturasVisorPdf.resx">
       <DependentUpon>frm_FacturasVisorPdf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comercial\frm_OrdenServicio.resx">
+      <DependentUpon>frm_OrdenServicio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comercial\frm_PasswordVentas.resx">
       <DependentUpon>frm_PasswordVentas.cs</DependentUpon>

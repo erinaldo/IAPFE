@@ -10,18 +10,16 @@
             <TextRuns>
               <TextRun>
                 <Value>=First(Fields!Ndocu.Value, "dsCabGuia")</Value>
-                <Style>
-                  <FontSize>9pt</FontSize>
-                </Style>
+                <Style />
               </TextRun>
             </TextRuns>
             <Style />
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Ndocu</rd:DefaultName>
-        <Top>3.64808cm</Top>
+        <Top>3.25891cm</Top>
         <Left>14.94578cm</Left>
-        <Height>0.6cm</Height>
+        <Height>0.53cm</Height>
         <Width>3.4525cm</Width>
         <Style>
           <Border>
@@ -50,7 +48,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Dia</rd:DefaultName>
-        <Top>3.43641cm</Top>
+        <Top>3.25891cm</Top>
         <Left>5.50016cm</Left>
         <Height>0.6cm</Height>
         <Width>0.72729cm</Width>
@@ -82,7 +80,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Mes</rd:DefaultName>
-        <Top>3.43641cm</Top>
+        <Top>3.25891cm</Top>
         <Left>7.11821cm</Left>
         <Height>0.6cm</Height>
         <Width>2.39417cm</Width>
@@ -114,7 +112,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Anno</rd:DefaultName>
-        <Top>3.43641cm</Top>
+        <Top>3.25891cm</Top>
         <Left>10.58016cm</Left>
         <Height>0.6cm</Height>
         <Width>1.28292cm</Width>
@@ -148,7 +146,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Nomcli</rd:DefaultName>
-        <Top>4.2128cm</Top>
+        <Top>4.0353cm</Top>
         <Left>4.04495cm</Left>
         <Height>0.6cm</Height>
         <Width>10.09354cm</Width>
@@ -180,7 +178,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Dircli</rd:DefaultName>
-        <Top>4.91863cm</Top>
+        <Top>4.74113cm</Top>
         <Left>2.88078cm</Left>
         <Height>0.6cm</Height>
         <Width>11.25771cm</Width>
@@ -212,7 +210,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Ruccli</rd:DefaultName>
-        <Top>5.69502cm</Top>
+        <Top>5.51752cm</Top>
         <Left>2.88078cm</Left>
         <Height>0.6cm</Height>
         <Width>11.25771cm</Width>
@@ -247,7 +245,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Fecha</rd:DefaultName>
-        <Top>5.3246cm</Top>
+        <Top>5.1471cm</Top>
         <Left>14.94578cm</Left>
         <Height>0.6cm</Height>
         <Width>3.4525cm</Width>
@@ -281,7 +279,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>NroFactura</rd:DefaultName>
-        <Top>6.10099cm</Top>
+        <Top>5.92349cm</Top>
         <Left>14.94578cm</Left>
         <Height>0.46771cm</Height>
         <Width>3.4525cm</Width>
@@ -313,7 +311,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Transportista</rd:DefaultName>
-        <Top>7.07884cm</Top>
+        <Top>6.90134cm</Top>
         <Left>3.72745cm</Left>
         <Height>0.46771cm</Height>
         <Width>7.62882cm</Width>
@@ -345,7 +343,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>RucTransp</rd:DefaultName>
-        <Top>7.45cm</Top>
+        <Top>7.2725cm</Top>
         <Left>3.72745cm</Left>
         <Height>0.44125cm</Height>
         <Width>7.62882cm</Width>
@@ -377,7 +375,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>DireccionTransp</rd:DefaultName>
-        <Top>7.95cm</Top>
+        <Top>7.7725cm</Top>
         <Left>3.72745cm</Left>
         <Height>0.52062cm</Height>
         <Width>7.62882cm</Width>
@@ -409,7 +407,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>MarcaVehiculo</rd:DefaultName>
-        <Top>7.07884cm</Top>
+        <Top>6.90134cm</Top>
         <Left>11.53266cm</Left>
         <Height>0.46771cm</Height>
         <Width>3.4525cm</Width>
@@ -441,7 +439,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>NombreChofer</rd:DefaultName>
-        <Top>7.07884cm</Top>
+        <Top>6.90134cm</Top>
         <Left>15.76599cm</Left>
         <Height>0.46771cm</Height>
         <Width>4.51083cm</Width>
@@ -473,7 +471,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>NroLicencia</rd:DefaultName>
-        <Top>7.45cm</Top>
+        <Top>7.2725cm</Top>
         <Left>15.76599cm</Left>
         <Height>0.47653cm</Height>
         <Width>4.51083cm</Width>
@@ -505,7 +503,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>PlacaVehiculo</rd:DefaultName>
-        <Top>7.95cm</Top>
+        <Top>7.7725cm</Top>
         <Left>15.76599cm</Left>
         <Height>0.52062cm</Height>
         <Width>4.51083cm</Width>
@@ -710,7 +708,7 @@
   <Width>8.30208in</Width>
   <Page>
     <PageFooter>
-      <Height>11.35062cm</Height>
+      <Height>11.69458cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>

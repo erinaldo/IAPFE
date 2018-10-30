@@ -309,10 +309,10 @@ namespace IAP.Win
         {
             //if (rbtnincrementom.Checked)
             {
-                if (Convert.ToDouble(txtincremento.Text) <= 0)
+                if (Convert.ToDouble(txtincremento.Text.Trim()==string.Empty ? "0" : txtincremento.Text) <= 0)
                     return;
 
-                if (MessageBox.Show("Desea incrementar el " + txtincremento.Text + " % , a todos los articulos de esta vista?", "Sistema Administrativo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Desea agregar precio, a todos los articulos de esta vista?", "Sistema Administrativo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                    
 
@@ -321,9 +321,10 @@ namespace IAP.Win
                     //gclista.RefreshDataSource();
                     using (WaitDialogForm waitDialog = new WaitDialogForm("Espere por favor...", "<<<<Guardando Información>>>>"))
                     {
-                       
 
-                        List<listaprecio> lista = _LSTLISTADEPRECIOS.Where(x => x.FlgCheck == true && x.Stockdisponible>0 && x.Ultcostocompradolar>0 && x.Ultcostocomprasoles>0).ToList();
+
+                        //List<listaprecio> lista = _LSTLISTADEPRECIOS.Where(x => x.FlgCheck == true && x.Stockdisponible>0 && x.Ultcostocompradolar>0 && x.Ultcostocomprasoles>0).ToList();
+                        List<listaprecio> lista = _LSTLISTADEPRECIOS.Where(x => x.FlgCheck == true && x.Ultcostocompradolar > 0 && x.Ultcostocomprasoles > 0).ToList();
                         lista.ForEach(x => x.Valorventaingreso = Convert.ToDouble(txtincremento.Text));
                         
                         BL.Comercial.RegistrarListaPrecios(lista, Global.vUserBaseDatos);

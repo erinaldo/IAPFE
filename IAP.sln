@@ -22,10 +22,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SCRIPTS_TEMP", "SCRIPTS_TEMP", "{EEB55C35-4A03-45AD-BCAA-A4F34AADB645}"
 	ProjectSection(SolutionItems) = preProject
 		Codigo de Errores NubeFact.txt = Codigo de Errores NubeFact.txt
+		CrearTablasNabasoft.sql = CrearTablasNabasoft.sql
+		FE_Telesoluciones.sql = FE_Telesoluciones.sql
 		RepositorioXML.sql = RepositorioXML.sql
 		ScriptFE.sql = ScriptFE.sql
 		ScriptFormatos.sql = ScriptFormatos.sql
 		ScriptListaPrecios.sql = ScriptListaPrecios.sql
+		ScriptOrdenServicio.sql = ScriptOrdenServicio.sql
 		..\Desktop\Tablas Navasoft.XLS = ..\Desktop\Tablas Navasoft.XLS
 	EndProjectSection
 EndProject

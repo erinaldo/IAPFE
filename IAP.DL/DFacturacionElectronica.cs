@@ -20,6 +20,29 @@ namespace IAP.DL
 
         }
 
+        public ProveedorFE ObtenerProveedorFE(int idempresa,string dbEmpresa)
+        {
+            
+            Database db = DatabaseFactory.CreateDatabase("Master");
+            
+            DbCommand cmd;
+            
+            cmd = db.GetStoredProcCommand("USP_DATOSPROVEEDOR_FE",idempresa, dbEmpresa);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+
+            DataSet ds = db.ExecuteDataSet(cmd);
+            ProveedorFE ep = new ProveedorFE();
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                ep.Usuario = row["Usuario"].ToString();
+                ep.Clave = row["Clave"].ToString();
+                ep.Ruta = row["Ruta"].ToString();
+                ep.Token= row["Token"].ToString();
+               
+            }
+            return ep;
+        }
         public List<ProveedorFE> ObtenerDatosProveedorFE(string dbEmpresa)
         {
             Database db = DatabaseFactory.CreateDatabase(dbEmpresa);
@@ -44,11 +67,11 @@ namespace IAP.DL
             return ls;
         }
 
-        public List<Documentov> ObtenerDocumentosFBNC(string cdocu, DateTime fechai, DateTime fechaf, string cliente, string documento,Int32 enviadosunat,int anulado, string dbconexion)
+        public List<Documentov> ObtenerDocumentosFBNC(string cdocu, DateTime fechai, DateTime fechaf, string cliente, string documento, Int32 enviadosunat, int anulado, string dbconexion)
         {
             Database db = DatabaseFactory.CreateDatabase(dbconexion);
             DbCommand cmd;
-            cmd = db.GetStoredProcCommand("usp_ObtenerDocumentosFBNC", cdocu, fechai, fechaf, cliente, documento,enviadosunat, anulado);
+            cmd = db.GetStoredProcCommand("usp_ObtenerDocumentosFBNC", cdocu, fechai, fechaf, cliente, documento, enviadosunat, anulado);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandTimeout = 0;
 
@@ -74,7 +97,7 @@ namespace IAP.DL
                     Convert.ToDouble(row["totn"]),
                     Convert.ToInt32(row["flg_fe"]),
                     Convert.ToString(row["EstadoFe"]),
-                    
+
                     Convert.ToString(row["serie"]),
                     Convert.ToString(row["numero"]),
                     Convert.ToString(row["enlace"]),
@@ -89,7 +112,7 @@ namespace IAP.DL
                     Convert.ToString(row["tipo_de_comprobante"]),
                     Convert.ToString(row["motanu"]),
                     Convert.ToString(row["enlace_del_pdf_anulado"])
-                    
+
                     ));
             }
             return ls;
@@ -121,7 +144,7 @@ namespace IAP.DL
             return ls;
         }
 
-     
+
         public SunatDocumentoFBN SunatEnviarDocumentosFBN_ObtenerDatos(Documentov lst, string dbconexion)
         {
             Database db = DatabaseFactory.CreateDatabase(dbconexion);
@@ -170,10 +193,10 @@ namespace IAP.DL
                 e.total_incluido_percepcion = Convert.ToDouble(row["Total_incluido_percepcion"]);
                 e.detraccion = Convert.ToString(row["Detraccion"]);
                 e.observaciones = Convert.ToString(row["Observaciones"]);
-                e.documento_que_se_modifica_tipo =  Convert.ToInt32(row["Documento_que_se_modifica_tipo"])==0 ? (dynamic)null : Convert.ToInt32((row["Documento_que_se_modifica_tipo"]));
+                e.documento_que_se_modifica_tipo = Convert.ToInt32(row["Documento_que_se_modifica_tipo"]) == 0 ? (dynamic)null : Convert.ToInt32((row["Documento_que_se_modifica_tipo"]));
                 e.documento_que_se_modifica_serie = Convert.ToString(row["Documento_que_se_modifica_serie"]).Trim();
-                e.documento_que_se_modifica_numero = row["Documento_que_se_modifica_numero"]==DBNull.Value ? (dynamic)null : Convert.ToInt32(row["Documento_que_se_modifica_numero"]);
-                e.tipo_de_nota_de_credito = row["Tipo_de_nota_de_credito"]==DBNull.Value ? (dynamic)null : Convert.ToInt32(row["Tipo_de_nota_de_credito"]);
+                e.documento_que_se_modifica_numero = row["Documento_que_se_modifica_numero"] == DBNull.Value ? (dynamic)null : Convert.ToInt32(row["Documento_que_se_modifica_numero"]);
+                e.tipo_de_nota_de_credito = row["Tipo_de_nota_de_credito"] == DBNull.Value ? (dynamic)null : Convert.ToInt32(row["Tipo_de_nota_de_credito"]);
                 e.tipo_de_nota_de_debito = Convert.ToString(row["Tipo_de_nota_de_debito"]).Trim();
                 e.enviar_automaticamente_a_la_sunat = Convert.ToBoolean(row["Enviar_automaticamente_a_la_sunat"]);
                 e.enviar_automaticamente_al_cliente = Convert.ToBoolean(row["Enviar_automaticamente_al_cliente"]);
@@ -184,7 +207,7 @@ namespace IAP.DL
                 e.orden_compra_servicio = Convert.ToString(row["Orden_compra_servicio"]).Trim();
                 e.tabla_personalizada_codigo = Convert.ToString(row["Tabla_personalizada_codigo"]).Trim();
                 e.formato_de_pdf = Convert.ToString(row["Formato_de_pdf"]).Trim();
-                
+
             }
 
             cmd = db.GetStoredProcCommand("usp_SunatEnviarDocumentosFBN_ObtenerDatosDetalle", lst.Cdocu, lst.Ndocu);
@@ -327,7 +350,70 @@ namespace IAP.DL
             db.ExecuteNonQuery("usp_SunatGuardarRespuestaSunat", cdocu, ndocu, flg_fe, e.tipo_de_comprobante, e.serie, e.numero, e.enlace, e.aceptada_por_sunat, e.sunat_description,
                 e.sunat_note, e.sunat_responsecode, e.sunat_soap_error, e.pdf_zip_base64, e.xml_zip_base64, e.cdr_zip_base64, e.cadena_para_codigo_qr, e.codigo_hash,
                 e.enlace_del_pdf,
-                e.enlace_del_xml, e.enlace_del_cdr,e.errors,e.fe_codigo);
+                e.enlace_del_xml, e.enlace_del_cdr, e.errors, e.fe_codigo);
+        }
+
+        public TelesolucionesFactura SunatEnviarDocumentosTelesolucionesFactura(Documentov lst, string dbconexion)
+        {
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            DbCommand cmd;
+            cmd = db.GetStoredProcCommand("usp_SunatTelesoluciones_EnviarFactura", lst.Cdocu, lst.Ndocu);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+
+            DataSet ds = db.ExecuteDataSet(cmd);
+
+            TelesolucionesFactura tf = new TelesolucionesFactura();
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                tf = new TelesolucionesFactura
+                {
+                    serie = row["serie"].ToString(),
+                    numero = Convert.ToInt32(row["numero"]),
+                    totalVentaGravada = Convert.ToDouble(row["totalVentaGravada"]),
+                    totalVentaInafecta = Convert.ToDouble(row["totalVentaInafecta"]),
+                    totalVentaExonerada = Convert.ToDouble(row["totalVentaExonerada"]),
+                    sumatoriaIgv = Convert.ToDouble(row["sumatoriaIgv"]),
+                    sumatoriaIsc = Convert.ToDouble(row["sumatoriaIsc"]),
+                    totalVenta = Convert.ToDouble(row["total"]),
+                    tipoMoneda = row["tipoMoneda"].ToString(),
+                    descuentoGlobal = Convert.ToDouble(row["descuentoGlobal"]),
+                    porcentajeDescuentoGlobal = Convert.ToDouble(row["porcentajeDescuentoGlobal"]),
+                    totalDescuento = Convert.ToDouble(row["totalDescuento"]),
+                    importePercepcion = Convert.ToDouble(row["importePercepcion"]),
+                    porcentajePercepcion = Convert.ToDouble(row["porcentajePercepcion"]),
+                    docRelacionada = new TelesolucionesDocRelacionada { numero = row["docRelacionadaNdocu"].ToString() },
+                    guiasRelacionada = new TelesolucionesGuiaRelacionada { numero = row["guiasRelacionada"].ToString() },
+                    receptor = new TelesolucionesRecceptor { tipo = row["receptorTipo"].ToString(), nro = row["receptorNumero"].ToString(), razonSocial = row["ReceptorRazonSocial"].ToString() }
+                };
+
+                DbCommand cmd2;
+                cmd2 = db.GetStoredProcCommand("usp_SunatTelesoluciones_EnviarFacturaDetalle", lst.Cdocu, lst.Ndocu);
+                cmd2.CommandType = CommandType.StoredProcedure;
+                cmd2.CommandTimeout = 0;
+
+                DataSet ds2 = db.ExecuteDataSet(cmd2);
+                List<TelesolucionesItems> item = new List<TelesolucionesItems>();
+                
+                foreach (DataRow row2 in ds2.Tables[0].Rows)
+                {
+                    item.Add(new TelesolucionesItems
+                    {
+                        cantidad = Convert.ToDouble(row2["cantidad"]),
+                        descripcion = row2["descripcion"].ToString(),
+                        valorVenta = Convert.ToDouble(row2["valorVenta"]),
+                        valorUnitario = Convert.ToDouble(row2["valorUnitario"]),
+                        precioVentaUnitario = Convert.ToDouble(row2["precioVentaUnitario"]),
+                        tipoPrecioVentaUnitario = row2["tipoPrecioVentaUnitario"].ToString(),
+                        montoAfectacionIgv = Convert.ToDouble(row2["montoAfectacionIgv"]),
+                        tipoAfectacionIgv = row2["tipoAfectacionIgv"].ToString(),
+                        codigoProducto = row2["codigoProducto"].ToString(),
+                        descuento = Convert.ToDouble(row2["descuento"])
+                    });
+                }
+                tf.items = item;
+            }
+            return tf;
         }
     }
 }

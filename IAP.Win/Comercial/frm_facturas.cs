@@ -285,7 +285,17 @@ namespace IAP.Win
                 List<Documentov> lst = lstcabcecera.Where(x => x.FlgCheck).Select(x => new Documentov(x.Cdocu, x.Ndocu, x.Flag, x.Flg_Fe)).OrderBy(x => x.Cdocu+x.Ndocu).ToList();
                 if (ValidarSunatEnviardocumentosFBN(lst))
                 {
-                    Bfe.SunatEnviarDocumentosFBN_V2(lst,Global.vRuta,Global.vToken, Global.vUserBaseDatos);
+                    //NUBEFACT
+                    if(Global.vDatosProveedor.IdEmpresa=="1") 
+                    {
+                        Bfe.SunatEnviarDocumentosFBN_V2(lst, Global.vDatosProveedor.Ruta, Global.vDatosProveedor.Token, Global.vUserBaseDatos);
+                    }
+                    else //TELESOLUCIONES
+                    {
+                        Bfe.TelesolucionesEnviarFactura(lst, Global.vRuta, Global.vToken, Global.vUserBaseDatos);
+                    }
+                   
+                    
                     MessageBox.Show("Se envio los documentos seleccionados", "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     lstcabcecera.ForEach(x => x.FlgCheck = false);
                     gccabecera.RefreshDataSource();
@@ -300,13 +310,26 @@ namespace IAP.Win
                 List<Documentov> lst = lstcabcecera.Where(x => x.FlgCheck).Select(x => new Documentov(x.Cdocu, x.Ndocu, x.Flag, x.Flg_Fe,x.Tipo_de_comprobante,x.Motivo_Anulacion,x.Serie,x.Numero)).ToList();
                 if (ValidarSunatAnulardocumentosFBN(lst))
                 {
-                    Bfe.SunatAnularDocumentosFBN(lst.First(), Global.vRuta, Global.vToken, Global.vUserBaseDatos);
+                    if (Global.vDatosProveedor.IdEmpresa == "1") //NUBEFACT
+                    {
+                        Bfe.SunatAnularDocumentosFBN(lst.First(), Global.vDatosProveedor.Ruta, Global.vDatosProveedor.Token, Global.vUserBaseDatos);
+                    }
+                    else //TELESOLUCIONES
+                    {
+                        List<DocumentovDet> lstdetalle = new List<DocumentovDet>();
+                        lstdetalle = Bfe.ObtenerDocumentosDetalleFBNC(lst.Select(x => x.Cdocu).First(), lst.Select(x => x.Ndocu).First(), Global.vUserBaseDatos);
+                        Bfe.TelesolucionesAnularDocumento(lst.First(), lstdetalle, Global.vDatosProveedor.Ruta, Global.vDatosProveedor.Token, Global.vUserBaseDatos);
+                    }
+
+                    
                     MessageBox.Show("Se anulo los documentos seleccionados", "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     lstcabcecera.ForEach(x => x.FlgCheck = false);
                     gccabecera.RefreshDataSource();
                 }
             }
         }
+
+
         private void ConsultarDocumentoSunat()
         {
             List<Documentov> lst = lstcabcecera.Where(x => x.FlgCheck).Select(x => new Documentov(x.Cdocu, x.Ndocu, x.Flag, x.Flg_Fe,x.Tipo_de_comprobante,x.Motivo_Anulacion,x.Serie,x.Numero)).ToList();
@@ -443,15 +466,27 @@ namespace IAP.Win
                                 return;
                             }
 
-                            string pdf = gvwcabecera.GetFocusedRowCellValue("EnlaceDelPdf").ToString().Trim();
-                            if (pdf==string.Empty)
+                            //NUBEFACT
+                            if (Global.vDatosProveedor.IdEmpresa == "1")
                             {
-                                MessageBox.Show("El documento no tiene registrado la Url del Pdf", "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Question);
-                                break;
+                                string pdf = gvwcabecera.GetFocusedRowCellValue("EnlaceDelPdf").ToString().Trim();
+                                if (pdf == string.Empty)
+                                {
+                                    MessageBox.Show("El documento no tiene registrado la Url del Pdf", "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                                    break;
+                                }
+                                frm_FacturasVisorPdf form = new frm_FacturasVisorPdf(pdf);
+                                form.ShowDialog();
+                                
                             }
-                            frm_FacturasVisorPdf form = new frm_FacturasVisorPdf(pdf);
-                            form.ShowDialog();
+                            else //TELESOLUCIONES
+                            {
+
+                                //Bfe.TelesolucionesEnviarFactura(lst, Global.vRuta, Global.vToken, Global.vUserBaseDatos);
+                            }
+
                             break;
+
                         }
                     case "mnuanulardocumento":
                         {

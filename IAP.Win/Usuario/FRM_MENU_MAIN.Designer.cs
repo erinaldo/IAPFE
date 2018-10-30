@@ -37,6 +37,7 @@
             this.comercial_eliminardocumento = new DevExpress.XtraNavBar.NavBarItem();
             this.comercial_cambioclave = new DevExpress.XtraNavBar.NavBarItem();
             this.comercial_FE = new DevExpress.XtraNavBar.NavBarItem();
+            this.comercial_OS = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupContabilidad = new DevExpress.XtraNavBar.NavBarGroup();
             this.contabilidad_importarasiento = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupReportes = new DevExpress.XtraNavBar.NavBarGroup();
@@ -57,6 +58,7 @@
             this.android_importar_pedido = new DevExpress.XtraNavBar.NavBarItem();
             this.android_importar_articulos = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupProcesos = new DevExpress.XtraNavBar.NavBarGroup();
+            this.administracion_cargartxtFac = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
@@ -66,7 +68,6 @@
             this.dvwcxc = new DevExpress.DashboardWin.DashboardViewer(this.components);
             this.tp2 = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.administracion_cargartxtFac = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
@@ -79,7 +80,7 @@
             // 
             // navBarControl1
             // 
-            this.navBarControl1.ActiveGroup = this.navBarGroupProcesos;
+            this.navBarControl1.ActiveGroup = this.navBarGroupComercial;
             this.navBarControl1.Appearance.NavigationPaneHeader.BackColor = System.Drawing.Color.White;
             this.navBarControl1.Appearance.NavigationPaneHeader.Options.UseBackColor = true;
             this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -113,7 +114,8 @@
             this.contabilidad_importarasiento,
             this.comercial_cambioclave,
             this.comercial_FE,
-            this.administracion_cargartxtFac});
+            this.administracion_cargartxtFac,
+            this.comercial_OS});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 201;
@@ -127,6 +129,7 @@
             // navBarGroupComercial
             // 
             this.navBarGroupComercial.Caption = "Comercial";
+            this.navBarGroupComercial.Expanded = true;
             this.navBarGroupComercial.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupComercial.ImageOptions.LargeImage")));
             this.navBarGroupComercial.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupComercial.ImageOptions.SmallImage")));
             this.navBarGroupComercial.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -134,7 +137,8 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_eliminararqueo),
             new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_eliminardocumento),
             new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_cambioclave),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_FE)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_FE),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_OS)});
             this.navBarGroupComercial.Name = "navBarGroupComercial";
             // 
             // comercial_listaprecio
@@ -171,6 +175,13 @@
             this.comercial_FE.ImageOptions.SmallImage = global::IAP.Win.Properties.Resources.Sunat;
             this.comercial_FE.Name = "comercial_FE";
             this.comercial_FE.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.comercial_FE_LinkClicked);
+            // 
+            // comercial_OS
+            // 
+            this.comercial_OS.Caption = "Ordenes Servicio";
+            this.comercial_OS.ImageOptions.SmallImage = global::IAP.Win.Properties.Resources.BODepartment_32x32;
+            this.comercial_OS.Name = "comercial_OS";
+            this.comercial_OS.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.comercial_OS_LinkClicked);
             // 
             // navBarGroupContabilidad
             // 
@@ -327,12 +338,18 @@
             // navBarGroupProcesos
             // 
             this.navBarGroupProcesos.Caption = "Administracion";
-            this.navBarGroupProcesos.Expanded = true;
             this.navBarGroupProcesos.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupProcesos.ImageOptions.LargeImage")));
             this.navBarGroupProcesos.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupProcesos.ImageOptions.SmallImage")));
             this.navBarGroupProcesos.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.administracion_cargartxtFac)});
             this.navBarGroupProcesos.Name = "navBarGroupProcesos";
+            // 
+            // administracion_cargartxtFac
+            // 
+            this.administracion_cargartxtFac.Caption = "Cargar Txt Facturas";
+            this.administracion_cargartxtFac.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("administracion_cargartxtFac.ImageOptions.SmallImage")));
+            this.administracion_cargartxtFac.Name = "administracion_cargartxtFac";
+            this.administracion_cargartxtFac.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.administracion_cargartxtFac_LinkClicked);
             // 
             // navBarItem1
             // 
@@ -398,13 +415,6 @@
             this.panelControl1.Size = new System.Drawing.Size(858, 694);
             this.panelControl1.TabIndex = 5;
             // 
-            // administracion_cargartxtFac
-            // 
-            this.administracion_cargartxtFac.Caption = "Cargar Txt Facturas";
-            this.administracion_cargartxtFac.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("administracion_cargartxtFac.ImageOptions.SmallImage")));
-            this.administracion_cargartxtFac.Name = "administracion_cargartxtFac";
-            this.administracion_cargartxtFac.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.administracion_cargartxtFac_LinkClicked);
-            // 
             // FRM_MENU_MAIN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -469,5 +479,6 @@
         private DevExpress.XtraTab.XtraTabPage tp2;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraNavBar.NavBarItem administracion_cargartxtFac;
+        private DevExpress.XtraNavBar.NavBarItem comercial_OS;
     }
 }

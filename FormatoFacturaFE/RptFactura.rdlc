@@ -434,6 +434,7 @@
                 <TextRun>
                   <Value>=First(Fields!NumeroLetras.Value, "dsCabFac")</Value>
                   <Style>
+                    <FontFamily>Times New Roman</FontFamily>
                     <FontSize>9pt</FontSize>
                   </Style>
                 </TextRun>
@@ -446,7 +447,7 @@
           <rd:DefaultName>NumeroLetras</rd:DefaultName>
           <Top>0.07513cm</Top>
           <Left>2.5515cm</Left>
-          <Height>0.64834cm</Height>
+          <Height>0.6532cm</Height>
           <Width>13.69602cm</Width>
           <Style>
             <Border>
@@ -577,6 +578,36 @@
           <Height>0.6cm</Height>
           <Width>0.80667cm</Width>
           <ZIndex>4</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox2">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>..</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox2</rd:DefaultName>
+          <Top>0.86944cm</Top>
+          <Left>5.65891cm</Left>
+          <Height>0.59118cm</Height>
+          <Width>2.5cm</Width>
+          <ZIndex>5</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>

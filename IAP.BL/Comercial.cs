@@ -23,15 +23,15 @@ namespace IAP.BL
             return DL.Comercial.DL_CDN(fechai, fechaf, vendedor, familia, subfam, db);
         }
 
-        public static List<listaprecio> ObtenerListadePrecios(string familia, string subfamilia, string grupo, string moneda, int costomayorcero, int stockmayorcero, string codf,string descripcion, string db)
+        public static List<listaprecio> ObtenerListadePrecios(string familia, string subfamilia, string grupo, string moneda, int costomayorcero, int stockmayorcero, string codf, string descripcion, string db)
         {
-            return DL.Comercial.ObtenerListadePrecios(familia, subfamilia, grupo, moneda,costomayorcero,stockmayorcero,codf, descripcion, db);
+            return DL.Comercial.ObtenerListadePrecios(familia, subfamilia, grupo, moneda, costomayorcero, stockmayorcero, codf, descripcion, db);
         }
 
         public static void RegistrarListaPrecios(List<listaprecio> l, string db)
         {
             listaprecio lista = new listaprecio();
-            foreach(listaprecio ls in l)
+            foreach (listaprecio ls in l)
             {
                 lista = new listaprecio();
                 lista = ls;
@@ -90,6 +90,31 @@ namespace IAP.BL
         {
             DL.Comercial cls = new DL.Comercial();
             return cls.ObtenerParametroFormatosFB(dbconexion);
+        }
+
+        public List<OrdenServicio> ObtenerOrdenesServicio(DateTime fechai, DateTime fechaf, string ndocu, string nomcli, string dbconexion)
+        {
+            DL.Comercial cls = new DL.Comercial();
+            return cls.ObtenerOrdenesServicio(fechai, fechaf, ndocu, nomcli, dbconexion);
+        }
+
+        public List<Cliente> ObtenerClientesOS(string dbconexion)
+        {
+            DL.Comercial cls = new DL.Comercial();
+            return cls.ObtenerClientesOS(dbconexion);
+        }
+
+        public void ActualizarClienteOS(List<OrdenServicio> lst, string dbconexion)
+        {
+            DL.Comercial cls = new DL.Comercial();
+            using (TransactionScope ts = new TransactionScope(TransactionScopeOption.Required))
+            {
+                cls.ActualizarClienteOS(lst, dbconexion);
+                ts.Complete();
+            }
+
+
+                
         }
     }
 }

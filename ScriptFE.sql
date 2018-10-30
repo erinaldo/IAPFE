@@ -53,23 +53,45 @@ ALTER TABLE mst01fac
 	fe_codigo VARCHAR(2) NULL,
 	enlace_del_pdf_anulado VARCHAR(MAX) NULL
 
+/* DATOS DEL PROVEEDOR */ -- CREAR ESTO EN MASTER
 create table DatosProveedorFE
 (
+	IdEmpresa int identity(1,1) not null primary key,
 	Empresa	varchar(250),
+	Cliente varchar(150),
 	Ruc		nvarchar(25),
+	BaseDeDatos varchar(50),
 	Link	varchar(250),
 	Usuario	varchar(250),
 	Clave	varchar(max),
 	Ruta	varchar(max),
-	Token	varchar(max)
+	Token	varchar(max),
 )
 
+--select * from DatosProveedorFE
+insert into DatosProveedorFE values ('Nubefact','Inversiones Automotrices del Peru','20600085612','Bdnava01','',
+'karina.peralta@iaperusac.com','20600085612','https://www.nubefact.com/api/v1/9c5d5d5f-5287-4412-91bd-632b7e8e89c0',
+'0edb742bde374b32a446d1e27b0a8cf53eea338fa3eb49eca536a82b41bb5341')
 
+insert into DatosProveedorFE values ('Telesoluciones','Perfiles Metalicos J&J','20600253230','Bdnava01','',
+'aceroshans@gmail.com','porConfirmar','https://www.nubefact.com/api/v1/9c5d5d5f-5287-4412-91bd-632b7e8e89c0',
+'0edb742bde374b32a446d1e27b0a8cf53eea338fa3eb49eca536a82b41bb5341')
 
+insert into DatosProveedorFE values ('Nubefact','GrupoIAP','20600085612','Bdnava02','',
+'karina.peralta@iaperusac.com','20600085612','https://www.nubefact.com/api/v1/9c5d5d5f-5287-4412-91bd-632b7e8e89c0',
+'0edb742bde374b32a446d1e27b0a8cf53eea338fa3eb49eca536a82b41bb5341')
 
-insert into DatosProveedorFE values('Nubefact SA','20600695771','https://demo.nubefact.com/login','demo@nubefact.com','demo@nubefact.com',
-'https://demo.nubefact.com/api/v1/03989d1a-6c8c-4b71-b1cd-7d37001deaa0','d0a80b88cde446d092025465bdb4673e103a0d881ca6479ebbab10664dbc5677')
+alter procedure USP_DATOSPROVEEDOR_FE
+(
+	@IdEmpresa int,
+	@BaseDeDatos varchar(50)
+)
+AS
+BEGIN
+	SELECT Usuario,Clave,Ruta,Token FROM DatosProveedorFE where IdEmpresa=@IdEmpresa and BaseDeDatos=@BaseDeDatos
+END
 
+/*   FIN           */
 
 create table mstTipoDocumento
 (
