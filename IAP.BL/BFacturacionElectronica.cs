@@ -15,6 +15,7 @@ namespace IAP.BL
 {
     public class BFacturacionElectronica
     {
+        MemoryStream PDFTelesoluciones = new MemoryStream();
         DL.DFacturacionElectronica Dfe = new DL.DFacturacionElectronica();
 
         public BFacturacionElectronica() { }
@@ -344,11 +345,61 @@ namespace IAP.BL
 
             //}
         }
+
+        //public void TelesolucionesEnviarFactura(List<Documentov> lst, string ruta, string token, string dbconexion)
+        //{
+        //    string errorsunat = string.Empty;
+        //    var lsunat = (dynamic)null;
+        //    TelesolucionesRespuestaFactura eRespuesta = new TelesolucionesRespuestaFactura();
+        //    int flg_fe = 0;
+        //    //using (TransactionScope ts = new TransactionScope(TransactionScopeOption.Required))
+        //    //{
+        //    foreach (Documentov e in lst) //por cada documento
+        //    {
+
+        //        lsunat.Add(Dfe.SunatEnviarDocumentosTelesolucionesFactura(e, dbconexion));
+        //    }
+
+        //    foreach (TelesolucionesFactura lista in lsunat)
+        //    {
+        //        eRespuesta = new TelesolucionesRespuestaFactura();
+
+
+        //        flg_fe = 0;
+
+
+        //        eRespuesta = EnviarTelesoluciones(lista, ruta, token);
+
+        //        if (eRespuesta.serie == "SUBIDO")
+        //        {
+
+        //            flg_fe = 1;//eRespuesta.aceptada_por_sunat == true ? 1 : 0;
+        //            TelesolucionesConstancia econs = new TelesolucionesConstancia
+        //            {
+        //                id = eRespuesta.idFactura.ToString()
+        //            };
+
+        //            TelesolucionesConstanciaRespuesta eConsR = new TelesolucionesConstanciaRespuesta();
+        //            eConsR = ObtenerConstanciaDocumento(econs, ruta, token);
+        //            //falta guardar respuesta
+
+        //            /////// Dfe.GuardarRespuestaSunat(eRespuesta, lista.cdocu, lista.ndocu, flg_fe, dbconexion);
+
+        //        }
+        //        else
+        //        {
+        //            //errorsunat = "Tipo Documento: " + lista.cdocu + "\n" + "Numero Documento: " + lista.ndocu + "\n" + "Error Sunat: " + Convert.ToString(eRespuesta.errors);
+        //            throw new Exception(errorsunat);
+
+        //        }
+        //    }
+        //}
+
         public void TelesolucionesEnviarFactura(List<Documentov> lst, string ruta, string token, string dbconexion)
         {
             string errorsunat = string.Empty;
             List<TelesolucionesFactura> lsunat = new List<TelesolucionesFactura>();
-            TelesolucionesRespuestaFactura eRespuesta = new TelesolucionesRespuestaFactura();
+            TelesolucionesRespuestaFactura eRespuestaFactura = new TelesolucionesRespuestaFactura();
             int flg_fe = 0;
             //using (TransactionScope ts = new TransactionScope(TransactionScopeOption.Required))
             //{
@@ -360,28 +411,30 @@ namespace IAP.BL
 
             foreach (TelesolucionesFactura lista in lsunat)
             {
-                eRespuesta = new TelesolucionesRespuestaFactura();
+                eRespuestaFactura = new TelesolucionesRespuestaFactura();
 
 
                 flg_fe = 0;
 
 
-                eRespuesta = EnviarTelesoluciones(lista, ruta, token);
+                eRespuestaFactura = EnviarTelesoluciones(lista, ruta, token);
 
-                if (eRespuesta.serie == "SUBIDO")
+                if (eRespuestaFactura.idFactura != 0)
                 {
 
                     flg_fe = 1;//eRespuesta.aceptada_por_sunat == true ? 1 : 0;
                     TelesolucionesConstancia econs = new TelesolucionesConstancia
                     {
-                        id = eRespuesta.idFactura.ToString()
+                        id = eRespuestaFactura.idFactura.ToString()
                     };
 
                     TelesolucionesConstanciaRespuesta eConsR = new TelesolucionesConstanciaRespuesta();
-                    eConsR = ObtenerConstanciaDocumento(econs, ruta, token);
+                    string rutaConstanacia = "https://demoapi.facturaonline.pe/factura/" + econs.id + "/constancia";
+                    eConsR = ObtenerConstanciaDocumento(string.Empty, rutaConstanacia, token);
+
                     //falta guardar respuesta
 
-                    /////// Dfe.GuardarRespuestaSunat(eRespuesta, lista.cdocu, lista.ndocu, flg_fe, dbconexion);
+                    Dfe.GuardarRespuestaSunatTelesoluciones(eRespuestaFactura,eConsR, flg_fe, dbconexion);
 
                 }
                 else
@@ -395,14 +448,29 @@ namespace IAP.BL
 
         private TelesolucionesRespuestaFactura EnviarTelesoluciones(Object entidad, string ruta, string token)
         {
-            string json = JsonConvert.SerializeObject(entidad, Formatting.Indented);
+            TelesolucionesFactura lstfacturaTemp = (TelesolucionesFactura)entidad;
+            string json = string.Empty;
+            json = JsonConvert.SerializeObject(entidad, Formatting.Indented);
+            if (lstfacturaTemp.guiasRelacionada.Where(x=> x.tipo.Trim()==string.Empty).Any())
+            {
+                var guia = (Newtonsoft.Json.Linq.JObject)JsonConvert.DeserializeObject(json);
+                guia.Property("guiasRelacionada").Remove();
+                json = JsonConvert.SerializeObject(guia, Formatting.Indented);
+            }
+            if(lstfacturaTemp.docRelacionada.Where(x=> x.numero.Trim()==string.Empty).Any())
+            {
+                var docre = (Newtonsoft.Json.Linq.JObject)JsonConvert.DeserializeObject(json);
+                docre.Property("docRelacionada").Remove();
+                json = JsonConvert.SerializeObject(docre, Formatting.Indented);
+            }
+
             byte[] bytes = Encoding.Default.GetBytes(json);
             string json_en_utf_8 = Encoding.UTF8.GetString(bytes);
 
             //enviar a nubefact
             string json_de_respuesta = string.Empty;
 
-            json_de_respuesta = TelesolucionesSendJson(ruta, json_en_utf_8, token); //falta la ruta y el token
+            json_de_respuesta = TelesolucionesSendJson(ruta, json_en_utf_8, token,"FACTURA"); //falta la ruta y el token
 
 
 
@@ -457,7 +525,7 @@ namespace IAP.BL
             //enviar a nubefact
             string json_de_respuesta = string.Empty;
 
-            json_de_respuesta = TelesolucionesSendJson(ruta, json_en_utf_8, token); //falta la ruta y el token
+            json_de_respuesta = TelesolucionesSendJson(ruta, json_en_utf_8, token,"BAJA"); //falta la ruta y el token
 
             
 
@@ -487,7 +555,7 @@ namespace IAP.BL
             
             string json_de_respuesta = string.Empty;
 
-            json_de_respuesta = TelesolucionesSendJson(ruta, json_en_utf_8, token); //falta la ruta y el token
+            json_de_respuesta = TelesolucionesSendJson(ruta, string.Empty, token,"CONSTANCIA"); //falta la ruta y el token
 
 
 
@@ -508,18 +576,22 @@ namespace IAP.BL
             return eRespuesta;
         }
 
-        private void ObtenerPdfTelesoluciones()
+        public MemoryStream ObtenerPdfTelesoluciones(string idFactura)
         {
-
+            idFactura = "43107";
+            string ruta = "https://demoapi.facturaonline.pe/factura/" + idFactura + "/exportar";
+            string RespuestaPDF = TelesolucionesSendJson(ruta, string.Empty, string.Empty,"PDF");
+            return PDFTelesoluciones;
         }
-        string TelesolucionesSendJson(string ruta, string json, string token)
+        string TelesolucionesSendJson(string ruta, string json, string token,string tipoOperacion)
         {
             try
             {
+                string respuesta = "";
                 using (var client = new WebClient())
                 {
                     //TELESOLUCIONES 
-                    ruta = "https://api.facturaonline.pe/factura";
+                    //ruta = 
                     DateTime timeStamp = DateTime.Now;
                     DateTime nx = new DateTime(1970, 1, 1);
                     TimeSpan ts = DateTime.UtcNow - nx;
@@ -529,16 +601,41 @@ namespace IAP.BL
                     string ToHash = string.Join("|", aK, unixTS);
                     string Hash = xHashString(ToHash, Ky);
 
-
-                    //Console.WriteLine("Fo " + aK + ":" + Hash + ":" + unixTS);
-
-
                     /// ESPECIFICAMOS EL TIPO DE DOCUMENTO EN EL ENCABEZADO
-                    client.Headers[HttpRequestHeader.ContentType] = "application/json; charset=utf-8";
+                    client.Headers[HttpRequestHeader.ContentType] = "application/json";
+                    //application/json; charset=utf-8
                     //client.Headers[HttpRequestHeader.Authorization] = "Token token=" + token;
                     client.Headers[HttpRequestHeader.Authorization] = "Fo " + aK + ":" + Hash + ":" + unixTS;
+
+                    
                     /// OBTENEMOS LA RESPUESTA
-                    string respuesta = client.UploadString(ruta, "POST", json);
+                   
+                    //SI PETICION ES SOBRE UNA CONSTANCIA 
+                    if(tipoOperacion=="PDF")
+                    {
+//                        MemoryStream memory=
+                        //client.DownloadFile(ruta, "c:\\data\\psdpsd.pdf");
+                        //using (MemoryStream stream = new MemoryStream(client.DownloadData(ruta)))
+                        //{
+                        //    OpenExcel(stream);
+                        //}
+                        MemoryStream stream = new MemoryStream(client.DownloadData(ruta));
+                        PDFTelesoluciones = stream;
+                    }
+                    if(tipoOperacion=="FACTURA")
+                    {
+                        respuesta = client.UploadString(ruta, "POST", json);
+                    }
+                    if(tipoOperacion=="CONSTANCIA")
+                    {
+                        respuesta = client.DownloadString(ruta);
+                    }
+                    if(tipoOperacion=="BAJA")
+                    {
+                        respuesta = client.UploadString(ruta, "POST", json);
+                    }
+                    
+                    
                     /// Y LA 'RETORNAMOS'
                     return respuesta;
                 }
@@ -554,12 +651,15 @@ namespace IAP.BL
             }
         }
 
+        
+
+
         private string xHashString(string StringToHash,string HachKey)
         {
             System.Text.UTF8Encoding myEncoder = new UTF8Encoding();
             Byte[] Key = myEncoder.GetBytes(HachKey);
             Byte[] Text = myEncoder.GetBytes(StringToHash);
-            System.Security.Cryptography.HMACSHA256 myHMACSHA256 = new System.Security.Cryptography.HMACSHA256();
+            System.Security.Cryptography.HMACSHA256 myHMACSHA256 = new System.Security.Cryptography.HMACSHA256(Key);
             Byte[] HashCode = myHMACSHA256.ComputeHash(Text);
             String hash = BitConverter.ToString(HashCode).Replace("-", "");
             return hash.ToLower();

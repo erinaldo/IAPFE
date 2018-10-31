@@ -353,9 +353,102 @@ namespace IAP.DL
                 e.enlace_del_xml, e.enlace_del_cdr, e.errors, e.fe_codigo);
         }
 
+        //public dynamic SunatEnviarDocumentosTelesolucionesFactura(Documentov lst, string dbconexion)
+        //{
+        //    Database db = DatabaseFactory.CreateDatabase(dbconexion);
+        //    /* PRUEBA*/
+        //    DbCommand cmd2;
+        //    cmd2 = db.GetStoredProcCommand("usp_SunatTelesoluciones_EnviarFacturaDetalle", lst.Cdocu, lst.Ndocu);
+        //    cmd2.CommandType = CommandType.StoredProcedure;
+        //    cmd2.CommandTimeout = 0;
+
+        //    DataSet ds2 = db.ExecuteDataSet(cmd2);
+        //    //var item = (dynamic)null;
+
+        //    //foreach (DataRow row2 in ds2.Tables[0].Rows)
+        //    //{
+        //    //    item.Add(new 
+        //    //    {
+        //    //        cantidad = Convert.ToDouble(row2["cantidad"]),
+        //    //        descripcion = row2["descripcion"].ToString().Trim(),
+        //    //        valorVenta = Convert.ToDouble(row2["valorVenta"]),
+        //    //        valorUnitario = Convert.ToDouble(row2["valorUnitario"]),
+        //    //        precioVentaUnitario = Convert.ToDouble(row2["precioVentaUnitario"]),
+        //    //        tipoPrecioVentaUnitario = row2["tipoPrecioVentaUnitario"].ToString(),
+        //    //        montoAfectacionIgv = Convert.ToDouble(row2["montoAfectacionIgv"]),
+        //    //        tipoAfectacionIgv = row2["tipoAfectacionIgv"].ToString(),
+        //    //        codigoProducto = row2["codigoProducto"].ToString().Trim(),
+        //    //        descuento = Convert.ToDouble(row2["descuento"])
+        //    //    });
+        //    //}
+
+        //    var item= (from DataRow row2 in ds2.Tables[0].Rows
+        //     select new
+        //     {
+        //         cantidad = Convert.ToDouble(row2["cantidad"]),
+        //         descripcion = row2["descripcion"].ToString().Trim(),
+        //         valorVenta = Convert.ToDouble(row2["valorVenta"]),
+        //         valorUnitario = Convert.ToDouble(row2["valorUnitario"]),
+        //         precioVentaUnitario = Convert.ToDouble(row2["precioVentaUnitario"]),
+        //         tipoPrecioVentaUnitario = row2["tipoPrecioVentaUnitario"].ToString(),
+        //         montoAfectacionIgv = Convert.ToDouble(row2["montoAfectacionIgv"]),
+        //         tipoAfectacionIgv = row2["tipoAfectacionIgv"].ToString(),
+        //         codigoProducto = row2["codigoProducto"].ToString().Trim(),
+        //         descuento = Convert.ToDouble(row2["descuento"])
+        //     }).ToList();
+
+
+        //    DbCommand cmd;
+        //    cmd = db.GetStoredProcCommand("usp_SunatTelesoluciones_EnviarFactura", lst.Cdocu, lst.Ndocu);
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    cmd.CommandTimeout = 0;
+
+        //    DataSet ds = db.ExecuteDataSet(cmd);
+
+            
+        //    //List<TelesolucionesGuiaRelacionada> lstguias = new List<TelesolucionesGuiaRelacionada>();
+        //    var tf = (dynamic)null;
+        //    foreach (DataRow row in ds.Tables[0].Rows)
+        //    {
+        //        tf = new 
+        //        {
+        //            serie = row["serie"].ToString(),
+        //            numero = Convert.ToInt32(row["numero"]),
+        //            totalVentaGravada = Convert.ToDouble(row["totalVentaGravada"]),
+        //            totalVentaInafecta = Convert.ToDouble(row["totalVentaInafecta"]),
+        //            totalVentaExonerada = Convert.ToDouble(row["totalVentaExonerada"]),
+        //            sumatoriaIgv = Convert.ToDouble(row["sumatoriaIgv"]),
+        //            sumatoriaIsc = Convert.ToDouble(row["sumatoriaIsc"]),
+        //            totalVenta = Convert.ToDouble(row["total"]),
+        //            tipoMoneda = row["tipoMoneda"].ToString(),
+        //            descuentoGlobal = Convert.ToDouble(row["descuentoGlobal"]),
+        //            porcentajeDescuentoGlobal = Convert.ToDouble(row["porcentajeDescuentoGlobal"]),
+        //            totalDescuento = Convert.ToDouble(row["totalDescuento"]),
+        //            importePercepcion = Convert.ToDouble(row["importePercepcion"]),
+        //            porcentajePercepcion = Convert.ToDouble(row["porcentajePercepcion"]),
+        //            docRelacionada = new { numero = row["docRelacionadaNdocu"].ToString() },
+        //            //guiasRelacionada = new List<TelesolucionesGuiaRelacionada>{ numero = row["guiasRelacionada"].ToString() },
+        //            receptor = new { tipo = row["receptorTipo"].ToString(), nro = row["receptorNumero"].ToString(), razonSocial = row["ReceptorRazonSocial"].ToString().Trim() },
+        //            items= item
+                    
+        //        };
+
+        //        //lstguias.Add(new TelesolucionesGuiaRelacionada { tipo = row["guiasRelacionadaTipo"].ToString(), serie = row["guiasRelacionadaSerie"].ToString(), numero = row["guiasRelacionadaNro"].ToString().Trim() });
+        //        //tf.guiasRelacionada = lstguias;
+
+               
+                
+        //    }
+        //    return tf;
+        //}
+
         public TelesolucionesFactura SunatEnviarDocumentosTelesolucionesFactura(Documentov lst, string dbconexion)
         {
             Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            /* PRUEBA*/
+            
+             
+            
             DbCommand cmd;
             cmd = db.GetStoredProcCommand("usp_SunatTelesoluciones_EnviarFactura", lst.Cdocu, lst.Ndocu);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -364,6 +457,10 @@ namespace IAP.DL
             DataSet ds = db.ExecuteDataSet(cmd);
 
             TelesolucionesFactura tf = new TelesolucionesFactura();
+            //dynamic tf= new TelesolucionesFactura();
+            List<TelesolucionesGuiaRelacionada> lstguias = new List<TelesolucionesGuiaRelacionada>();
+            List<TelesolucionesDocRelacionada> lstdocrelacionada = new List<TelesolucionesDocRelacionada>();
+            //var tf = (dynamic)null;
             foreach (DataRow row in ds.Tables[0].Rows)
             {
                 tf = new TelesolucionesFactura
@@ -382,10 +479,16 @@ namespace IAP.DL
                     totalDescuento = Convert.ToDouble(row["totalDescuento"]),
                     importePercepcion = Convert.ToDouble(row["importePercepcion"]),
                     porcentajePercepcion = Convert.ToDouble(row["porcentajePercepcion"]),
-                    docRelacionada = new TelesolucionesDocRelacionada { numero = row["docRelacionadaNdocu"].ToString() },
-                    guiasRelacionada = new TelesolucionesGuiaRelacionada { numero = row["guiasRelacionada"].ToString() },
-                    receptor = new TelesolucionesRecceptor { tipo = row["receptorTipo"].ToString(), nro = row["receptorNumero"].ToString(), razonSocial = row["ReceptorRazonSocial"].ToString() }
+                    //docRelacionada = new List<TelesolucionesDocRelacionada>(new TelesolucionesDocRelacionada { numero = row["docRelacionadaNdocu"].ToString() }),
+                    //guiasRelacionada = new List<TelesolucionesGuiaRelacionada>{ numero = row["guiasRelacionada"].ToString() },
+                    receptor = new TelesolucionesRecceptor { tipo = row["receptorTipo"].ToString(), nro = row["receptorNumero"].ToString(), razonSocial = row["ReceptorRazonSocial"].ToString().Trim() },
+                    
                 };
+
+                lstguias.Add(new TelesolucionesGuiaRelacionada { tipo = row["guiasRelacionadaTipo"].ToString(), serie = row["guiasRelacionadaSerie"].ToString(), numero = row["guiasRelacionadaNro"].ToString().Trim() });
+                tf.guiasRelacionada = lstguias;
+                lstdocrelacionada.Add(new TelesolucionesDocRelacionada { numero = row["docRelacionadaNdocu"].ToString(),tipo = row["docRelacionadaCdocu"].ToString() });
+                tf.docRelacionada = lstdocrelacionada;
 
                 DbCommand cmd2;
                 cmd2 = db.GetStoredProcCommand("usp_SunatTelesoluciones_EnviarFacturaDetalle", lst.Cdocu, lst.Ndocu);
@@ -394,26 +497,37 @@ namespace IAP.DL
 
                 DataSet ds2 = db.ExecuteDataSet(cmd2);
                 List<TelesolucionesItems> item = new List<TelesolucionesItems>();
-                
+
                 foreach (DataRow row2 in ds2.Tables[0].Rows)
                 {
                     item.Add(new TelesolucionesItems
                     {
+                        unidadMedidaCantidad= row2["unidad_de_medida"].ToString(),
                         cantidad = Convert.ToDouble(row2["cantidad"]),
-                        descripcion = row2["descripcion"].ToString(),
+                        descripcion = row2["descripcion"].ToString().Trim(),
                         valorVenta = Convert.ToDouble(row2["valorVenta"]),
                         valorUnitario = Convert.ToDouble(row2["valorUnitario"]),
                         precioVentaUnitario = Convert.ToDouble(row2["precioVentaUnitario"]),
                         tipoPrecioVentaUnitario = row2["tipoPrecioVentaUnitario"].ToString(),
                         montoAfectacionIgv = Convert.ToDouble(row2["montoAfectacionIgv"]),
                         tipoAfectacionIgv = row2["tipoAfectacionIgv"].ToString(),
-                        codigoProducto = row2["codigoProducto"].ToString(),
+                        codigoProducto = row2["codigoProducto"].ToString().Trim(),
                         descuento = Convert.ToDouble(row2["descuento"])
                     });
                 }
                 tf.items = item;
             }
+            
             return tf;
+
+        }
+
+        public void GuardarRespuestaSunatTelesoluciones(TelesolucionesRespuestaFactura e,TelesolucionesConstanciaRespuesta eC, int flg_fe, string dbconexion)
+        {
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            db.ExecuteNonQuery("usp_SunatGuardarRespuestaSunatTelesoluciones", flg_fe,
+                eC.serie,eC.numero,eC.fechaEmision,e.emitido,e.baja,e.digestValue,e.signatureValue,eC.idConstancia,eC.idRespuesta,eC.codigo,
+                eC.notas,eC.descripcion);
         }
     }
 }

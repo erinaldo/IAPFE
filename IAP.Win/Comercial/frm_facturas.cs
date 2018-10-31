@@ -292,7 +292,8 @@ namespace IAP.Win
                     }
                     else //TELESOLUCIONES
                     {
-                        Bfe.TelesolucionesEnviarFactura(lst, Global.vRuta, Global.vToken, Global.vUserBaseDatos);
+                        string ruta="https://demoapi.facturaonline.pe/factura";
+                        Bfe.TelesolucionesEnviarFactura(lst, ruta, Global.vToken, Global.vUserBaseDatos);
                     }
                    
                     
@@ -475,14 +476,16 @@ namespace IAP.Win
                                     MessageBox.Show("El documento no tiene registrado la Url del Pdf", "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Question);
                                     break;
                                 }
-                                frm_FacturasVisorPdf form = new frm_FacturasVisorPdf(pdf);
+                                frm_FacturasVisorPdf form = new frm_FacturasVisorPdf(pdf,null,"NUBEFACT");
                                 form.ShowDialog();
                                 
                             }
                             else //TELESOLUCIONES
                             {
-
-                                //Bfe.TelesolucionesEnviarFactura(lst, Global.vRuta, Global.vToken, Global.vUserBaseDatos);
+                                string idFactura = "";
+                                System.IO.MemoryStream ms= Bfe.ObtenerPdfTelesoluciones(idFactura);
+                                frm_FacturasVisorPdf form = new frm_FacturasVisorPdf(string.Empty, ms,"TELESOLUCIONES");
+                                form.ShowDialog();
                             }
 
                             break;
@@ -514,7 +517,7 @@ namespace IAP.Win
                                 MessageBox.Show("El documento no tiene registrado la Url del Pdf Anulado", "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Question);
                                 break;
                             }
-                            frm_FacturasVisorPdf form = new frm_FacturasVisorPdf(pdf);
+                            frm_FacturasVisorPdf form = new frm_FacturasVisorPdf(pdf,null,"NUBEFACT");
                             form.ShowDialog();
                             break;
                         }

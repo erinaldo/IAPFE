@@ -18,12 +18,16 @@ namespace IAP.Win.Comercial
 
         // Member variable to store the MemoryStream Data
         private MemoryStream pdfMemoryStream;
+        private string Proveedor;
 
         // Public MemoryStream property containing PDF Data
-        public frm_FacturasVisorPdf(string link)
+        public frm_FacturasVisorPdf(string link,MemoryStream pdfStream,string proveedor)
         {
             InitializeComponent();
             linkdocumento = link;
+            pdfMemoryStream = pdfStream;
+            Proveedor = proveedor;
+
         }
 
         private void frm_FacturasVisorPdf_Load(object sender, EventArgs e)
@@ -32,22 +36,29 @@ namespace IAP.Win.Comercial
             {
                 //wbdocumento.Navigate(linkdocumento);
                
-               
-                if (this.pdfMemoryStream == null)
+               if(Proveedor=="NUBEFACT")
                 {
-                    WebClient client = new WebClient();
-                    try
+                    if (this.pdfMemoryStream == null)
                     {
-                        this.pdfMemoryStream =
-                          new MemoryStream(client.DownloadData(linkdocumento));
-                        pdfViewer1.LoadDocument(pdfMemoryStream);
-                        
-                    }
-                    finally
-                    {
-                        client.Dispose();
+                        WebClient client = new WebClient();
+                        try
+                        {
+                            this.pdfMemoryStream =
+                              new MemoryStream(client.DownloadData(linkdocumento));
+                            pdfViewer1.LoadDocument(pdfMemoryStream);
+
+                        }
+                        finally
+                        {
+                            client.Dispose();
+                        }
                     }
                 }
+               else//TELESOLUCIONES
+                {
+                    pdfViewer1.LoadDocument(pdfMemoryStream);
+                }
+                
             }
             catch (Exception err)
             {

@@ -1,4 +1,4 @@
-﻿create procedure [dbo].[usp_SunatTelesoluciones_EnviarFactura]
+﻿ALTER procedure [dbo].[usp_SunatTelesoluciones_EnviarFactura]
 
 (
 	@cdocu char(2),
@@ -39,14 +39,19 @@ begin
 		ABS(cast(f.toti as numeric(12,2))) as sumatoriaIgv,
 		0 as sumatoriaIsc,
 		ABS(cast(f.totn as numeric(12,2))) total,
-		f.mone as tipoMoneda,
+		CASE f.mone WHEN 'S' THEN 'PEN' ELSE 'USD' END as tipoMoneda,
 		(select round(sum((df.preu * df.cant * (df.dsct/100))),2) from dtl01fac df where df.cdocu=f.cdocu and df.ndocu=f.ndocu) descuentoGlobal,
 		0 as porcentajeDescuentoGlobal,
 		(select round(sum((df.preu * df.cant * (df.dsct/100))),2) from dtl01fac df where df.cdocu=f.cdocu and df.ndocu=f.ndocu) totalDescuento,
 		0 as importePercepcion,
 		0 as porcentajePercepcion,
-		'' as docRelacionada,
-		ndge as guiasRelacionada,
+		--f.crefe as docRelacionadaCdocu,
+		--f.nrefe as docRelacionadaNdocu,
+		'' as docRelacionadaCdocu,
+		'' as docRelacionadaNdocu,
+		case when ndge<>'' then '09' else '' end guiasRelacionadaTipo,
+		ndge as guiasRelacionadaNro,
+		LEFT(ndge,3) as guiasRelacionadaSerie,
 		td.CodigoSunat as receptorTipo, --6 factura 
 		right(replace(rtrim(ltrim(c.ruccli)),'DNI',''),15) receptorNumero,
 		f.nomcli as ReceptorRazonSocial
@@ -59,6 +64,8 @@ begin
 	 left join  tbl01cdv cv on cv.codcdv=f.Codcdv
 	 where f.cdocu=@cdocu and f.ndocu=@ndocu
 end
+
+
 
 
 
@@ -87,3 +94,64 @@ from dtl01fac df
 where df.cdocu=@cdocu and df.ndocu=@ndocu and df.codi<>'0000-000000'
 end
 
+
+
+/* GUARDANDO RESPUESTA DE CONSTANCIA */
+
+alter procedure [dbo].[usp_SunatGuardarRespuestaSunatTelesoluciones]
+(
+	@flg_fe int,
+ 	@TeleSol_Serie varchar(4),
+	@TeleSol_Numero varchar(15),
+	@TeleSol_FechaEmitido datetime,
+	@TeleSol_Emitido varchar(15),
+	@TeleSol_Baja varchar(15),
+	@TeleSol_DigestValue_Hash varchar(max),
+	@TeleSol_SignatureValue_Firma varchar(max),
+	@TeleSol_IdConstancia varchar(15),
+	@TeleSol_IdRespuesta varchar(15),
+	@TeleSol_CodigoRespuestaSunat varchar(15),
+	@TeleSol_NotaAsociada varchar(500),
+	@TeleSol_Descripcion varchar(1500)
+)
+as
+begin
+	declare @cdocu	char(2),@ndocu  char(12)
+	set @cdocu=(case left(@TeleSol_Serie,1) when 'F' THEN '01' WHEN 'B' THEN '03' END)
+	SET @ndocu=RIGHT(@TeleSol_Serie,3) + '-' + right('00000000'+@TeleSol_Numero,8)
+	
+	update mst01fac
+	set 
+	flg_fe=@flg_fe,
+	TeleSol_Serie=@TeleSol_Serie,
+	TeleSol_Numero=@TeleSol_Numero,
+	TeleSol_FechaEmitido=@TeleSol_FechaEmitido,
+	TeleSol_Emitido=@TeleSol_Emitido,
+	TeleSol_Baja=@TeleSol_Baja,
+	TeleSol_DigestValue_Hash=@TeleSol_DigestValue_Hash,
+	TeleSol_SignatureValue_Firma=@TeleSol_SignatureValue_Firma,
+	TeleSol_IdConstancia=@TeleSol_IdConstancia,
+	TeleSol_IdRespuesta=@TeleSol_IdRespuesta,
+	TeleSol_CodigoRespuestaSunat=@TeleSol_CodigoRespuestaSunat,
+	TeleSol_NotaAsociada=@TeleSol_NotaAsociada,
+	TeleSol_Descripcion=@TeleSol_Descripcion
+	where cdocu=@cdocu and ndocu=@ndocu
+end
+
+
+
+/*  MODIFCACION DE TABLAS */
+alter table mst01fac
+add 
+TeleSol_Serie varchar(4),
+TeleSol_Numero varchar(15),
+TeleSol_FechaEmitido datetime,
+TeleSol_Emitido varchar(15),
+TeleSol_Baja varchar(15),
+TeleSol_DigestValue_Hash varchar(max),
+TeleSol_SignatureValue_Firma varchar(max),
+TeleSol_IdConstancia varchar(15),
+TeleSol_IdRespuesta varchar(15),
+TeleSol_CodigoRespuestaSunat varchar(15),
+TeleSol_NotaAsociada varchar(500),
+TeleSol_Descripcion varchar(1500)

@@ -26,8 +26,8 @@ namespace IAP.BE
         public double totalDescuento { get; set; }
         public double importePercepcion { get; set; }
         public double porcentajePercepcion { get; set; }
-        public TelesolucionesDocRelacionada docRelacionada { get; set; }
-        public TelesolucionesGuiaRelacionada guiasRelacionada { get; set; }
+        public List<TelesolucionesDocRelacionada> docRelacionada { get; set; }
+        public List<TelesolucionesGuiaRelacionada> guiasRelacionada { get; set; }
         public TelesolucionesRecceptor receptor { get; set; }
         public List<TelesolucionesItems> items { get; set; }
     }
@@ -41,6 +41,7 @@ namespace IAP.BE
 
     public class TelesolucionesItems
     {
+        public string unidadMedidaCantidad { get; set; }
         public double cantidad { get; set; }
         public string descripcion { get; set; }
         public double valorVenta { get; set; }
@@ -49,8 +50,8 @@ namespace IAP.BE
         public string tipoPrecioVentaUnitario { get; set; }
         public double montoAfectacionIgv { get; set; }
         public string tipoAfectacionIgv { get; set; }
-        public double montoAfectacionIsc { get; set; }
-        public string tipoAfectacionIsc { get; set; }
+        //public double montoAfectacionIsc { get; set; }
+        //public string tipoAfectacionIsc { get; set; }
         public string codigoProducto { get; set; }
         public double descuento { get; set; }
         public double porcentajeDescuento { get; set; }
@@ -122,11 +123,14 @@ namespace IAP.BE
     public class TelesolucionesDocRelacionada
     {
         public string numero { get; set; }
+        public string tipo { get; set; }
     }
 
     public class TelesolucionesGuiaRelacionada
     {
+        public string tipo { get; set; }
         public string numero { get; set; }
+        public string serie { get; set; }
     }
     public class TelesolucionesBajaDocumento
     {
