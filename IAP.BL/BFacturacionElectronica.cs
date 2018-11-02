@@ -301,12 +301,23 @@ namespace IAP.BL
         public void TelesolucionesAnularDocumento(Documentov eFac, List<DocumentovDet> lstdetalle, string ruta, string token, string dbconexion)
         {
             int flg_fe = 0;
+            ruta = "https://demoapi.facturaonline.pe/comunicacionbaja";
             string errorsunat = string.Empty;
             TelesolucionesBajaDocumentoRespuesta eRespuesta = new TelesolucionesBajaDocumentoRespuesta();
 
             TelesolucionesBajaDocumento eAnulacion = new TelesolucionesBajaDocumento();
-            eAnulacion.fechaEmisionDocs = eFac.Fecha.ToShortDateString();
-            eAnulacion.numero = Convert.ToInt32(eFac.Numero);
+            string mes = string.Empty;
+            string dia = string.Empty;
+
+            mes = (Convert.ToDateTime(eFac.TeleSol_FechaEmitido).Month.ToString().Length == 1 ? "0" + Convert.ToDateTime(eFac.TeleSol_FechaEmitido).Month.ToString() :
+                Convert.ToDateTime(eFac.TeleSol_FechaEmitido).Month.ToString());
+            dia = (Convert.ToDateTime(eFac.TeleSol_FechaEmitido).Day.ToString().Length == 1 ? "0" + Convert.ToDateTime(eFac.TeleSol_FechaEmitido).Day.ToString() :
+                Convert.ToDateTime(eFac.TeleSol_FechaEmitido).Day.ToString());
+
+            eAnulacion.fechaEmisionDocs = Convert.ToDateTime(eFac.TeleSol_FechaEmitido).Year.ToString() +
+                "-" + mes + "-" + dia;
+            eAnulacion.serie = eFac.TeleSol_Serie;
+            eAnulacion.numero = Convert.ToInt32(eFac.TeleSol_Numero);
 
             List<TelesolucionesBajaItem> lstdet = new List<TelesolucionesBajaItem>();
             foreach(DocumentovDet e in lstdetalle)
@@ -314,9 +325,9 @@ namespace IAP.BL
                 lstdet.Add(new TelesolucionesBajaItem
                 {
                     descripcion = e.Product.Descr.Trim(),
-                    serie = eFac.Serie,
-                    numero = Convert.ToInt32(eFac.Numero),
-                    tipoComprobante = eFac.Tipo_de_comprobante //01 FACTURA  03 BOLETA
+                    serie = eFac.TeleSol_Serie,
+                    numero = Convert.ToInt32(eFac.TeleSol_Numero),
+                    tipoComprobante = eFac.Cdocu //01 FACTURA  03 BOLETA
                 });
             }
             eAnulacion.items = lstdet;
@@ -328,76 +339,23 @@ namespace IAP.BL
 
             eRespuesta = EnviarTelesolucionesBaja (eAnulacion, ruta, token);
 
-            //if (eRespuesta.errors == "N")
-            //{
-
-
-            //    flg_fe = 2;//eRespuesta.aceptada_por_sunat == true ? 2 : 1;
-
-            //    Dfe.GuardarRespuestaSunat(eRespuesta, eFac.Cdocu, eFac.Ndocu, flg_fe, dbconexion);
-
-
-            //}
-            //else
-            //{
-            //    errorsunat = "Tipo Documento: " + eFac.Cdocu + "\n" + "Numero Documento: " + eFac.Ndocu + "\n" + "Error Sunat: " + Convert.ToString(eRespuesta.errors);
-            //    throw new Exception(errorsunat);
-
-            //}
+            if (string.IsNullOrEmpty(eRespuesta.status))
+            {
+                Dfe.GuardarRespuestaAnulacionSunatTelesoluciones(eAnulacion.serie, eAnulacion.numero.ToString(),eRespuesta, dbconexion);
+            }
+            else
+            {
+                throw new Exception(eRespuesta.message.ToString());
+            }
+           
         }
 
-        //public void TelesolucionesEnviarFactura(List<Documentov> lst, string ruta, string token, string dbconexion)
-        //{
-        //    string errorsunat = string.Empty;
-        //    var lsunat = (dynamic)null;
-        //    TelesolucionesRespuestaFactura eRespuesta = new TelesolucionesRespuestaFactura();
-        //    int flg_fe = 0;
-        //    //using (TransactionScope ts = new TransactionScope(TransactionScopeOption.Required))
-        //    //{
-        //    foreach (Documentov e in lst) //por cada documento
-        //    {
-
-        //        lsunat.Add(Dfe.SunatEnviarDocumentosTelesolucionesFactura(e, dbconexion));
-        //    }
-
-        //    foreach (TelesolucionesFactura lista in lsunat)
-        //    {
-        //        eRespuesta = new TelesolucionesRespuestaFactura();
-
-
-        //        flg_fe = 0;
-
-
-        //        eRespuesta = EnviarTelesoluciones(lista, ruta, token);
-
-        //        if (eRespuesta.serie == "SUBIDO")
-        //        {
-
-        //            flg_fe = 1;//eRespuesta.aceptada_por_sunat == true ? 1 : 0;
-        //            TelesolucionesConstancia econs = new TelesolucionesConstancia
-        //            {
-        //                id = eRespuesta.idFactura.ToString()
-        //            };
-
-        //            TelesolucionesConstanciaRespuesta eConsR = new TelesolucionesConstanciaRespuesta();
-        //            eConsR = ObtenerConstanciaDocumento(econs, ruta, token);
-        //            //falta guardar respuesta
-
-        //            /////// Dfe.GuardarRespuestaSunat(eRespuesta, lista.cdocu, lista.ndocu, flg_fe, dbconexion);
-
-        //        }
-        //        else
-        //        {
-        //            //errorsunat = "Tipo Documento: " + lista.cdocu + "\n" + "Numero Documento: " + lista.ndocu + "\n" + "Error Sunat: " + Convert.ToString(eRespuesta.errors);
-        //            throw new Exception(errorsunat);
-
-        //        }
-        //    }
-        //}
-
+       
+        
         public void TelesolucionesEnviarFactura(List<Documentov> lst, string ruta, string token, string dbconexion)
         {
             string errorsunat = string.Empty;
+            string tipodocumento;
             List<TelesolucionesFactura> lsunat = new List<TelesolucionesFactura>();
             TelesolucionesRespuestaFactura eRespuestaFactura = new TelesolucionesRespuestaFactura();
             int flg_fe = 0;
@@ -415,27 +373,39 @@ namespace IAP.BL
 
 
                 flg_fe = 0;
-
-
+                tipodocumento = lista.serie.Substring(0, 1);
+                ruta = tipodocumento == "F" ? "https://demoapi.facturaonline.pe/factura" : "https://demoapi.facturaonline.pe/boleta";
+                
                 eRespuestaFactura = EnviarTelesoluciones(lista, ruta, token);
 
-                if (eRespuestaFactura.idFactura != 0)
+                if (eRespuestaFactura.idDocumento != 0)
                 {
 
                     flg_fe = 1;//eRespuesta.aceptada_por_sunat == true ? 1 : 0;
                     TelesolucionesConstancia econs = new TelesolucionesConstancia
                     {
-                        id = eRespuestaFactura.idFactura.ToString()
+                        id = eRespuestaFactura.idDocumento.ToString()
                     };
 
                     TelesolucionesConstanciaRespuesta eConsR = new TelesolucionesConstanciaRespuesta();
-                    string rutaConstanacia = "https://demoapi.facturaonline.pe/factura/" + econs.id + "/constancia";
+                    //if (eConsR.status.ToString().Trim() == string.Empty)
+                    //{
+                    string rutaConstanacia = tipodocumento == "F" ? "https://demoapi.facturaonline.pe/factura/" + econs.id + "/constancia" : "https://demoapi.facturaonline.pe/boleta/" + econs.id + "/constancia";
+
+                    Dfe.GuardarRespuestaSunatTelesoluciones(eRespuestaFactura, eConsR, flg_fe, dbconexion);
+
                     eConsR = ObtenerConstanciaDocumento(string.Empty, rutaConstanacia, token);
+                    //}
+                    
+                    
 
                     //falta guardar respuesta
 
                     Dfe.GuardarRespuestaSunatTelesoluciones(eRespuestaFactura,eConsR, flg_fe, dbconexion);
-
+                    if (!string.IsNullOrEmpty(eConsR.status))
+                    {
+                        throw new Exception(eConsR.message.ToString());
+                    }
                 }
                 else
                 {
@@ -494,8 +464,8 @@ namespace IAP.BL
             eRespuesta.baja = leer_respuesta.baja;
             eRespuesta.digestValue = leer_respuesta.digestValue; //codigo HASH del comprobante
             eRespuesta.signatureValue = leer_respuesta.signatureValue;
-            
-
+            eRespuesta.idBoleta = Convert.ToInt32(leer_respuesta.idBoleta);
+            eRespuesta.idDocumento = eRespuesta.idFactura == 0 ? eRespuesta.idBoleta : eRespuesta.idFactura;
 
             //eRespuesta.enlace = leer_respuesta.enlace;
             //eRespuesta.aceptada_por_sunat = leer_respuesta.aceptada_por_sunat;
@@ -542,7 +512,11 @@ namespace IAP.BL
             eRespuesta.idConstancia = leer_respuesta.idConstancia;
             eRespuesta.digestValue = leer_respuesta.digestValue; //codigo HASH del comprobante
             eRespuesta.signatureValue = leer_respuesta.signatureValue;
-            
+            eRespuesta.idConstancia = leer_respuesta.idConstancia;
+            eRespuesta.code= leer_respuesta.code;
+            eRespuesta.status = leer_respuesta.status;
+            eRespuesta.message = leer_respuesta.message;
+            eRespuesta.idComunicacionBaja = leer_respuesta.idComunicacionBaja;
             return eRespuesta;
         }
 
@@ -572,14 +546,19 @@ namespace IAP.BL
             eRespuesta.codigo = leer_respuesta.codigo;
             eRespuesta.notas = leer_respuesta.notas; 
             eRespuesta.descripcion = leer_respuesta.descripcion;
+            //ERROR
+            eRespuesta.code = leer_respuesta.code;
+            eRespuesta.status = leer_respuesta.status;
+            eRespuesta.message = leer_respuesta.message;
+
 
             return eRespuesta;
         }
 
-        public MemoryStream ObtenerPdfTelesoluciones(string idFactura)
+        public MemoryStream ObtenerPdfTelesoluciones(string tipodocumento,string idFactura)
         {
-            idFactura = "43107";
-            string ruta = "https://demoapi.facturaonline.pe/factura/" + idFactura + "/exportar";
+            //idFactura = "43107";
+            string ruta = tipodocumento=="F" ? ("https://demoapi.facturaonline.pe/factura/" + idFactura + "/exportar") : ("https://demoapi.facturaonline.pe/boleta/" + idFactura + "/exportar");
             string RespuestaPDF = TelesolucionesSendJson(ruta, string.Empty, string.Empty,"PDF");
             return PDFTelesoluciones;
         }
@@ -665,6 +644,35 @@ namespace IAP.BL
             return hash.ToLower();
         }
 
+
+        public void TelesolucionesObtenerConstancia(List<Documentov> lst, string ruta, string token, string dbconexion)
+        {
+            string errorsunat = string.Empty;
+            string tipodocumento;
+            string iddocumento = string.Empty;
+            TelesolucionesRespuestaFactura eRespuestaFactura = new TelesolucionesRespuestaFactura();
+            TelesolucionesConstanciaRespuesta eConsR = new TelesolucionesConstanciaRespuesta();
+            foreach (Documentov lista in lst)
+            {
+                eRespuestaFactura = new TelesolucionesRespuestaFactura();
+                
+                tipodocumento = lista.Cdocu=="01" ? "F" : "B";
+                iddocumento= lista.TeleSol_IdFactura;
+
+
+                eConsR = new TelesolucionesConstanciaRespuesta();
+             
+                string rutaConstanacia = tipodocumento == "F" ? "https://demoapi.facturaonline.pe/factura/" + iddocumento + "/constancia" : "https://demoapi.facturaonline.pe/boleta/" + iddocumento + "/constancia";
+
+                //Dfe.GuardarRespuestaSunatTelesoluciones(eRespuestaFactura, eConsR, flg_fe, dbconexion);
+
+                eConsR = ObtenerConstanciaDocumento(string.Empty, rutaConstanacia, token);
+               
+                Dfe.GuardarConstanciaSunatTelesoluciones(lista.Cdocu,lista.Ndocu, eConsR,dbconexion);
+               
+                
+            }
+        }
 
     }
 }

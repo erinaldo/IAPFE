@@ -111,8 +111,19 @@ namespace IAP.DL
                     Convert.ToString(row["enlace_del_cdr"]),
                     Convert.ToString(row["tipo_de_comprobante"]),
                     Convert.ToString(row["motanu"]),
-                    Convert.ToString(row["enlace_del_pdf_anulado"])
-
+                    Convert.ToString(row["enlace_del_pdf_anulado"]),
+                    row["TeleSol_Serie"].ToString(),
+                    row["TeleSol_Numero"].ToString(),
+                    row["TeleSol_FechaEmitido"]==DBNull.Value ? (DateTime?)null : Convert.ToDateTime(row["TeleSol_FechaEmitido"]),
+                    row["TeleSol_Emitido"].ToString(),
+                    row["TeleSol_Baja"].ToString(),
+                    row["TeleSol_DigestValue_Hash"].ToString(),
+                    row["TeleSol_SignatureValue_Firma"].ToString(),
+                    row["TeleSol_IdConstancia"].ToString(),
+                    row["TeleSol_IdRespuesta"].ToString(),
+                    row["TeleSol_CodigoRespuestaSunat"].ToString(), row["TeleSol_NotaAsociada"].ToString(), row["TeleSol_Descripcion"].ToString(),
+                    row["TeleSol_IdFactura"].ToString(),
+                    row["TeleSol_IdComunicacionBaja"].ToString()
                     ));
             }
             return ls;
@@ -526,8 +537,23 @@ namespace IAP.DL
         {
             Database db = DatabaseFactory.CreateDatabase(dbconexion);
             db.ExecuteNonQuery("usp_SunatGuardarRespuestaSunatTelesoluciones", flg_fe,
-                eC.serie,eC.numero,eC.fechaEmision,e.emitido,e.baja,e.digestValue,e.signatureValue,eC.idConstancia,eC.idRespuesta,eC.codigo,
-                eC.notas,eC.descripcion);
+                e.serie,e.numero,e.fechaEmision,e.emitido,e.baja,e.digestValue,e.signatureValue,eC.idConstancia,eC.idRespuesta,eC.codigo,
+                eC.notas,eC.descripcion,e.idDocumento);
+        }
+
+        public void GuardarRespuestaAnulacionSunatTelesoluciones(string serie,string numero,TelesolucionesBajaDocumentoRespuesta e, string dbconexion)
+        {
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            db.ExecuteNonQuery("usp_SunatGuardarRespuestaAnulacionSunatTelesoluciones", 
+                serie, numero, e.fechaEmision, e.idComunicacionBaja, e.ticketConstancia, e.digestValue, e.signatureValue);
+        }
+
+        public void GuardarConstanciaSunatTelesoluciones(string cdocu,string ndocu, TelesolucionesConstanciaRespuesta eC, string dbconexion)
+        {
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            db.ExecuteNonQuery("usp_SunatGuardarConstanciaSunatTelesoluciones", cdocu,ndocu,
+                 eC.idConstancia, eC.idRespuesta, eC.codigo,
+                eC.notas, eC.descripcion);
         }
     }
 }

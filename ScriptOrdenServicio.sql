@@ -21,7 +21,7 @@ begin
 end
 
 
-alter procedure USP_UPD_ASIGNAR_CLIENTE_ORDENSERVICIO
+ALTER procedure [dbo].[USP_UPD_ASIGNAR_CLIENTE_ORDENSERVICIO]
 (
 	@codcli varchar(15),
 	@Ndocu varchar(12)
@@ -32,7 +32,7 @@ BEGIN
 	
 	select @nomcli=nomcli,@ruccli=ruccli from mst01cli where codcli=@codcli
 	
-	update Mst_Orden_Servicio set codcli=@codcli,nomcli=@Nomcli,ruccli=@ruccli,flag='1' where ndocu=@Ndocu
+	update Mst_Orden_Servicio set codcli=@codcli,nomcli=@Nomcli,ruccli=@ruccli,flag='2',cFac='' where ndocu=@Ndocu
 	update Dtl_Orden_Servicio set codcli=@codcli where ndocu=@Ndocu
 	
 END

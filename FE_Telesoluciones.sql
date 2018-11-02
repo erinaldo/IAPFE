@@ -98,7 +98,7 @@ end
 
 /* GUARDANDO RESPUESTA DE CONSTANCIA */
 
-alter procedure [dbo].[usp_SunatGuardarRespuestaSunatTelesoluciones]
+ALTER procedure [dbo].[usp_SunatGuardarRespuestaSunatTelesoluciones]
 (
 	@flg_fe int,
  	@TeleSol_Serie varchar(4),
@@ -112,7 +112,8 @@ alter procedure [dbo].[usp_SunatGuardarRespuestaSunatTelesoluciones]
 	@TeleSol_IdRespuesta varchar(15),
 	@TeleSol_CodigoRespuestaSunat varchar(15),
 	@TeleSol_NotaAsociada varchar(500),
-	@TeleSol_Descripcion varchar(1500)
+	@TeleSol_Descripcion varchar(1500),
+	@TeleSol_IdFactura varchar(25)
 )
 as
 begin
@@ -134,9 +135,11 @@ begin
 	TeleSol_IdRespuesta=@TeleSol_IdRespuesta,
 	TeleSol_CodigoRespuestaSunat=@TeleSol_CodigoRespuestaSunat,
 	TeleSol_NotaAsociada=@TeleSol_NotaAsociada,
-	TeleSol_Descripcion=@TeleSol_Descripcion
+	TeleSol_Descripcion=@TeleSol_Descripcion,
+	TeleSol_IdFactura=@TeleSol_IdFactura
 	where cdocu=@cdocu and ndocu=@ndocu
 end
+
 
 
 
@@ -154,4 +157,62 @@ TeleSol_IdConstancia varchar(15),
 TeleSol_IdRespuesta varchar(15),
 TeleSol_CodigoRespuestaSunat varchar(15),
 TeleSol_NotaAsociada varchar(500),
-TeleSol_Descripcion varchar(1500)
+TeleSol_Descripcion varchar(1500),
+TeleSol_IdFactura varchar(25)
+TeleSol_FechaEmitidoBaja datetime,TeleSol_IdComunicacionBaja varchar(250),TeleSol_TicketConstancia varchar(max),
+TeleSol_digestValueBajaHash varchar(max),TeleSol_SignatureValuebaja_Firma varchar(max)
+
+
+-- GUARDAR RESPUESTA DE BAJA SUNAT
+CREATE procedure [dbo].[usp_SunatGuardarRespuestaAnulacionSunatTelesoluciones]
+(
+ 	@TeleSol_Serie varchar(4),
+	@TeleSol_Numero varchar(15),
+	@TeleSol_FechaEmitido datetime,
+	@TeleSol_IdComunicacionBaja varchar(250),
+	@TeleSol_TicketConstancia varchar(max),
+	@TeleSol_digestValueBajaHash varchar(max),
+	@TeleSol_SignatureValuebaja_Firma varchar(max)
+)
+as
+begin
+	declare @cdocu	char(2),@ndocu  char(12)
+	set @cdocu=(case left(@TeleSol_Serie,1) when 'F' THEN '01' WHEN 'B' THEN '03' END)
+	SET @ndocu=RIGHT(@TeleSol_Serie,3) + '-' + right('00000000'+@TeleSol_Numero,8)
+	
+	update mst01fac
+	set 
+	TeleSol_FechaEmitido=@TeleSol_FechaEmitido,
+	TeleSol_IdComunicacionBaja=@TeleSol_IdComunicacionBaja,
+	TeleSol_TicketConstancia=@TeleSol_TicketConstancia,
+	TeleSol_digestValueBajaHash=@TeleSol_digestValueBajaHash,
+	TeleSol_SignatureValuebaja_Firma=@TeleSol_SignatureValuebaja_Firma
+	where cdocu=@cdocu and ndocu=@ndocu
+end
+
+
+
+
+create procedure [dbo].[usp_SunatGuardarConstanciaSunatTelesoluciones]
+(
+	@cdocu char(2),
+	@ndocu varchar(15),
+	@TeleSol_IdConstancia varchar(15),
+	@TeleSol_IdRespuesta varchar(15),
+	@TeleSol_CodigoRespuestaSunat varchar(15),
+	@TeleSol_NotaAsociada varchar(500),
+	@TeleSol_Descripcion varchar(1500)
+)
+as
+begin
+	
+	update mst01fac
+	set 
+	
+	TeleSol_IdConstancia=@TeleSol_IdConstancia,
+	TeleSol_IdRespuesta=@TeleSol_IdRespuesta,
+	TeleSol_CodigoRespuestaSunat=@TeleSol_CodigoRespuestaSunat,
+	TeleSol_NotaAsociada=@TeleSol_NotaAsociada,
+	TeleSol_Descripcion=@TeleSol_Descripcion
+	where cdocu=@cdocu and ndocu=@ndocu
+end

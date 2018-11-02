@@ -46,6 +46,7 @@
             this.mnuverpdfanulado = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuconsultardoc = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuverjson = new System.Windows.Forms.ToolStripMenuItem();
             this.gvwcabecera = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.chkanulados = new DevExpress.XtraEditors.CheckEdit();
@@ -63,7 +64,7 @@
             this.dtfechainicial = new DevExpress.XtraEditors.DateEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
-            this.mnuverjson = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuconstancia = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.tp1.SuspendLayout();
@@ -162,11 +163,12 @@
             this.mnuanulardocumento,
             this.mnuverpdf,
             this.mnuverpdfanulado,
+            this.mnuconstancia,
             this.toolStripSeparator2,
             this.mnuconsultardoc,
             this.mnuverjson});
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(205, 192);
+            this.menu.Size = new System.Drawing.Size(205, 214);
             this.menu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menu_ItemClicked);
             // 
             // mnumarcartodo
@@ -227,6 +229,13 @@
             this.mnuconsultardoc.Name = "mnuconsultardoc";
             this.mnuconsultardoc.Size = new System.Drawing.Size(204, 22);
             this.mnuconsultardoc.Text = "Consultar Documento";
+            // 
+            // mnuverjson
+            // 
+            this.mnuverjson.Image = global::IAP.Win.Properties.Resources.Edit_32x32;
+            this.mnuverjson.Name = "mnuverjson";
+            this.mnuverjson.Size = new System.Drawing.Size(204, 22);
+            this.mnuverjson.Text = "Ver Archivo Json";
             // 
             // gvwcabecera
             // 
@@ -306,7 +315,7 @@
             // 
             // btnbuscar
             // 
-            this.btnbuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnbuscar.Image")));
+            this.btnbuscar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnbuscar.ImageOptions.Image")));
             this.btnbuscar.Location = new System.Drawing.Point(833, 14);
             this.btnbuscar.Name = "btnbuscar";
             this.btnbuscar.Size = new System.Drawing.Size(41, 34);
@@ -383,12 +392,12 @@
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "F. Inicial";
             // 
-            // mnuverjson
+            // mnuconstancia
             // 
-            this.mnuverjson.Image = global::IAP.Win.Properties.Resources.Edit_32x32;
-            this.mnuverjson.Name = "mnuverjson";
-            this.mnuverjson.Size = new System.Drawing.Size(204, 22);
-            this.mnuverjson.Text = "Ver Archivo Json";
+            this.mnuconstancia.Image = global::IAP.Win.Properties.Resources.doc2;
+            this.mnuconstancia.Name = "mnuconstancia";
+            this.mnuconstancia.Size = new System.Drawing.Size(204, 22);
+            this.mnuconstancia.Text = "Obtener Constancia";
             // 
             // frm_facturas
             // 
@@ -460,5 +469,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem mnuconsultardoc;
         private System.Windows.Forms.ToolStripMenuItem mnuverjson;
+        private System.Windows.Forms.ToolStripMenuItem mnuconstancia;
     }
 }

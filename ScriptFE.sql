@@ -179,7 +179,7 @@ update tbl01vta set CodigoSunatTipoIgv=1
 /*                 FIN TABLAS				*/
 ALTER procedure [dbo].[usp_ObtenerDocumentosFBNC]
 (
-	@cdocu char(2)=null,
+	@cdocu char(250)=null,
 	@fechai datetime=null,
 	@fechaf	datetime=null,
 	@cliente varchar(250)=null,
@@ -203,6 +203,12 @@ declare @STRanulado varchar(25)
 	begin
 		set @STRanulado='*'
 	end
+	
+	if @cliente=''
+		set @cliente=null
+	if @documento=''
+		set @documento=null
+	
 	SELECT f.fecha,f.cdocu,f.ndocu,f.drefe,f.crefe,f.nrefe,f.nomcli,f.ruccli,c.codcdv,c.nomcdv,
 	f.flag,case f.flag when '*' then 'Anulado' when '0' then 'Emitido' when '1' then 'Amortizado' end Estado,f.mone,f.tcam,f.tota,f.toti,f.totn,
 	isnull(f.flg_fe,0) flg_fe,case  isnull(f.flg_fe,0) when 0 then 'Emitido' when 1 then 'Enviado' end EstadoFe,
@@ -220,7 +226,21 @@ declare @STRanulado varchar(25)
 	f.enlace_del_cdr,
 	f.tipo_de_comprobante,
 	f.motanu,
-	f.enlace_del_pdf_anulado
+	f.enlace_del_pdf_anulado,
+	f.TeleSol_Serie,
+	f.TeleSol_Numero,
+	f.TeleSol_FechaEmitido,
+	f.TeleSol_Emitido,
+	f.TeleSol_Baja,
+	f.TeleSol_DigestValue_Hash,
+	f.TeleSol_SignatureValue_Firma,
+	f.TeleSol_IdConstancia,
+	f.TeleSol_IdRespuesta,
+	f.TeleSol_CodigoRespuestaSunat,
+	f.TeleSol_NotaAsociada,
+	f.TeleSol_Descripcion,
+	f.TeleSol_IdFactura,
+	f.TeleSol_IdComunicacionBaja
 	FROM mst01fac f
 	inner join tbl01cdv c on c.codcdv=f.Codcdv
 	where 
@@ -229,10 +249,11 @@ declare @STRanulado varchar(25)
 	CAST(f.fecha AS DATE) between CAST(@fechai AS DATE) and CAST(@fechaf AS DATE) and 
 	(@cliente is null or f.nomcli like @cliente+'%') and
 	(@documento is null or f.ndocu like @documento+'%') and
-	(@enviadosunat is null or f.flg_fe=@enviadosunat) and
+	(@enviadosunat is null or isnull(f.flg_fe,0)=@enviadosunat) and
 	(f.flag in (select cast(Item as char) from dbo.Fn_VS_Split(@STRanulado,',')))
 	ORDER BY f.fecha desc
 end
+
 
 
 

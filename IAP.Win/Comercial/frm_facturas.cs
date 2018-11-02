@@ -56,8 +56,9 @@ namespace IAP.Win
         private void OnFormatGrid()
         {
 
-            
-            
+
+            bool visibleNubefact;
+            bool visibleTelesoluciones;
             gvwcabecera.BeginUpdate();
 
             gvwcabecera.OptionsBehavior.AutoPopulateColumns = false;
@@ -100,21 +101,46 @@ namespace IAP.Win
             CreateGridColumn(gvwcabecera, "Flg_Fe", "Flg_Fe", 19, DevExpress.Utils.FormatType.Numeric, "d", true, 80);
             CreateGridColumn(gvwcabecera, "EstadoFE", "EstadoFe", 20, DevExpress.Utils.FormatType.Numeric, "d", true, 80);
 
-            CreateGridColumn(gvwcabecera, "Serie", "Serie", 21, FormatType.None, "x", true, 100);
-            CreateGridColumn(gvwcabecera, "Numero", "Numero", 22, FormatType.None, "x", true, 100);
-            CreateGridColumn(gvwcabecera, "Enlace", "Enlace", 23, FormatType.None, "x", true, 100);
-            CreateGridColumn(gvwcabecera, "AceptadaPorSunat", "AceptadaPorSunat", 24, FormatType.None, "x", true, 100);
-            CreateGridColumn(gvwcabecera, "SunatDescription", "SunatDescription", 25, FormatType.None, "x", true, 100);
-            CreateGridColumn(gvwcabecera, "SunatNote", "SunatNote", 26, FormatType.None, "x", true, 100);
-            CreateGridColumn(gvwcabecera, "SunatResponseCode", "SunatResponseCode", 27, FormatType.None, "x", true, 100);
-            CreateGridColumn(gvwcabecera, "SunatSoapError", "SunatSoapError", 28, FormatType.None, "x", true, 100);
-            CreateGridColumn(gvwcabecera, "EnlaceDelPdf", "EnlaceDelPdf", 29, FormatType.None, "x", true, 100);
-            CreateGridColumn(gvwcabecera, "EnlaceDelPdfAnulado", "EnlaceDelPdfAnulado", 30, FormatType.None, "x", true, 100);
-            CreateGridColumn(gvwcabecera, "EnlaceDelCdr", "EnlaceDelCdr", 31, FormatType.None, "x", true, 100);
-            CreateGridColumn(gvwcabecera, "EnlaceDelXml", "EnlaceDelXml", 32, FormatType.None, "x", true, 100);
-            CreateGridColumn(gvwcabecera, "Tipo_de_comprobante", "Tipo_de_comprobante", 33, FormatType.None, "x", true, 100);
-            CreateGridColumn(gvwcabecera, "Motivo_Anulacion", "Motivo_Anulacion", 34, FormatType.None, "x", true, 100);
+            
+            if(Global.vDatosProveedor.IdEmpresa=="1")//NUBEFACT
+            {
+                visibleNubefact = true;
+                visibleTelesoluciones = false;
+            }
+            else//2 telesoluciones
+            {
+                visibleNubefact = false;
+                visibleTelesoluciones = true;
+            }
+            CreateGridColumn(gvwcabecera, "Serie", "Serie", 21, FormatType.None, "x", visibleNubefact, 100);
+            CreateGridColumn(gvwcabecera, "Numero", "Numero", 22, FormatType.None, "x", visibleNubefact, 100);
+            CreateGridColumn(gvwcabecera, "Enlace", "Enlace", 23, FormatType.None, "x", visibleNubefact, 100);
+            CreateGridColumn(gvwcabecera, "AceptadaPorSunat", "AceptadaPorSunat", 24, FormatType.None, "x", visibleNubefact, 100);
+            CreateGridColumn(gvwcabecera, "SunatDescription", "SunatDescription", 25, FormatType.None, "x", visibleNubefact, 100);
+            CreateGridColumn(gvwcabecera, "SunatNote", "SunatNote", 26, FormatType.None, "x", visibleNubefact, 100);
+            CreateGridColumn(gvwcabecera, "SunatResponseCode", "SunatResponseCode", 27, FormatType.None, "x", visibleNubefact, 100);
+            CreateGridColumn(gvwcabecera, "SunatSoapError", "SunatSoapError", 28, FormatType.None, "x", visibleNubefact, 100);
+            CreateGridColumn(gvwcabecera, "EnlaceDelPdf", "EnlaceDelPdf", 29, FormatType.None, "x", visibleNubefact, 100);
+            CreateGridColumn(gvwcabecera, "EnlaceDelPdfAnulado", "EnlaceDelPdfAnulado", 30, FormatType.None, "x", visibleNubefact, 100);
+            CreateGridColumn(gvwcabecera, "EnlaceDelCdr", "EnlaceDelCdr", 31, FormatType.None, "x", visibleNubefact, 100);
+            CreateGridColumn(gvwcabecera, "EnlaceDelXml", "EnlaceDelXml", 32, FormatType.None, "x", visibleNubefact, 100);
+            CreateGridColumn(gvwcabecera, "Tipo_de_comprobante", "Tipo_de_comprobante", 33, FormatType.None, "x", visibleNubefact, 100);
+            CreateGridColumn(gvwcabecera, "Motivo_Anulacion", "Motivo_Anulacion", 34, FormatType.None, "x", visibleNubefact, 100);
 
+            CreateGridColumn(gvwcabecera, "TeleSol_Serie", "TeleSol_Serie", 35, FormatType.None, "x", visibleTelesoluciones, 100);
+            CreateGridColumn(gvwcabecera, "TeleSol_Numero", "TeleSol_Numero", 36, FormatType.None, "x", visibleTelesoluciones, 100);
+            CreateGridColumn(gvwcabecera, "TeleSol_FechaEmitido", "TeleSol_FechaEmitido", 37, FormatType.DateTime, "d/M/yyyy", visibleTelesoluciones, 100);
+            CreateGridColumn(gvwcabecera, "TeleSol_Baja", "TeleSol_Baja", 38, FormatType.None, "x", visibleTelesoluciones, 100);
+            CreateGridColumn(gvwcabecera, "Hash", "TeleSol_DigestValue_Hash", 39, FormatType.None, "x", visibleTelesoluciones, 100);
+            CreateGridColumn(gvwcabecera, "Firma", "TeleSol_SignatureValue_Firma", 40, FormatType.None, "x", visibleTelesoluciones, 100);
+            CreateGridColumn(gvwcabecera, "IdConstancia", "TeleSol_IdConstancia", 41, FormatType.None, "x", visibleTelesoluciones, 100);
+            CreateGridColumn(gvwcabecera, "IdRespuesta", "TeleSol_IdRespuesta", 42, FormatType.None, "x", visibleTelesoluciones, 100);
+            CreateGridColumn(gvwcabecera, "CodigoRespuestaSunat", "TeleSol_CodigoRespuestaSunat", 43, FormatType.None, "x", visibleTelesoluciones, 100);
+            CreateGridColumn(gvwcabecera, "TeleSol_NotaAsociada", "TeleSol_NotaAsociada", 44, FormatType.None, "x", visibleTelesoluciones, 100);
+            CreateGridColumn(gvwcabecera, "Nota Sunat", "TeleSol_Descripcion", 45, FormatType.None, "x", visibleTelesoluciones, 100);
+            CreateGridColumn(gvwcabecera, "IdFactura", "TeleSol_IdFactura", 46, FormatType.None, "x", visibleTelesoluciones, 100);
+            CreateGridColumn(gvwcabecera, "TeleIdComunicacionBaja", "TeleSol_IdComunicacionBaja", 47, FormatType.None, "x", visibleTelesoluciones, 100);
+            
 
 
             gvwcabecera.EndUpdate();
@@ -292,8 +318,8 @@ namespace IAP.Win
                     }
                     else //TELESOLUCIONES
                     {
-                        string ruta="https://demoapi.facturaonline.pe/factura";
-                        Bfe.TelesolucionesEnviarFactura(lst, ruta, Global.vToken, Global.vUserBaseDatos);
+                        //string ruta="https://demoapi.facturaonline.pe/factura";
+                        Bfe.TelesolucionesEnviarFactura(lst, string.Empty, Global.vToken, Global.vUserBaseDatos);
                     }
                    
                     
@@ -304,11 +330,34 @@ namespace IAP.Win
             }
         }
 
+        private void ObtenerConstanciaTelesoluciones()
+        {
+            if (MessageBox.Show("Desea actualizar la constancia de las facturas seleccionadas?", "Utilitario", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                List<Documentov> lst = lstcabcecera.Where(x => x.FlgCheck == true && x.Flg_Fe == 1 && x.TeleSol_IdFactura.Trim() != string.Empty && x.TeleSol_IdComunicacionBaja.Trim() == string.Empty && x.TeleSol_IdConstancia==string.Empty).Select(x => new Documentov(x.Cdocu, x.Ndocu, x.Flag, x.Flg_Fe, x.TeleSol_IdFactura)).OrderBy(x => x.Cdocu + x.Ndocu).ToList();
+
+
+                Bfe.TelesolucionesObtenerConstancia(lst, string.Empty, Global.vToken, Global.vUserBaseDatos);
+
+
+                MessageBox.Show("Se actualizo correctamente", "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                lstcabcecera.ForEach(x => x.FlgCheck = false);
+                gccabecera.RefreshDataSource();
+            }
+                
+            
+            
+        }
+
         private void SunatAnulardocumentosFBN()
         {
             if (MessageBox.Show("Desea anular los documentos seleccionados?", "Utilitario", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                List<Documentov> lst = lstcabcecera.Where(x => x.FlgCheck).Select(x => new Documentov(x.Cdocu, x.Ndocu, x.Flag, x.Flg_Fe,x.Tipo_de_comprobante,x.Motivo_Anulacion,x.Serie,x.Numero)).ToList();
+                List<Documentov> lst = lstcabcecera.Where(x => x.FlgCheck).
+                    Select(x => 
+                    new Documentov(
+                        x.Cdocu, x.Ndocu, x.Flag, x.Flg_Fe,x.Tipo_de_comprobante,x.Motivo_Anulacion,x.Serie,x.Numero,
+                        (x.TeleSol_FechaEmitido),x.TeleSol_Numero,x.TeleSol_Serie)).ToList();
                 if (ValidarSunatAnulardocumentosFBN(lst))
                 {
                     if (Global.vDatosProveedor.IdEmpresa == "1") //NUBEFACT
@@ -459,6 +508,20 @@ namespace IAP.Win
                             CargarDocumentosv();
                             break;
                         }
+                    case "mnuconstancia":
+                        {
+                            if (lstcabcecera.Where(y => y.FlgCheck).Count() <= 0)
+                            {
+                                MessageBox.Show("Debe seleccionar como minimo un registro para poder enviar a Sunat", "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                return;
+                            }
+
+                            ObtenerConstanciaTelesoluciones();
+                            CargarDocumentosv();
+                            break;
+                        }
+
+
                     case "mnuverpdf":
                         {
                             if (lstcabcecera.Where(y => y.FlgCheck).Count() <= 0)
@@ -482,8 +545,15 @@ namespace IAP.Win
                             }
                             else //TELESOLUCIONES
                             {
-                                string idFactura = "";
-                                System.IO.MemoryStream ms= Bfe.ObtenerPdfTelesoluciones(idFactura);
+                                
+                                string idFactura = gvwcabecera.GetFocusedRowCellValue("TeleSol_IdFactura").ToString().Trim();
+                                string tipodocumento = gvwcabecera.GetFocusedRowCellValue("TeleSol_Serie").ToString().Trim();
+                                if(idFactura.Trim()==string.Empty)
+                                {
+                                    MessageBox.Show("El documento no ha sido registrado en sunat.", "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    return;
+                                }
+                                System.IO.MemoryStream ms= Bfe.ObtenerPdfTelesoluciones(tipodocumento.Substring(0,1).Trim(),idFactura);
                                 frm_FacturasVisorPdf form = new frm_FacturasVisorPdf(string.Empty, ms,"TELESOLUCIONES");
                                 form.ShowDialog();
                             }

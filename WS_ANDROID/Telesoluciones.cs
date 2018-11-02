@@ -89,7 +89,9 @@ namespace IAP.BE
         public string idConstancia { get; set; }
         public List<TelesolucionesRespuestaFacturaItems> items { get; set; }
 
-
+        //PARA BOLETAS
+        public Int32 idBoleta { get; set; }
+        public Int32 idDocumento { get; set; }
     }
 
     public class TelesolucionesRespuestaFacturaItems
@@ -135,6 +137,7 @@ namespace IAP.BE
     public class TelesolucionesBajaDocumento
     {
         public string fechaEmisionDocs { get; set; }
+        public string serie { get; set; }
         public Int32 numero { get; set; }
         public List<TelesolucionesBajaItem> items { get; set; }
 
@@ -163,7 +166,12 @@ namespace IAP.BE
         public string idEmisor { get; set; }
         public string idReceptor { get; set; }
         public string idConstancia { get; set; }
-        public TelesolucionesBajaItem items { get; set; }
+        public string idComunicacionBaja { get; set; }
+        public List<TelesolucionesBajaItem> items { get; set; }
+
+        public string code { get; set; }
+        public string status { get; set; }
+        public string message { get; set; }
 
     }
 
@@ -182,5 +190,10 @@ namespace IAP.BE
         public string codigo { get; set; }
         public string notas { get; set; }
         public string descripcion { get; set; }
+
+        public string code { get; set; }
+        public string status { get; set; }
+        public string message { get; set; }
+
     }
 }
