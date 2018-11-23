@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using DevExpress.XtraBars.Helpers;
 using DevExpress.XtraBars;
 using IAP.Win.Comercial;
+using IAP.Win.Creditos;
 using DevExpress.Utils;
 using DevExpress.XtraEditors;
 //using IAP.Win.Comercial;
@@ -18,6 +19,7 @@ using IAP.Win.Administracion;
 using IAP.BL;
 using System.Configuration;
 using System.Collections.Specialized;
+using System.IO;
 
 namespace IAP.Win
 {
@@ -29,6 +31,7 @@ namespace IAP.Win
         public FRM_MENU_MAIN()
         {
             InitializeComponent();
+            
         }
 
         private void navBarControl1_Click(object sender, EventArgs e)
@@ -109,6 +112,7 @@ namespace IAP.Win
                         //dvwcxc.LoadDashboard(BL.Comercial.ObtenerXmlDashBoard("DocumentosCxC", Global.vUserBaseDatos));
                         xtraTabControl1.TabPages[0].PageVisible = false;
                         this.WindowState = FormWindowState.Maximized;
+                        //geckoWebBrowser1.Navigate("www.google.com");
                     }
                 }
                 catch (Exception err)
@@ -282,6 +286,48 @@ namespace IAP.Win
         {
             frm_OrdenServicio form = new frm_OrdenServicio();
             string nombreForm = comercial_OS.Caption;
+            AgregarFormularioEnTabPage(form, nombreForm);
+        }
+
+        private void comercial_ImportarCliente_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            SUNAT form = new SUNAT();
+            string nombreForm = comercial_ImportarCliente.Caption;
+            AgregarFormularioEnTabPage(form, nombreForm);
+        }
+
+        private void btnguardar_Click(object sender, EventArgs e)
+        {
+            System.Net.WebClient client = new System.Net.WebClient();
+            
+            StreamReader r;
+            string line;
+            WebBrowser wb = webBrowser1;
+            int X = 0;
+            //d = client.OpenRead("http://www.tuweb.com/index.aspx"); // Accede a la pagina que quieres buscar
+            r = new StreamReader(wb.DocumentStream); // lee la informacion o contenido de la web
+            line = r.ReadToEnd(); // recorre linea x linea la web
+            while (line != null) // mientras exista contenido
+            {
+                // aca realizas tu codigo de verificacion o obtener informacion
+                line = r.ReadLine(); // para seguir leendo las otras lineas de la pagina
+                X = X + 1;
+                if (line.Contains("RUC:"))
+                {
+                    line = r.ReadLine();
+                }
+            }
+            
+
+            
+        }
+
+       
+
+        private void creditos_letrasemitidas_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            frmLetrasEmitidas form = new frmLetrasEmitidas();
+            string nombreForm = creditos_letrasemitidas.Caption;
             AgregarFormularioEnTabPage(form, nombreForm);
         }
     }

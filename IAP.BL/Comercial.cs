@@ -111,10 +111,16 @@ namespace IAP.BL
             {
                 cls.ActualizarClienteOS(lst, dbconexion);
                 ts.Complete();
+            }  
+        }
+        public void RegistrarClienteSunat(string ruc, string nombrecliente, DateTime fechainicio, string estado, string condicion, string direccion, string dbconexion)
+        {
+            DL.Comercial cls = new DL.Comercial();
+            using (TransactionScope ts = new TransactionScope(TransactionScopeOption.Required))
+            {
+                cls.RegistrarClienteSunat(ruc,nombrecliente,fechainicio,estado,condicion,direccion, dbconexion);
+                ts.Complete();
             }
-
-
-                
         }
     }
 }

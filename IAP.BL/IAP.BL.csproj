@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Administracion.cs" />
     <Compile Include="Android.cs" />
+    <Compile Include="BCreditos.cs" />
     <Compile Include="Comercial.cs" />
     <Compile Include="Contabilidad.cs" />
     <Compile Include="BFacturacionElectronica.cs" />

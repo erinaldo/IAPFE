@@ -27,8 +27,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SCRIPTS_TEMP", "SCRIPTS_TEM
 		RepositorioXML.sql = RepositorioXML.sql
 		ScriptFE.sql = ScriptFE.sql
 		ScriptFormatos.sql = ScriptFormatos.sql
+		ScriptLetrasEmitidas.sql = ScriptLetrasEmitidas.sql
 		ScriptListaPrecios.sql = ScriptListaPrecios.sql
 		ScriptOrdenServicio.sql = ScriptOrdenServicio.sql
+		ScriptRegistroClientesSunat.sql = ScriptRegistroClientesSunat.sql
 		..\Desktop\Tablas Navasoft.XLS = ..\Desktop\Tablas Navasoft.XLS
 	EndProjectSection
 EndProject

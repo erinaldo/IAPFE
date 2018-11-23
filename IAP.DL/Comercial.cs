@@ -368,5 +368,13 @@ namespace IAP.DL
                 db.ExecuteNonQuery("USP_UPD_ASIGNAR_CLIENTE_ORDENSERVICIO",o.codcli,o.ndocu);
             }
         }
+
+        public void RegistrarClienteSunat(string ruc,string nombrecliente,DateTime fechainicio,string estado,string condicion,string direccion, string dbconexion)
+        {
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            db.ExecuteNonQuery("USP_INS_CLIENTESUNAT",ruc,nombrecliente,fechainicio,estado,condicion,direccion);
+            
+        }
+
     }
 }

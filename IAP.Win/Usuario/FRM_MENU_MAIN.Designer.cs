@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FRM_MENU_MAIN));
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
+            this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.creditos_letrasemitidas = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupComercial = new DevExpress.XtraNavBar.NavBarGroup();
             this.comercial_listaprecio = new DevExpress.XtraNavBar.NavBarItem();
             this.comercial_eliminararqueo = new DevExpress.XtraNavBar.NavBarItem();
@@ -38,6 +40,7 @@
             this.comercial_cambioclave = new DevExpress.XtraNavBar.NavBarItem();
             this.comercial_FE = new DevExpress.XtraNavBar.NavBarItem();
             this.comercial_OS = new DevExpress.XtraNavBar.NavBarItem();
+            this.comercial_ImportarCliente = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupContabilidad = new DevExpress.XtraNavBar.NavBarGroup();
             this.contabilidad_importarasiento = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupReportes = new DevExpress.XtraNavBar.NavBarGroup();
@@ -67,6 +70,7 @@
             this.tp1 = new DevExpress.XtraTab.XtraTabPage();
             this.dvwcxc = new DevExpress.DashboardWin.DashboardViewer(this.components);
             this.tp2 = new DevExpress.XtraTab.XtraTabPage();
+            this.btnguardar = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
@@ -80,7 +84,7 @@
             // 
             // navBarControl1
             // 
-            this.navBarControl1.ActiveGroup = this.navBarGroupComercial;
+            this.navBarControl1.ActiveGroup = this.navBarGroup1;
             this.navBarControl1.Appearance.NavigationPaneHeader.BackColor = System.Drawing.Color.White;
             this.navBarControl1.Appearance.NavigationPaneHeader.Options.UseBackColor = true;
             this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -90,7 +94,8 @@
             this.navBarGroupReportes,
             this.navBarGroupSistema,
             this.navBarGroupAndroid,
-            this.navBarGroupProcesos});
+            this.navBarGroupProcesos,
+            this.navBarGroup1});
             this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.navBarItem1,
             this.navBarItem2,
@@ -115,7 +120,9 @@
             this.comercial_cambioclave,
             this.comercial_FE,
             this.administracion_cargartxtFac,
-            this.comercial_OS});
+            this.comercial_OS,
+            this.comercial_ImportarCliente,
+            this.creditos_letrasemitidas});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 201;
@@ -126,10 +133,25 @@
             this.navBarControl1.View = new DevExpress.XtraNavBar.ViewInfo.StandardSkinNavigationPaneViewInfoRegistrator("VS2010");
             this.navBarControl1.Click += new System.EventHandler(this.navBarControl1_Click);
             // 
+            // navBarGroup1
+            // 
+            this.navBarGroup1.Caption = "Creditos";
+            this.navBarGroup1.Expanded = true;
+            this.navBarGroup1.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroup1.ImageOptions.SmallImage")));
+            this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.creditos_letrasemitidas)});
+            this.navBarGroup1.Name = "navBarGroup1";
+            // 
+            // creditos_letrasemitidas
+            // 
+            this.creditos_letrasemitidas.Caption = "Letras Emitidas";
+            this.creditos_letrasemitidas.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem3.ImageOptions.SmallImage")));
+            this.creditos_letrasemitidas.Name = "creditos_letrasemitidas";
+            this.creditos_letrasemitidas.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.creditos_letrasemitidas_LinkClicked);
+            // 
             // navBarGroupComercial
             // 
             this.navBarGroupComercial.Caption = "Comercial";
-            this.navBarGroupComercial.Expanded = true;
             this.navBarGroupComercial.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupComercial.ImageOptions.LargeImage")));
             this.navBarGroupComercial.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupComercial.ImageOptions.SmallImage")));
             this.navBarGroupComercial.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -138,7 +160,8 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_eliminardocumento),
             new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_cambioclave),
             new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_FE),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_OS)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_OS),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_ImportarCliente)});
             this.navBarGroupComercial.Name = "navBarGroupComercial";
             // 
             // comercial_listaprecio
@@ -182,6 +205,13 @@
             this.comercial_OS.ImageOptions.SmallImage = global::IAP.Win.Properties.Resources.BODepartment_32x32;
             this.comercial_OS.Name = "comercial_OS";
             this.comercial_OS.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.comercial_OS_LinkClicked);
+            // 
+            // comercial_ImportarCliente
+            // 
+            this.comercial_ImportarCliente.Caption = "Importar Cliente";
+            this.comercial_ImportarCliente.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("comercial_ImportarCliente.ImageOptions.SmallImage")));
+            this.comercial_ImportarCliente.Name = "comercial_ImportarCliente";
+            this.comercial_ImportarCliente.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.comercial_ImportarCliente_LinkClicked);
             // 
             // navBarGroupContabilidad
             // 
@@ -363,11 +393,13 @@
             // 
             // webBrowser1
             // 
-            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.webBrowser1.Location = new System.Drawing.Point(0, 0);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(848, 662);
+            this.webBrowser1.Size = new System.Drawing.Size(843, 636);
             this.webBrowser1.TabIndex = 2;
             this.webBrowser1.Url = new System.Uri("http://www.sunat.gob.pe/cl-ti-itmrconsruc/jcrS00Alias", System.UriKind.Absolute);
             // 
@@ -401,10 +433,20 @@
             // 
             // tp2
             // 
+            this.tp2.Controls.Add(this.btnguardar);
             this.tp2.Controls.Add(this.webBrowser1);
             this.tp2.Name = "tp2";
             this.tp2.Size = new System.Drawing.Size(848, 662);
-            this.tp2.Text = "Sunat Tipo Cambio";
+            this.tp2.Text = "Consulta Sunat";
+            // 
+            // btnguardar
+            // 
+            this.btnguardar.Location = new System.Drawing.Point(770, 634);
+            this.btnguardar.Name = "btnguardar";
+            this.btnguardar.Size = new System.Drawing.Size(75, 23);
+            this.btnguardar.TabIndex = 3;
+            this.btnguardar.Text = "Guardar";
+            this.btnguardar.Click += new System.EventHandler(this.btnguardar_Click);
             // 
             // panelControl1
             // 
@@ -480,5 +522,9 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraNavBar.NavBarItem administracion_cargartxtFac;
         private DevExpress.XtraNavBar.NavBarItem comercial_OS;
+        private DevExpress.XtraNavBar.NavBarItem comercial_ImportarCliente;
+        private DevExpress.XtraEditors.SimpleButton btnguardar;
+        private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
+        private DevExpress.XtraNavBar.NavBarItem creditos_letrasemitidas;
     }
 }

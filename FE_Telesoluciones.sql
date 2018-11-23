@@ -68,8 +68,7 @@ end
 
 
 
-
-create procedure [dbo].[usp_SunatTelesoluciones_EnviarFacturaDetalle]
+ALTER procedure [dbo].[usp_SunatTelesoluciones_EnviarFacturaDetalle]
 (
 @cdocu char(2),
 @ndocu char(12)
@@ -79,6 +78,7 @@ begin
 declare @igv numeric(12,2)
 select @igv=((i_g_v/100)+1) from psn0100
 select 
+case when left(df.codi,2)='07' then 'ZZ' else 'NIU' end as unidad_de_medida,
 df.cant as cantidad,
 LTRIM(df.descr) as descripcion,
 ABS(df.tota) valorVenta,
@@ -93,6 +93,7 @@ cast(((df.preu*(df.dsct/100))) as numeric(14,2))  as descuento
 from dtl01fac df
 where df.cdocu=@cdocu and df.ndocu=@ndocu and df.codi<>'0000-000000'
 end
+
 
 
 

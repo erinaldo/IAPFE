@@ -66,9 +66,9 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(232, 175);
+            this.groupControl1.Size = new System.Drawing.Size(240, 180);
             this.groupControl1.TabIndex = 0;
-            this.groupControl1.Text = "Acceso";
+            this.groupControl1.Text = "Inicio Sesion";
             // 
             // labelControl3
             // 
@@ -165,10 +165,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(232, 175);
+            this.ClientSize = new System.Drawing.Size(240, 180);
             this.Controls.Add(this.groupControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximumSize = new System.Drawing.Size(248, 214);
-            this.MinimumSize = new System.Drawing.Size(248, 214);
+            this.MinimumSize = new System.Drawing.Size(240, 180);
             this.Name = "frm_AccesoUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frm_AccesoUsuario_Load);

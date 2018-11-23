@@ -12,6 +12,8 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <PublishUrl>publicar\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -140,6 +142,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="tessnet2_32, Version=2.0.4.0, Culture=neutral, PublicKeyToken=1550524b5ba07e29, processorArchitecture=x86">
+      <HintPath>..\packages\NuGet.Tessnet2.1.1.1\lib\net45\tessnet2_32.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Administracion\frm_cargartxtFacturas.cs">
@@ -154,6 +159,12 @@
     </Compile>
     <Compile Include="Administracion\frmborrar_documento.Designer.cs">
       <DependentUpon>frmborrar_documento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comercial\frmSunat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comercial\frmSunat.Designer.cs">
+      <DependentUpon>frmSunat.cs</DependentUpon>
     </Compile>
     <Compile Include="Comercial\frm_ConsultaEstadoFe.cs">
       <SubType>Form</SubType>
@@ -197,6 +208,19 @@
     <Compile Include="Comercial\frm_VisorArchivos.Designer.cs">
       <DependentUpon>frm_VisorArchivos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Creditos\frmLetrasEmitidas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Creditos\frmLetrasEmitidas.Designer.cs">
+      <DependentUpon>frmLetrasEmitidas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Creditos\frmVisorLetraEmitida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Creditos\frmVisorLetraEmitida.Designer.cs">
+      <DependentUpon>frmVisorLetraEmitida.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ocr.cs" />
     <Compile Include="Usuario\frm_AccesoUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -300,6 +324,9 @@
     <EmbeddedResource Include="Administracion\frm_cargartxtFacturas.resx">
       <DependentUpon>frm_cargartxtFacturas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Comercial\frmSunat.resx">
+      <DependentUpon>frmSunat.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Comercial\frm_ConsultaEstadoFe.resx">
       <DependentUpon>frm_ConsultaEstadoFe.cs</DependentUpon>
     </EmbeddedResource>
@@ -321,7 +348,14 @@
     <EmbeddedResource Include="Comercial\frm_VisorArchivos.resx">
       <DependentUpon>frm_VisorArchivos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Creditos\frmLetrasEmitidas.resx">
+      <DependentUpon>frmLetrasEmitidas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Creditos\frmVisorLetraEmitida.resx">
+      <DependentUpon>frmVisorLetraEmitida.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Rpts\rptLetraEmitida.rdlc" />
     <EmbeddedResource Include="Usuario\frm_AccesoUsuario.resx">
       <DependentUpon>frm_AccesoUsuario.cs</DependentUpon>
     </EmbeddedResource>
@@ -369,6 +403,14 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="Content\tessdata\eng.DangAmbigs" />
+    <Content Include="Content\tessdata\eng.freq-dawg" />
+    <Content Include="Content\tessdata\eng.inttemp" />
+    <Content Include="Content\tessdata\eng.normproto" />
+    <Content Include="Content\tessdata\eng.pffmtable" />
+    <Content Include="Content\tessdata\eng.unicharset" />
+    <Content Include="Content\tessdata\eng.user-words" />
+    <Content Include="Content\tessdata\eng.word-dawg" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
     <None Include="Properties\DataSources\System.Data.DataTable.datasource" />
@@ -680,6 +722,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="dll\" />
     <Folder Include="imagenes\" />
   </ItemGroup>
   <ItemGroup>
@@ -701,6 +744,16 @@
     </PublishFile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\MSBuild.NugetContentRestore.0.1.6\build\net40\MSBuild.NugetContentRestore.targets" Condition="Exists('..\packages\MSBuild.NugetContentRestore.0.1.6\build\net40\MSBuild.NugetContentRestore.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\MSBuild.NugetContentRestore.0.1.6\build\net40\MSBuild.NugetContentRestore.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSBuild.NugetContentRestore.0.1.6\build\net40\MSBuild.NugetContentRestore.targets'))" />
+  </Target>
+  <Target Name="BeforeBuild">
+    <NugetContentRestoreTask SolutionDir="$(SolutionDir)" ProjectDir="$(ProjectDir)" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
