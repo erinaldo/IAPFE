@@ -62,7 +62,8 @@ namespace IAP.DL
                     Rucava = row["rucava"].ToString(),
                     Nomava = row["nomava"].ToString(),
                     Dirava = row["dirava"].ToString(),
-                    Telava = row["telava"].ToString()
+                    Telava = row["telava"].ToString(),
+                    
 
                 });
 

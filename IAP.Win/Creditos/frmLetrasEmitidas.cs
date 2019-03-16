@@ -157,10 +157,13 @@ namespace IAP.Win.Creditos
 
                     case "mnuimprimir":
                         {
+                            //_efactura.NumeroLetras=_efactura.NumeroLetras + (_efactura.Moneda == "S" ? " SOLES" : "DOLARES");
                             lstletra = _lstLetrasEmitidas.Where(letra => letra.Cdocu == cdocu && letra.Ndocu == ndocu).ToList();
                             lstletra.ForEach(letra => letra.NumerosLetras = objProcedimientosGrales.Convertir(
-                                letra.Monto.ToString(), true
+                                letra.Monto.ToString("###.#0"), true
                                 ));
+
+                            lstletra.ForEach(letra => letra.NumerosLetras= letra.Mone == "S" ? letra.NumerosLetras + " SOLES" : letra.NumerosLetras + " DOLARES AMERICANOS");
                             frmVisorLetraEmitida frm = new frmVisorLetraEmitida(lstletra);
                             frm.ShowDialog();
                             

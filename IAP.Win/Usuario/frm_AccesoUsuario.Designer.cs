@@ -68,7 +68,8 @@
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(240, 180);
             this.groupControl1.TabIndex = 0;
-            this.groupControl1.Text = "Inicio Sesion";
+            this.groupControl1.Text = "Inicio Sesion  28-02-2019";
+            this.groupControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControl1_Paint);
             // 
             // labelControl3
             // 
@@ -85,8 +86,7 @@
             this.cmbbd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbbd.Properties.Items.AddRange(new object[] {
-            "PERFILES",
-            "PRUEBA"});
+            "GRUPOIAP"});
             this.cmbbd.Properties.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxEdit1_Properties_KeyPress);
             this.cmbbd.Size = new System.Drawing.Size(109, 20);
             this.cmbbd.TabIndex = 22;

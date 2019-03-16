@@ -16,6 +16,8 @@ using System.IO;
 using System.Drawing.Imaging;
 using System.Configuration;
 
+
+
 namespace FormatoBoletaFE
 {
     public partial class FtoimpBolFE : Form
@@ -34,6 +36,8 @@ namespace FormatoBoletaFE
 
         private void FtoimpBolFE_Load(object sender, EventArgs e)
         {
+            string rucEmpresa = ConfigurationManager.AppSettings.Get("RUCEMPRESA");
+
             if (Environment.GetCommandLineArgs().Length > 1)
             {
                 String[] parametros = Environment.GetCommandLineArgs();
@@ -46,9 +50,17 @@ namespace FormatoBoletaFE
                     //MessageBox.Show("Parámetro :" + parametros[i]);
                 }
             }
-            Byte[] img = GenerarCodigoQr();
+            
             //string cn = ConfigurationManager.AppSettings["bdNava01"];
             objCom.ObtenerCabeceraFBNCND(cdocu, ndocu, "bdNava01", ref _efactura, ref _lstdet);
+            string serie = _efactura.Cdocu == "01" ? "F" + _efactura.Ndocu.Substring(0, 3) : "B" + _efactura.Ndocu.Substring(0, 3);
+            int numero = Convert.ToInt32(_efactura.Ndocu.Substring(4, 8));
+            string contenidoQR = rucEmpresa + "|" + _efactura.Cdocu + "|" + serie + "|" + numero.ToString() + "|" + _efactura.Toti.ToString() + "|" + _efactura.Totn + "|" +
+                _efactura.Fecha.ToString("yyy-MM-dd") + "|" + (_efactura.RucCliente.Substring(0, 3) == "DNI" ? "01" : "06") + "|" +
+                (_efactura.RucCliente.Substring(0, 3) == "DNI" ? _efactura.RucCliente.Substring(3, 8) : _efactura.RucCliente);
+
+
+            Byte[] img = GenerarCodigoQr(contenidoQR);
             _efactura.CodigoQR = img;
             _efactura.NumeroLetras = NumeroLetra.Convertir(_efactura.Totn.ToString(), true);
             _efactura.NumeroLetras = _efactura.NumeroLetras + (_efactura.Moneda == "S" ? " SOLES" : "DOLARES");
@@ -56,7 +68,7 @@ namespace FormatoBoletaFE
             //lstfactura.Add(new Factura(cdocu, ndocu, "Andy Ex", "46119959", "", img));
             cargar_reportveawer();
             this.rpvwboleta.RefreshReport();
-            GenerarCodigoQr();
+            //GenerarCodigoQr();
         }
 
         private void cargar_reportveawer()
@@ -79,7 +91,7 @@ namespace FormatoBoletaFE
             if (parametros.Where(x => x.IdParametro.Trim() == "FormatoBoletaElectronica" && x.Valor.Trim() == "1").Any())
             {
                 this.rpvwboleta.LocalReport.ReportEmbeddedResource =
-                "FormatoBoletaFE.RptBoletaFE.rdlc";
+                "FormatoBoletaFE.RptBoletaFEA4.rdlc";
             }
             else
             {
@@ -99,11 +111,11 @@ namespace FormatoBoletaFE
             rpvwboleta.LocalReport.Refresh();
             this.rpvwboleta.RefreshReport();
         }
-        private byte[] GenerarCodigoQr()
+        private byte[] GenerarCodigoQr(string dataQr)
         {
             QrEncoder qrEncoder = new QrEncoder(ErrorCorrectionLevel.H);
             QrCode qrCode = new QrCode();
-            qrEncoder.TryEncode("Mi nombre es susan la cholita", out qrCode);
+            qrEncoder.TryEncode(dataQr, out qrCode);
 
             GraphicsRenderer renderer = new GraphicsRenderer(new FixedCodeSize(400, QuietZoneModules.Zero), Brushes.Black, Brushes.White);
 

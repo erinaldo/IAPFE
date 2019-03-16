@@ -54,6 +54,7 @@
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
@@ -91,6 +92,7 @@
     </Compile>
     <EmbeddedResource Include="RptBoleta.rdlc" />
     <EmbeddedResource Include="RptBoletaFE.rdlc" />
+    <EmbeddedResource Include="RptBoletaFEA4.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\IAP.BE.DetalleFactura.datasource" />
     <None Include="Properties\DataSources\IAP.BE.Factura.datasource" />

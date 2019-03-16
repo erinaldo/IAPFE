@@ -177,6 +177,7 @@ update tbl01vta set CodigoSunatTipoIgv=1
 
 
 /*                 FIN TABLAS				*/
+
 ALTER procedure [dbo].[usp_ObtenerDocumentosFBNC]
 (
 	@cdocu char(250)=null,

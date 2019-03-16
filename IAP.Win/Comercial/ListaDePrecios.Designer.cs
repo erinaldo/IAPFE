@@ -61,6 +61,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtfechatc = new DevExpress.XtraEditors.TextEdit();
             this.label6 = new System.Windows.Forms.Label();
+            this.btnexportar = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtcodf.Properties)).BeginInit();
@@ -239,7 +240,7 @@
             // 
             // txtincremento
             // 
-            this.txtincremento.Location = new System.Drawing.Point(144, 21);
+            this.txtincremento.Location = new System.Drawing.Point(169, 21);
             this.txtincremento.Name = "txtincremento";
             this.txtincremento.Properties.Appearance.BackColor = System.Drawing.SystemColors.Info;
             this.txtincremento.Properties.Appearance.Options.UseBackColor = true;
@@ -327,6 +328,7 @@
             // 
             this.panelControl3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelControl3.Controls.Add(this.btnexportar);
             this.panelControl3.Controls.Add(this.label9);
             this.panelControl3.Controls.Add(this.btnincrementomasivo);
             this.panelControl3.Controls.Add(this.txtincremento);
@@ -338,7 +340,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(9, 24);
+            this.label9.Location = new System.Drawing.Point(40, 24);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(126, 13);
             this.label9.TabIndex = 16;
@@ -348,7 +350,7 @@
             // 
             this.btnincrementomasivo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnincrementomasivo.ImageOptions.Image")));
             this.btnincrementomasivo.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.btnincrementomasivo.Location = new System.Drawing.Point(216, 19);
+            this.btnincrementomasivo.Location = new System.Drawing.Point(242, 19);
             this.btnincrementomasivo.Name = "btnincrementomasivo";
             this.btnincrementomasivo.Size = new System.Drawing.Size(26, 24);
             this.btnincrementomasivo.TabIndex = 15;
@@ -438,6 +440,17 @@
             this.label6.TabIndex = 17;
             this.label6.Text = "Fecha del Tipo de Cambio";
             // 
+            // btnexportar
+            // 
+            this.btnexportar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
+            this.btnexportar.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.btnexportar.Location = new System.Drawing.Point(5, 11);
+            this.btnexportar.Name = "btnexportar";
+            this.btnexportar.Size = new System.Drawing.Size(36, 36);
+            this.btnexportar.TabIndex = 17;
+            this.btnexportar.ToolTip = "Guardar";
+            this.btnexportar.Click += new System.EventHandler(this.btnexportar_Click);
+            // 
             // ListaDePrecios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -511,5 +524,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckBox chkstockmayorcero;
         private System.Windows.Forms.Label label9;
+        private DevExpress.XtraEditors.SimpleButton btnexportar;
     }
 }

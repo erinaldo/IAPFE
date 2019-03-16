@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 using IAP.BE;
 using IAP.BL;
+using Microsoft.Reporting.WinForms;
 
 namespace IAP.Win.Creditos
 {
@@ -22,52 +23,38 @@ namespace IAP.Win.Creditos
             _lstLetras = lst;
         }
 
-        //private void cargar_reportveawer()
-        //{
+        private void cargar_reportveawer()
+        {
+
+            
+            rpvwletras.LocalReport.DataSources.Clear();
+            ReportDataSource rds = new ReportDataSource();
+            rds.Name = "dsLetras";
+            rds.Value = _lstLetras;
+            this.rpvwletras.LocalReport.DataSources.Add(rds);
 
 
-        //    rpvwletra.LocalReport.DataSources.Clear();
-        //    ReportDataSource rds = new ReportDataSource();
-        //    rds.Name = "dsCabBol";
-        //    rds.Value = _lstfac;
-        //    this.rpvwboleta.LocalReport.DataSources.Add(rds);
+            this.rpvwletras.LocalReport.ReportEmbeddedResource =
+                "IAP.Win.Rpts.rptLetraEmitida.rdlc";
+            
+            //ReportParameter[] pa = new ReportParameter[1];
+            //pa[0] = new ReportParameter("UsuarioEncargado", usuario.UsuCod.ToString());
+            //this.rpvwfactura.LocalReport.SetParameters(pa);
 
-        //    rds = new ReportDataSource();
-        //    rds.Name = "dsDetBol";
-        //    rds.Value = _lstdet;
-        //    this.rpvwboleta.LocalReport.DataSources.Add(rds);
-
-        //    List<ParametrosFormatos> parametros = cls.ObtenerParametroFormatosFB("bdNava01");
-
-        //    if (parametros.Where(x => x.IdParametro.Trim() == "FormatoBoletaElectronica" && x.Valor.Trim() == "1").Any())
-        //    {
-        //        this.rpvwboleta.LocalReport.ReportEmbeddedResource =
-        //        "FormatoBoletaFE.RptBoletaFE.rdlc";
-        //    }
-        //    else
-        //    {
-        //        this.rpvwboleta.LocalReport.ReportEmbeddedResource =
-        //        "FormatoBoletaFE.RptBoleta.rdlc";
-        //    }
+            rpvwletras.ProcessingMode = ProcessingMode.Local;
 
 
-
-        //    //ReportParameter[] pa = new ReportParameter[1];
-        //    //pa[0] = new ReportParameter("UsuarioEncargado", usuario.UsuCod.ToString());
-        //    //this.rpvwfactura.LocalReport.SetParameters(pa);
-
-        //    rpvwboleta.ProcessingMode = ProcessingMode.Local;
-
-
-        //    rpvwboleta.LocalReport.Refresh();
-        //    this.rpvwboleta.RefreshReport();
-        //}
+            rpvwletras.LocalReport.Refresh();
+            this.rpvwletras.RefreshReport();
+        }
 
 
         private void frmVisorLetraEmitida_Load(object sender, EventArgs e)
         {
+            cargar_reportveawer();
 
-
+            this.reportViewer1.RefreshReport();
+            this.rpvwletras.RefreshReport();
         }
     }
 }

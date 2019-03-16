@@ -84,7 +84,7 @@
             // 
             // navBarControl1
             // 
-            this.navBarControl1.ActiveGroup = this.navBarGroup1;
+            this.navBarControl1.ActiveGroup = this.navBarGroupComercial;
             this.navBarControl1.Appearance.NavigationPaneHeader.BackColor = System.Drawing.Color.White;
             this.navBarControl1.Appearance.NavigationPaneHeader.Options.UseBackColor = true;
             this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -136,7 +136,6 @@
             // navBarGroup1
             // 
             this.navBarGroup1.Caption = "Creditos";
-            this.navBarGroup1.Expanded = true;
             this.navBarGroup1.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroup1.ImageOptions.SmallImage")));
             this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.creditos_letrasemitidas)});
@@ -145,13 +144,14 @@
             // creditos_letrasemitidas
             // 
             this.creditos_letrasemitidas.Caption = "Letras Emitidas";
-            this.creditos_letrasemitidas.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem3.ImageOptions.SmallImage")));
+            this.creditos_letrasemitidas.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("creditos_letrasemitidas.ImageOptions.SmallImage")));
             this.creditos_letrasemitidas.Name = "creditos_letrasemitidas";
             this.creditos_letrasemitidas.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.creditos_letrasemitidas_LinkClicked);
             // 
             // navBarGroupComercial
             // 
             this.navBarGroupComercial.Caption = "Comercial";
+            this.navBarGroupComercial.Expanded = true;
             this.navBarGroupComercial.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupComercial.ImageOptions.LargeImage")));
             this.navBarGroupComercial.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroupComercial.ImageOptions.SmallImage")));
             this.navBarGroupComercial.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {

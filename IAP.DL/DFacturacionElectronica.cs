@@ -470,36 +470,81 @@ namespace IAP.DL
             TelesolucionesFactura tf = new TelesolucionesFactura();
             //dynamic tf= new TelesolucionesFactura();
             List<TelesolucionesGuiaRelacionada> lstguias = new List<TelesolucionesGuiaRelacionada>();
-            List<TelesolucionesDocRelacionada> lstdocrelacionada = new List<TelesolucionesDocRelacionada>();
+            //List<TelesolucionesDocRelacionada> lstdocrelacionada = new List<TelesolucionesDocRelacionada>();
             //var tf = (dynamic)null;
             foreach (DataRow row in ds.Tables[0].Rows)
             {
                 tf = new TelesolucionesFactura
                 {
+                    tipoOperacion = "0101",
                     serie = row["serie"].ToString(),
                     numero = Convert.ToInt32(row["numero"]),
+                    montoTotalImpuestos= Convert.ToDouble(row["sumatoriaIgv"]),
+                    importeTotal= Convert.ToDouble(row["total"]),
                     totalVentaGravada = Convert.ToDouble(row["totalVentaGravada"]),
-                    totalVentaInafecta = Convert.ToDouble(row["totalVentaInafecta"]),
-                    totalVentaExonerada = Convert.ToDouble(row["totalVentaExonerada"]),
-                    sumatoriaIgv = Convert.ToDouble(row["sumatoriaIgv"]),
-                    sumatoriaIsc = Convert.ToDouble(row["sumatoriaIsc"]),
-                    totalVenta = Convert.ToDouble(row["total"]),
-                    tipoMoneda = row["tipoMoneda"].ToString(),
-                    descuentoGlobal = Convert.ToDouble(row["descuentoGlobal"]),
-                    porcentajeDescuentoGlobal = Convert.ToDouble(row["porcentajeDescuentoGlobal"]),
-                    totalDescuento = Convert.ToDouble(row["totalDescuento"]),
-                    importePercepcion = Convert.ToDouble(row["importePercepcion"]),
-                    porcentajePercepcion = Convert.ToDouble(row["porcentajePercepcion"]),
+                    sumatoriaIgv= Convert.ToDouble(row["sumatoriaIgv"]),
+                    receptor= new TelesolucionesRecceptor { tipo= Convert.ToString(row["receptorTipo"]),nro= Convert.ToString(row["receptorNumero"]) },
+                    //guiasRelacionada = new TelesolucionesGuiaRelacionada
+                    //    {
+                    //        tipo = "guiasRelacionadaTipo",
+                    //        numero = row["guiasRelacionadaSerie"].ToString() +"-"+ row["guiasRelacionadaNro"].ToString()
+                    //    },
+                    fechaEmision=Convert.ToDateTime(row["fechaEmision"]).ToString("yyyy-MM-dd"),
+                    tipoMoneda= row["tipoMoneda"].ToString(),
+                    adicional = new TelesolucionesAdicionalCab
+                    {
+                        fechaVencimiento = Convert.ToDateTime(row["fechaVencimiento"]).ToString("yyyy-MM-dd"),
+                        codigoSunatEstablecimiento = "0000",
+                        ordenCompra = row["OrdenCompra"].ToString().Trim()==string.Empty ? null : row["OrdenCompra"].ToString().Trim()
+                    }
+
+
+                    ////////totalVentaInafecta = Convert.ToDouble(row["totalVentaInafecta"]),
+                    ////////totalVentaExonerada = Convert.ToDouble(row["totalVentaExonerada"]),
+                    ////////sumatoriaIgv = Convert.ToDouble(row["sumatoriaIgv"]),
+                    ////////sumatoriaIsc = Convert.ToDouble(row["sumatoriaIsc"]),
+                    ////////totalVenta = Convert.ToDouble(row["total"]),
+                    ////////tipoMoneda = row["tipoMoneda"].ToString(),
+                    ////////descuentoGlobal = Convert.ToDouble(row["descuentoGlobal"]),
+                    ////////porcentajeDescuentoGlobal = Convert.ToDouble(row["porcentajeDescuentoGlobal"]),
+                    ////////totalDescuento = Convert.ToDouble(row["totalDescuento"]),
+                    ////////importePercepcion = Convert.ToDouble(row["importePercepcion"]),
+                    ////////porcentajePercepcion = Convert.ToDouble(row["porcentajePercepcion"]),
                     //docRelacionada = new List<TelesolucionesDocRelacionada>(new TelesolucionesDocRelacionada { numero = row["docRelacionadaNdocu"].ToString() }),
-                    //guiasRelacionada = new List<TelesolucionesGuiaRelacionada>{ numero = row["guiasRelacionada"].ToString() },
-                    receptor = new TelesolucionesRecceptor { tipo = row["receptorTipo"].ToString(), nro = row["receptorNumero"].ToString(), razonSocial = row["ReceptorRazonSocial"].ToString().Trim() },
-                    
+
+                    //////////receptor = new TelesolucionesRecceptor { tipo = row["receptorTipo"].ToString(), nro = row["receptorNumero"].ToString(), razonSocial = row["ReceptorRazonSocial"].ToString().Trim() },
+
                 };
 
-                lstguias.Add(new TelesolucionesGuiaRelacionada { tipo = row["guiasRelacionadaTipo"].ToString(), serie = row["guiasRelacionadaSerie"].ToString(), numero = row["guiasRelacionadaNro"].ToString().Trim() });
+                //if (row["OrdenCompra"].ToString().Trim()==string.Empty)
+                //{
+                //    tf.adicional =
+                //    new TelesolucionesAdicionalCab
+                //    {
+                //        fechaVencimiento = Convert.ToDateTime(row["fechaVencimiento"]).ToString("yyyy-MM-dd"),
+                //        codigoSunatEstablecimiento = "0000"
+                //    };
+                //}
+                //else
+                //{
+                //    tf.adicional =
+                //   new TelesolucionesAdicionalCab
+                //   {
+                //       fechaVencimiento = Convert.ToDateTime(row["fechaVencimiento"]).ToString("yyyy-MM-dd"),
+                //       codigoSunatEstablecimiento = "0000",
+                //       ordenCompra= row["OrdenCompra"].ToString()
+                //   };
+                //}
+
+                lstguias.Add(new TelesolucionesGuiaRelacionada
+                {
+                    tipo = row["guiasRelacionadaTipo"].ToString(),
+                    //serie = row["guiasRelacionadaSerie"].ToString(),
+                    numero = row["guiasRelacionadaSerie"].ToString() + "-" + row["guiasRelacionadaNro"].ToString().Trim()
+                });
                 tf.guiasRelacionada = lstguias;
-                lstdocrelacionada.Add(new TelesolucionesDocRelacionada { numero = row["docRelacionadaNdocu"].ToString(),tipo = row["docRelacionadaCdocu"].ToString() });
-                tf.docRelacionada = lstdocrelacionada;
+                //lstdocrelacionada.Add(new TelesolucionesDocRelacionada { numero = row["docRelacionadaNdocu"].ToString(),tipo = row["docRelacionadaCdocu"].ToString() });
+                //////tf.docRelacionada = lstdocrelacionada;
 
                 DbCommand cmd2;
                 cmd2 = db.GetStoredProcCommand("usp_SunatTelesoluciones_EnviarFacturaDetalle", lst.Cdocu, lst.Ndocu);
@@ -513,17 +558,37 @@ namespace IAP.DL
                 {
                     item.Add(new TelesolucionesItems
                     {
-                        unidadMedidaCantidad= row2["unidad_de_medida"].ToString(),
+                        unidadMedidaCantidad = row2["unidad_de_medida"].ToString(),
                         cantidad = Convert.ToDouble(row2["cantidad"]),
                         descripcion = row2["descripcion"].ToString().Trim(),
-                        valorVenta = Convert.ToDouble(row2["valorVenta"]),
                         valorUnitario = Convert.ToDouble(row2["valorUnitario"]),
                         precioVentaUnitario = Convert.ToDouble(row2["precioVentaUnitario"]),
                         tipoPrecioVentaUnitario = row2["tipoPrecioVentaUnitario"].ToString(),
+                        montoTotalImpuestosItem= Convert.ToDouble(row2["montoAfectacionIgv"]),
+                        //baseAfectacionIgv= Convert.ToDouble(row2["valorUnitario"]),
+                        baseAfectacionIgv = Convert.ToDouble(row2["valorVenta"]),
                         montoAfectacionIgv = Convert.ToDouble(row2["montoAfectacionIgv"]),
+                        porcentajeImpuesto= Convert.ToDouble(row2["porcentajeImpuesto"]),
                         tipoAfectacionIgv = row2["tipoAfectacionIgv"].ToString(),
+                        codigoTributo= row2["codigoTributo"].ToString(),
+                        valorVenta = Convert.ToDouble(row2["valorVenta"]),
                         codigoProducto = row2["codigoProducto"].ToString().Trim(),
-                        descuento = Convert.ToDouble(row2["descuento"])
+                        codigoProductoSunat = row2["codigoProductoSunat"].ToString().Trim(),
+                        
+                        adicional= new TelesolucionesAdicionalDet
+                        {
+                            descuentoItem= Convert.ToDouble(row2["descuento"])==0 ? null : new TelesolucionesdescuentoItem
+                            {
+                                codigoMotivoDescuento= row2["codigoMotivoDescuento"].ToString().Trim(),
+                                factorNumericoDescuento= Convert.ToDouble(row2["factorNumericoDescuento"]),
+                                montoDescuento= Convert.ToDouble(row2["descuento"]),
+                                montoBaseDescuento= Convert.ToDouble(row2["valorUnitario"])
+                            }
+                        }
+
+
+
+                        //descuento = Convert.ToDouble(row2["descuento"])
                     });
                 }
                 tf.items = item;

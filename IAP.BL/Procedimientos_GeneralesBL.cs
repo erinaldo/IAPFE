@@ -76,6 +76,7 @@ namespace IAP.BL
 
             String literal = "";
             String parte_decimal;
+            Int32 partedecimal = 0;
             //si el numero utiliza (.) en lugar de (,) -> se reemplaza
             numero = numero.Replace(".", ",");
 
@@ -93,7 +94,11 @@ namespace IAP.BL
                 String[] Num = numero.Split(',');
 
                 //de da formato al numero decimal
-                parte_decimal = Num[1] + "/100";
+                partedecimal = Convert.ToInt32(Num[1].Trim() == string.Empty ? "0" : Num[1].Trim());
+                if(partedecimal<=9)
+                    parte_decimal = Num[1] + "/100";
+                else
+                    parte_decimal = Num[1] + "/100";
                 //se convierte el numero a literal
                 if (int.Parse(Num[0]) == 0)
                 {//si el valor es cero                

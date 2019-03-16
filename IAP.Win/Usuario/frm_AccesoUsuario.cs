@@ -46,7 +46,9 @@ namespace IAP.Win
         private void frm_AccesoUsuario_Load(object sender, EventArgs e)
         {
             //txtBaseDatos.Text = "Hans-PC";
-            txtBaseDatos.Text = "hans-pc";
+            //txtBaseDatos.Text = "hans-pc";
+            //txtBaseDatos.Text = "HANS-PC";
+            txtBaseDatos.Text = "GRUPO";
             cmbbd.SelectedIndex = 0;
             txtUsuario.Text = "cliente";
             txtPassword.Focus();
@@ -121,6 +123,11 @@ namespace IAP.Win
             {
                 Validar_Ingreso();
             }
+        }
+
+        private void groupControl1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

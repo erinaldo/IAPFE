@@ -301,7 +301,7 @@ namespace IAP.BL
         public void TelesolucionesAnularDocumento(Documentov eFac, List<DocumentovDet> lstdetalle, string ruta, string token, string dbconexion)
         {
             int flg_fe = 0;
-            ruta = "https://demoapi.facturaonline.pe/comunicacionbaja";
+            ruta = "https://api2.facturaonline.pe/comunicacionbaja";
             string errorsunat = string.Empty;
             TelesolucionesBajaDocumentoRespuesta eRespuesta = new TelesolucionesBajaDocumentoRespuesta();
 
@@ -352,7 +352,7 @@ namespace IAP.BL
 
        
         
-        public void TelesolucionesEnviarFactura(List<Documentov> lst, string ruta, string token, string dbconexion)
+        public void TelesolucionesEnviarFactura(List<Documentov> lst, string ruta, string token, string dbconexion,ref string telsol_serie,ref string telsol_numero)
         {
             string errorsunat = string.Empty;
             string tipodocumento;
@@ -366,6 +366,10 @@ namespace IAP.BL
 
                 lsunat.Add(Dfe.SunatEnviarDocumentosTelesolucionesFactura(e, dbconexion));
             }
+            if(!lsunat.Any())
+            {
+                throw new Exception("Por favor verificar los datos del cliente de la factura seleccionada");
+            }
 
             foreach (TelesolucionesFactura lista in lsunat)
             {
@@ -374,23 +378,24 @@ namespace IAP.BL
 
                 flg_fe = 0;
                 tipodocumento = lista.serie.Substring(0, 1);
-                ruta = tipodocumento == "F" ? "https://demoapi.facturaonline.pe/factura" : "https://demoapi.facturaonline.pe/boleta";
+                ruta = tipodocumento == "F" ? "https://api2.facturaonline.pe/factura" : "https://api2.facturaonline.pe/boleta";
                 
                 eRespuestaFactura = EnviarTelesoluciones(lista, ruta, token);
 
                 if (eRespuestaFactura.idDocumento != 0)
                 {
-
+                    telsol_serie = eRespuestaFactura.serie;
+                    telsol_numero = eRespuestaFactura.numero.ToString();
                     flg_fe = 1;//eRespuesta.aceptada_por_sunat == true ? 1 : 0;
                     TelesolucionesConstancia econs = new TelesolucionesConstancia
                     {
-                        id = eRespuestaFactura.idDocumento.ToString()
+                        id = eRespuestaFactura.serie + eRespuestaFactura.numero
                     };
 
                     TelesolucionesConstanciaRespuesta eConsR = new TelesolucionesConstanciaRespuesta();
                     //if (eConsR.status.ToString().Trim() == string.Empty)
                     //{
-                    string rutaConstanacia = tipodocumento == "F" ? "https://demoapi.facturaonline.pe/factura/" + econs.id + "/constancia" : "https://demoapi.facturaonline.pe/boleta/" + econs.id + "/constancia";
+                    string rutaConstanacia = tipodocumento == "F" ? "https://api2.facturaonline.pe/factura/" + econs.id + "/constancia" : "https://api2.facturaonline.pe/boleta/" + econs.id + "/constancia";
 
                     Dfe.GuardarRespuestaSunatTelesoluciones(eRespuestaFactura, eConsR, flg_fe, dbconexion);
 
@@ -406,6 +411,8 @@ namespace IAP.BL
                     {
                         throw new Exception(eConsR.message.ToString());
                     }
+
+                    
                 }
                 else
                 {
@@ -420,19 +427,34 @@ namespace IAP.BL
         {
             TelesolucionesFactura lstfacturaTemp = (TelesolucionesFactura)entidad;
             string json = string.Empty;
+            JsonSerializerSettings settings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
             json = JsonConvert.SerializeObject(entidad, Formatting.Indented);
+            json = JsonConvert.SerializeObject(entidad, settings);
             if (lstfacturaTemp.guiasRelacionada.Where(x=> x.tipo.Trim()==string.Empty).Any())
             {
                 var guia = (Newtonsoft.Json.Linq.JObject)JsonConvert.DeserializeObject(json);
                 guia.Property("guiasRelacionada").Remove();
                 json = JsonConvert.SerializeObject(guia, Formatting.Indented);
             }
-            if(lstfacturaTemp.docRelacionada.Where(x=> x.numero.Trim()==string.Empty).Any())
-            {
-                var docre = (Newtonsoft.Json.Linq.JObject)JsonConvert.DeserializeObject(json);
-                docre.Property("docRelacionada").Remove();
-                json = JsonConvert.SerializeObject(docre, Formatting.Indented);
-            }
+
+            //if (lstfacturaTemp.adicional.ordenCompra.Trim() == string.Empty)
+            //{
+               
+            //    var ordencompra = (Newtonsoft.Json.Linq.JObject)JsonConvert.DeserializeObject(json,);
+
+            //    ordencompra.Property("adicional.ordencompra").Remove();
+               
+            //    json = JsonConvert.SerializeObject(ordencompra, Formatting.Indented);
+            //}
+
+            
+
+            //if(lstfacturaTemp.docRelacionada.Where(x=> x.numero.Trim()==string.Empty).Any())
+            //{
+            //    var docre = (Newtonsoft.Json.Linq.JObject)JsonConvert.DeserializeObject(json);
+            //    docre.Property("docRelacionada").Remove();
+            //    json = JsonConvert.SerializeObject(docre, Formatting.Indented);
+            //}
 
             byte[] bytes = Encoding.Default.GetBytes(json);
             string json_en_utf_8 = Encoding.UTF8.GetString(bytes);
@@ -558,7 +580,7 @@ namespace IAP.BL
         public MemoryStream ObtenerPdfTelesoluciones(string tipodocumento,string idFactura)
         {
             //idFactura = "43107";
-            string ruta = tipodocumento=="F" ? ("https://demoapi.facturaonline.pe/factura/" + idFactura + "/exportar") : ("https://demoapi.facturaonline.pe/boleta/" + idFactura + "/exportar");
+            string ruta = tipodocumento=="F" ? ("https://api2.facturaonline.pe/factura/" + idFactura + "/exportar") : ("https://api2.facturaonline.pe/boleta/" + idFactura + "/exportar");
             string RespuestaPDF = TelesolucionesSendJson(ruta, string.Empty, string.Empty,"PDF");
             return PDFTelesoluciones;
         }
@@ -575,8 +597,11 @@ namespace IAP.BL
                     DateTime nx = new DateTime(1970, 1, 1);
                     TimeSpan ts = DateTime.UtcNow - nx;
                     Double unixTS = ts.TotalSeconds;
-                    string aK = "bcc049b911d6b4e4c3df8a613bd4e9f1c62848663bb64e04058c62395d9637e9";
-                    string Ky = "7c098649c0f5a0ffd6809f5826e206ecf5ebd4d31e11ccd1877ef45e4ea9c38b";
+
+                    //string aK = "c73ed3b5f2085ffdd429044b4757b97917c7ea775c0d12eae388e6e9bf19bb17";
+                    //string Ky = "7cb2040d868a8ed6d044fef4d6d37bcded6fd47425bab1b1973e6e66e440f3c2";
+                    string aK = "d28a27c097baedcd36c9d83e4f9bb88002db4b1bfc1433da08aedd3c0415be36";
+                    string Ky = "6e02181887cc0a63991ea0812e6ff0bfe76df3257ef22ff05b7795bd6b97c6b4";
                     string ToHash = string.Join("|", aK, unixTS);
                     string Hash = xHashString(ToHash, Ky);
 
@@ -657,12 +682,13 @@ namespace IAP.BL
                 eRespuestaFactura = new TelesolucionesRespuestaFactura();
                 
                 tipodocumento = lista.Cdocu=="01" ? "F" : "B";
-                iddocumento= lista.TeleSol_IdFactura;
+                //iddocumento= lista.TeleSol_IdFactura;
+                iddocumento = lista.TeleSol_Serie.ToString() + lista.TeleSol_Numero.ToString();
 
 
                 eConsR = new TelesolucionesConstanciaRespuesta();
              
-                string rutaConstanacia = tipodocumento == "F" ? "https://demoapi.facturaonline.pe/factura/" + iddocumento + "/constancia" : "https://demoapi.facturaonline.pe/boleta/" + iddocumento + "/constancia";
+                string rutaConstanacia = tipodocumento == "F" ? "https://api2.facturaonline.pe/factura/" + iddocumento + "/constancia" : "https://api2.facturaonline.pe/boleta/" + iddocumento + "/constancia";
 
                 //Dfe.GuardarRespuestaSunatTelesoluciones(eRespuestaFactura, eConsR, flg_fe, dbconexion);
 

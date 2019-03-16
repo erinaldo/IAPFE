@@ -259,6 +259,11 @@ namespace IAP.Win
 
             //lstcabcecera.ForEach(z => z.Flg_Fe = 1);
             gccabecera.DataSource = lstcabcecera;
+
+            if(!lstcabcecera.Any())
+            {
+                gcdetalle.DataSource = null;
+            }
         }
 
         private void CargarDocumentosvDetalle(string cdocu,string ndocu)
@@ -319,11 +324,43 @@ namespace IAP.Win
                     else //TELESOLUCIONES
                     {
                         //string ruta="https://demoapi.facturaonline.pe/factura";
-                        Bfe.TelesolucionesEnviarFactura(lst, string.Empty, Global.vToken, Global.vUserBaseDatos);
+                        string telsol_serie="";
+                        string telsol_numero="";
+                        
+                        try
+                        {
+                            Bfe.TelesolucionesEnviarFactura(lst, string.Empty, Global.vToken, Global.vUserBaseDatos, ref telsol_serie, ref telsol_numero);
+                            //if (telsol_serie != "")
+                            //{
+                            //    MostrarPDF_Telesoluciones(telsol_serie, telsol_numero);
+                            //}
+                        }
+                        catch(Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        finally
+                        {
+                            if(lst.Count==1)
+                            {
+                                if (telsol_serie != "")
+                                {
+                                    MostrarPDF_Telesoluciones(telsol_serie, telsol_numero);
+                                    MessageBox.Show("Se envio los documentos seleccionados", "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No se logro enviar el documento seleccionado.", "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                            }
+                            
+                        }
+                        
+                        
                     }
                    
                     
-                    MessageBox.Show("Se envio los documentos seleccionados", "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
                     lstcabcecera.ForEach(x => x.FlgCheck = false);
                     gccabecera.RefreshDataSource();
                 }           
@@ -332,9 +369,9 @@ namespace IAP.Win
 
         private void ObtenerConstanciaTelesoluciones()
         {
-            if (MessageBox.Show("Desea actualizar la constancia de las facturas seleccionadas?", "Utilitario", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Desea actualizar la constancia de las facturas seleccionadas ?", "Utilitario", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                List<Documentov> lst = lstcabcecera.Where(x => x.FlgCheck == true && x.Flg_Fe == 1 && x.TeleSol_IdFactura.Trim() != string.Empty && x.TeleSol_IdComunicacionBaja.Trim() == string.Empty && x.TeleSol_IdConstancia==string.Empty).Select(x => new Documentov(x.Cdocu, x.Ndocu, x.Flag, x.Flg_Fe, x.TeleSol_IdFactura)).OrderBy(x => x.Cdocu + x.Ndocu).ToList();
+                List<Documentov> lst = lstcabcecera.Where(x => x.FlgCheck == true && x.Flg_Fe == 1 && x.TeleSol_IdFactura.Trim() != string.Empty && x.TeleSol_IdComunicacionBaja.Trim() == string.Empty && x.TeleSol_IdConstancia==string.Empty).Select(x => new Documentov(x.Cdocu, x.Ndocu, x.Flag, x.Flg_Fe, x.TeleSol_IdFactura,x.TeleSol_Serie,x.TeleSol_Numero)).OrderBy(x => x.Cdocu + x.Ndocu).ToList();
 
 
                 Bfe.TelesolucionesObtenerConstancia(lst, string.Empty, Global.vToken, Global.vUserBaseDatos);
@@ -503,7 +540,7 @@ namespace IAP.Win
                                 MessageBox.Show("Debe seleccionar como minimo un registro para poder enviar a Sunat", "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 return;
                             }
-                                
+
                             SunatEnviardocumentosFBN();
                             CargarDocumentosv();
                             break;
@@ -545,17 +582,22 @@ namespace IAP.Win
                             }
                             else //TELESOLUCIONES
                             {
+
+
+                                //string idFactura = gvwcabecera.GetFocusedRowCellValue("TeleSol_Serie").ToString().Trim() +
+                                //    gvwcabecera.GetFocusedRowCellValue("TeleSol_Numero").ToString().Trim();
+                                //string tipodocumento = gvwcabecera.GetFocusedRowCellValue("TeleSol_Serie").ToString().Trim();
+                                //if(idFactura.Trim()==string.Empty)
+                                //{
+                                //    MessageBox.Show("El documento no ha sido registrado en sunat.", "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                //    return;
+                                //}
+                                //System.IO.MemoryStream ms= Bfe.ObtenerPdfTelesoluciones(tipodocumento.Substring(0,1).Trim(),idFactura);
+                                //frm_FacturasVisorPdf form = new frm_FacturasVisorPdf(string.Empty, ms,"TELESOLUCIONES");
+                                //form.ShowDialog();
                                 
-                                string idFactura = gvwcabecera.GetFocusedRowCellValue("TeleSol_IdFactura").ToString().Trim();
-                                string tipodocumento = gvwcabecera.GetFocusedRowCellValue("TeleSol_Serie").ToString().Trim();
-                                if(idFactura.Trim()==string.Empty)
-                                {
-                                    MessageBox.Show("El documento no ha sido registrado en sunat.", "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    return;
-                                }
-                                System.IO.MemoryStream ms= Bfe.ObtenerPdfTelesoluciones(tipodocumento.Substring(0,1).Trim(),idFactura);
-                                frm_FacturasVisorPdf form = new frm_FacturasVisorPdf(string.Empty, ms,"TELESOLUCIONES");
-                                form.ShowDialog();
+                                MostrarPDF_Telesoluciones(gvwcabecera.GetFocusedRowCellValue("TeleSol_Serie").ToString().Trim(),
+                                    gvwcabecera.GetFocusedRowCellValue("TeleSol_Numero").ToString().Trim());
                             }
 
                             break;
@@ -672,6 +714,21 @@ namespace IAP.Win
 
         }
 
+        private void MostrarPDF_Telesoluciones(string serie,string numero)
+        {
+            //string idFactura = gvwcabecera.GetFocusedRowCellValue("TeleSol_Serie").ToString().Trim() +
+            //                        gvwcabecera.GetFocusedRowCellValue("TeleSol_Numero").ToString().Trim();
+            string idFactura = serie + numero;
+            string tipodocumento = serie;
+            if (idFactura.Trim() == string.Empty)
+            {
+                MessageBox.Show("El documento no ha sido registrado en sunat.", "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            System.IO.MemoryStream ms = Bfe.ObtenerPdfTelesoluciones(tipodocumento.Substring(0, 1).Trim(), idFactura);
+            frm_FacturasVisorPdf form = new frm_FacturasVisorPdf(string.Empty, ms, "TELESOLUCIONES");
+            form.ShowDialog();
+        }
        
     }
 }

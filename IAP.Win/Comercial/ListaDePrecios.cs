@@ -15,6 +15,7 @@ using IAP.BE;
 
 using DevExpress.XtraGrid;
 using IAP.Win.Clases;
+using System.IO;
 
 namespace IAP.Win
 {
@@ -62,7 +63,7 @@ namespace IAP.Win
             CreateGridColumn(gvwlista, "Precioventa $", "Precioventadolar", 11, DevExpress.Utils.FormatType.Numeric, "f2", true, 100);
             CreateGridColumn(gvwlista, "Moneda", "Moneda", 12, DevExpress.Utils.FormatType.None, "x", true, 70);
             CreateGridColumn(gvwlista, "%Incremento", "Valorventaingreso", 13, DevExpress.Utils.FormatType.Numeric, "f2", Global.UserAdministrador == true ? true : false, 120);
-            CreateGridColumn(gvwlista, "Fecha ValorVenta", "Fechavalorventa", 14, DevExpress.Utils.FormatType.DateTime, "dd/MM/yyyy", true, 100);
+            CreateGridColumn(gvwlista, "Fecha Incremento", "Fechavalorventa", 14, DevExpress.Utils.FormatType.DateTime, "dd/MM/yyyy", true, 100);
             CreateGridColumn(gvwlista, "Tipo de Cambio", "Tcventa", 15, DevExpress.Utils.FormatType.Numeric, "f4", false, 120);
             CreateGridColumn(gvwlista, "Fecha TipoCambio", "Fechatc", 16, DevExpress.Utils.FormatType.DateTime, "dd/MM/yyyy", false, 100);
 
@@ -423,6 +424,30 @@ namespace IAP.Win
             if (e.KeyChar == (char)13)
             {
                 BuscarArticulos();
+            }
+        }
+
+        private void btnexportar_Click(object sender, EventArgs e)
+        {
+            if(_LSTLISTADEPRECIOS.Any())
+            {
+                Stream myStream;
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+                saveFileDialog1.Filter = "Xls 2007 (*.xls)|*.txt|Xls 2010 (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+                saveFileDialog1.FilterIndex = 2;
+                saveFileDialog1.RestoreDirectory = true;
+
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    if ((myStream = saveFileDialog1.OpenFile()) != null)
+                    {
+                        // Code to write the stream goes here.
+                        myStream.Close();
+                        gclista.ExportToXlsx(saveFileDialog1.FileName);
+                        
+                    }
+                }
             }
         }
     }

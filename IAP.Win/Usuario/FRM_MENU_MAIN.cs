@@ -100,6 +100,20 @@ namespace IAP.Win
                 Accessos_Usuario(Global.UserAdministrador);
 
                 string IdEmpresaFE = ConfigurationManager.AppSettings.Get("PROVEEDORFE");
+                string Empresa= ConfigurationManager.AppSettings.Get("EMPRESA");
+
+                Global.vTelemovilAK= ConfigurationManager.AppSettings.Get("TELEMOVILAK");
+                Global.vTelemovilSK= ConfigurationManager.AppSettings.Get("TELEMOVILSK");
+
+                if (Empresa== Global.vUserServer)
+                {
+                    creditos_letrasemitidas.Enabled = true;
+                }
+                else
+                {
+                    creditos_letrasemitidas.Enabled = false;
+                }
+
 
                 Global.vDatosProveedor = eBL.ObtenerProveedorFE(Convert.ToInt32(IdEmpresaFE==string.Empty ? "0" : IdEmpresaFE), Global.vUserBaseDatos);
                 //this.dvw_costos.LoadDashboard(aOppFilm.Create<ISProcProduccion>().ObtenerXmlProcProduccion("CostosConsumo"));

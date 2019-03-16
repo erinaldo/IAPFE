@@ -166,13 +166,15 @@ namespace IAP.BE
             this.Flg_Fe = flg_fe;
         }
         //CONSTRUCTOR PARA OBTENER CONSTANCIA TELESOLUCIONES
-        public Documentov(string cdocu, string ndocu, string flag, int flg_fe,string teleSol_IdFactura)
+        public Documentov(string cdocu, string ndocu, string flag, int flg_fe,string teleSol_IdFactura,string teleSol_serie,string teleSol_numero)
         {
             this.Cdocu = cdocu;
             this.Ndocu = ndocu;
             this.Flag = flag;
             this.Flg_Fe = flg_fe;
             this.TeleSol_IdFactura = teleSol_IdFactura;
+            this.TeleSol_Serie = teleSol_serie;
+            this.TeleSol_Numero = teleSol_numero;
         }
 
         //CONSTRUCTOR PARA LA ANULACION

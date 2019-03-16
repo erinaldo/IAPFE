@@ -30,7 +30,7 @@ begin
 end
 
 
-CREATE procedure [dbo].[sp_ObtenerListadePrecios]
+ALTER procedure [dbo].[sp_ObtenerListadePrecios]
 (
 	@familia varchar(max),
 	@subfamilia varchar(max),
@@ -38,7 +38,8 @@ CREATE procedure [dbo].[sp_ObtenerListadePrecios]
 	@moneda char(1),
 	@costomayorcero int,
 	@stockmayorcero int,
-	@item varchar(250)
+	@item varchar(250),
+	@Descripcion varchar(250)
 )
 as
 begin
@@ -58,30 +59,44 @@ begin
 		set @item=null;
 	if(@stockmayorcero=0)
 		set @stockmayorcero=null;
-		
+	if(ltrim(rtrim(@Descripcion))='')
+		set @Descripcion=null
+	
 	if(@item is null)
 	begin
 		select --f.nomfam Familia,s.nomsub SubFamilia,g.nomgru,
 		p.codi CodigoSistema,p.codf CodigoEmpresa,RTRIM(P.marc) Marca,RTRIM(p.descr) Descripcion,p.umed UnidadMedida,
 		(scon+stoc)-(svta + pedi) As StockDisponible,
 		
-		ISNULL(ROUND((
-			select top 1
-				case when mone='s' then preu else preu*tcam end
-			from kdd0101 kdd where kdd.codi =p.codi--'0101-010016' 
-			and tmov='e'
-			order by fecha desc,IDENTY DESC
-		),4),0) as UltCostoCompraSoles,
-		ISNULL(ROUND((
-			select top 1
-				case when mone='D' then preu else preu/tcam end
-			from kdd0101 kdd where kdd.codi =p.codi--'0101-010016' 
-			and tmov='e'
-			order by fecha desc,IDENTY DESC
-		),4),0) as UltCostoCompraDolar,
-		(isnull((case when l.Moneda='S' then l.ValorVenta else l.ValorVenta*@tipocambio end),0)*@igv) PrecioVentaSoles,
-		(isnull((case when l.Moneda='D' then l.ValorVenta else l.ValorVenta/@tipocambio end),0)*@igv) PrecioVentaDolar,
-		ValorVenta as ValorVentaIngreso,
+		case 
+			when p.pcns=0 then
+				ISNULL(ROUND((
+					select top 1
+						case when mone='s' then preu else preu*tcam end
+					from kdd0101 kdd where kdd.codi =p.codi--'0101-010016' 
+					and tmov='e'
+					order by fecha desc,IDENTY DESC
+				),4),0)
+			else
+				p.pcns 
+		end UltCostoCompraSoles,
+		case 
+			when p.pcus=0 then
+				ISNULL(ROUND((
+					select top 1
+						case when mone='D' then preu else preu/tcam end
+					from kdd0101 kdd where kdd.codi =p.codi--'0101-010016' 
+					and tmov='e'
+					order by fecha desc,IDENTY DESC
+				),4),0)
+			else
+				p.pcus
+		end UltCostoCompraDolar,
+		--(isnull((case when l.Moneda='S' then l.ValorVenta else l.ValorVenta*@tipocambio end),0)) PrecioVentaSoles,
+		--(isnull((case when l.Moneda='D' then l.ValorVenta else l.ValorVenta/@tipocambio end),0)) PrecioVentaDolar,
+		(isnull((case when l.Moneda='S' then l.ValorVenta else l.ValorVenta*@tipocambio end),0)) PrecioVentaSoles,
+		(isnull((case when l.Moneda='D' then l.ValorVenta else l.ValorVenta/@tipocambio end),0)) PrecioVentaDolar,
+		isnull(l.PorcentajeAumento,0.00)  as ValorVentaIngreso,
 		l.FechaValorVenta,
 		@tipocambio tcventa,
 		@fechatipocambio fechatc,
@@ -100,7 +115,7 @@ begin
 		and s.codsub in (select LTRIM(RTRIM(item)) as Item from Fn_VS_Split(@subfamilia,', '))
 		and g.codgru in (select LTRIM(RTRIM(item)) as Item from Fn_VS_Split(@grupo,', '))
 		and p.codi<>'0000-000000' 
-		
+		and (@Descripcion is null or p.descr like '%'+@Descripcion+'%')
 		and (@costomayorcero is null or ISNULL(ROUND((
 			select top 1
 			case 
@@ -119,27 +134,38 @@ begin
 	end
 	else
 	begin
+	
 		select --f.nomfam Familia,s.nomsub SubFamilia,g.nomgru,
 		p.codi CodigoSistema,p.codf CodigoEmpresa,RTRIM(P.marc) Marca,RTRIM(p.descr) Descripcion,p.umed UnidadMedida,
 		(scon+stoc)-(svta + pedi) As StockDisponible,
+		case 
+			when p.pcns=0 then
+				ISNULL(ROUND((
+					select top 1
+						case when mone='s' then preu else preu*tcam end
+					from kdd0101 kdd where kdd.codi =p.codi--'0101-010016' 
+					and tmov='e'
+					order by fecha desc,IDENTY DESC
+				),4),0)
+			else
+				p.pcns 
+		end UltCostoCompraSoles,
+		case 
+			when p.pcus=0 then
+				ISNULL(ROUND((
+					select top 1
+						case when mone='D' then preu else preu/tcam end
+					from kdd0101 kdd where kdd.codi =p.codi--'0101-010016' 
+					and tmov='e'
+					order by fecha desc,IDENTY DESC
+				),4),0)
+			else
+				p.pcus
+		end UltCostoCompraDolar,
 		
-		ISNULL(ROUND((
-			select top 1
-				case when mone='s' then preu else preu*tcam end
-			from kdd0101 kdd where kdd.codi =p.codi--'0101-010016' 
-			and tmov='e'
-			order by fecha desc,IDENTY DESC
-		),4),0) as UltCostoCompraSoles,
-		ISNULL(ROUND((
-			select top 1
-				case when mone='D' then preu else preu/tcam end
-			from kdd0101 kdd where kdd.codi =p.codi--'0101-010016' 
-			and tmov='e'
-			order by fecha desc,IDENTY DESC
-		),4),0) as UltCostoCompraDolar,
-		(isnull((case when l.Moneda='S' then l.ValorVenta else l.ValorVenta*@tipocambio end),0)*@igv) PrecioVentaSoles,
-		(isnull((case when l.Moneda='D' then l.ValorVenta else l.ValorVenta/@tipocambio end),0)*@igv) PrecioVentaDolar,
-		ValorVenta as ValorVentaIngreso,
+		(isnull((case when l.Moneda='S' then l.ValorVenta else l.ValorVenta*@tipocambio end),0)) PrecioVentaSoles,
+		(isnull((case when l.Moneda='D' then l.ValorVenta else l.ValorVenta/@tipocambio end),0)) PrecioVentaDolar,
+		isnull(l.PorcentajeAumento,0.00)  as ValorVentaIngreso,
 		l.FechaValorVenta,
 		@tipocambio tcventa,
 		@fechatipocambio fechatc,
@@ -152,9 +178,12 @@ begin
 		left join ListaPrecios l on l.codi=p.codi
 		where 
 		p.codf like '%'+@item+'%'
+		and (@Descripcion is null or p.descr like '%'+@Descripcion+'%')
 		order by (scon+stoc)-(svta + pedi) desc
 	end
 end
+
+
 
 
 CREATE TABLE [dbo].[ListaPrecios](
@@ -168,52 +197,62 @@ CREATE TABLE [dbo].[ListaPrecios](
 GO
 
 
-CREATE procedure [dbo].[sp_RegistrarListadePrecios]
+
+USE [bdNava01]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_RegistrarListadePrecios]    Script Date: 01/29/2019 09:13:28 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER procedure [dbo].[sp_RegistrarListadePrecios]
 (
 	@CodLis	char(2),
 	@Codi	char(11),
-	--@vvns	decimal(12,4),
-	--@pvns	decimal(12,4),
-	@vventa	decimal(12,2),
-	--@pvus	decimal(12,4),
-	--@porc_tar	decimal(12,4),
-	--@imptarns	decimal(12,4),
-	--@imptarus	decimal(12,4),
-	--@cpu	decimal(12,4),
-	@crepus	decimal(12,2),
-	@creps  decimal(12,2),
-	--@margen_min	decimal(12,4),
-	--@vminus	decimal(12,4),
-	--@minns	decimal(12,4),
+	@vventa	decimal(12,4),
+	@crepus	decimal(12,4),
+	@creps  decimal(12,4),
 	@codf	char(15),
 	@descr	varchar(80),
 	@mone	char(1),
 	@marca	varchar(20),
 	@umed	char(3),
 	@tcam	decimal(12,4)
-	--@f_proceso	datetime,
-	--@Observacion	varchar(80),
-	--@margen_max	decimal(12,4)
 )
 as
 begin
 	declare @igv float;
 	--select i_g_v from psn0100
 	select @igv=((i_g_v/100)+1) from psn0100
+	
+	-------------------------------
+	DECLARE @vventaD decimal(12,4),@vventaS decimal(12,4)
+	--50
+	--100-10=90/100=50/0.9
+	SET @vventaD=round((@crepus/((100-@vventa)/100)),4)
+	set @vventaS=round((@creps/((100-@vventa)/100)),4)
+	--SET @vventaD=round((@crepus/((@vventa/10))),4)
+	--set @vventaS=round((@creps/((@vventa/10))),4)
+	-------------------------------
+	--select * from dtl01pre where codi='0101-020001'
 	if exists(select * from dtl01pre where codi=@codi)
 	begin
 		--if(@mone='S')
-			
+	    
 		UPDATE dtl01pre SET 
-		vvns=ROUND((case when @mone='s' then @vventa else @vventa*@tcam end),2),
-		pvns=ROUND((case when @mone='s' then @vventa else @vventa*@tcam end)*@igv,2),
-		vvus=ROUND((case when @mone='D' then @vventa else @vventa/@tcam end),2),
-		pvus=ROUND((case when @mone='D' then @vventa else @vventa/@tcam end)*@igv,2),
+		--vvns=ROUND((case when @mone='s' then @vventa else @vventa*@tcam end),2),
+		--pvns=ROUND((case when @mone='s' then @vventa else @vventa*@tcam end)*@igv,2),
+		--vvus=ROUND((case when @mone='D' then @vventa else @vventa/@tcam end),2),
+		--pvus=ROUND((case when @mone='D' then @vventa else @vventa/@tcam end)*@igv,2),
+		vvns=ROUND((@vventaS/@igv),2),
+		pvns=@vventaS,
+		vvus=ROUND((@vventaD*@igv),2),
+		pvus=@vventaD,
 		porc_tar=0,
-		imptarns=ROUND((case when @mone='s' then @vventa else @vventa*@tcam end)*@igv,2),
-		imptarus=ROUND((case when @mone='D' then @vventa else @vventa/@tcam end)*@igv,2),
-		cpu=ROUND((case when @mone='D' then @crepus else @creps end),2),
-		crep=ROUND((case when @mone='D' then @crepus else @creps end),2),
+		imptarns=@vventaS,
+		imptarus=@vventaD,
+		cpu=ROUND((case when @mone='D' then @crepus else @creps end),4),
+		crep=ROUND((case when @mone='D' then @crepus else @creps end),4),
 		margen_min=0,
 		minus=@crepus,--ROUND((case when @mone='D' then @crep else @crep/@tcam end),2), --(case when @mone='D' then @vventa else @vventa/@tcam end)*@igv*1.08,
 		minns=@creps,--ROUND((case when @mone='S' then @crep else @crep*@tcam end),2),--(case when @mone='s' then @vventa else @vventa*@tcam end)*@igv*1.08,
@@ -235,23 +274,26 @@ begin
 			BEGIN
 				SET @CodLis='0'+CAST(@IDLISTA AS VARCHAR)
 
-				INSERT INTO dtl01pre (CodLis,Codi,vvns,pvns,vvus,pvus,porc_tar,imptarns,imptarus,cpu,crep,margen_min,minus,minns,
+				INSERT INTO dtl01pre (CodLis,Codi,
+				vvns,pvns,vvus,pvus,
+				porc_tar,
+				imptarns,imptarus,cpu,crep,margen_min,minus,minns,
 				codf,descr,mone,marca,umed,tcam,f_proceso,Observacion,margen_max)
 				VALUES(@CodLis,@Codi,
-				ROUND((case when @mone='s' then @vventa else @vventa*@tcam end),2),
-				ROUND((case when @mone='s' then @vventa else @vventa*@tcam end)*@igv,2),
-				ROUND((case when @mone='D' then @vventa else @vventa/@tcam end),2),
-				ROUND((case when @mone='D' then @vventa else @vventa/@tcam end)*@igv,2),
+				--ROUND((case when @mone='s' then @vventa else @vventa*@tcam end),2),
+				--ROUND((case when @mone='s' then @vventa else @vventa*@tcam end)*@igv,2),
+				--ROUND((case when @mone='D' then @vventa else @vventa/@tcam end),2),
+				--ROUND((case when @mone='D' then @vventa else @vventa/@tcam end)*@igv,2),
+				@vventaS,ROUND((@vventaS*@igv),2),@vventaD,ROUND((@vventaD*@igv),4),
 				0,
-				ROUND((case when @mone='s' then @vventa else @vventa*@tcam end)*@igv,2),
-				ROUND((case when @mone='D' then @vventa else @vventa/@tcam end)*@igv,2),
-				ROUND((case when @mone='D' then @crepus else @creps end),2),
-				ROUND((case when @mone='D' then @crepus else @creps end),2),
+				--ROUND((case when @mone='s' then @vventa else @vventa*@tcam end)*@igv,2),
+				--ROUND((case when @mone='D' then @vventa else @vventa/@tcam end)*@igv,2),
+				--ROUND((case when @mone='D' then @crepus else @creps end),2),
+				--ROUND((case when @mone='D' then @crepus else @creps end),2),
+				ROUND((@vventaS*@igv),4),ROUND((@vventaD*@igv),4),ROUND((case when @mone='D' then @crepus else @creps end),4),
+				ROUND((case when @mone='D' then @crepus else @creps end),4),
 				0,
-				--(case when @mone='D' then @vventa else @vventa/@tcam end)*@igv*1.08,
-				--(case when @mone='s' then @vventa else @vventa*@tcam end)*@igv*1.08,
-				--ROUND((case when @mone='D' then @crep else @crep/@tcam end),2),
-				--ROUND((case when @mone='s' then @crep else @crep*@tcam end),2),
+
 				@crepus,
 				@creps,
 				@codf,
@@ -264,24 +306,28 @@ begin
 		END
 	end
 	
+	
 	if exists(select 1 from ListaPrecios where codi=@Codi)
 	begin
 		update ListaPrecios set Moneda=@mone,
-		CostoCompra=ROUND((case when @mone='D' then @crepus else @creps end),2),
-		ValorVenta=round(@vventa,2),FechaValorVenta=GETDATE()
+		CostoCompra=ROUND((case when @mone='D' then @crepus else @creps end),4),
+		ValorVenta=ROUND((case when @mone='D' then @vventaD else @vventaS end),4),
+		FechaValorVenta=GETDATE(),
+		PorcentajeAumento=@vventa
 		where codi=@Codi;
 	end
 	else
 	begin
-		insert into ListaPrecios (codi,Moneda,CostoCompra,ValorVenta,FechaValorVenta)
+		insert into ListaPrecios (codi,Moneda,CostoCompra,ValorVenta,FechaValorVenta,PorcentajeAumento)
 		values
 		(@Codi,@mone,
-		ROUND((case when @mone='D' then @crepus else @creps end),2),
-		round(@vventa,2),GETDATE())
+		ROUND((case when @mone='D' then @crepus else @creps end),4),
+		ROUND((case when @mone='D' then @vventaD else @vventaS end),4),
+		GETDATE(),@vventa)
 	end
 	--REGISTRO DEL PRECIO EN EL ARTICULO
 	UPDATE prd0101 SET 
-	pvns=round((case when @mone='s' then @vventa else @vventa*@tcam end)*@igv,2),
-	pvus=round((case when @mone='D' then @vventa else @vventa/@tcam end)*@igv,2)
+	pvns=round((@vventaS),4),
+	pvus=round((@vventaD),4)
 	WHERE codi=@CODI
 end
