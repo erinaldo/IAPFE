@@ -373,6 +373,7 @@
     <EmbeddedResource Include="Creditos\frmVisorLetraEmitida.resx">
       <DependentUpon>frmVisorLetraEmitida.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Rpts\rptLetraEmitida.rdlc" />
     <EmbeddedResource Include="Usuario\frm_AccesoUsuario.resx">
       <DependentUpon>frm_AccesoUsuario.cs</DependentUpon>

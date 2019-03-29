@@ -48,7 +48,7 @@ namespace IAP.Win
             //txtBaseDatos.Text = "Hans-PC";
             //txtBaseDatos.Text = "hans-pc";
             //txtBaseDatos.Text = "HANS-PC";
-            txtBaseDatos.Text = "GRUPO";
+            txtBaseDatos.Text = "LOCALHOST";
             cmbbd.SelectedIndex = 0;
             txtUsuario.Text = "cliente";
             txtPassword.Focus();
