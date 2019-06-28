@@ -125,6 +125,7 @@
     </Compile>
     <EmbeddedResource Include="RptFactura.rdlc" />
     <EmbeddedResource Include="RptFacturaFE.rdlc" />
+    <EmbeddedResource Include="RptFacturaFEA4x2.rdlc" />
     <EmbeddedResource Include="RptFacturaFEA4.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\IAP.BE.DetalleFactura.datasource" />

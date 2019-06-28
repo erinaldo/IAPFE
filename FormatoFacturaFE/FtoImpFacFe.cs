@@ -85,9 +85,15 @@ namespace FormatoFacturaFE
 
             if(parametros.Where(x=> x.IdParametro.Trim()== "FormatoFacturaElectronica" && x.Valor.Trim()=="1").Any())
             {
+
                 this.rpvwfactura.LocalReport.ReportEmbeddedResource =
                 //"FormatoFacturaFE.RptFacturaFE.rdlc";
                 "FormatoFacturaFE.RptFacturaFEA4.rdlc";
+            }
+            else if(parametros.Where(x => x.IdParametro.Trim() == "FormatoFacturaElectronica" && x.Valor.Trim() == "2").Any())
+            {
+                this.rpvwfactura.LocalReport.ReportEmbeddedResource =
+                "FormatoFacturaFE.RptFacturaFEA4x2.rdlc";
             }
             else
             {

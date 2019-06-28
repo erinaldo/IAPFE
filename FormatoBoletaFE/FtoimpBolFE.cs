@@ -93,6 +93,11 @@ namespace FormatoBoletaFE
                 this.rpvwboleta.LocalReport.ReportEmbeddedResource =
                 "FormatoBoletaFE.RptBoletaFEA4.rdlc";
             }
+            else if (parametros.Where(x => x.IdParametro.Trim() == "FormatoBoletaElectronica" && x.Valor.Trim() == "2").Any())
+            {
+                this.rpvwboleta.LocalReport.ReportEmbeddedResource =
+                "FormatoBoletaFE.RptBoletaFEA4x2.rdlc";
+            }
             else
             {
                 this.rpvwboleta.LocalReport.ReportEmbeddedResource =

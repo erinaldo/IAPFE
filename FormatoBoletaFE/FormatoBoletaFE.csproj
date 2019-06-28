@@ -92,6 +92,7 @@
     </Compile>
     <EmbeddedResource Include="RptBoleta.rdlc" />
     <EmbeddedResource Include="RptBoletaFE.rdlc" />
+    <EmbeddedResource Include="RptBoletaFEA4x2.rdlc" />
     <EmbeddedResource Include="RptBoletaFEA4.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\IAP.BE.DetalleFactura.datasource" />

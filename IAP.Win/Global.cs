@@ -29,8 +29,8 @@ namespace IAP.Win
         //public static string vToken = "0edb742bde374b32a446d1e27b0a8cf53eea338fa3eb49eca536a82b41bb5341";
 
         //CLAVE DE GRUPOIAP
-        public static string vRuta = "https://api.nubefact.com/api/v1/baad9aca-bf90-44d7-b83e-875b10d52ccd";
-        public static string vToken = "303479832dd7424c9cf93530300c7e94c6abf0a5dff949d98838b651de90e618";
+        public static string vRuta = "";
+        public static string vToken = "";
 
         //CALVE DEMO
         //public static string vRuta = "https://demo.nubefact.com/api/v1/03989d1a-6c8c-4b71-b1cd-7d37001deaa0";
