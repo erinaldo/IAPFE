@@ -21,5 +21,14 @@ namespace IAP.BE
         public string flag { get; set; }
         public string flagnombre { get; set; }
         public bool FlgCheck { get; set; }
+        public string codcdv { get; set; }
+        public string nomcodcdv { get; set; }
+        public string mone { get; set; }
+        public Boolean flag_arqueado { get; set; }
+        public DateTime? fechaarqueo { get; set; }
+        public string usuarioArqueo { get; set; }
+        public double saldo { get; set; }
+        public Boolean flag_cancelado { get; set; }
+
     }
 }

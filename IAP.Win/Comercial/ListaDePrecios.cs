@@ -414,9 +414,17 @@ namespace IAP.Win
 
         private void ListaDePrecios_Load(object sender, EventArgs e)
         {
-            LLenar_Familia();
-            OnFormatGrid();
-            Habilitarbotones();
+            try
+            {
+                LLenar_Familia();
+                OnFormatGrid();
+                Habilitarbotones();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         private void txtbusqueda_KeyPress(object sender, KeyPressEventArgs e)

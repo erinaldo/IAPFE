@@ -31,8 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FRM_MENU_MAIN));
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.creditos_letrasemitidas = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupComercial = new DevExpress.XtraNavBar.NavBarGroup();
             this.comercial_listaprecio = new DevExpress.XtraNavBar.NavBarItem();
             this.comercial_eliminararqueo = new DevExpress.XtraNavBar.NavBarItem();
@@ -62,6 +60,8 @@
             this.android_importar_articulos = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupProcesos = new DevExpress.XtraNavBar.NavBarGroup();
             this.administracion_cargartxtFac = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.creditos_letrasemitidas = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
@@ -72,6 +72,7 @@
             this.tp2 = new DevExpress.XtraTab.XtraTabPage();
             this.btnguardar = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.comercial_arqueoOS = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
@@ -122,7 +123,8 @@
             this.administracion_cargartxtFac,
             this.comercial_OS,
             this.comercial_ImportarCliente,
-            this.creditos_letrasemitidas});
+            this.creditos_letrasemitidas,
+            this.comercial_arqueoOS});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 201;
@@ -132,21 +134,6 @@
             this.navBarControl1.Text = "navBarControl1";
             this.navBarControl1.View = new DevExpress.XtraNavBar.ViewInfo.StandardSkinNavigationPaneViewInfoRegistrator("VS2010");
             this.navBarControl1.Click += new System.EventHandler(this.navBarControl1_Click);
-            // 
-            // navBarGroup1
-            // 
-            this.navBarGroup1.Caption = "Creditos";
-            this.navBarGroup1.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroup1.ImageOptions.SmallImage")));
-            this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.creditos_letrasemitidas)});
-            this.navBarGroup1.Name = "navBarGroup1";
-            // 
-            // creditos_letrasemitidas
-            // 
-            this.creditos_letrasemitidas.Caption = "Letras Emitidas";
-            this.creditos_letrasemitidas.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("creditos_letrasemitidas.ImageOptions.SmallImage")));
-            this.creditos_letrasemitidas.Name = "creditos_letrasemitidas";
-            this.creditos_letrasemitidas.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.creditos_letrasemitidas_LinkClicked);
             // 
             // navBarGroupComercial
             // 
@@ -161,7 +148,8 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_cambioclave),
             new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_FE),
             new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_OS),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_ImportarCliente)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_ImportarCliente),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_arqueoOS)});
             this.navBarGroupComercial.Name = "navBarGroupComercial";
             // 
             // comercial_listaprecio
@@ -381,6 +369,21 @@
             this.administracion_cargartxtFac.Name = "administracion_cargartxtFac";
             this.administracion_cargartxtFac.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.administracion_cargartxtFac_LinkClicked);
             // 
+            // navBarGroup1
+            // 
+            this.navBarGroup1.Caption = "Creditos";
+            this.navBarGroup1.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarGroup1.ImageOptions.SmallImage")));
+            this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.creditos_letrasemitidas)});
+            this.navBarGroup1.Name = "navBarGroup1";
+            // 
+            // creditos_letrasemitidas
+            // 
+            this.creditos_letrasemitidas.Caption = "Letras Emitidas";
+            this.creditos_letrasemitidas.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("creditos_letrasemitidas.ImageOptions.SmallImage")));
+            this.creditos_letrasemitidas.Name = "creditos_letrasemitidas";
+            this.creditos_letrasemitidas.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.creditos_letrasemitidas_LinkClicked);
+            // 
             // navBarItem1
             // 
             this.navBarItem1.Caption = "Control Diario de Negocio";
@@ -403,6 +406,10 @@
             this.webBrowser1.TabIndex = 2;
             this.webBrowser1.Url = new System.Uri("http://www.sunat.gob.pe/cl-ti-itmrconsruc/jcrS00Alias", System.UriKind.Absolute);
             // 
+            // defaultLookAndFeel1
+            // 
+            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Blue";
+            // 
             // xtraTabControl1
             // 
             this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -420,7 +427,7 @@
             // 
             this.tp1.Controls.Add(this.dvwcxc);
             this.tp1.Name = "tp1";
-            this.tp1.Size = new System.Drawing.Size(848, 662);
+            this.tp1.Size = new System.Drawing.Size(849, 664);
             this.tp1.Text = "Documentos x Cobrar";
             // 
             // dvwcxc
@@ -428,7 +435,7 @@
             this.dvwcxc.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dvwcxc.Location = new System.Drawing.Point(0, 0);
             this.dvwcxc.Name = "dvwcxc";
-            this.dvwcxc.Size = new System.Drawing.Size(848, 662);
+            this.dvwcxc.Size = new System.Drawing.Size(849, 664);
             this.dvwcxc.TabIndex = 0;
             // 
             // tp2
@@ -436,7 +443,7 @@
             this.tp2.Controls.Add(this.btnguardar);
             this.tp2.Controls.Add(this.webBrowser1);
             this.tp2.Name = "tp2";
-            this.tp2.Size = new System.Drawing.Size(848, 662);
+            this.tp2.Size = new System.Drawing.Size(849, 664);
             this.tp2.Text = "Consulta Sunat";
             // 
             // btnguardar
@@ -456,6 +463,13 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(858, 694);
             this.panelControl1.TabIndex = 5;
+            // 
+            // comercial_arqueoOS
+            // 
+            this.comercial_arqueoOS.Caption = "Arqueo OS";
+            this.comercial_arqueoOS.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem3.ImageOptions.SmallImage")));
+            this.comercial_arqueoOS.Name = "comercial_arqueoOS";
+            this.comercial_arqueoOS.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.comercial_arqueoOS_LinkClicked);
             // 
             // FRM_MENU_MAIN
             // 
@@ -526,5 +540,6 @@
         private DevExpress.XtraEditors.SimpleButton btnguardar;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
         private DevExpress.XtraNavBar.NavBarItem creditos_letrasemitidas;
+        private DevExpress.XtraNavBar.NavBarItem comercial_arqueoOS;
     }
 }

@@ -12,6 +12,7 @@ using IAP.BE;
 using DevExpress.Utils;
 using IAP.Win.Clases;
 using IAP.Win.Comercial;
+using DevExpress.Skins;
 
 namespace IAP.Win
 {
@@ -465,6 +466,8 @@ namespace IAP.Win
                 dtfechainicial.EditValue = DateTime.Now;
                 dtfechafinal.EditValue = DateTime.Now;
                 this.rbtnenviado.SelectedIndex = 0;
+                //                menu.Items.Add()
+                AgregarTemas();
 
             }
             catch (Exception err)
@@ -476,6 +479,23 @@ namespace IAP.Win
                 this.Cursor = Cursors.Default;
             }
             
+        }
+        private void AgregarTemas()
+        {
+            ToolStripMenuItem item, submenu;
+            submenu = new ToolStripMenuItem();
+            submenu.Text = "Temas";
+
+            foreach (SkinContainer cnt in SkinManager.Default.Skins)
+            {
+                //comboBoxEdit1.Properties.Items.Add(cnt.SkinName);
+                item = new ToolStripMenuItem();
+                item.Text = cnt.SkinName.ToString();
+                submenu.DropDownItems.Add(item);
+            }
+            
+            
+            menu.Items.Add(submenu);
         }
 
         private void gvwcabecera_FocusedRowObjectChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowObjectChangedEventArgs e)
@@ -651,6 +671,11 @@ namespace IAP.Win
                                 return;
                             }
                             VerArchivoJson();
+                            break;
+                        }
+                    default:
+                        {
+                            //defaultLookAndFeel1.LookAndFeel.SkinName = e.ClickedItem.Name;
                             break;
                         }
                 }

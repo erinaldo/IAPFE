@@ -84,13 +84,13 @@ namespace IAP.Win
             DevExpress.UserSkins.BonusSkins.Register();
             //SkinHelper.InitSkinPopupMenu(SkinLink);
 
-            defaultLookAndFeel1.LookAndFeel.SkinName = "Office 2010 Blue";
+            
 
             //FRM_MENU_MAIN FRM = new FRM_MENU_MAIN();
             //FRM.Text = "Base de Datos Actual(" + Global.vUserBaseDatos + ")";
             frm_AccesoUsuario FRMACCESOS = new frm_AccesoUsuario();
             
-
+            
             FRMACCESOS.ShowDialog();
 
             if (Global.login_conforme == "si")
@@ -118,7 +118,15 @@ namespace IAP.Win
                 Global.vDatosProveedor = eBL.ObtenerProveedorFE(Convert.ToInt32(IdEmpresaFE==string.Empty ? "0" : IdEmpresaFE), Global.vUserBaseDatos);
                 //this.dvw_costos.LoadDashboard(aOppFilm.Create<ISProcProduccion>().ObtenerXmlProcProduccion("CostosConsumo"));
                 Global.vDatosProveedor.IdEmpresa = IdEmpresaFE;
-
+                if(Global.vUserBaseDatos.Trim().ToUpper()=="BDNAVA02")
+                {
+                    defaultLookAndFeel1.LookAndFeel.SkinName = "Sharp Plus";
+                }
+                else
+                {
+                    defaultLookAndFeel1.LookAndFeel.SkinName = "Metropolis";
+                }
+                
                 try
                 {
                     using (WaitDialogForm waitDialog = new WaitDialogForm("Cargando", "Espere por favor..."))
@@ -342,6 +350,13 @@ namespace IAP.Win
         {
             frmLetrasEmitidas form = new frmLetrasEmitidas();
             string nombreForm = creditos_letrasemitidas.Caption;
+            AgregarFormularioEnTabPage(form, nombreForm);
+        }
+
+        private void comercial_arqueoOS_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            frm_ArqueoOS form = new frm_ArqueoOS();
+            string nombreForm = comercial_arqueoOS.Caption;
             AgregarFormularioEnTabPage(form, nombreForm);
         }
     }

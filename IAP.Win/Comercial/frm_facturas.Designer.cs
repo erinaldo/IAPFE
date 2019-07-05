@@ -44,9 +44,11 @@
             this.mnuanulardocumento = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuverpdf = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuverpdfanulado = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuconstancia = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuconsultardoc = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuverjson = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.gvwcabecera = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.chkanulados = new DevExpress.XtraEditors.CheckEdit();
@@ -64,7 +66,6 @@
             this.dtfechainicial = new DevExpress.XtraEditors.DateEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
-            this.mnuconstancia = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.tp1.SuspendLayout();
@@ -107,7 +108,7 @@
             this.tp1.Controls.Add(this.gccabecera);
             this.tp1.Controls.Add(this.panelControl1);
             this.tp1.Name = "tp1";
-            this.tp1.Size = new System.Drawing.Size(1195, 627);
+            this.tp1.Size = new System.Drawing.Size(1196, 629);
             this.tp1.Text = "Consultas";
             // 
             // labelControl5
@@ -115,7 +116,7 @@
             this.labelControl5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 7F);
             this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(8, 372);
+            this.labelControl5.Location = new System.Drawing.Point(8, 374);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(127, 11);
             this.labelControl5.TabIndex = 15;
@@ -125,10 +126,10 @@
             // 
             this.gcdetalle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gcdetalle.Location = new System.Drawing.Point(3, 391);
+            this.gcdetalle.Location = new System.Drawing.Point(3, 393);
             this.gcdetalle.MainView = this.gvwdetalle;
             this.gcdetalle.Name = "gcdetalle";
-            this.gcdetalle.Size = new System.Drawing.Size(1189, 233);
+            this.gcdetalle.Size = new System.Drawing.Size(1190, 233);
             this.gcdetalle.TabIndex = 11;
             this.gcdetalle.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvwdetalle});
@@ -148,7 +149,7 @@
             this.gccabecera.Location = new System.Drawing.Point(3, 70);
             this.gccabecera.MainView = this.gvwcabecera;
             this.gccabecera.Name = "gccabecera";
-            this.gccabecera.Size = new System.Drawing.Size(1189, 296);
+            this.gccabecera.Size = new System.Drawing.Size(1190, 298);
             this.gccabecera.TabIndex = 7;
             this.gccabecera.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvwcabecera});
@@ -166,9 +167,10 @@
             this.mnuconstancia,
             this.toolStripSeparator2,
             this.mnuconsultardoc,
-            this.mnuverjson});
+            this.mnuverjson,
+            this.toolStripSeparator3});
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(205, 214);
+            this.menu.Size = new System.Drawing.Size(205, 220);
             this.menu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menu_ItemClicked);
             // 
             // mnumarcartodo
@@ -218,6 +220,13 @@
             this.mnuverpdfanulado.Size = new System.Drawing.Size(204, 22);
             this.mnuverpdfanulado.Text = "Ver Documento Anulado";
             // 
+            // mnuconstancia
+            // 
+            this.mnuconstancia.Image = global::IAP.Win.Properties.Resources.doc2;
+            this.mnuconstancia.Name = "mnuconstancia";
+            this.mnuconstancia.Size = new System.Drawing.Size(204, 22);
+            this.mnuconstancia.Text = "Obtener Constancia";
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -236,6 +245,11 @@
             this.mnuverjson.Name = "mnuverjson";
             this.mnuverjson.Size = new System.Drawing.Size(204, 22);
             this.mnuverjson.Text = "Ver Archivo Json";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(201, 6);
             // 
             // gvwcabecera
             // 
@@ -266,7 +280,7 @@
             this.panelControl1.Controls.Add(this.labelControl1);
             this.panelControl1.Location = new System.Drawing.Point(3, 3);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1193, 65);
+            this.panelControl1.Size = new System.Drawing.Size(1194, 65);
             this.panelControl1.TabIndex = 0;
             // 
             // chkanulados
@@ -290,7 +304,7 @@
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(548, 14);
+            this.labelControl7.Location = new System.Drawing.Point(547, 13);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(38, 13);
             this.labelControl7.TabIndex = 12;
@@ -307,7 +321,7 @@
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(5, 8);
+            this.labelControl6.Location = new System.Drawing.Point(4, 7);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(54, 26);
             this.labelControl6.TabIndex = 9;
@@ -331,7 +345,7 @@
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(387, 41);
+            this.labelControl4.Location = new System.Drawing.Point(386, 40);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(54, 13);
             this.labelControl4.TabIndex = 6;
@@ -346,7 +360,7 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(201, 14);
+            this.labelControl3.Location = new System.Drawing.Point(200, 13);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(33, 13);
             this.labelControl3.TabIndex = 4;
@@ -366,7 +380,7 @@
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(199, 40);
+            this.labelControl2.Location = new System.Drawing.Point(198, 39);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(35, 13);
             this.labelControl2.TabIndex = 2;
@@ -386,18 +400,15 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(5, 40);
+            this.labelControl1.Location = new System.Drawing.Point(4, 39);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(40, 13);
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "F. Inicial";
             // 
-            // mnuconstancia
+            // defaultLookAndFeel1
             // 
-            this.mnuconstancia.Image = global::IAP.Win.Properties.Resources.doc2;
-            this.mnuconstancia.Name = "mnuconstancia";
-            this.mnuconstancia.Size = new System.Drawing.Size(204, 22);
-            this.mnuconstancia.Text = "Obtener Constancia";
+            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Blue";
             // 
             // frm_facturas
             // 
@@ -470,5 +481,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuconsultardoc;
         private System.Windows.Forms.ToolStripMenuItem mnuverjson;
         private System.Windows.Forms.ToolStripMenuItem mnuconstancia;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     }
 }

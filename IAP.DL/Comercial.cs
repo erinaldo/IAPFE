@@ -376,5 +376,58 @@ namespace IAP.DL
             
         }
 
+
+        public List<OrdenServicio> ObtenerArqueo_OS(DateTime fecha,string codcdv, string dbconexion)
+        {
+            List<OrdenServicio> lst = new List<OrdenServicio>();
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            DbCommand cmd;
+            cmd = db.GetStoredProcCommand("USP_SEL_OS_ARQUEO",fecha,codcdv);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+
+            DataSet ds = db.ExecuteDataSet(cmd);
+
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                lst.Add(new OrdenServicio
+                {
+                    fecha = Convert.ToDateTime(row["fecha"]==DBNull.Value ? (DateTime?)null : row["fecha"]),
+                    cdocu = Convert.ToString(row["cdocu"]),
+                    ndocu = Convert.ToString(row["ndocu"]),
+                    nomcli = Convert.ToString(row["nomcli"]),
+                    ruccli= Convert.ToString(row["ruccli"]),
+                    codcdv= Convert.ToString(row["codcdv"]),
+                    nomcodcdv= Convert.ToString(row["nombrecondicionventa"]),
+                    mone = Convert.ToString(row["mone"]),
+                    tcam=Convert.ToDouble(row["tcam"]),
+                    tota = Convert.ToDouble(row["tota"]),
+                    toti = Convert.ToDouble(row["toti"]),
+                    totn = Convert.ToDouble(row["totn"]),
+                    flag_arqueado=Convert.ToBoolean(row["flg_arqueado"]),
+                    fechaarqueo = Convert.ToDateTime(row["fechaarqueo"] == DBNull.Value ? (DateTime?)null : row["fechaarqueo"]),
+                    usuarioArqueo= Convert.ToString(row["usuarioArqueo"]),
+                    saldo= Convert.ToDouble(row["saldo"]),
+                    flag_cancelado = Convert.ToBoolean(row["flag_cancelado"])
+
+                });
+
+            }
+            return lst;
+        }
+
+        public void RegistrarArqueo_OS(DateTime fecha,bool estadoarqueo,string usuarioPC,string codcdv,double totals,double totald,string dbconexion)
+        {
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            db.ExecuteNonQuery("USP_UDP_GUARDAR_ARQUEO_OS", fecha, estadoarqueo, usuarioPC, codcdv, totals, totald);
+        }
+
+        public void RegistrarAbono_OS(string cdocu,string ndocu,double monto,string dbconexion)
+        {
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            db.ExecuteNonQuery("USP_UDP_GUARDAR_CANCELACION_OS", cdocu,ndocu,monto);
+            //USP_UDP_GUARDAR_CANCELACION_OS
+        }
+
     }
 }

@@ -24,9 +24,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -52,6 +53,18 @@
     <ApplicationIcon>VBBusinessApplication.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>395FAAD68B40C5EA8B4A33A0584AB0121D9C4DC4</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>IAP.Win_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -183,6 +196,18 @@
     </Compile>
     <Compile Include="Comercial\frmSunat.Designer.cs">
       <DependentUpon>frmSunat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comercial\frm_ArqueoOS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comercial\frm_ArqueoOS.Designer.cs">
+      <DependentUpon>frm_ArqueoOS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comercial\frm_ArqueoOS_Credito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comercial\frm_ArqueoOS_Credito.Designer.cs">
+      <DependentUpon>frm_ArqueoOS_Credito.cs</DependentUpon>
     </Compile>
     <Compile Include="Comercial\frm_ConsultaEstadoFe.cs">
       <SubType>Form</SubType>
@@ -346,6 +371,9 @@
     <EmbeddedResource Include="Comercial\frmSunat.resx">
       <DependentUpon>frmSunat.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Comercial\frm_ArqueoOS.resx">
+      <DependentUpon>frm_ArqueoOS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Comercial\frm_ConsultaEstadoFe.resx">
       <DependentUpon>frm_ConsultaEstadoFe.cs</DependentUpon>
     </EmbeddedResource>
@@ -430,6 +458,7 @@
     <Content Include="Content\tessdata\eng.unicharset" />
     <Content Include="Content\tessdata\eng.user-words" />
     <Content Include="Content\tessdata\eng.word-dawg" />
+    <None Include="IAP.Win_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
     <None Include="Properties\DataSources\System.Data.DataTable.datasource" />

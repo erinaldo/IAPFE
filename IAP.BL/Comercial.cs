@@ -111,14 +111,39 @@ namespace IAP.BL
             {
                 cls.ActualizarClienteOS(lst, dbconexion);
                 ts.Complete();
-            }  
+            }
         }
         public void RegistrarClienteSunat(string ruc, string nombrecliente, DateTime fechainicio, string estado, string condicion, string direccion, string dbconexion)
         {
             DL.Comercial cls = new DL.Comercial();
             using (TransactionScope ts = new TransactionScope(TransactionScopeOption.Required))
             {
-                cls.RegistrarClienteSunat(ruc,nombrecliente,fechainicio,estado,condicion,direccion, dbconexion);
+                cls.RegistrarClienteSunat(ruc, nombrecliente, fechainicio, estado, condicion, direccion, dbconexion);
+                ts.Complete();
+            }
+        }
+        public List<OrdenServicio> ObtenerArqueo_OS(DateTime fecha, string codcdv, string dbconexion)
+        {
+            DL.Comercial cls = new DL.Comercial();
+            return cls.ObtenerArqueo_OS(fecha, codcdv, dbconexion);
+        }
+
+        public void RegistrarArqueo_OS(DateTime fecha, bool estadoarqueo, string usuarioPC, string codcdv, double totals, double totald, string dbconexion)
+        {
+            DL.Comercial cls = new DL.Comercial();
+            using (TransactionScope ts = new TransactionScope(TransactionScopeOption.Required))
+            {
+                cls.RegistrarArqueo_OS(fecha, estadoarqueo, usuarioPC, codcdv, totals, totald, dbconexion);
+                ts.Complete();
+            }
+        }
+
+        public void RegistrarAbono_OS(string cdocu, string ndocu, double monto, string dbconexion)
+        {
+            DL.Comercial cls = new DL.Comercial();
+            using (TransactionScope ts = new TransactionScope(TransactionScopeOption.Required))
+            {
+                cls.RegistrarAbono_OS(cdocu,ndocu,monto, dbconexion);
                 ts.Complete();
             }
         }

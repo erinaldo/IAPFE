@@ -33,6 +33,7 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.btn_guardar = new DevExpress.XtraEditors.SimpleButton();
             this.txthaber = new DevExpress.XtraEditors.TextEdit();
             this.txtdebe = new DevExpress.XtraEditors.TextEdit();
@@ -41,7 +42,6 @@
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.gcasientos = new DevExpress.XtraGrid.GridControl();
             this.gvwasientos = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -77,6 +77,7 @@
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.Location = new System.Drawing.Point(14, 16);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(85, 13);
@@ -96,7 +97,7 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(2, 21);
+            this.splitContainer1.Location = new System.Drawing.Point(2, 20);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -115,13 +116,21 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.gcasientos);
-            this.splitContainer1.Size = new System.Drawing.Size(945, 438);
+            this.splitContainer1.Size = new System.Drawing.Size(945, 439);
             this.splitContainer1.SplitterDistance = 51;
             this.splitContainer1.TabIndex = 2;
             // 
+            // labelControl4
+            // 
+            this.labelControl4.Location = new System.Drawing.Point(556, 34);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(319, 13);
+            this.labelControl4.TabIndex = 8;
+            this.labelControl4.Text = "Hacer clic en guardar solo si cuadran los montos del DEBE y HABER";
+            // 
             // btn_guardar
             // 
-            this.btn_guardar.Image = ((System.Drawing.Image)(resources.GetObject("btn_guardar.Image")));
+            this.btn_guardar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_guardar.ImageOptions.Image")));
             this.btn_guardar.Location = new System.Drawing.Point(892, 5);
             this.btn_guardar.Name = "btn_guardar";
             this.btn_guardar.Size = new System.Drawing.Size(39, 38);
@@ -147,6 +156,7 @@
             // labelControl3
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.labelControl3.Appearance.Options.UseFont = true;
             this.labelControl3.Location = new System.Drawing.Point(759, 16);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(34, 13);
@@ -156,6 +166,7 @@
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.labelControl2.Appearance.Options.UseFont = true;
             this.labelControl2.Location = new System.Drawing.Point(625, 16);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(29, 13);
@@ -164,7 +175,7 @@
             // 
             // simpleButton1
             // 
-            this.simpleButton1.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.Image")));
+            this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
             this.simpleButton1.Location = new System.Drawing.Point(237, 5);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(42, 38);
@@ -178,7 +189,7 @@
             this.gcasientos.Location = new System.Drawing.Point(0, 0);
             this.gcasientos.MainView = this.gvwasientos;
             this.gcasientos.Name = "gcasientos";
-            this.gcasientos.Size = new System.Drawing.Size(945, 383);
+            this.gcasientos.Size = new System.Drawing.Size(945, 384);
             this.gcasientos.TabIndex = 0;
             this.gcasientos.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvwasientos});
@@ -188,14 +199,6 @@
             this.gvwasientos.GridControl = this.gcasientos;
             this.gvwasientos.Name = "gvwasientos";
             this.gvwasientos.OptionsView.ShowGroupPanel = false;
-            // 
-            // labelControl4
-            // 
-            this.labelControl4.Location = new System.Drawing.Point(556, 34);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(319, 13);
-            this.labelControl4.TabIndex = 8;
-            this.labelControl4.Text = "Hacer clic en guardar solo si cuadran los montos del DEBE y HABER";
             // 
             // frm_importar_asiento
             // 
