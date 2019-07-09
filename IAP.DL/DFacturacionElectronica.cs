@@ -620,5 +620,32 @@ namespace IAP.DL
                  eC.idConstancia, eC.idRespuesta, eC.codigo,
                 eC.notas, eC.descripcion);
         }
+
+
+        public Cliente ObtenerEmailCliente(string ruccli,string dbEmpresa)
+        {
+            Database db = DatabaseFactory.CreateDatabase(dbEmpresa);
+            DbCommand cmd;
+            cmd = db.GetStoredProcCommand("USP_SEL_EmailCliente",ruccli);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+
+            DataSet ds = db.ExecuteDataSet(cmd);
+            List<Cliente> ls = new List<Cliente>();
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                ls.Add(new Cliente
+                {
+                    Email = row["Email"].ToString(),
+                    Nombre = row["nomcli"].ToString()
+
+                }
+                        );
+            }
+
+            return ls.First();
+        }
+
+
     }
 }

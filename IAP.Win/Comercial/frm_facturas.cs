@@ -13,6 +13,7 @@ using DevExpress.Utils;
 using IAP.Win.Clases;
 using IAP.Win.Comercial;
 using DevExpress.Skins;
+using IAP.Win.Mensajeria;
 
 namespace IAP.Win
 {
@@ -25,6 +26,9 @@ namespace IAP.Win
         private DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit linkPdfAnulado = new DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit();
 
         private string[] cellsStyles = new string[] { "Serie", "Numero", "Enlace", "AceptadaPorSunat", "SunatDescription", "SunatNote", "SunatResponseCode", "SunatSoapError", "EnlaceDelPdf", "EnlaceDelPdfAnulado", "EnlaceDelCdr", "EnlaceDelXml", "Tipo_de_comprobante", "Motivo_Anulacion" };
+
+        bool visibleNubefact;
+        bool visibleTelesoluciones;
 
         public frm_facturas()
         {
@@ -58,8 +62,7 @@ namespace IAP.Win
         {
 
 
-            bool visibleNubefact;
-            bool visibleTelesoluciones;
+            
             gvwcabecera.BeginUpdate();
 
             gvwcabecera.OptionsBehavior.AutoPopulateColumns = false;
@@ -127,7 +130,7 @@ namespace IAP.Win
             CreateGridColumn(gvwcabecera, "EnlaceDelXml", "EnlaceDelXml", 32, FormatType.None, "x", visibleNubefact, 100);
             CreateGridColumn(gvwcabecera, "Tipo_de_comprobante", "Tipo_de_comprobante", 33, FormatType.None, "x", visibleNubefact, 100);
             CreateGridColumn(gvwcabecera, "Motivo_Anulacion", "Motivo_Anulacion", 34, FormatType.None, "x", visibleNubefact, 100);
-
+            
             CreateGridColumn(gvwcabecera, "TeleSol_Serie", "TeleSol_Serie", 35, FormatType.None, "x", visibleTelesoluciones, 100);
             CreateGridColumn(gvwcabecera, "TeleSol_Numero", "TeleSol_Numero", 36, FormatType.None, "x", visibleTelesoluciones, 100);
             CreateGridColumn(gvwcabecera, "TeleSol_FechaEmitido", "TeleSol_FechaEmitido", 37, FormatType.DateTime, "d/M/yyyy", visibleTelesoluciones, 100);
@@ -440,6 +443,52 @@ namespace IAP.Win
                 form.ShowDialog();
             }
         }
+
+        private void EnviarEmail()
+        {
+            //List<Documentov> lst = lstcabcecera.Where(x => x.FlgCheck).Select(x => new Documentov(x.Cdocu, x.Ndocu, x.Flag, x.Flg_Fe, x.Tipo_de_comprobante, x.Motivo_Anulacion, x.Serie, x.Numero)).ToList();
+            if ((gvwcabecera.GetFocusedRowCellValue("Flg_Fe").ToString().Trim() != "1"))
+            {
+                MessageBox.Show("Solo se puede enviar el correo de documentos emitidos electronicamente", "ERP Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            string _serie=string.Empty;
+            string _numero = string.Empty;
+
+            string _cdocu= gvwcabecera.GetFocusedRowCellValue("Cdocu").ToString().Trim();
+            string _ndocu= gvwcabecera.GetFocusedRowCellValue("Ndocu").ToString().Trim();
+            string _ruccli= gvwcabecera.GetFocusedRowCellValue("Cli.Ruc").ToString().Trim();
+            string _nomcli= gvwcabecera.GetFocusedRowCellValue("Cli.Nombre").ToString().Trim();
+            if(visibleNubefact)
+            {
+                
+                _serie = gvwcabecera.GetFocusedRowCellValue("Serie").ToString().Trim();
+                _numero = gvwcabecera.GetFocusedRowCellValue("Numero").ToString().Trim();
+            }
+            if(visibleTelesoluciones)
+            {
+                _serie=gvwcabecera.GetFocusedRowCellValue("TeleSol_Serie").ToString().Trim();
+                _numero = gvwcabecera.GetFocusedRowCellValue("TeleSol_Numero").ToString().Trim();
+            }
+            
+             
+            string _moneda = gvwcabecera.GetFocusedRowCellValue("Mone").ToString().Trim();
+            double _total=Convert.ToDouble(gvwcabecera.GetFocusedRowCellValue("Totn").ToString().Trim());
+            DateTime _fechadocumento= Convert.ToDateTime(gvwcabecera.GetFocusedRowCellValue("Fecha").ToString().Trim());
+
+            frm_EnvioEmail form = new frm_EnvioEmail();
+            form._cdocu = _cdocu;
+            form._ndocu = _ndocu;
+            form._ruccli = _ruccli;
+            form._nomcli = _nomcli;
+            form._serie = _serie;
+            form._numero = _numero;
+            form._moneda = _moneda;
+            form._total = _total;
+            form._fechadocumento = _fechadocumento;
+            form.ShowDialog();
+            
+        }
         private void VerArchivoJson()
         {
             List<Documentov> lst = lstcabcecera.Where(x => x.FlgCheck).Select(x => new Documentov(x.Cdocu, x.Ndocu, x.Flag, x.Flg_Fe, x.Tipo_de_comprobante, x.Motivo_Anulacion, x.Serie, x.Numero)).ToList();
@@ -671,6 +720,14 @@ namespace IAP.Win
                                 return;
                             }
                             VerArchivoJson();
+                            break;
+                        }
+                    case "mnuemail":
+                        {
+                            
+                            EnviarEmail();
+
+
                             break;
                         }
                     default:

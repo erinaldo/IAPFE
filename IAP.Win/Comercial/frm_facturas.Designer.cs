@@ -66,6 +66,7 @@
             this.dtfechainicial = new DevExpress.XtraEditors.DateEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.mnuemail = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.tp1.SuspendLayout();
@@ -168,9 +169,10 @@
             this.toolStripSeparator2,
             this.mnuconsultardoc,
             this.mnuverjson,
-            this.toolStripSeparator3});
+            this.toolStripSeparator3,
+            this.mnuemail});
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(205, 220);
+            this.menu.Size = new System.Drawing.Size(205, 264);
             this.menu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menu_ItemClicked);
             // 
             // mnumarcartodo
@@ -410,6 +412,13 @@
             // 
             this.defaultLookAndFeel1.LookAndFeel.SkinName = "Blue";
             // 
+            // mnuemail
+            // 
+            this.mnuemail.Image = global::IAP.Win.Properties.Resources.correo;
+            this.mnuemail.Name = "mnuemail";
+            this.mnuemail.Size = new System.Drawing.Size(204, 22);
+            this.mnuemail.Text = "Enviar Email";
+            // 
             // frm_facturas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -482,5 +491,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuverjson;
         private System.Windows.Forms.ToolStripMenuItem mnuconstancia;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem mnuemail;
     }
 }

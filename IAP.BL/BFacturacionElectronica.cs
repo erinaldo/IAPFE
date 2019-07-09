@@ -22,7 +22,7 @@ namespace IAP.BL
 
         public ProveedorFE ObtenerProveedorFE(int idempresa, string dbEmpresa)
         {
-            return Dfe.ObtenerProveedorFE(idempresa,dbEmpresa);
+            return Dfe.ObtenerProveedorFE(idempresa, dbEmpresa);
         }
 
         public List<ProveedorFE> ObtenerDatosProveedorFE(string dbEmpresa)
@@ -40,7 +40,7 @@ namespace IAP.BL
             using (TransactionScope ts = new TransactionScope(TransactionScopeOption.Required))
             {
 
-                return Dfe.ObtenerDocumentosFBNC(cdocu, fechai, fechaf, cliente, documento,enviadosunat,anulado, dbconexion);
+                return Dfe.ObtenerDocumentosFBNC(cdocu, fechai, fechaf, cliente, documento, enviadosunat, anulado, dbconexion);
                 ts.Complete();
             }
         }
@@ -55,7 +55,7 @@ namespace IAP.BL
             }
         }
 
-        public SunatRespuestaFBN SunatConsultarDocumentosFBN(Documentov eFac, string ruta, string token,string dbconexion)
+        public SunatRespuestaFBN SunatConsultarDocumentosFBN(Documentov eFac, string ruta, string token, string dbconexion)
         {
             string errorsunat = string.Empty;
             SunatRespuestaFBN eRespuesta;
@@ -72,7 +72,7 @@ namespace IAP.BL
             eRespuesta = EnviarNubeFact(eConsulta, ruta, token);
             return eRespuesta;
         }
-        public void SunatAnularDocumentosFBN(Documentov eFac,string ruta,string token, string dbconexion)
+        public void SunatAnularDocumentosFBN(Documentov eFac, string ruta, string token, string dbconexion)
         {
             int flg_fe = 0;
             string errorsunat = string.Empty;
@@ -85,21 +85,21 @@ namespace IAP.BL
             eAnulacion.numero = Convert.ToInt32(eFac.Numero);
             eAnulacion.motivo = eFac.Motivo_Anulacion.Trim();
             eAnulacion.codigo_unico = string.Empty;
-            
+
 
             flg_fe = 0;
-            
+
 
             eRespuesta = EnviarNubeFact(eAnulacion, ruta, token);
 
             if (eRespuesta.errors == "N")
             {
-                
+
 
                 flg_fe = 2;//eRespuesta.aceptada_por_sunat == true ? 2 : 1;
 
                 Dfe.GuardarRespuestaSunat(eRespuesta, eFac.Cdocu, eFac.Ndocu, flg_fe, dbconexion);
-            
+
 
             }
             else
@@ -110,10 +110,10 @@ namespace IAP.BL
             }
         }
 
-        
 
 
-        public void SunatEnviarDocumentosFBN(List<Documentov> lst, string ruta, string token,string dbconexion)
+
+        public void SunatEnviarDocumentosFBN(List<Documentov> lst, string ruta, string token, string dbconexion)
         {
             string errorsunat = string.Empty;
             List<SunatDocumentoFBN> lsunat = new List<SunatDocumentoFBN>();
@@ -126,30 +126,30 @@ namespace IAP.BL
 
                 lsunat.Add(Dfe.SunatEnviarDocumentosFBN_ObtenerDatos(e, dbconexion));
             }
-            
+
             foreach (SunatDocumentoFBN lista in lsunat)
             {
                 eRespuesta = new SunatRespuestaFBN();
-               
+
 
                 flg_fe = 0;
 
 
                 eRespuesta = EnviarNubeFact(lista, ruta, token);
-                
+
                 if (eRespuesta.errors == "N")
                 {
-                    
+
                     flg_fe = 1;//eRespuesta.aceptada_por_sunat == true ? 1 : 0;
 
                     Dfe.GuardarRespuestaSunat(eRespuesta, lista.cdocu, lista.ndocu, flg_fe, dbconexion);
-                    
+
                 }
                 else
                 {
-                    errorsunat = "Tipo Documento: " + lista.cdocu + "\n"+"Numero Documento: " + lista.ndocu + "\n"+ "Error Sunat: " + Convert.ToString(eRespuesta.errors);
+                    errorsunat = "Tipo Documento: " + lista.cdocu + "\n" + "Numero Documento: " + lista.ndocu + "\n" + "Error Sunat: " + Convert.ToString(eRespuesta.errors);
                     throw new Exception(errorsunat);
-                    
+
                 }
             }
         }
@@ -164,9 +164,9 @@ namespace IAP.BL
             foreach (Documentov e in lst) //por cada documento
             {
 
-                Esunat=Dfe.SunatEnviarDocumentosFBN_ObtenerDatos_V2(e, dbconexion);
+                Esunat = Dfe.SunatEnviarDocumentosFBN_ObtenerDatos_V2(e, dbconexion);
 
-                
+
                 eRespuesta = new SunatRespuestaFBN();
                 flg_fe = 0;
                 eRespuesta = EnviarNubeFact(Esunat, ruta, token);
@@ -185,7 +185,7 @@ namespace IAP.BL
                     throw new Exception(errorsunat);
 
                 }
-                
+
             }
         }
         public string VerArchivoJson(List<Documentov> lst, string dbconexion)
@@ -193,8 +193,8 @@ namespace IAP.BL
             string errorsunat = string.Empty;
             SunatDocumentoFBN_V2 Esunat = new SunatDocumentoFBN_V2();
             SunatRespuestaFBN eRespuesta = new SunatRespuestaFBN();
-            string archivo=string.Empty;
-  
+            string archivo = string.Empty;
+
             foreach (Documentov e in lst) //por cada documento
             {
 
@@ -203,7 +203,7 @@ namespace IAP.BL
 
                 eRespuesta = new SunatRespuestaFBN();
 
-                
+
                 archivo = GenerarArchivoJson(Esunat);
                 break;
             }
@@ -211,13 +211,13 @@ namespace IAP.BL
 
         }
 
-        public void GuardarRespuestaSunat_Consulta(string cdocu,string ndocu,SunatRespuestaFBN res,string dbconexion)
+        public void GuardarRespuestaSunat_Consulta(string cdocu, string ndocu, SunatRespuestaFBN res, string dbconexion)
         {
-            Dfe.GuardarRespuestaSunat(res, cdocu, ndocu,1, dbconexion);
+            Dfe.GuardarRespuestaSunat(res, cdocu, ndocu, 1, dbconexion);
         }
         //private SunatRespuestaFBN ObtenerRespuestaNubeFact(dynamic leer_respuesta)
         //{
-            
+
         //    return eRespuesta;
         //}
         private string GenerarArchivoJson(Object entidad)
@@ -227,7 +227,7 @@ namespace IAP.BL
             string json_en_utf_8 = Encoding.UTF8.GetString(bytes);
             return json_en_utf_8;
         }
-        private SunatRespuestaFBN EnviarNubeFact(Object entidad,string ruta,string token)
+        private SunatRespuestaFBN EnviarNubeFact(Object entidad, string ruta, string token)
         {
             string json = JsonConvert.SerializeObject(entidad, Formatting.Indented);
             byte[] bytes = Encoding.Default.GetBytes(json);
@@ -235,11 +235,11 @@ namespace IAP.BL
 
             //enviar a nubefact
             string json_de_respuesta = string.Empty;
-           
+
             json_de_respuesta = SendJson(ruta, json_en_utf_8, token); //falta la ruta y el token
-            
-         
-            
+
+
+
             dynamic r = JsonConvert.DeserializeObject<SunatRespuestaFBN>(json_de_respuesta);
             string r2 = JsonConvert.SerializeObject(r, Formatting.Indented);
             dynamic json_r_in = JsonConvert.DeserializeObject<SunatRespuestaFBN>(r2);
@@ -265,7 +265,7 @@ namespace IAP.BL
             eRespuesta.enlace_del_cdr = leer_respuesta.enlace_del_cdr;
             eRespuesta.errors = leer_respuesta.errors;
             eRespuesta.fe_codigo = leer_respuesta.fe_codigo;
-            eRespuesta.errors= leer_respuesta.errors == null ? "N" : Convert.ToString(leer_respuesta.errors);
+            eRespuesta.errors = leer_respuesta.errors == null ? "N" : Convert.ToString(leer_respuesta.errors);
             return eRespuesta;
         }
         string SendJson(string ruta, string json, string token)
@@ -320,7 +320,7 @@ namespace IAP.BL
             eAnulacion.numero = Convert.ToInt32(eFac.TeleSol_Numero);
 
             List<TelesolucionesBajaItem> lstdet = new List<TelesolucionesBajaItem>();
-            foreach(DocumentovDet e in lstdetalle)
+            foreach (DocumentovDet e in lstdetalle)
             {
                 lstdet.Add(new TelesolucionesBajaItem
                 {
@@ -332,27 +332,27 @@ namespace IAP.BL
             }
             eAnulacion.items = lstdet;
 
-            
+
 
             flg_fe = 0;
 
 
-            eRespuesta = EnviarTelesolucionesBaja (eAnulacion, ruta, token);
+            eRespuesta = EnviarTelesolucionesBaja(eAnulacion, ruta, token);
 
             if (string.IsNullOrEmpty(eRespuesta.status))
             {
-                Dfe.GuardarRespuestaAnulacionSunatTelesoluciones(eAnulacion.serie, eAnulacion.numero.ToString(),eRespuesta, dbconexion);
+                Dfe.GuardarRespuestaAnulacionSunatTelesoluciones(eAnulacion.serie, eAnulacion.numero.ToString(), eRespuesta, dbconexion);
             }
             else
             {
                 throw new Exception(eRespuesta.message.ToString());
             }
-           
+
         }
 
-       
-        
-        public void TelesolucionesEnviarFactura(List<Documentov> lst, string ruta, string token, string dbconexion,ref string telsol_serie,ref string telsol_numero)
+
+
+        public void TelesolucionesEnviarFactura(List<Documentov> lst, string ruta, string token, string dbconexion, ref string telsol_serie, ref string telsol_numero)
         {
             string errorsunat = string.Empty;
             string tipodocumento;
@@ -366,7 +366,7 @@ namespace IAP.BL
 
                 lsunat.Add(Dfe.SunatEnviarDocumentosTelesolucionesFactura(e, dbconexion));
             }
-            if(!lsunat.Any())
+            if (!lsunat.Any())
             {
                 throw new Exception("Por favor verificar los datos del cliente de la factura seleccionada");
             }
@@ -379,7 +379,7 @@ namespace IAP.BL
                 flg_fe = 0;
                 tipodocumento = lista.serie.Substring(0, 1);
                 ruta = tipodocumento == "F" ? "https://api2.facturaonline.pe/factura" : "https://api2.facturaonline.pe/boleta";
-                
+
                 eRespuestaFactura = EnviarTelesoluciones(lista, ruta, token);
 
                 if (eRespuestaFactura.idDocumento != 0)
@@ -401,18 +401,18 @@ namespace IAP.BL
 
                     eConsR = ObtenerConstanciaDocumento(string.Empty, rutaConstanacia, token);
                     //}
-                    
-                    
+
+
 
                     //falta guardar respuesta
 
-                    Dfe.GuardarRespuestaSunatTelesoluciones(eRespuestaFactura,eConsR, flg_fe, dbconexion);
+                    Dfe.GuardarRespuestaSunatTelesoluciones(eRespuestaFactura, eConsR, flg_fe, dbconexion);
                     if (!string.IsNullOrEmpty(eConsR.status))
                     {
                         throw new Exception(eConsR.message.ToString());
                     }
 
-                    
+
                 }
                 else
                 {
@@ -430,7 +430,7 @@ namespace IAP.BL
             JsonSerializerSettings settings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
             json = JsonConvert.SerializeObject(entidad, Formatting.Indented);
             json = JsonConvert.SerializeObject(entidad, settings);
-            if (lstfacturaTemp.guiasRelacionada.Where(x=> x.tipo.Trim()==string.Empty).Any())
+            if (lstfacturaTemp.guiasRelacionada.Where(x => x.tipo.Trim() == string.Empty).Any())
             {
                 var guia = (Newtonsoft.Json.Linq.JObject)JsonConvert.DeserializeObject(json);
                 guia.Property("guiasRelacionada").Remove();
@@ -439,15 +439,15 @@ namespace IAP.BL
 
             //if (lstfacturaTemp.adicional.ordenCompra.Trim() == string.Empty)
             //{
-               
+
             //    var ordencompra = (Newtonsoft.Json.Linq.JObject)JsonConvert.DeserializeObject(json,);
 
             //    ordencompra.Property("adicional.ordencompra").Remove();
-               
+
             //    json = JsonConvert.SerializeObject(ordencompra, Formatting.Indented);
             //}
 
-            
+
 
             //if(lstfacturaTemp.docRelacionada.Where(x=> x.numero.Trim()==string.Empty).Any())
             //{
@@ -462,7 +462,7 @@ namespace IAP.BL
             //enviar a nubefact
             string json_de_respuesta = string.Empty;
 
-            json_de_respuesta = TelesolucionesSendJson(ruta, json_en_utf_8, token,"FACTURA"); //falta la ruta y el token
+            json_de_respuesta = TelesolucionesSendJson(ruta, json_en_utf_8, token, "FACTURA"); //falta la ruta y el token
 
 
 
@@ -517,16 +517,16 @@ namespace IAP.BL
             //enviar a nubefact
             string json_de_respuesta = string.Empty;
 
-            json_de_respuesta = TelesolucionesSendJson(ruta, json_en_utf_8, token,"BAJA"); //falta la ruta y el token
+            json_de_respuesta = TelesolucionesSendJson(ruta, json_en_utf_8, token, "BAJA"); //falta la ruta y el token
 
-            
+
 
             dynamic leer_respuesta = JsonConvert.DeserializeObject<TelesolucionesBajaDocumentoRespuesta>(json_de_respuesta);
             TelesolucionesBajaDocumentoRespuesta eRespuesta = new TelesolucionesBajaDocumentoRespuesta();
             //eRespuesta.tipo_de_comprobante = leer_respuesta.tipo_de_comprobante;
             eRespuesta.fechaEmision = leer_respuesta.fechaEmision;
             eRespuesta.fechaEmitido = leer_respuesta.fechaEmitido;
-            
+
             eRespuesta.numero = leer_respuesta.numero;
             eRespuesta.emitido = leer_respuesta.emitido;
             eRespuesta.ticketConstancia = leer_respuesta.ticketConstancia;
@@ -535,7 +535,7 @@ namespace IAP.BL
             eRespuesta.digestValue = leer_respuesta.digestValue; //codigo HASH del comprobante
             eRespuesta.signatureValue = leer_respuesta.signatureValue;
             eRespuesta.idConstancia = leer_respuesta.idConstancia;
-            eRespuesta.code= leer_respuesta.code;
+            eRespuesta.code = leer_respuesta.code;
             eRespuesta.status = leer_respuesta.status;
             eRespuesta.message = leer_respuesta.message;
             eRespuesta.idComunicacionBaja = leer_respuesta.idComunicacionBaja;
@@ -548,16 +548,16 @@ namespace IAP.BL
             byte[] bytes = Encoding.Default.GetBytes(json);
             string json_en_utf_8 = Encoding.UTF8.GetString(bytes);
 
-            
+
             string json_de_respuesta = string.Empty;
 
-            json_de_respuesta = TelesolucionesSendJson(ruta, string.Empty, token,"CONSTANCIA"); //falta la ruta y el token
+            json_de_respuesta = TelesolucionesSendJson(ruta, string.Empty, token, "CONSTANCIA"); //falta la ruta y el token
 
 
 
             dynamic leer_respuesta = JsonConvert.DeserializeObject<TelesolucionesConstanciaRespuesta>(json_de_respuesta);
             TelesolucionesConstanciaRespuesta eRespuesta = new TelesolucionesConstanciaRespuesta();
-            
+
             eRespuesta.fechaEmision = leer_respuesta.fechaEmision;
             eRespuesta.idConstancia = leer_respuesta.idConstancia;
 
@@ -566,7 +566,7 @@ namespace IAP.BL
             eRespuesta.numero = leer_respuesta.numero;
             eRespuesta.tipo = leer_respuesta.tipo;
             eRespuesta.codigo = leer_respuesta.codigo;
-            eRespuesta.notas = leer_respuesta.notas; 
+            eRespuesta.notas = leer_respuesta.notas;
             eRespuesta.descripcion = leer_respuesta.descripcion;
             //ERROR
             eRespuesta.code = leer_respuesta.code;
@@ -577,14 +577,14 @@ namespace IAP.BL
             return eRespuesta;
         }
 
-        public MemoryStream ObtenerPdfTelesoluciones(string tipodocumento,string idFactura)
+        public MemoryStream ObtenerPdfTelesoluciones(string tipodocumento, string idFactura)
         {
             //idFactura = "43107";
-            string ruta = tipodocumento=="F" ? ("https://api2.facturaonline.pe/factura/" + idFactura + "/exportar") : ("https://api2.facturaonline.pe/boleta/" + idFactura + "/exportar");
-            string RespuestaPDF = TelesolucionesSendJson(ruta, string.Empty, string.Empty,"PDF");
+            string ruta = tipodocumento == "F" ? ("https://api2.facturaonline.pe/factura/" + idFactura + "/exportar") : ("https://api2.facturaonline.pe/boleta/" + idFactura + "/exportar");
+            string RespuestaPDF = TelesolucionesSendJson(ruta, string.Empty, string.Empty, "PDF");
             return PDFTelesoluciones;
         }
-        string TelesolucionesSendJson(string ruta, string json, string token,string tipoOperacion)
+        string TelesolucionesSendJson(string ruta, string json, string token, string tipoOperacion)
         {
             try
             {
@@ -611,13 +611,13 @@ namespace IAP.BL
                     //client.Headers[HttpRequestHeader.Authorization] = "Token token=" + token;
                     client.Headers[HttpRequestHeader.Authorization] = "Fo " + aK + ":" + Hash + ":" + unixTS;
 
-                    
+
                     /// OBTENEMOS LA RESPUESTA
-                   
+
                     //SI PETICION ES SOBRE UNA CONSTANCIA 
-                    if(tipoOperacion=="PDF")
+                    if (tipoOperacion == "PDF")
                     {
-//                        MemoryStream memory=
+                        //                        MemoryStream memory=
                         //client.DownloadFile(ruta, "c:\\data\\psdpsd.pdf");
                         //using (MemoryStream stream = new MemoryStream(client.DownloadData(ruta)))
                         //{
@@ -626,20 +626,20 @@ namespace IAP.BL
                         MemoryStream stream = new MemoryStream(client.DownloadData(ruta));
                         PDFTelesoluciones = stream;
                     }
-                    if(tipoOperacion=="FACTURA")
+                    if (tipoOperacion == "FACTURA")
                     {
                         respuesta = client.UploadString(ruta, "POST", json);
                     }
-                    if(tipoOperacion=="CONSTANCIA")
+                    if (tipoOperacion == "CONSTANCIA")
                     {
                         respuesta = client.DownloadString(ruta);
                     }
-                    if(tipoOperacion=="BAJA")
+                    if (tipoOperacion == "BAJA")
                     {
                         respuesta = client.UploadString(ruta, "POST", json);
                     }
-                    
-                    
+
+
                     /// Y LA 'RETORNAMOS'
                     return respuesta;
                 }
@@ -655,10 +655,10 @@ namespace IAP.BL
             }
         }
 
-        
 
 
-        private string xHashString(string StringToHash,string HachKey)
+
+        private string xHashString(string StringToHash, string HachKey)
         {
             System.Text.UTF8Encoding myEncoder = new UTF8Encoding();
             Byte[] Key = myEncoder.GetBytes(HachKey);
@@ -680,25 +680,29 @@ namespace IAP.BL
             foreach (Documentov lista in lst)
             {
                 eRespuestaFactura = new TelesolucionesRespuestaFactura();
-                
-                tipodocumento = lista.Cdocu=="01" ? "F" : "B";
+
+                tipodocumento = lista.Cdocu == "01" ? "F" : "B";
                 //iddocumento= lista.TeleSol_IdFactura;
                 iddocumento = lista.TeleSol_Serie.ToString() + lista.TeleSol_Numero.ToString();
 
 
                 eConsR = new TelesolucionesConstanciaRespuesta();
-             
+
                 string rutaConstanacia = tipodocumento == "F" ? "https://api2.facturaonline.pe/factura/" + iddocumento + "/constancia" : "https://api2.facturaonline.pe/boleta/" + iddocumento + "/constancia";
 
                 //Dfe.GuardarRespuestaSunatTelesoluciones(eRespuestaFactura, eConsR, flg_fe, dbconexion);
 
                 eConsR = ObtenerConstanciaDocumento(string.Empty, rutaConstanacia, token);
-               
-                Dfe.GuardarConstanciaSunatTelesoluciones(lista.Cdocu,lista.Ndocu, eConsR,dbconexion);
-               
-                
+
+                Dfe.GuardarConstanciaSunatTelesoluciones(lista.Cdocu, lista.Ndocu, eConsR, dbconexion);
+
+
             }
         }
 
+        public Cliente ObtenerEmailCliente(string ruccli, string dbEmpresa)
+        {
+            return Dfe.ObtenerEmailCliente(ruccli, dbEmpresa);
+        }
     }
 }

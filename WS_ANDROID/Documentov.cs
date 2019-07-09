@@ -207,6 +207,8 @@ namespace IAP.BE
             this.TeleSol_Serie = teleSol_Serie;
         }
 
+       
+
     }
 
     public class DocumentovDet

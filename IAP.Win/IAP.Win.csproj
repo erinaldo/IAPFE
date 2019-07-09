@@ -263,6 +263,12 @@
     <Compile Include="Creditos\frmVisorLetraEmitida.Designer.cs">
       <DependentUpon>frmVisorLetraEmitida.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mensajeria\frm_EnvioEmail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mensajeria\frm_EnvioEmail.Designer.cs">
+      <DependentUpon>frm_EnvioEmail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ocr.cs" />
     <Compile Include="Reportes\frm_dvw_comercial_ventas.cs">
       <SubType>Form</SubType>
@@ -413,6 +419,10 @@
     <EmbeddedResource Include="Creditos\frmVisorLetraEmitida.resx">
       <DependentUpon>frmVisorLetraEmitida.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Mensajeria\frm_EnvioEmail.resx">
+      <DependentUpon>frm_EnvioEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Reportes\frm_dvw_comercial_ventas.resx">
       <DependentUpon>frm_dvw_comercial_ventas.cs</DependentUpon>
     </EmbeddedResource>

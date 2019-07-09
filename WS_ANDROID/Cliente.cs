@@ -12,6 +12,7 @@ namespace IAP.BE
         public string Nombre { get; set; }
 
         public string CodCli { get; set; }
+        public string Email { get; set; }
 
         public Cliente() { }
 
