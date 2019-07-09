@@ -646,6 +646,37 @@ namespace IAP.DL
             return ls.First();
         }
 
+        public List<EnvioEmailFE> ObtenerDocumentosPendientes_EnvioFE(string dbEmpresa)
+        {
+            Database db = DatabaseFactory.CreateDatabase(dbEmpresa);
+            DbCommand cmd;
+            cmd = db.GetStoredProcCommand("USP_SEL_ObtenerDocumentosPendientes_EnvioFE");
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+
+            DataSet ds = db.ExecuteDataSet(cmd);
+            List<EnvioEmailFE> ls = new List<EnvioEmailFE>();
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                ls.Add(new EnvioEmailFE
+                {
+                    Id = Convert.ToInt32(row["Id"].ToString()),
+                    Cdocu = row["cdocu"].ToString(),
+                    Ndocu = row["ndocu"].ToString(),
+                    Correo = row["email"].ToString(),
+                    Nomcli = row["nomcli"].ToString(),
+                    Fecha = Convert.ToDateTime(row["fecha"].ToString()),
+                    Totn = Convert.ToDouble(row["totn"]),
+                    Moneda = row["mone"].ToString(),
+                    SerieFE = row["SerieFE"].ToString(),
+                    NumeroFE = row["NumeroFE"].ToString()
+                }
+                        );
+            }
+
+            return ls;
+        }
+
 
     }
 }

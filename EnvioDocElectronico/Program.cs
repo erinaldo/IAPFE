@@ -1,66 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+using System.Configuration;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Net.Mail;
-using System.Configuration;
-using System.Net;
-using IAP.BE;
 using IAP.BL;
-using DevExpress.Utils;
+using IAP.BE;
+using System.Data;
 
-namespace IAP.Win.Mensajeria
+namespace EnvioDocElectronico
 {
-    public partial class frm_EnvioEmail : Form
+    class Program
     {
-        public string _cdocu;
-        public string _ndocu;
-        public string _ruccli;
-        public string _nomcli;
-        public string _serie;
-        public string _numero;
-        public string _moneda;
-        public double _total;
-        public DateTime _fechadocumento;
-        BL.BFacturacionElectronica BLFe = new BFacturacionElectronica();
-        public frm_EnvioEmail()
+        public static IAP.BL.BFacturacionElectronica blFE = new BFacturacionElectronica();
+        static void Main(string[] args)
         {
-            InitializeComponent();
-            
-        }
+            List<EnvioEmailFE> lst = new List<EnvioEmailFE>();
+            string basedatos= ConfigurationSettings.AppSettings["BD"].ToString();
 
-        private void btnenviar_Click(object sender, EventArgs e)
-        {
             try
             {
-                if (txtto.Text.Trim() == string.Empty)
+                lst = blFE.ObtenerDocumentosPendientes_EnvioFE(basedatos);
+                foreach (EnvioEmailFE e in lst)
                 {
-                    MessageBox.Show("No ha ingresado un correo destino, por favor ingrese un correo válido", "ERP Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-                if (MessageBox.Show("Desea enviar el correo electronico?", "ERP Utilitario", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    using (WaitDialogForm waitDialog = new WaitDialogForm("Espere por favor...", "<<<<Enviando Correo>>>>"))
+                    try
                     {
-                        EnvioCorreo(_nomcli, txtto.Text, "", txtcc.Text.Trim() == string.Empty ? null : txtcc.Text.Trim(), "Envio de Documento Electrónico", _serie, _numero, _nomcli, _fechadocumento,
-                    _total, _moneda);
+                        EnvioCorreo(e.Correo, e.Correo, "", "", "Envio de Documento Electrónico", e.SerieFE, e.NumeroFE, e.Nomcli, e.Fecha,
+                    e.Totn, e.Moneda);
                     }
-
+                    catch(Exception ex)
+                    {
+                        Console.WriteLine("Error al enviar el Correo: " + ex.Message);
+                    }
+                    finally
+                    {
+                        
+                    }
+                    
                 }
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                Console.WriteLine(ex.Message);
             }
+            
             
         }
 
-        public void EnvioCorreo(string to, string toCorreo, string cc, string ccCorreo, string asunto, string cdocu, string ndocu, string cliente, DateTime fecha, double monto, string moneda)
+        public static void EnvioCorreo(string to, string toCorreo, string cc, string ccCorreo, string asunto, string cdocu, string ndocu, string cliente, DateTime fecha, double monto, string moneda)
         {
             using (SmtpClient client = new SmtpClient())
             {
@@ -83,10 +72,10 @@ namespace IAP.Win.Mensajeria
                     message.From = new MailAddress(credentialUser.ToString(), "Ventas Perfiles Metalicos J&J");
 
                     message.To.Add(new MailAddress(toCorreo, to));
-                    if (ccCorreo != null && cc != null) message.CC.Add(new MailAddress(ccCorreo, ccCorreo));
+                    //if (ccCorreo != null && cc != null) message.CC.Add(new MailAddress(ccCorreo, cc));
                     message.Subject = asunto;
 
-                    message.Body = Mensaje(cdocu, ndocu, cliente, fecha, monto, moneda,txtmensaje.Text.ToString().Trim());
+                    message.Body = Mensaje(cdocu, ndocu, cliente, fecha, monto, moneda);
                     //message.BodyEncoding = Encoding.UTF8;
                     message.IsBodyHtml = true;
                     client.Send(message);
@@ -101,7 +90,7 @@ namespace IAP.Win.Mensajeria
 
             }
         }
-        public string Mensaje(string cdocu, string ndocu, string cliente, DateTime fecha, double monto, string moneda,string mensajepersonalizado)
+        public static string Mensaje(string cdocu, string ndocu, string cliente, DateTime fecha, double monto, string moneda)
         {
             string mensaje = "";
             mensaje += "<html>";
@@ -135,7 +124,6 @@ namespace IAP.Win.Mensajeria
             mensaje += "</tr>";
             mensaje += "</tbody>";
             mensaje += "</table>";
-            mensaje += "<p>" + mensajepersonalizado +"</p>";
             mensaje += "<p>Atte.</p>";
             mensaje += "<p>Ventas - Perfiles Metalicos J&amp;J</p>";
             mensaje += "<p>&nbsp;</p>";
@@ -146,12 +134,26 @@ namespace IAP.Win.Mensajeria
             return mensaje;
         }
 
-        private void frm_EnvioEmail_Load(object sender, EventArgs e)
-        {
-            txtto.Text = ConfigurationSettings.AppSettings["SmtpCredentialUser"].ToString();
-            Cliente cli = BLFe.ObtenerEmailCliente(_ruccli, Global.vUserBaseDatos);
-            txtto.Text = cli.Email;
+        //public DataSet ListarDataSet(string query)
+        //{
 
-        }
+        //    Database db;
+        //    //db = string.Format(ConfigurationManager.ConnectionStrings[dci.Empresa.SingleOrDefault(x => x.idEmpresa == idEmpresa).baseDatos].ConnectionString, "usrGEN" + (10000 + codigoUsuario).ToString().Substring(1, 4));
+        //    //string coneccion;
+        //    //coneccion = GS.configuration.Init.GetValue(Constant.sistema, Constant.key, Constant.BD);
+        //    //coneccion = ConfigurationManager.ConnectionStrings["genesys"].ConnectionString; 
+
+        //    //db = new SqlDatabase(ConfigurationManager.ConnectionStrings["genesys"].ConnectionString);
+        //    db = new SqlDatabase(GS.configuration.Init.GetValue(Constant.sistema, Constant.key, Constant.BD));
+
+        //    DataSet ds = null;
+        //    using (DbConnection connection = db.CreateConnection())
+        //    {
+        //        connection.Open();
+        //        ds = db.ExecuteDataSet(CommandType.Text, query);
+        //        connection.Close();
+        //    }
+        //    return ds;
+        //}
     }
 }

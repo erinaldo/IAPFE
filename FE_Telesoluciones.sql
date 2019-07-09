@@ -139,6 +139,12 @@ begin
 	TeleSol_Descripcion=@TeleSol_Descripcion,
 	TeleSol_IdFactura=@TeleSol_IdFactura
 	where cdocu=@cdocu and ndocu=@ndocu
+
+	--AGREGAR AL GUARDADO DE TELESOLUCIONES PARA ENVIO DE EMAILS
+--STORE usp_SunatGuardarRespuestaSunatTelesoluciones
+    insert into tbl_EnvioDocumentosElectronicos (cdocu,ndocu,flag_enviado,fechaenvio,fecharegistro)
+	values(@cdocu,@ndocu,0,null,GETDATE())
+
 end
 
 
@@ -217,3 +223,6 @@ begin
 	TeleSol_Descripcion=@TeleSol_Descripcion
 	where cdocu=@cdocu and ndocu=@ndocu
 end
+
+
+

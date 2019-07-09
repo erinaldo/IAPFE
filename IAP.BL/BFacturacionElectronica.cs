@@ -704,5 +704,10 @@ namespace IAP.BL
         {
             return Dfe.ObtenerEmailCliente(ruccli, dbEmpresa);
         }
+
+        public List<EnvioEmailFE> ObtenerDocumentosPendientes_EnvioFE(string dbEmpresa)
+        {
+            return Dfe.ObtenerDocumentosPendientes_EnvioFE(dbEmpresa);
+        }
     }
 }
