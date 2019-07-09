@@ -874,4 +874,7 @@
   <data name="LOGO_IAP" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\logo.iap.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="SPLASH" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\splash.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

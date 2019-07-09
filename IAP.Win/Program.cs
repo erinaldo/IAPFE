@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IAP.Win.Usuario;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,8 @@ namespace IAP.Win
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FRM_MENU_MAIN());
+            //Application.Run(new FRM_MENU_MAIN());
+            Application.Run(new Splash());
             //Application.Run(new frm_facturas());
         }
     }

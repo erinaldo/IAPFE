@@ -61,6 +61,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormatoBoletaFE", "FormatoB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormatoGuiaFE", "FormatoGuiaFE\FormatoGuiaFE.csproj", "{128352A5-8E64-4B40-B092-7B3D3F13DB7B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Xml_Dashboard", "Xml_Dashboard", "{D3B6A1D5-EA22-44AF-B899-F6BA862E6601}"
+	ProjectSection(SolutionItems) = preProject
+		C:\Users\Andy\Documents\FE HANS\DASHBOARD_VENTAS_v2.xml = C:\Users\Andy\Documents\FE HANS\DASHBOARD_VENTAS_v2.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +128,7 @@ Global
 		{F7EC5960-78CA-4F2D-974D-7B33451955B0} = {8740A073-A01A-4593-A18B-40E2F3E685FF}
 		{DA42463B-516B-46CC-BF3C-46B78B67F1F1} = {E57A7977-6171-4DC9-8891-3D44B32A54D9}
 		{128352A5-8E64-4B40-B092-7B3D3F13DB7B} = {E57A7977-6171-4DC9-8891-3D44B32A54D9}
+		{D3B6A1D5-EA22-44AF-B899-F6BA862E6601} = {EEB55C35-4A03-45AD-BCAA-A4F34AADB645}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F27B3AA7-6177-489F-8D24-312BD1C599AD}

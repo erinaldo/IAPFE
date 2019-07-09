@@ -39,6 +39,7 @@
             this.comercial_FE = new DevExpress.XtraNavBar.NavBarItem();
             this.comercial_OS = new DevExpress.XtraNavBar.NavBarItem();
             this.comercial_ImportarCliente = new DevExpress.XtraNavBar.NavBarItem();
+            this.comercial_arqueoOS = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupContabilidad = new DevExpress.XtraNavBar.NavBarGroup();
             this.contabilidad_importarasiento = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupReportes = new DevExpress.XtraNavBar.NavBarGroup();
@@ -72,7 +73,6 @@
             this.tp2 = new DevExpress.XtraTab.XtraTabPage();
             this.btnguardar = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.comercial_arqueoOS = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
@@ -201,6 +201,13 @@
             this.comercial_ImportarCliente.Name = "comercial_ImportarCliente";
             this.comercial_ImportarCliente.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.comercial_ImportarCliente_LinkClicked);
             // 
+            // comercial_arqueoOS
+            // 
+            this.comercial_arqueoOS.Caption = "Arqueo OS";
+            this.comercial_arqueoOS.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("comercial_arqueoOS.ImageOptions.SmallImage")));
+            this.comercial_arqueoOS.Name = "comercial_arqueoOS";
+            this.comercial_arqueoOS.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.comercial_arqueoOS_LinkClicked);
+            // 
             // navBarGroupContabilidad
             // 
             this.navBarGroupContabilidad.Caption = "Contabilidad";
@@ -249,9 +256,9 @@
             // reportes_dw_ventas
             // 
             this.reportes_dw_ventas.Caption = "Dashboard Ventas";
-            this.reportes_dw_ventas.Enabled = false;
             this.reportes_dw_ventas.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("reportes_dw_ventas.ImageOptions.SmallImage")));
             this.reportes_dw_ventas.Name = "reportes_dw_ventas";
+            this.reportes_dw_ventas.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.reportes_dw_ventas_LinkClicked);
             // 
             // reportes_dw_articulos
             // 
@@ -464,13 +471,6 @@
             this.panelControl1.Size = new System.Drawing.Size(858, 694);
             this.panelControl1.TabIndex = 5;
             // 
-            // comercial_arqueoOS
-            // 
-            this.comercial_arqueoOS.Caption = "Arqueo OS";
-            this.comercial_arqueoOS.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem3.ImageOptions.SmallImage")));
-            this.comercial_arqueoOS.Name = "comercial_arqueoOS";
-            this.comercial_arqueoOS.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.comercial_arqueoOS_LinkClicked);
-            // 
             // FRM_MENU_MAIN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -483,6 +483,7 @@
             this.Name = "FRM_MENU_MAIN";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Administracion del Sistema - Base de Datos Actual(bdNava01)";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FRM_MENU_MAIN_FormClosed);
             this.Load += new System.EventHandler(this.FRM_MENU_MAIN_Load);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();

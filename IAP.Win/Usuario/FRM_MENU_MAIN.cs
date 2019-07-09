@@ -20,7 +20,7 @@ using IAP.BL;
 using System.Configuration;
 using System.Collections.Specialized;
 using System.IO;
-
+using IAP.Win.Reportes;
 namespace IAP.Win
 {
     
@@ -157,8 +157,11 @@ namespace IAP.Win
 
         private void navBarItem5_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
-            frm_cdn frm = new frm_cdn();
-            frm.Show();
+            
+
+            frm_cdn form = new frm_cdn();
+            string nombreForm = reportes_cdn.Caption;
+            AgregarFormularioEnTabPage(form, nombreForm);
         }
 
         private void navBarItem8_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
@@ -358,6 +361,18 @@ namespace IAP.Win
             frm_ArqueoOS form = new frm_ArqueoOS();
             string nombreForm = comercial_arqueoOS.Caption;
             AgregarFormularioEnTabPage(form, nombreForm);
+        }
+
+        private void reportes_dw_ventas_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            frm_dvw_comercial_ventas form = new frm_dvw_comercial_ventas();
+            string nombreForm = reportes_dw_ventas.Caption;
+            AgregarFormularioEnTabPage(form, nombreForm);
+        }
+
+        private void FRM_MENU_MAIN_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

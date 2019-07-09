@@ -67,6 +67,15 @@ namespace IAP.BL
                 return DL.Comercial.ObtenerXmlDashBoard(id_xml, dbconexion);
             }
         }
+        //ObtenerXmlDashBoardV2
+        public MemoryStream ObtenerXmlDashBoardV2(string id_xml, string dbconexion)
+        {
+            using (TransactionScope ts = new TransactionScope(TransactionScopeOption.Required))
+            {
+                //DProcProduccion dProcProduccion = new DProcProduccion();
+                return DL.Comercial.ObtenerXmlDashBoard(id_xml, dbconexion);
+            }
+        }
 
         public void ObtenerCabeceraFBNCND(string cdocu, string ndocu, string dbconexion, ref Factura eFac, ref List<DetalleFactura> lstDet)
         {

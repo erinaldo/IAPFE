@@ -148,6 +148,17 @@ namespace IAP.DL
             return strm;
         }
 
+        public MemoryStream ObtenerXmlDashBoardV2(string id_xml, string dbconexion)
+        {
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+
+            DbCommand cmd = db.GetStoredProcCommand("ObtenerXmlRepositorio", id_xml);
+            cmd.CommandTimeout = 10000;
+            byte[] byteArray = Encoding.UTF8.GetBytes("<?xml version=\"1.0\" encoding=\"utf-8\"?>" + db.ExecuteScalar(cmd).ToString());
+            MemoryStream strm = new MemoryStream(byteArray);
+            return strm;
+        }
+
         public void ObtenerCabeceraFBNCND(string cdocu,string ndocu,string dbconexion,ref Factura eFac,ref List<DetalleFactura> lstDet)
         {
             Database db = DatabaseFactory.CreateDatabase(dbconexion);

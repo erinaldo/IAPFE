@@ -21,6 +21,7 @@ end
 
 
 --guardado de XML
+
 DECLARE @xml AS XML
 
 
