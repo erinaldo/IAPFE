@@ -40,5 +40,13 @@ namespace IAP.Win
 
         public static string vTelemovilAK = string.Empty;
         public static string vTelemovilSK = string.Empty;
+
+        public static string vApiTELE_EmisionFactura;
+        public static string vApiTELE_EmisionBoleta;
+        public static string vApiTELE_ConstanciaFactura;
+        public static string vApiTELE_ConstanciaBoleta;
+        public static string vApiTELE_PdfFactura;
+        public static string vApiTELE_PdfBoleta;
+        public static string vApiTELE_AnularDocumento;
     }
 }

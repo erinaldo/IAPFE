@@ -475,14 +475,6 @@ end
 
 --------------------------------------------------------
 
-USE [bdNava01]
-GO
-/****** Object:  StoredProcedure [dbo].[usp_SunatTelesoluciones_EnviarFacturaDetalle]    Script Date: 28/06/2019 14:56:25 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
 ALTER procedure [dbo].[usp_SunatTelesoluciones_EnviarFacturaDetalle]
 (
 @cdocu char(2),
@@ -491,33 +483,39 @@ ALTER procedure [dbo].[usp_SunatTelesoluciones_EnviarFacturaDetalle]
 as
 begin
 declare @igv numeric(12,2)
-select @igv=((i_g_v/100)+1) from psn0100
+select @igv=((i_g_v/100)+1)  from psn0100
 select 
 case when left(df.codi,2)='07' then 'ZZ' else 'NIU' end as unidad_de_medida,
 df.cant as cantidad,
 LTRIM(df.descr) as descripcion,
 ABS(df.tota) valorVenta,
-cast((df.preu) as numeric(22,10)) as valorUnitario,
+cast((df.preu) as numeric(22,2)) as valorUnitario,
 cast((df.preu*@igv) as numeric(22,10)) as precioVentaUnitario,
 '01' as tipoPrecioVentaUnitario,
-ABS(cast((df.totn-df.tota) as numeric(22,10))) as montoAfectacionIgv,
+ABS(cast((df.totn-df.tota) as numeric(22,2))) as montoAfectacionIgv,
 '10' as tipoAfectacionIgv,
 df.codf as codigoProducto,
-cast(((df.preu*(df.dsct/100))) as numeric(14,2))  as descuento
+cast(((df.preu*(df.dsct/100))) as numeric(14,2))  as descuento,
+((@igv-1)*100 ) porcentajeImpuesto,
+--case cast(((df.preu*(df.dsct/100))) as numeric(14,2))
+-- when 0 then '1000'
+-- else '2000'
+--end codigoTributo,
+'1000' codigoTributo,
+(select top 1 obse from prd0101 where codi=df.codi)  codigoProductoSunat,
+'00' codigoMotivoDescuento,
+(dsct+dsct2)/100 factorNumericoDescuento,
+cast(((df.preu*(df.dsct/100))) as numeric(14,2)) montoDescuento,
+preu montoBaseDescuento
 
 from dtl01fac df
 where df.cdocu=@cdocu and df.ndocu=@ndocu and df.codi<>'0000-000000'
 end
 
+
 -----------------------------------------
 
-USE [bdNava01]
-GO
-/****** Object:  StoredProcedure [dbo].[usp_SunatTelesoluciones_EnviarFactura]    Script Date: 28/06/2019 14:56:48 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
 ALTER procedure [dbo].[usp_SunatTelesoluciones_EnviarFactura]
 
 (
@@ -574,7 +572,11 @@ begin
 		LEFT(ndge,3) as guiasRelacionadaSerie,
 		td.CodigoSunat as receptorTipo, --6 factura 
 		right(replace(rtrim(ltrim(c.ruccli)),'DNI',''),15) receptorNumero,
-		f.nomcli as ReceptorRazonSocial
+		f.nomcli as ReceptorRazonSocial,
+		f.fecha fechaEmision,
+		f.fven fechaVencimiento,
+		f.orde OrdenCompra
+
 	 from mst01fac f
 	 --inner join dtl01fac df on df.cdocu=f.cdocu and df.ndocu=f.ndocu
 	 inner join tbl01doc d on f.cdocu=d.cdocu
@@ -584,6 +586,8 @@ begin
 	 left join  tbl01cdv cv on cv.codcdv=f.Codcdv
 	 where f.cdocu=@cdocu and f.ndocu=@ndocu
 end
+
+
 
 ---------------------------------------------------------------------------------------
 USE [bdNava01]

@@ -298,10 +298,11 @@ namespace IAP.BL
 
         /* ENVIO DE FACTURA ELECTRONICA TELESOLUCIONES */
 
-        public void TelesolucionesAnularDocumento(Documentov eFac, List<DocumentovDet> lstdetalle, string ruta, string token, string dbconexion)
+        public void TelesolucionesAnularDocumento(Documentov eFac, List<DocumentovDet> lstdetalle, string ruta, string token, string dbconexion,string rutaAnularDocumento)
         {
             int flg_fe = 0;
-            ruta = "https://api2.facturaonline.pe/comunicacionbaja";
+            //ruta = "https://api2.facturaonline.pe/comunicacionbaja";
+            ruta = rutaAnularDocumento;
             string errorsunat = string.Empty;
             TelesolucionesBajaDocumentoRespuesta eRespuesta = new TelesolucionesBajaDocumentoRespuesta();
 
@@ -352,7 +353,8 @@ namespace IAP.BL
 
 
 
-        public void TelesolucionesEnviarFactura(List<Documentov> lst, string ruta, string token, string dbconexion, ref string telsol_serie, ref string telsol_numero)
+        public void TelesolucionesEnviarFactura(List<Documentov> lst, string ruta, string token, string dbconexion, ref string telsol_serie, ref string telsol_numero,
+            string rutaEmisionFactura,string rutaEmisionBoleta,string rutaConstanciaFactura,string rutaConstanciaBoleta)
         {
             string errorsunat = string.Empty;
             string tipodocumento;
@@ -373,53 +375,66 @@ namespace IAP.BL
 
             foreach (TelesolucionesFactura lista in lsunat)
             {
-                eRespuestaFactura = new TelesolucionesRespuestaFactura();
-
-
-                flg_fe = 0;
-                tipodocumento = lista.serie.Substring(0, 1);
-                ruta = tipodocumento == "F" ? "https://api2.facturaonline.pe/factura" : "https://api2.facturaonline.pe/boleta";
-
-                eRespuestaFactura = EnviarTelesoluciones(lista, ruta, token);
-
-                if (eRespuestaFactura.idDocumento != 0)
+                try
                 {
-                    telsol_serie = eRespuestaFactura.serie;
-                    telsol_numero = eRespuestaFactura.numero.ToString();
-                    flg_fe = 1;//eRespuesta.aceptada_por_sunat == true ? 1 : 0;
-                    TelesolucionesConstancia econs = new TelesolucionesConstancia
+                    eRespuestaFactura = new TelesolucionesRespuestaFactura();
+
+
+                    flg_fe = 0;
+                    tipodocumento = lista.serie.Substring(0, 1);
+                    //ruta = tipodocumento == "F" ? "https://api2.facturaonline.pe/factura" : "https://api2.facturaonline.pe/boleta";
+                    ruta = tipodocumento == "F" ? rutaEmisionFactura : rutaEmisionBoleta;
+
+                    eRespuestaFactura = EnviarTelesoluciones(lista, ruta, token);
+
+                    if (eRespuestaFactura.idDocumento != 0)
                     {
-                        id = eRespuestaFactura.serie + eRespuestaFactura.numero
-                    };
+                        telsol_serie = eRespuestaFactura.serie;
+                        telsol_numero = eRespuestaFactura.numero.ToString();
+                        flg_fe = 1;//eRespuesta.aceptada_por_sunat == true ? 1 : 0;
+                        TelesolucionesConstancia econs = new TelesolucionesConstancia
+                        {
+                            id = eRespuestaFactura.serie + eRespuestaFactura.numero
+                        };
 
-                    TelesolucionesConstanciaRespuesta eConsR = new TelesolucionesConstanciaRespuesta();
-                    //if (eConsR.status.ToString().Trim() == string.Empty)
-                    //{
-                    string rutaConstanacia = tipodocumento == "F" ? "https://api2.facturaonline.pe/factura/" + econs.id + "/constancia" : "https://api2.facturaonline.pe/boleta/" + econs.id + "/constancia";
+                        TelesolucionesConstanciaRespuesta eConsR = new TelesolucionesConstanciaRespuesta();
+                        //if (eConsR.status.ToString().Trim() == string.Empty)
+                        //{
+                        //string rutaConstanacia = tipodocumento == "F" ? "https://api2.facturaonline.pe/factura/" + econs.id + "/constancia" : "https://api2.facturaonline.pe/boleta/" + econs.id + "/constancia";
+                        string rutaConstanacia = tipodocumento == "F" ? rutaConstanciaFactura + econs.id + "/constancia" : rutaConstanciaBoleta + econs.id + "/constancia";
 
-                    Dfe.GuardarRespuestaSunatTelesoluciones(eRespuestaFactura, eConsR, flg_fe, dbconexion);
+                        Dfe.GuardarRespuestaSunatTelesoluciones(eRespuestaFactura, eConsR, flg_fe, dbconexion);
 
-                    eConsR = ObtenerConstanciaDocumento(string.Empty, rutaConstanacia, token);
-                    //}
+                        eConsR = ObtenerConstanciaDocumento(string.Empty, rutaConstanacia, token);
+                        //}
 
 
 
-                    //falta guardar respuesta
+                        //falta guardar respuesta
 
-                    Dfe.GuardarRespuestaSunatTelesoluciones(eRespuestaFactura, eConsR, flg_fe, dbconexion);
-                    if (!string.IsNullOrEmpty(eConsR.status))
-                    {
-                        throw new Exception(eConsR.message.ToString());
+                        Dfe.GuardarRespuestaSunatTelesoluciones(eRespuestaFactura, eConsR, flg_fe, dbconexion);
+                        if (!string.IsNullOrEmpty(eConsR.status))
+                        {
+                            throw new Exception(eConsR.message.ToString());
+                        }
+
+
                     }
+                    else
+                    {
+                        //errorsunat = "Tipo Documento: " + lista.cdocu + "\n" + "Numero Documento: " + lista.ndocu + "\n" + "Error Sunat: " + Convert.ToString(eRespuesta.errors);
+                        //throw new Exception(errorsunat);
 
-
+                    }
                 }
-                else
+                catch(Exception ex)
                 {
-                    //errorsunat = "Tipo Documento: " + lista.cdocu + "\n" + "Numero Documento: " + lista.ndocu + "\n" + "Error Sunat: " + Convert.ToString(eRespuesta.errors);
-                    throw new Exception(errorsunat);
-
+                    if(lsunat.Count()==1)
+                    {
+                        throw new Exception(ex.Message);
+                    }
                 }
+                
             }
         }
 
@@ -577,10 +592,11 @@ namespace IAP.BL
             return eRespuesta;
         }
 
-        public MemoryStream ObtenerPdfTelesoluciones(string tipodocumento, string idFactura)
+        public MemoryStream ObtenerPdfTelesoluciones(string tipodocumento, string idFactura,string rutaPdfFactura,string rutaPdfBoleta)
         {
             //idFactura = "43107";
-            string ruta = tipodocumento == "F" ? ("https://api2.facturaonline.pe/factura/" + idFactura + "/exportar") : ("https://api2.facturaonline.pe/boleta/" + idFactura + "/exportar");
+            //string ruta = tipodocumento == "F" ? ("https://api2.facturaonline.pe/factura/" + idFactura + "/exportar") : ("https://api2.facturaonline.pe/boleta/" + idFactura + "/exportar");
+            string ruta = tipodocumento == "F" ? (rutaPdfFactura + idFactura + "/exportar") : (rutaPdfBoleta + idFactura + "/exportar");
             string RespuestaPDF = TelesolucionesSendJson(ruta, string.Empty, string.Empty, "PDF");
             return PDFTelesoluciones;
         }
@@ -598,10 +614,14 @@ namespace IAP.BL
                     TimeSpan ts = DateTime.UtcNow - nx;
                     Double unixTS = ts.TotalSeconds;
 
-                    //string aK = "c73ed3b5f2085ffdd429044b4757b97917c7ea775c0d12eae388e6e9bf19bb17";
-                    //string Ky = "7cb2040d868a8ed6d044fef4d6d37bcded6fd47425bab1b1973e6e66e440f3c2";
-                    string aK = "d28a27c097baedcd36c9d83e4f9bb88002db4b1bfc1433da08aedd3c0415be36";
-                    string Ky = "6e02181887cc0a63991ea0812e6ff0bfe76df3257ef22ff05b7795bd6b97c6b4";
+                    //CREDENCIALES QA
+                    string aK = "c73ed3b5f2085ffdd429044b4757b97917c7ea775c0d12eae388e6e9bf19bb17";
+                    string Ky = "7cb2040d868a8ed6d044fef4d6d37bcded6fd47425bab1b1973e6e66e440f3c2";
+                    
+                    //CREDENCIALES PRODUCCION
+                    //string aK = "d28a27c097baedcd36c9d83e4f9bb88002db4b1bfc1433da08aedd3c0415be36";
+                    //string Ky = "6e02181887cc0a63991ea0812e6ff0bfe76df3257ef22ff05b7795bd6b97c6b4";
+
                     string ToHash = string.Join("|", aK, unixTS);
                     string Hash = xHashString(ToHash, Ky);
 
@@ -670,7 +690,7 @@ namespace IAP.BL
         }
 
 
-        public void TelesolucionesObtenerConstancia(List<Documentov> lst, string ruta, string token, string dbconexion)
+        public void TelesolucionesObtenerConstancia(List<Documentov> lst, string ruta, string token, string dbconexion,string rutaConstanciaFactura,string rutaConstanciaBoleta)
         {
             string errorsunat = string.Empty;
             string tipodocumento;
@@ -688,7 +708,8 @@ namespace IAP.BL
 
                 eConsR = new TelesolucionesConstanciaRespuesta();
 
-                string rutaConstanacia = tipodocumento == "F" ? "https://api2.facturaonline.pe/factura/" + iddocumento + "/constancia" : "https://api2.facturaonline.pe/boleta/" + iddocumento + "/constancia";
+                //string rutaConstanacia = tipodocumento == "F" ? "https://api2.facturaonline.pe/factura/" + iddocumento + "/constancia" : "https://api2.facturaonline.pe/boleta/" + iddocumento + "/constancia";
+                string rutaConstanacia = tipodocumento == "F" ? rutaConstanciaFactura + iddocumento + "/constancia" : rutaConstanciaBoleta + iddocumento + "/constancia";
 
                 //Dfe.GuardarRespuestaSunatTelesoluciones(eRespuestaFactura, eConsR, flg_fe, dbconexion);
 

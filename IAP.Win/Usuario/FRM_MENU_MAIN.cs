@@ -105,6 +105,14 @@ namespace IAP.Win
                 Global.vTelemovilAK= ConfigurationManager.AppSettings.Get("TELEMOVILAK");
                 Global.vTelemovilSK= ConfigurationManager.AppSettings.Get("TELEMOVILSK");
 
+                Global.vApiTELE_EmisionFactura= ConfigurationManager.AppSettings.Get("TELE_EmisionFactura");
+                Global.vApiTELE_EmisionBoleta= ConfigurationManager.AppSettings.Get("TELE_EmisionBoleta");
+                Global.vApiTELE_ConstanciaFactura= ConfigurationManager.AppSettings.Get("TELE_ConstanciaFactura");
+                Global.vApiTELE_ConstanciaBoleta= ConfigurationManager.AppSettings.Get("TELE_ConstanciaBoleta");
+                Global.vApiTELE_PdfFactura= ConfigurationManager.AppSettings.Get("TELE_PdfFactura");
+                Global.vApiTELE_PdfBoleta= ConfigurationManager.AppSettings.Get("TELE_PdfBoleta");
+                Global.vApiTELE_AnularDocumento= ConfigurationManager.AppSettings.Get("TELE_AnularDocumento");
+
                 if (Empresa== Global.vUserServer)
                 {
                     creditos_letrasemitidas.Enabled = true;

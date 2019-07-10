@@ -333,7 +333,12 @@ namespace IAP.Win
                         
                         try
                         {
-                            Bfe.TelesolucionesEnviarFactura(lst, string.Empty, Global.vToken, Global.vUserBaseDatos, ref telsol_serie, ref telsol_numero);
+                            using (WaitDialogForm waitDialog = new WaitDialogForm("Espere por favor...", "<<<<Enviando Documentos>>>>"))
+                            {
+                                Bfe.TelesolucionesEnviarFactura(lst, string.Empty, Global.vToken, Global.vUserBaseDatos, ref telsol_serie, ref telsol_numero, Global.vApiTELE_EmisionFactura, Global.vApiTELE_EmisionBoleta,
+                                Global.vApiTELE_ConstanciaFactura, Global.vApiTELE_ConstanciaBoleta);
+                            }
+                                
                             //if (telsol_serie != "")
                             //{
                             //    MostrarPDF_Telesoluciones(telsol_serie, telsol_numero);
@@ -378,7 +383,7 @@ namespace IAP.Win
                 List<Documentov> lst = lstcabcecera.Where(x => x.FlgCheck == true && x.Flg_Fe == 1 && x.TeleSol_IdFactura.Trim() != string.Empty && x.TeleSol_IdComunicacionBaja.Trim() == string.Empty && x.TeleSol_IdConstancia==string.Empty).Select(x => new Documentov(x.Cdocu, x.Ndocu, x.Flag, x.Flg_Fe, x.TeleSol_IdFactura,x.TeleSol_Serie,x.TeleSol_Numero)).OrderBy(x => x.Cdocu + x.Ndocu).ToList();
 
 
-                Bfe.TelesolucionesObtenerConstancia(lst, string.Empty, Global.vToken, Global.vUserBaseDatos);
+                Bfe.TelesolucionesObtenerConstancia(lst, string.Empty, Global.vToken, Global.vUserBaseDatos,Global.vApiTELE_ConstanciaFactura,Global.vApiTELE_ConstanciaBoleta);
 
 
                 MessageBox.Show("Se actualizo correctamente", "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -409,7 +414,7 @@ namespace IAP.Win
                     {
                         List<DocumentovDet> lstdetalle = new List<DocumentovDet>();
                         lstdetalle = Bfe.ObtenerDocumentosDetalleFBNC(lst.Select(x => x.Cdocu).First(), lst.Select(x => x.Ndocu).First(), Global.vUserBaseDatos);
-                        Bfe.TelesolucionesAnularDocumento(lst.First(), lstdetalle, Global.vDatosProveedor.Ruta, Global.vDatosProveedor.Token, Global.vUserBaseDatos);
+                        Bfe.TelesolucionesAnularDocumento(lst.First(), lstdetalle, Global.vDatosProveedor.Ruta, Global.vDatosProveedor.Token, Global.vUserBaseDatos,Global.vApiTELE_AnularDocumento);
                     }
 
                     
@@ -807,7 +812,7 @@ namespace IAP.Win
                 MessageBox.Show("El documento no ha sido registrado en sunat.", "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            System.IO.MemoryStream ms = Bfe.ObtenerPdfTelesoluciones(tipodocumento.Substring(0, 1).Trim(), idFactura);
+            System.IO.MemoryStream ms = Bfe.ObtenerPdfTelesoluciones(tipodocumento.Substring(0, 1).Trim(), idFactura,Global.vApiTELE_PdfFactura,Global.vApiTELE_PdfBoleta);
             frm_FacturasVisorPdf form = new frm_FacturasVisorPdf(string.Empty, ms, "TELESOLUCIONES");
             form.ShowDialog();
         }

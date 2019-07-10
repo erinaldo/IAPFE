@@ -49,6 +49,7 @@
             this.mnuconsultardoc = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuverjson = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuemail = new System.Windows.Forms.ToolStripMenuItem();
             this.gvwcabecera = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.chkanulados = new DevExpress.XtraEditors.CheckEdit();
@@ -66,7 +67,6 @@
             this.dtfechainicial = new DevExpress.XtraEditors.DateEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
-            this.mnuemail = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.tp1.SuspendLayout();
@@ -253,6 +253,13 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(201, 6);
             // 
+            // mnuemail
+            // 
+            this.mnuemail.Image = global::IAP.Win.Properties.Resources.correo;
+            this.mnuemail.Name = "mnuemail";
+            this.mnuemail.Size = new System.Drawing.Size(204, 22);
+            this.mnuemail.Text = "Enviar Email";
+            // 
             // gvwcabecera
             // 
             this.gvwcabecera.GridControl = this.gccabecera;
@@ -411,13 +418,6 @@
             // defaultLookAndFeel1
             // 
             this.defaultLookAndFeel1.LookAndFeel.SkinName = "Blue";
-            // 
-            // mnuemail
-            // 
-            this.mnuemail.Image = global::IAP.Win.Properties.Resources.correo;
-            this.mnuemail.Name = "mnuemail";
-            this.mnuemail.Size = new System.Drawing.Size(204, 22);
-            this.mnuemail.Text = "Enviar Email";
             // 
             // frm_facturas
             // 
