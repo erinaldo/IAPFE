@@ -140,7 +140,7 @@ namespace IAP.Win
                     using (WaitDialogForm waitDialog = new WaitDialogForm("Cargando", "Espere por favor..."))
                     {
                         //dvwcxc.LoadDashboard(BL.Comercial.ObtenerXmlDashBoard("DocumentosCxC", Global.vUserBaseDatos));
-                        xtraTabControl1.TabPages[0].PageVisible = false;
+                        //xtraTabControl1.TabPages[0].PageVisible = true;
                         this.WindowState = FormWindowState.Maximized;
                         //geckoWebBrowser1.Navigate("www.google.com");
                     }
