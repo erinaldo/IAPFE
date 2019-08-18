@@ -50,8 +50,11 @@
             this.menu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.Marcatodo = new System.Windows.Forms.ToolStripMenuItem();
             this.Limpiatodo = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.EnviarListaAndroid = new System.Windows.Forms.ToolStripMenuItem();
             this.gvwlista = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.btnexportar = new DevExpress.XtraEditors.SimpleButton();
             this.label9 = new System.Windows.Forms.Label();
             this.btnincrementomasivo = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
@@ -61,7 +64,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtfechatc = new DevExpress.XtraEditors.TextEdit();
             this.label6 = new System.Windows.Forms.Label();
-            this.btnexportar = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtcodf.Properties)).BeginInit();
@@ -293,22 +295,38 @@
             // 
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Marcatodo,
-            this.Limpiatodo});
+            this.Limpiatodo,
+            this.toolStripSeparator1,
+            this.EnviarListaAndroid});
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(142, 48);
+            this.menu.Size = new System.Drawing.Size(181, 98);
             this.menu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menu_ItemClicked_1);
             // 
             // Marcatodo
             // 
+            this.Marcatodo.Image = global::IAP.Win.Properties.Resources.Apply_32x32;
             this.Marcatodo.Name = "Marcatodo";
-            this.Marcatodo.Size = new System.Drawing.Size(141, 22);
+            this.Marcatodo.Size = new System.Drawing.Size(180, 22);
             this.Marcatodo.Text = "Marcar Todo";
             // 
             // Limpiatodo
             // 
+            this.Limpiatodo.Image = global::IAP.Win.Properties.Resources.ClearFilter_32x32;
             this.Limpiatodo.Name = "Limpiatodo";
-            this.Limpiatodo.Size = new System.Drawing.Size(141, 22);
+            this.Limpiatodo.Size = new System.Drawing.Size(180, 22);
             this.Limpiatodo.Text = "Limpiar";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // EnviarListaAndroid
+            // 
+            this.EnviarListaAndroid.Image = global::IAP.Win.Properties.Resources.android;
+            this.EnviarListaAndroid.Name = "EnviarListaAndroid";
+            this.EnviarListaAndroid.Size = new System.Drawing.Size(180, 22);
+            this.EnviarListaAndroid.Text = "Exportar Lista a APP";
             // 
             // gvwlista
             // 
@@ -336,6 +354,17 @@
             this.panelControl3.Name = "panelControl3";
             this.panelControl3.Size = new System.Drawing.Size(275, 63);
             this.panelControl3.TabIndex = 2;
+            // 
+            // btnexportar
+            // 
+            this.btnexportar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnexportar.ImageOptions.Image")));
+            this.btnexportar.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            this.btnexportar.Location = new System.Drawing.Point(5, 11);
+            this.btnexportar.Name = "btnexportar";
+            this.btnexportar.Size = new System.Drawing.Size(36, 36);
+            this.btnexportar.TabIndex = 17;
+            this.btnexportar.ToolTip = "Guardar";
+            this.btnexportar.Click += new System.EventHandler(this.btnexportar_Click);
             // 
             // label9
             // 
@@ -440,17 +469,6 @@
             this.label6.TabIndex = 17;
             this.label6.Text = "Fecha del Tipo de Cambio";
             // 
-            // btnexportar
-            // 
-            this.btnexportar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.btnexportar.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.btnexportar.Location = new System.Drawing.Point(5, 11);
-            this.btnexportar.Name = "btnexportar";
-            this.btnexportar.Size = new System.Drawing.Size(36, 36);
-            this.btnexportar.TabIndex = 17;
-            this.btnexportar.ToolTip = "Guardar";
-            this.btnexportar.Click += new System.EventHandler(this.btnexportar_Click);
-            // 
             // ListaDePrecios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -525,5 +543,7 @@
         private System.Windows.Forms.CheckBox chkstockmayorcero;
         private System.Windows.Forms.Label label9;
         private DevExpress.XtraEditors.SimpleButton btnexportar;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem EnviarListaAndroid;
     }
 }

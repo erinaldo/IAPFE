@@ -183,14 +183,14 @@
             // comercial_FE
             // 
             this.comercial_FE.Caption = "Facturacion Electronica";
-            this.comercial_FE.ImageOptions.SmallImage = global::IAP.Win.Properties.Resources.Sunat;
+            this.comercial_FE.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("comercial_FE.ImageOptions.SmallImage")));
             this.comercial_FE.Name = "comercial_FE";
             this.comercial_FE.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.comercial_FE_LinkClicked);
             // 
             // comercial_OS
             // 
             this.comercial_OS.Caption = "Ordenes Servicio";
-            this.comercial_OS.ImageOptions.SmallImage = global::IAP.Win.Properties.Resources.BODepartment_32x32;
+            this.comercial_OS.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("comercial_OS.ImageOptions.SmallImage")));
             this.comercial_OS.Name = "comercial_OS";
             this.comercial_OS.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.comercial_OS_LinkClicked);
             // 
@@ -434,6 +434,7 @@
             // 
             this.tp1.Controls.Add(this.dvwcxc);
             this.tp1.Name = "tp1";
+            this.tp1.PageVisible = false;
             this.tp1.Size = new System.Drawing.Size(849, 664);
             this.tp1.Text = "Documentos x Cobrar";
             // 

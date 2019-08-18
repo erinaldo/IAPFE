@@ -107,6 +107,12 @@ namespace IAP.BL
             return cls.ObtenerOrdenesServicio(fechai, fechaf, ndocu, nomcli, dbconexion);
         }
 
+        public List<OrdenServicioLinea> ObtenerOrdenServicioLinea(string ndocu, string dbconexion)
+        {
+            DL.Comercial cls = new DL.Comercial();
+            return cls.ObtenerOrdenServicioLinea(ndocu, dbconexion);
+        }
+
         public List<Cliente> ObtenerClientesOS(string dbconexion)
         {
             DL.Comercial cls = new DL.Comercial();
@@ -156,5 +162,90 @@ namespace IAP.BL
                 ts.Complete();
             }
         }
+
+        public void Actualizar_FlagEstadoPedidos(Int32 IdPedido,string ruc, string dbconexion, string dbconexionAndroid)
+        {
+            DL.Comercial cls = new DL.Comercial();
+           
+            
+
+            try
+            {
+                using (TransactionScope ts = new TransactionScope(TransactionScopeOption.Required))
+                {
+                    cls.ActualizarFLagPedidosAndroid(IdPedido, ruc, dbconexion, dbconexionAndroid);
+                    ts.Complete();
+                }
+
+                using (TransactionScope ts = new TransactionScope(TransactionScopeOption.Required))
+                {
+                    cls.ActualizarFLagPedidos(IdPedido, ruc, dbconexion, dbconexionAndroid);
+                    ts.Complete();
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public void Actualizar_FlagEstadoPedidosManual(Int32 IdPedido, string ruc,Int32 flag_Estado, string dbconexion, string dbconexionAndroid)
+        {
+            DL.Comercial cls = new DL.Comercial();
+
+
+
+            try
+            {
+                using (TransactionScope ts = new TransactionScope(TransactionScopeOption.Required))
+                {
+                    cls.ActualizarFLagPedidosAndroidManual(IdPedido, ruc, flag_Estado, dbconexion, dbconexionAndroid);
+                    ts.Complete();
+                }
+
+                using (TransactionScope ts = new TransactionScope(TransactionScopeOption.Required))
+                {
+                    cls.ActualizarFLagPedidosManual(IdPedido, ruc, flag_Estado, dbconexion, dbconexionAndroid);
+                    ts.Complete();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public void DescargarRegistrarPedidosAndroid(DateTime fechai, DateTime fechaf, string dbconexion, string dbconexionAndroid)
+        {
+            DL.Comercial cls = new DL.Comercial();
+            List<OrdenServicioDocumento> lstOSDoc = new List<OrdenServicioDocumento>();
+            List<OrdenServicio> lstOS = new List<OrdenServicio>();
+            using (TransactionScope ts = new TransactionScope(TransactionScopeOption.Required))
+            {
+                lstOSDoc=cls.DescargarPedidosAndroid(fechai, fechaf, dbconexion, dbconexionAndroid);
+                ts.Complete();
+            }
+
+            try
+            {
+                using (TransactionScope ts = new TransactionScope(TransactionScopeOption.Required))
+                {
+                    lstOS = cls.RegistrarOrdenesServicioDescargadosAndroid_ERP(lstOSDoc, dbconexion, dbconexionAndroid);
+                    ts.Complete();
+                }
+            }
+            catch
+            {
+
+            }
+            
+            
+            using (TransactionScope ts = new TransactionScope(TransactionScopeOption.Required))
+            {
+                cls.RegistrarFLagPedidosAndroid(lstOS, dbconexion, dbconexionAndroid);
+                ts.Complete();
+            }
+
+        }
+
+
     }
 }

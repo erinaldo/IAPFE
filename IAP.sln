@@ -73,6 +73,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProyectosConsola", "Proyect
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnvioDocElectronico", "EnvioDocElectronico\EnvioDocElectronico.csproj", "{07139A70-58CB-46B4-825B-2D24456155B0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Android", "Android", "{77AB6385-B749-407E-A9AC-CBD606B2D4E9}"
+	ProjectSection(SolutionItems) = preProject
+		Carga - Lista de Precios.sql = Carga - Lista de Precios.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -142,6 +147,7 @@ Global
 		{D3B6A1D5-EA22-44AF-B899-F6BA862E6601} = {EEB55C35-4A03-45AD-BCAA-A4F34AADB645}
 		{EB820020-48FF-4617-95D4-8FD420D7B878} = {E57A7977-6171-4DC9-8891-3D44B32A54D9}
 		{07139A70-58CB-46B4-825B-2D24456155B0} = {EB820020-48FF-4617-95D4-8FD420D7B878}
+		{77AB6385-B749-407E-A9AC-CBD606B2D4E9} = {EEB55C35-4A03-45AD-BCAA-A4F34AADB645}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F27B3AA7-6177-489F-8D24-312BD1C599AD}

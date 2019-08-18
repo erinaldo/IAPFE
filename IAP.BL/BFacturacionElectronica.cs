@@ -210,6 +210,28 @@ namespace IAP.BL
             return archivo;
 
         }
+        public string VerArchivoJsonTelesoluciones(List<Documentov> lst, string dbconexion)
+        {
+            string errorsunat = string.Empty;
+            SunatDocumentoFBN_V2 Esunat = new SunatDocumentoFBN_V2();
+            SunatRespuestaFBN eRespuesta = new SunatRespuestaFBN();
+            string archivo = string.Empty;
+
+            foreach (Documentov e in lst) //por cada documento
+            {
+                //falta desarrollar
+                //Esunat = Dfe.SunatEnviarDocumentosTelesolucionesFactura(e, dbconexion);
+
+
+                eRespuesta = new SunatRespuestaFBN();
+
+
+                archivo = GenerarArchivoJson(Esunat);
+                break;
+            }
+            return archivo;
+
+        }
 
         public void GuardarRespuestaSunat_Consulta(string cdocu, string ndocu, SunatRespuestaFBN res, string dbconexion)
         {
@@ -615,12 +637,12 @@ namespace IAP.BL
                     Double unixTS = ts.TotalSeconds;
 
                     //CREDENCIALES QA
-                    string aK = "c73ed3b5f2085ffdd429044b4757b97917c7ea775c0d12eae388e6e9bf19bb17";
-                    string Ky = "7cb2040d868a8ed6d044fef4d6d37bcded6fd47425bab1b1973e6e66e440f3c2";
-                    
+                    //string aK = "c73ed3b5f2085ffdd429044b4757b97917c7ea775c0d12eae388e6e9bf19bb17";
+                    //string Ky = "7cb2040d868a8ed6d044fef4d6d37bcded6fd47425bab1b1973e6e66e440f3c2";
+
                     //CREDENCIALES PRODUCCION
-                    //string aK = "d28a27c097baedcd36c9d83e4f9bb88002db4b1bfc1433da08aedd3c0415be36";
-                    //string Ky = "6e02181887cc0a63991ea0812e6ff0bfe76df3257ef22ff05b7795bd6b97c6b4";
+                    string aK = "d28a27c097baedcd36c9d83e4f9bb88002db4b1bfc1433da08aedd3c0415be36";
+                    string Ky = "6e02181887cc0a63991ea0812e6ff0bfe76df3257ef22ff05b7795bd6b97c6b4";
 
                     string ToHash = string.Join("|", aK, unixTS);
                     string Hash = xHashString(ToHash, Ky);

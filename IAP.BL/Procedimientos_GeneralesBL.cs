@@ -57,7 +57,47 @@ namespace IAP.BL
             }
         }
 
-
+        public string ObtenerDataApiRest(string ruta, object entidad, string token,string TipoPeticion)
+        {
+            try
+            {
+                string json = JsonConvert.SerializeObject(entidad, Formatting.Indented);
+                byte[] bytes = Encoding.Default.GetBytes(json);
+                string json_en_utf_8 = Encoding.UTF8.GetString(bytes);
+                using (var client = new WebClient())
+                {
+                    /// ESPECIFICAMOS EL TIPO DE DOCUMENTO EN EL ENCABEZADO
+                    
+                    /// ASI COMO EL TOKEN UNICO
+                    //client.Headers[HttpRequestHeader.Authorization] = "Token token=" + token;
+                    /// OBTENEMOS LA RESPUESTA
+                    string respuesta;
+                    if (TipoPeticion=="JSON")
+                    {
+                        client.Headers[HttpRequestHeader.ContentType] = "application/json; charset=utf-8";
+                        respuesta = client.UploadString(ruta, "POST", json_en_utf_8);
+                    }
+                   else //(TipoPeticion=="FORMDATA")
+                    {
+                        client.Headers[HttpRequestHeader.ContentType] = "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW";
+                        //client.
+                        respuesta = client.UploadString(ruta, "POST", "ruc=10461199599");
+                    }
+                    
+                    /// Y LA 'RETORNAMOS'
+                    return respuesta;
+                }
+            }
+            catch (WebException ex)
+            {
+                /// EN CASO EXISTA ALGUN ERROR, LO TOMAMOS
+                //string respuesta = ex.Message.ToString();// .Response.GetResponseStream()).ReadToEnd();
+                /// Y LO 'RETORNAMOS'
+                //return respuesta;
+                var respuesta = new StreamReader(ex.Response.GetResponseStream()).ReadToEnd();
+                throw new Exception(respuesta.ToString());
+            }
+        }
     }
 
     public class NumLetra

@@ -244,6 +244,11 @@ namespace IAP.Win
                             gclista.RefreshDataSource();
                         }
                         break;
+                    case "EnviarListaAndroid":
+                        {
+                            MessageBox.Show("La Lista de Precios esta automatizada para que se envia a la nube cada 15 min","Utilitario", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                        }
+                        break;
                 }
 
             }
@@ -285,6 +290,7 @@ namespace IAP.Win
                 e.Appearance.BackColor = Color.Transparent;
                 e.Appearance.BackColor2 = Color.Transparent;
             }
+            e.Appearance.ForeColor = Color.MidnightBlue;
         }
 
         private void gvwlista_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)

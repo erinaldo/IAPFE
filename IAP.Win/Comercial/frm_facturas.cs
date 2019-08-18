@@ -504,7 +504,16 @@ namespace IAP.Win
             }
             else
             {
-                string archivo = Bfe.VerArchivoJson(lst,Global.vUserBaseDatos);
+                string archivo;
+                if (Global.vDatosProveedor.IdEmpresa == "1")
+                {
+                    archivo= Bfe.VerArchivoJson(lst, Global.vUserBaseDatos);
+                }
+                else
+                {
+                    archivo = "";
+                }
+                 
                 frm_VisorArchivos frm = new frm_VisorArchivos(archivo);
                 frm.ShowDialog();
             }

@@ -245,6 +245,12 @@
     <Compile Include="Comercial\frm_PasswordVentas.Designer.cs">
       <DependentUpon>frm_PasswordVentas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Comercial\frm_PedidosAndroid.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comercial\frm_PedidosAndroid.Designer.cs">
+      <DependentUpon>frm_PedidosAndroid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Comercial\frm_VisorArchivos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -409,6 +415,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Comercial\frm_PasswordVentas.resx">
       <DependentUpon>frm_PasswordVentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comercial\frm_PedidosAndroid.resx">
+      <DependentUpon>frm_PedidosAndroid.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comercial\frm_VisorArchivos.resx">
       <DependentUpon>frm_VisorArchivos.cs</DependentUpon>
@@ -824,12 +833,12 @@
   <ItemGroup>
     <PublishFile Include="ru\DevExpress.XtraPdfViewer.v18.1.resources">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
   </ItemGroup>

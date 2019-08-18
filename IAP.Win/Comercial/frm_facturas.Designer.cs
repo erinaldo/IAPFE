@@ -172,7 +172,7 @@
             this.toolStripSeparator3,
             this.mnuemail});
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(205, 264);
+            this.menu.Size = new System.Drawing.Size(205, 242);
             this.menu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menu_ItemClicked);
             // 
             // mnumarcartodo

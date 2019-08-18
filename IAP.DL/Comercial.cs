@@ -143,7 +143,8 @@ namespace IAP.DL
             
             DbCommand cmd = db.GetStoredProcCommand("ObtenerXmlRepositorio", id_xml);
             cmd.CommandTimeout = 10000;
-            byte[] byteArray = Encoding.UTF8.GetBytes("<?xml version=\"1.0\" encoding=\"utf-8\"?>" + db.ExecuteScalar(cmd).ToString());
+            string xml = db.ExecuteScalar(cmd).ToString();
+            byte[] byteArray = Encoding.UTF8.GetBytes("<?xml version=\"1.0\" encoding=\"utf-8\"?>" + xml);
             MemoryStream strm = new MemoryStream(byteArray);
             return strm;
         }
@@ -318,7 +319,7 @@ namespace IAP.DL
             List<OrdenServicio> lst = new List<OrdenServicio>();
             Database db = DatabaseFactory.CreateDatabase(dbconexion);
             DbCommand cmd;
-            cmd = db.GetStoredProcCommand("USP_SEL_ORDENSERVICIO",fechai,fechaf,ndocu,nomcli);
+            cmd = db.GetStoredProcCommand("USP_SEL_ORDENSERVICIO",fechai,fechaf,ndocu,nomcli,"0");
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandTimeout = 0;
 
@@ -339,7 +340,41 @@ namespace IAP.DL
                     toti= Convert.ToDouble(row["toti"]),
                     totn= Convert.ToDouble(row["totn"]),
                     flag=row["flag"].ToString(),
-                    flagnombre=row["flagnombre"].ToString()
+                    flagnombre=row["flagnombre"].ToString(),
+                    IdPedidoAndroid= Convert.ToInt32(row["IdPedidoAndroid"]),
+                    DirEnt= row["DirEnt"].ToString().Trim(),
+                    CodUsuarioRegistro = row["CodUsuarioRegistro"].ToString().Trim(),
+                    flag_Estadopedido= Convert.ToInt32(row["flag_Estadopedido"]),
+                    EstadoPedido= row["EstadoPedido"].ToString()
+                });
+            }
+            return lst;
+        }
+        public List<OrdenServicioLinea> ObtenerOrdenServicioLinea(string ndocu,string dbconexion)
+        {
+            List<OrdenServicioLinea> lst = new List<OrdenServicioLinea>();
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            DbCommand cmd;
+            cmd = db.GetStoredProcCommand("USP_SEL_ORDENSERVICIOLINEA",ndocu);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+
+            DataSet ds = db.ExecuteDataSet(cmd);
+
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                lst.Add(new OrdenServicioLinea
+                {
+                    
+                    codf = row["codf"].ToString(),
+                    codi = row["codi"].ToString(),
+                    descr = row["descr"].ToString().Trim(),
+                    marc = row["marc"].ToString().Trim(),
+                    umed = row["umed"].ToString().Trim(),
+                    cant = Convert.ToDouble(row["cant"]),
+                    preu = Convert.ToDouble(row["preu"]),
+                    tota = Convert.ToDouble(row["tota"]),
+                    totn = Convert.ToDouble(row["totn"])
                 });
             }
             return lst;
@@ -438,6 +473,219 @@ namespace IAP.DL
             Database db = DatabaseFactory.CreateDatabase(dbconexion);
             db.ExecuteNonQuery("USP_UDP_GUARDAR_CANCELACION_OS", cdocu,ndocu,monto);
             //USP_UDP_GUARDAR_CANCELACION_OS
+        }
+
+
+
+
+        /* METODOS PARA CONEXION A HOSTING ANDROID */
+
+        public List<OrdenServicio> RegistrarOrdenesServicioDescargadosAndroid_ERP(List<OrdenServicioDocumento> lst_OSDocumento ,string dbconexion, string dbconexionAndroid)
+        {
+            Database db = DatabaseFactory.CreateDatabase(dbconexionAndroid);
+            DbCommand cmd,cmd3,cmd4;
+            List<OrdenServicio> lst = new List<OrdenServicio>();
+            foreach (OrdenServicioDocumento doc in lst_OSDocumento)
+            {
+                try
+                {
+                    
+                    db = DatabaseFactory.CreateDatabase(dbconexion);
+                    cmd = db.GetStoredProcCommand("USP_INS_RegistrarOS_Android_ERP", doc.Cabecera.fecha, doc.Cabecera.codcli, doc.Cabecera.nomcli, doc.Cabecera.ruccli, doc.Cabecera.codcdv, doc.Cabecera.tcam, doc.Cabecera.tota,
+                        doc.Cabecera.toti, doc.Cabecera.totn, doc.Cabecera.IdPedidoAndroid, doc.Cabecera.DirEnt, doc.Cabecera.CodUsuarioRegistro);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 0;
+
+                    doc.Cabecera.ndocu = db.ExecuteScalar(cmd).ToString();
+
+                    foreach (OrdenServicioLinea eLinea in doc.Detalle)
+                    {
+                        db = DatabaseFactory.CreateDatabase(dbconexion);
+                        cmd3 = db.GetStoredProcCommand("USP_INS_RegistrarOS_Linea_Android_ERP", doc.Cabecera.ndocu, eLinea.codf, eLinea.codi, eLinea.cant, eLinea.preu, eLinea.tota, eLinea.totn);
+                        cmd3.CommandType = CommandType.StoredProcedure;
+                        cmd3.CommandTimeout = 0;
+                        db.ExecuteNonQuery(cmd3);
+                    }
+                    
+                    lst.Add(new OrdenServicio
+                    {
+                        IdPedidoAndroid=doc.Cabecera.IdPedidoAndroid,
+                        flag="1",
+                        ndocu= doc.Cabecera.ndocu
+                    });
+                }
+                catch(Exception ex)
+                {
+                    lst.Add(new OrdenServicio
+                    {
+                        IdPedidoAndroid = doc.Cabecera.IdPedidoAndroid,
+                        flag = "0"
+                    });
+                    //USP_Del_EliminarOS_Android_ERP
+                    db = DatabaseFactory.CreateDatabase(dbconexion);
+                    cmd4 = db.GetStoredProcCommand("USP_Del_EliminarOS_Android_ERP", doc.Cabecera.ndocu);
+                    cmd4.CommandType = CommandType.StoredProcedure;
+                    cmd4.CommandTimeout = 0;
+                    db.ExecuteNonQuery(cmd4);
+                }
+
+            }
+            return lst;
+        }
+
+        public void RegistrarFLagPedidosAndroid(List<OrdenServicio> lstOS, string dbconexion, string dbconexionAndroid)
+        {
+            Database db = DatabaseFactory.CreateDatabase(dbconexionAndroid);
+            DbCommand cmd;
+
+            foreach(OrdenServicio eCab in lstOS)
+            {
+                try
+                {
+                    cmd = db.GetStoredProcCommand("usp_udp_ActualizarFlagPedidos", eCab.IdPedidoAndroid, eCab.flag, "");
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 0;
+                    db.ExecuteNonQuery(cmd);
+                   
+                }
+                catch(Exception ex)
+                {
+
+                }
+                
+            }
+            
+        }
+
+        public void ActualizarFLagPedidosAndroid(Int32 IdPedido,string ruc, string dbconexion, string dbconexionAndroid)
+        {
+            Database db = DatabaseFactory.CreateDatabase(dbconexionAndroid);
+            DbCommand cmd;
+            
+            cmd = db.GetStoredProcCommand("usp_udp_ActualizarFlagEstadosPedido",IdPedido,ruc);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+            db.ExecuteNonQuery(cmd);
+        }
+        public void ActualizarFLagPedidosAndroidManual(Int32 IdPedido, string ruc,Int32 flag_estado, string dbconexion, string dbconexionAndroid)
+        {
+            Database db = DatabaseFactory.CreateDatabase(dbconexionAndroid);
+            DbCommand cmd;
+
+            cmd = db.GetStoredProcCommand("usp_udp_ActualizarFlagEstadosPedidoManual", IdPedido, flag_estado, ruc);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+            db.ExecuteNonQuery(cmd);
+        }
+
+        public void ActualizarFLagPedidos(Int32 IdPedido, string ruc, string dbconexion, string dbconexionAndroid)
+        {
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            DbCommand cmd;
+
+            cmd = db.GetStoredProcCommand("usp_udp_ActualizarFlagEstadosPedido", IdPedido, ruc);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+            db.ExecuteNonQuery(cmd);
+        }
+        public void ActualizarFLagPedidosManual(Int32 IdPedido, string ruc, Int32 flag_estado, string dbconexion, string dbconexionAndroid)
+        {
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            DbCommand cmd;
+
+            cmd = db.GetStoredProcCommand("usp_udp_ActualizarFlagEstadosPedidoManual", IdPedido, flag_estado, ruc);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+            db.ExecuteNonQuery(cmd);
+        }
+
+        public List<OrdenServicioDocumento> DescargarPedidosAndroid(DateTime fechai, DateTime fechaf, string dbconexion,string dbconexionAndroid)
+        {
+            List<OrdenServicioDocumento> lst_OSDocumento = new List<OrdenServicioDocumento>();
+            //List<OrdenServicio> lstOS_Cab = new List<OrdenServicio>();
+            OrdenServicio eCab = new OrdenServicio();
+            List<OrdenServicioLinea> lstOS_Det = new List<OrdenServicioLinea>();
+            Database db = DatabaseFactory.CreateDatabase(dbconexionAndroid);
+            DbCommand cmd;
+            cmd = db.GetStoredProcCommand("usp_sel_ObtenerPedidosSincronizacion", fechai, fechaf,"");
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+
+            DataSet ds = db.ExecuteDataSet(cmd);
+
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                eCab=(new OrdenServicio
+                {
+                    IdPedidoAndroid = Convert.ToInt32(row["IdPedido"]),
+                    fecha = Convert.ToDateTime(row["fecha"]),
+                    codcli = row["codcli"].ToString().Trim(),
+                    nomcli = row["nomcli"].ToString().Trim(),
+                    ruccli = row["ruccli"].ToString().Trim(),
+                    flag = row["flag"].ToString(),
+                    DirEnt = row["DirEnt"].ToString().Trim(),
+                    mone= row["mone"].ToString().Trim(),
+                    tcam = Convert.ToDouble(row["tcam"]),
+                    tota = Convert.ToDouble(row["tota"]),
+                    toti = Convert.ToDouble(row["toti"]),
+                    totn = Convert.ToDouble(row["totn"]),
+                    CodUsuarioRegistro = row["CodUsuarioRegistro"].ToString().Trim(),
+                    codcdv= row["codcdv"].ToString(),
+                    flag_Estadopedido = Convert.ToInt32(row["flag_Estadopedido"])
+                    
+                });
+                /*
+                
+                */
+
+                lstOS_Det = new List<OrdenServicioLinea>();
+                lstOS_Det = DescargarPedidosLineaAndroid(Convert.ToInt32(row["IdPedido"]), dbconexionAndroid);
+
+                lst_OSDocumento.Add(new OrdenServicioDocumento
+                {
+                    Cabecera = eCab,
+                    Detalle = lstOS_Det
+                });
+               
+
+            }
+
+            return lst_OSDocumento;
+           
+        }
+
+        public List<OrdenServicioLinea> DescargarPedidosLineaAndroid(Int32 IdPedidoAndroid, string dbconexion)
+        {
+            List<OrdenServicioLinea> lst = new List<OrdenServicioLinea>();
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            DbCommand cmd;
+            cmd = db.GetStoredProcCommand("usp_sel_ObtenerPedidosLineaSincronizacion", IdPedidoAndroid);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+
+            DataSet ds = db.ExecuteDataSet(cmd);
+
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                lst.Add(new OrdenServicioLinea
+                {
+                    IdPedidoLinea = Convert.ToInt32(row["IdPedidoLinea"]),
+                    IdPedido = Convert.ToInt32(row["IdPedido"]),
+
+                    codf = row["codf"].ToString().Trim(),
+                    codi = row["codi"].ToString().Trim(),
+                    descr = row["descr"].ToString().Trim(),
+                    marc = row["marc"].ToString(),
+                    umed = row["umed"].ToString().Trim(),
+
+                    cant = Convert.ToDouble(row["cant"]),
+                    preu = Convert.ToDouble(row["preu"]),
+                    tota = Convert.ToDouble(row["tota"]),
+                    totn = Convert.ToDouble(row["totn"])
+
+                });
+            }
+            return lst;
         }
 
     }

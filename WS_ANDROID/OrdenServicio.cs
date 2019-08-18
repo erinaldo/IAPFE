@@ -30,5 +30,34 @@ namespace IAP.BE
         public double saldo { get; set; }
         public Boolean flag_cancelado { get; set; }
 
+        public int IdPedidoAndroid { get; set; }
+        public string DirEnt { get; set; }
+        public string CodUsuarioRegistro { get; set; }
+        public int flag_Estadopedido { get; set; }
+        public string EstadoPedido { get; set; }
+
     }
+
+    public class OrdenServicioLinea
+    {
+        public int IdPedidoLinea { get; set; }
+        public int IdPedido { get; set; }
+        public string codf { get; set; }
+        public string codi { get; set; }
+        public string descr { get; set; }
+        public string marc { get; set; }
+        public string umed { get; set; }
+        public double cant { get; set; }
+        public double preu { get; set; }
+        public double tota { get; set; }
+        public double totn { get; set; }
+
+    }
+
+    public class OrdenServicioDocumento
+    {
+        public OrdenServicio Cabecera { get; set; }
+        public List<OrdenServicioLinea> Detalle { get; set; }
+    }
+
 }
