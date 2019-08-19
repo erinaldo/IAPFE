@@ -382,5 +382,12 @@ namespace IAP.Win
         {
             Application.Exit();
         }
+
+        private void comercial_OSPlanta_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            frm_OrdenServicioTactil form = new frm_OrdenServicioTactil();
+            string nombreForm = comercial_OSPlanta.Caption;
+            AgregarFormularioEnTabPage(form, nombreForm);
+        }
     }
 }

@@ -73,6 +73,7 @@
             this.tp2 = new DevExpress.XtraTab.XtraTabPage();
             this.btnguardar = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.comercial_OSPlanta = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
@@ -124,7 +125,8 @@
             this.comercial_OS,
             this.comercial_ImportarCliente,
             this.creditos_letrasemitidas,
-            this.comercial_arqueoOS});
+            this.comercial_arqueoOS,
+            this.comercial_OSPlanta});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 201;
@@ -149,7 +151,8 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_FE),
             new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_OS),
             new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_ImportarCliente),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_arqueoOS)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_arqueoOS),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_OSPlanta)});
             this.navBarGroupComercial.Name = "navBarGroupComercial";
             // 
             // comercial_listaprecio
@@ -472,6 +475,13 @@
             this.panelControl1.Size = new System.Drawing.Size(858, 694);
             this.panelControl1.TabIndex = 5;
             // 
+            // comercial_OSPlanta
+            // 
+            this.comercial_OSPlanta.Caption = "OS Planta";
+            this.comercial_OSPlanta.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("comercial_OSPlanta.ImageOptions.SmallImage")));
+            this.comercial_OSPlanta.Name = "comercial_OSPlanta";
+            this.comercial_OSPlanta.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.comercial_OSPlanta_LinkClicked);
+            // 
             // FRM_MENU_MAIN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -543,5 +553,6 @@
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
         private DevExpress.XtraNavBar.NavBarItem creditos_letrasemitidas;
         private DevExpress.XtraNavBar.NavBarItem comercial_arqueoOS;
+        private DevExpress.XtraNavBar.NavBarItem comercial_OSPlanta;
     }
 }

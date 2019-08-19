@@ -239,6 +239,12 @@
     <Compile Include="Comercial\frm_OrdenServicio.Designer.cs">
       <DependentUpon>frm_OrdenServicio.cs</DependentUpon>
     </Compile>
+    <Compile Include="Comercial\frm_OrdenServicioTactil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comercial\frm_OrdenServicioTactil.Designer.cs">
+      <DependentUpon>frm_OrdenServicioTactil.cs</DependentUpon>
+    </Compile>
     <Compile Include="Comercial\frm_PasswordVentas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -412,6 +418,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Comercial\frm_OrdenServicio.resx">
       <DependentUpon>frm_OrdenServicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comercial\frm_OrdenServicioTactil.resx">
+      <DependentUpon>frm_OrdenServicioTactil.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comercial\frm_PasswordVentas.resx">
       <DependentUpon>frm_PasswordVentas.cs</DependentUpon>
@@ -833,12 +842,12 @@
   <ItemGroup>
     <PublishFile Include="ru\DevExpress.XtraPdfViewer.v18.1.resources">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
   </ItemGroup>
