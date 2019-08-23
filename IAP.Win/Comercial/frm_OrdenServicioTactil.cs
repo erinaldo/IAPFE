@@ -19,9 +19,12 @@ namespace IAP.Win.Comercial
 {
     public partial class frm_OrdenServicioTactil : Form
     {
+        BindingList<Operario> _lstOperarios = new BindingList<Operario>();
+        public DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit leOperarios = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
         List<OrdenServicio> _lstordenservicio = new List<OrdenServicio>();
-        List<OrdenServicioLinea> _lstordenservicioLinea = new List<OrdenServicioLinea>();
+        BindingList<OrdenServicioLinea> _lstordenservicioLinea = new BindingList<OrdenServicioLinea>();
         BL.Comercial eCom = new BL.Comercial();
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit teCodi = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
 
         #region Procesos
 
@@ -59,20 +62,21 @@ namespace IAP.Win.Comercial
             CreateGridColumn(gvwcabecera, "NroDocumento", "ndocu", 6, FormatType.None, "x", true, 100);
             CreateGridColumn(gvwcabecera, "Codigo Cliente", "codcli", 7, FormatType.None, "x", false, 40);
             CreateGridColumn(gvwcabecera, "Nombre cliente", "nomcli", 8, FormatType.None, "x", true, 250);
-            CreateGridColumn(gvwcabecera, "Ruc", "ruccli", 9, FormatType.None, "x", true, 100);
+            CreateGridColumn(gvwcabecera, "Ruc", "ruccli", 9, FormatType.None, "x", false, 100);
             
-            CreateGridColumn(gvwcabecera, "T Cambio", "tcam", 10, DevExpress.Utils.FormatType.Numeric, "d2", true, 40);
-            CreateGridColumn(gvwcabecera, "Total Neto", "tota", 11, DevExpress.Utils.FormatType.Numeric, "d2", true, 80);
-            CreateGridColumn(gvwcabecera, "Total IGV", "toti", 12, DevExpress.Utils.FormatType.Numeric, "d2", true, 80);
+            CreateGridColumn(gvwcabecera, "T Cambio", "tcam", 10, DevExpress.Utils.FormatType.Numeric, "d2", false, 40);
+            CreateGridColumn(gvwcabecera, "Total Neto", "tota", 11, DevExpress.Utils.FormatType.Numeric, "d2", false, 80);
+            CreateGridColumn(gvwcabecera, "Total IGV", "toti", 12, DevExpress.Utils.FormatType.Numeric, "d2", false, 80);
             CreateGridColumn(gvwcabecera, "Total", "totn", 13, DevExpress.Utils.FormatType.Numeric, "d2", true, 80);
             CreateGridColumn(gvwcabecera, "flagEstado", "flag", 14, DevExpress.Utils.FormatType.Numeric, "d", false, 80);
             CreateGridColumn(gvwcabecera, "Estado", "flagnombre", 15, DevExpress.Utils.FormatType.Numeric, "d", true, 80);
 
             
-            CreateGridColumn(gvwcabecera, "Entrega", "DirEnt", 16, DevExpress.Utils.FormatType.Numeric, "d", true, 300);
-            CreateGridColumn(gvwcabecera, "CodUsuarioRegistro", "CodUsuarioRegistro", 17, DevExpress.Utils.FormatType.Numeric, "d", true, 80);
+            CreateGridColumn(gvwcabecera, "Entrega", "DirEnt", 16, DevExpress.Utils.FormatType.Numeric, "d", false, 300);
+            CreateGridColumn(gvwcabecera, "CodUsuarioRegistro", "CodUsuarioRegistro", 17, DevExpress.Utils.FormatType.Numeric, "d", false, 80);
             CreateGridColumn(gvwcabecera, "flag_Estadopedido", "flag_Estadopedido", 18, DevExpress.Utils.FormatType.Numeric, "d", false, 80);
             
+
 
             gvwcabecera.EndUpdate();
 
@@ -80,21 +84,26 @@ namespace IAP.Win.Comercial
 
             gvwdetalle.OptionsBehavior.AutoPopulateColumns = false;
             gvwdetalle.OptionsBehavior.ReadOnly = false;
-            gvwdetalle.OptionsBehavior.Editable = false;
+            gvwdetalle.OptionsBehavior.Editable = true;
             gvwdetalle.OptionsView.ColumnAutoWidth = false;
 
             //Extras
             gvwdetalle.OptionsCustomization.AllowQuickHideColumns = false;
             gvwdetalle.OptionsView.ShowGroupedColumns = true; //Solo se configura en Tipo vista GridView
-            gvwdetalle.OptionsBehavior.AllowFixedGroups = DevExpress.Utils.DefaultBoolean.True;
+            gvwdetalle.OptionsBehavior.AllowFixedGroups = DefaultBoolean.True;
             //gvDetalle.OptionsBehavior.AutoExpandAllGroups = true; 
             gvwdetalle.OptionsSelection.EnableAppearanceFocusedCell = false;
             gvwdetalle.OptionsView.ShowGroupPanel = false;
             gvwdetalle.OptionsMenu.EnableColumnMenu = false;
             gvwdetalle.OptionsMenu.EnableGroupPanelMenu = false;
             gvwdetalle.OptionsMenu.EnableFooterMenu = false;
-            gvwdetalle.OptionsCustomization.AllowFilter = true;
-            gvwdetalle.OptionsCustomization.AllowSort = true;
+            gvwdetalle.OptionsCustomization.AllowFilter = false;
+            gvwdetalle.OptionsCustomization.AllowSort = false;
+            //Agregar Items Configuracion
+            //gvwdetalle.OptionsView.NewItemRowPosition = NewItemRowPosition.Top;
+            //
+            gvwdetalle.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
+            gvwdetalle.OptionsView.ShowFooter = true;
 
             CreateGridColumn(gvwdetalle, "Codigo", "codf", 1, FormatType.None, "x", true, 150);
             CreateGridColumn(gvwdetalle, "Codi", "codi", 2, FormatType.None, "x", true, 150);
@@ -106,6 +115,10 @@ namespace IAP.Win.Comercial
             CreateGridColumn(gvwdetalle, "P. Unitario", "preu", 7, DevExpress.Utils.FormatType.Numeric, "d3", true, 80);
             CreateGridColumn(gvwdetalle, "SubTotal", "tota", 8, DevExpress.Utils.FormatType.Numeric, "d3", true, 80);
             CreateGridColumn(gvwdetalle, "Total", "totn", 9, DevExpress.Utils.FormatType.Numeric, "d3", true, 80);
+
+            CreateGridColumn(gvwdetalle, "Cod_Operario", "Cod_Operario", 10, FormatType.None, "x", true, 100);
+            CreateGridColumn(gvwdetalle, "FechaInicioServicio", "FechaInicioServicio", 11, FormatType.DateTime, "dd/MM/yyyy HH:mm", true, 100);
+            CreateGridColumn(gvwdetalle, "FechaFinServicio", "FechaFinServicio", 12, FormatType.DateTime, "dd/MM/yyyy HH:mm", true, 100);
 
             gvwdetalle.EndUpdate();
         }
@@ -127,9 +140,22 @@ namespace IAP.Win.Comercial
             {
                 gc.UnboundType = DevExpress.Data.UnboundColumnType.Boolean;
             }
-            //if(field== "EstadoPedido" && gv.Name== "gvwcabecera")
+            if (gv.Name == "gvwdetalle" && field == "Cod_Operario")
+            {
+                gc.OptionsColumn.AllowEdit = true;
+                leOperarios.DisplayMember = "NombreOperario";
+                leOperarios.ValueMember = "Cod_Operario";
+                leOperarios.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+                gc.ColumnEdit = leOperarios;
+            }
+            //if (field == "codi" && gv.Name == "gvwdetalle")
             //{
+            //    gc.OptionsColumn.AllowEdit = true;
             //    gc.AppearanceCell.BackColor = Color.AliceBlue;
+                
+            //    teCodi.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            //    teCodi.Mask.EditMask = "###,###,###0.00;";
+            //    gc.ColumnEdit = teCodi;
             //}
 
 
@@ -148,16 +174,21 @@ namespace IAP.Win.Comercial
         private void ObtenerOrdenesServicio()
         {
             
-            _lstordenservicio = eCom.ObtenerOrdenesServicio(Convert.ToDateTime(dtfechainicial.EditValue), Convert.ToDateTime(dtfechafinal.EditValue),
-                string.Empty, string.Empty, Global.vUserBaseDatos);
+            _lstordenservicio = eCom.ObtenerOrdenesServicio_Operario(Convert.ToDateTime(dtfechainicial.EditValue), Convert.ToDateTime(dtfechafinal.EditValue),
+                string.Empty, string.Empty,"0", Global.vUserBaseDatos);
             gccabecera.DataSource = _lstordenservicio;
            
+        }
+        private void ObtenerOperarios()
+        {
+            _lstOperarios = new BindingList<Operario> (eCom.ObtenerOperarios(Global.vUserBaseDatos));
+            leOperarios.DataSource = _lstOperarios;
         }
 
         private void ObtenerOrdenesServicioLinea(string ndocu)
         {
 
-            _lstordenservicioLinea = eCom.ObtenerOrdenServicioLinea(ndocu, Global.vUserBaseDatos);
+            _lstordenservicioLinea = new BindingList<OrdenServicioLinea> (eCom.ObtenerOrdenServicioLinea(ndocu, Global.vUserBaseDatos));
             gcdetalle.DataSource = _lstordenservicioLinea;
 
         }
@@ -179,6 +210,7 @@ namespace IAP.Win.Comercial
         public frm_OrdenServicioTactil()
         {
             InitializeComponent();
+            leOperarios.EditValueChanged += leOperarios_EditValueChanged;
         }
 
         private void frm_OrdenServicioTactil_Load(object sender, EventArgs e)
@@ -186,17 +218,40 @@ namespace IAP.Win.Comercial
             try
             {
                 OnFormatGrid();
-                
+                _lstordenservicioLinea.AllowEdit = true;
                 dtfechainicial.EditValue = DateTime.Now;
                 dtfechafinal.EditValue = DateTime.Now;
                 ObtenerOrdenesServicio();
-
+                ObtenerOperarios();
                 
+                
+                
+
 
             }
             catch (Exception err)
             {
                 MessageBox.Show(err.Message, "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
+        }
+        private void leOperarios_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                //gvCapaDetalle.SetRowCellValue(gvCapaDetalle.FocusedRowHandle, gvCapaDetalle.Columns["CodTecnico"], null);
+                //gvCapaDetalle.SetRowCellValue(gvCapaDetalle.FocusedRowHandle, gvCapaDetalle.Columns["Tipo"], null);
+                //gvCapaDetalle.SetRowCellValue(gvCapaDetalle.FocusedRowHandle, gvCapaDetalle.Columns["ItemId"], 0);
+                
+                
+                gcdetalle.RefreshDataSource();
+            }
+            catch (Exception err)
+            {
+               // MensajeError(err);
             }
             finally
             {
@@ -375,6 +430,52 @@ namespace IAP.Win.Comercial
             //   (e.Column.VisibleIndex % 2 == 0 && e.RowHandle % 2 == 1)))
             //    e.Appearance.BackColor = Color.NavajoWhite;
             
+        }
+
+        private void mnuMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            try
+            {
+                if (gvwcabecera.RowCount == 0)
+                    return;
+
+                this.Cursor = System.Windows.Forms.Cursors.AppStarting;
+                var x = gccabecera.MainView;
+                if (x.RowCount <= 0 ) return;
+
+                gccabecera.ContextMenuStrip.Visible = false;
+
+                switch (e.ClickedItem.Name)
+                {
+
+                    case "mnuGuardar":
+                        {
+                            if(MessageBox.Show("Desea guardar la Orden de Servicio con los operarios asignados?","Utilitario",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes)
+                            {
+                                GuardarOS();
+                            }
+                        }
+                        break;
+                    
+
+                }
+                ObtenerOrdenesServicio();
+
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                this.Cursor = System.Windows.Forms.Cursors.Default;
+            }
+        }
+        private void GuardarOS()
+        {
+            string ndocu = gvwcabecera.GetFocusedRowCellValue("ndocu").ToString();
+            BindingList<OrdenServicioLinea> lst = new BindingList<OrdenServicioLinea>();
+            lst = _lstordenservicioLinea;
         }
     }
 }

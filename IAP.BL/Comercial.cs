@@ -101,6 +101,25 @@ namespace IAP.BL
             return cls.ObtenerParametroFormatosFB(dbconexion);
         }
 
+
+        public List<OrdenServicio> ObtenerOrdenesServicio_Operario(DateTime fechai, DateTime fechaf, string ndocu, string nomcli,string flag, string dbconexion)
+        {
+            DL.Comercial cls = new DL.Comercial();
+            return cls.ObtenerOrdenesServicio_Operario(fechai, fechaf, ndocu, nomcli,flag, dbconexion);
+        }
+
+        public List<Operario> ObtenerOperarios(string dbconexion)
+        {
+            DL.Comercial cls = new DL.Comercial();
+            return cls.ObtenerOperarios(dbconexion);
+        }
+        public List<TipoServicio> ObtenerTipoServicios(string dbconexion)
+        {
+            DL.Comercial cls = new DL.Comercial();
+            return cls.ObtenerTipoServicios(dbconexion);
+        }
+
+
         public List<OrdenServicio> ObtenerOrdenesServicio(DateTime fechai, DateTime fechaf, string ndocu, string nomcli, string dbconexion)
         {
             DL.Comercial cls = new DL.Comercial();

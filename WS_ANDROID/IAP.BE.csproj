@@ -50,6 +50,7 @@
     <Compile Include="LetrasEmitidas.cs" />
     <Compile Include="listaprecio.cs" />
     <Compile Include="Mst01facTxt.cs" />
+    <Compile Include="Operario.cs" />
     <Compile Include="OrdenServicio.cs" />
     <Compile Include="ParametrosFormatos.cs" />
     <Compile Include="pedido_linea.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="ProveedorFE.cs" />
     <Compile Include="Sunat.cs" />
     <Compile Include="Telesoluciones.cs" />
+    <Compile Include="TipoServicio.cs" />
     <Compile Include="Usuario.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_OrdenServicioTactil));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.btnbuscar = new DevExpress.XtraEditors.SimpleButton();
@@ -40,6 +41,8 @@
             this.gcdetalle = new DevExpress.XtraGrid.GridControl();
             this.gvwdetalle = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.mnuMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuGuardar = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtfechafinal.Properties.CalendarTimeProperties)).BeginInit();
@@ -50,6 +53,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvwcabecera)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcdetalle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvwdetalle)).BeginInit();
+            this.mnuMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -121,6 +125,7 @@
             this.gccabecera.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gccabecera.ContextMenuStrip = this.mnuMenu;
             this.gccabecera.Location = new System.Drawing.Point(2, 55);
             this.gccabecera.MainView = this.gvwcabecera;
             this.gccabecera.Name = "gccabecera";
@@ -167,6 +172,21 @@
             this.labelControl6.TabIndex = 11;
             this.labelControl6.Text = "Detalle:";
             // 
+            // mnuMenu
+            // 
+            this.mnuMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuGuardar});
+            this.mnuMenu.Name = "mnuMenu";
+            this.mnuMenu.Size = new System.Drawing.Size(153, 26);
+            this.mnuMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.mnuMenu_ItemClicked);
+            // 
+            // mnuGuardar
+            // 
+            this.mnuGuardar.Image = global::IAP.Win.Properties.Resources.SaveAll_32x32;
+            this.mnuGuardar.Name = "mnuGuardar";
+            this.mnuGuardar.Size = new System.Drawing.Size(152, 22);
+            this.mnuGuardar.Text = "Guardar Orden";
+            // 
             // frm_OrdenServicioTactil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -190,6 +210,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvwcabecera)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcdetalle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvwdetalle)).EndInit();
+            this.mnuMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -208,5 +229,7 @@
         private DevExpress.XtraGrid.GridControl gcdetalle;
         private DevExpress.XtraGrid.Views.Grid.GridView gvwdetalle;
         private DevExpress.XtraEditors.LabelControl labelControl6;
+        private System.Windows.Forms.ContextMenuStrip mnuMenu;
+        private System.Windows.Forms.ToolStripMenuItem mnuGuardar;
     }
 }

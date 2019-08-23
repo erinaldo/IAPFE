@@ -76,6 +76,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Android", "Android", "{77AB6385-B749-407E-A9AC-CBD606B2D4E9}"
 	ProjectSection(SolutionItems) = preProject
 		Carga - Lista de Precios.sql = Carga - Lista de Precios.sql
+		registro Cliente Android.sql = registro Cliente Android.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OrdenesServicioOperario", "OrdenesServicioOperario", "{82C5FFA8-F8EC-4F30-A96B-936D3F380BB7}"
+	ProjectSection(SolutionItems) = preProject
+		OS.sql = OS.sql
 	EndProjectSection
 EndProject
 Global
@@ -148,6 +154,7 @@ Global
 		{EB820020-48FF-4617-95D4-8FD420D7B878} = {E57A7977-6171-4DC9-8891-3D44B32A54D9}
 		{07139A70-58CB-46B4-825B-2D24456155B0} = {EB820020-48FF-4617-95D4-8FD420D7B878}
 		{77AB6385-B749-407E-A9AC-CBD606B2D4E9} = {EEB55C35-4A03-45AD-BCAA-A4F34AADB645}
+		{82C5FFA8-F8EC-4F30-A96B-936D3F380BB7} = {EEB55C35-4A03-45AD-BCAA-A4F34AADB645}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F27B3AA7-6177-489F-8D24-312BD1C599AD}

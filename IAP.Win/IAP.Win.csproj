@@ -263,6 +263,12 @@
     <Compile Include="Comercial\frm_VisorArchivos.Designer.cs">
       <DependentUpon>frm_VisorArchivos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Comercial\frm_visor_resumenventas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comercial\frm_visor_resumenventas.Designer.cs">
+      <DependentUpon>frm_visor_resumenventas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Creditos\frmLetrasEmitidas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -445,6 +451,7 @@
       <DependentUpon>frm_dvw_comercial_ventas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Rpts\rptLetraEmitida.rdlc" />
+    <EmbeddedResource Include="Rpts\rptResumenVentas.rdlc" />
     <EmbeddedResource Include="Usuario\frm_AccesoUsuario.resx">
       <DependentUpon>frm_AccesoUsuario.cs</DependentUpon>
     </EmbeddedResource>

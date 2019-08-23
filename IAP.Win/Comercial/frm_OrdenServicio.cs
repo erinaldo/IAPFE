@@ -107,6 +107,7 @@ namespace IAP.Win.Comercial
             CreateGridColumn(gvwdetalle, "SubTotal", "tota", 8, DevExpress.Utils.FormatType.Numeric, "d3", true, 80);
             CreateGridColumn(gvwdetalle, "Total", "totn", 9, DevExpress.Utils.FormatType.Numeric, "d3", true, 80);
 
+
             gvwdetalle.EndUpdate();
         }
         private void CreateGridColumn(DevExpress.XtraGrid.Views.Grid.GridView gv, string caption, string field, int visibleindex, DevExpress.Utils.FormatType formatType, string formatString, bool visible, int withField = 0)

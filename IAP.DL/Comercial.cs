@@ -350,6 +350,97 @@ namespace IAP.DL
             }
             return lst;
         }
+
+
+        public List<OrdenServicio> ObtenerOrdenesServicio_Operario(DateTime fechai, DateTime fechaf, string ndocu, string nomcli,string flag, string dbconexion)
+        {
+            List<OrdenServicio> lst = new List<OrdenServicio>();
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            DbCommand cmd;
+            cmd = db.GetStoredProcCommand("USP_SEL_ORDENSERVICIO_OPERARIOS", fechai, fechaf, ndocu, nomcli, flag);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+
+            DataSet ds = db.ExecuteDataSet(cmd);
+
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                lst.Add(new OrdenServicio
+                {
+                    fecha = Convert.ToDateTime(row["fecha"]),
+                    cdocu = row["cdocu"].ToString(),
+                    ndocu = row["ndocu"].ToString(),
+                    codcli = row["codcli"].ToString().Trim(),
+                    nomcli = row["nomcli"].ToString().Trim(),
+                    ruccli = row["ruccli"].ToString().Trim(),
+                    tcam = Convert.ToDouble(row["tcam"]),
+                    tota = Convert.ToDouble(row["tota"]),
+                    toti = Convert.ToDouble(row["toti"]),
+                    totn = Convert.ToDouble(row["totn"]),
+                    flag = row["flag"].ToString(),
+                    flagnombre = row["flagnombre"].ToString(),
+                    IdPedidoAndroid = Convert.ToInt32(row["IdPedidoAndroid"]),
+                    DirEnt = row["DirEnt"].ToString().Trim(),
+                    CodUsuarioRegistro = row["CodUsuarioRegistro"].ToString().Trim(),
+                    flag_Estadopedido = Convert.ToInt32(row["flag_Estadopedido"]),
+                    EstadoPedido = row["EstadoPedido"].ToString(),
+                    Cod_Operario = Convert.ToString(row["Cod_Operario"]),
+                    FechaInicioServicio= Convert.ToDateTime(row["FechaInicioServicio"] == DBNull.Value ? (DateTime?)null : row["FechaInicioServicio"]),
+                    FechaFinServicio = Convert.ToDateTime(row["FechaFinServicio"] == DBNull.Value ? (DateTime?)null : row["FechaFinServicio"])
+
+
+                });
+            }
+            return lst;
+        }
+
+        public List<Operario> ObtenerOperarios(string dbconexion)
+        {
+            List<Operario> lst = new List<Operario>();
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            DbCommand cmd;
+            cmd = db.GetStoredProcCommand("USP_SEL_OperariosServicio");
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+
+            DataSet ds = db.ExecuteDataSet(cmd);
+
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                lst.Add(new Operario
+                {
+                    Cod_Operario=Convert.ToString(row["Cod_Operario"]),
+                    NombreOperario=Convert.ToString(row["NombreOperario"])
+
+                });
+            }
+            return lst;
+        }
+
+        public List<TipoServicio> ObtenerTipoServicios(string dbconexion)
+        {
+            List<TipoServicio> lst = new List<TipoServicio>();
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            DbCommand cmd;
+            cmd = db.GetStoredProcCommand("USP_SEL_TipoServicio", dbconexion);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+
+            DataSet ds = db.ExecuteDataSet(cmd);
+
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                lst.Add(new TipoServicio
+                {
+                    Id_TipoServicio = Convert.ToInt32(row["Id_TipoServicio"]),
+                    NombreServicio = Convert.ToString(row["NombreServicio"])
+
+                });
+            }
+            return lst;
+        }
+
+
         public List<OrdenServicioLinea> ObtenerOrdenServicioLinea(string ndocu,string dbconexion)
         {
             List<OrdenServicioLinea> lst = new List<OrdenServicioLinea>();
@@ -374,7 +465,11 @@ namespace IAP.DL
                     cant = Convert.ToDouble(row["cant"]),
                     preu = Convert.ToDouble(row["preu"]),
                     tota = Convert.ToDouble(row["tota"]),
-                    totn = Convert.ToDouble(row["totn"])
+                    totn = Convert.ToDouble(row["totn"]),
+                    Cod_Operario = Convert.ToString(row["CodOte"]),
+                    FechaInicioServicio = Convert.ToDateTime(row["FechaInicioServicio"] == DBNull.Value ? (DateTime?)null : row["FechaInicioServicio"]),
+                    FechaFinServicio = Convert.ToDateTime(row["FechaFinServicio"] == DBNull.Value ? (DateTime?)null : row["FechaFinServicio"])
+
                 });
             }
             return lst;

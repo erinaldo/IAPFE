@@ -35,6 +35,9 @@ namespace IAP.BE
         public string CodUsuarioRegistro { get; set; }
         public int flag_Estadopedido { get; set; }
         public string EstadoPedido { get; set; }
+        public string Cod_Operario { get; set; }
+        public DateTime? FechaInicioServicio { get; set; }
+        public DateTime? FechaFinServicio { get; set; }
 
     }
 
@@ -51,6 +54,9 @@ namespace IAP.BE
         public double preu { get; set; }
         public double tota { get; set; }
         public double totn { get; set; }
+        public string Cod_Operario { get; set; }
+        public DateTime? FechaInicioServicio { get; set; }
+        public DateTime? FechaFinServicio { get; set; }
 
     }
 
