@@ -37,12 +37,12 @@
             this.dtfechainicial = new DevExpress.XtraEditors.DateEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.gccabecera = new DevExpress.XtraGrid.GridControl();
+            this.mnuMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuGuardar = new System.Windows.Forms.ToolStripMenuItem();
             this.gvwcabecera = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gcdetalle = new DevExpress.XtraGrid.GridControl();
             this.gvwdetalle = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.mnuMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mnuGuardar = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtfechafinal.Properties.CalendarTimeProperties)).BeginInit();
@@ -50,10 +50,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtfechainicial.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtfechainicial.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gccabecera)).BeginInit();
+            this.mnuMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvwcabecera)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcdetalle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvwdetalle)).BeginInit();
-            this.mnuMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -134,6 +134,21 @@
             this.gccabecera.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvwcabecera});
             // 
+            // mnuMenu
+            // 
+            this.mnuMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuGuardar});
+            this.mnuMenu.Name = "mnuMenu";
+            this.mnuMenu.Size = new System.Drawing.Size(153, 26);
+            this.mnuMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.mnuMenu_ItemClicked);
+            // 
+            // mnuGuardar
+            // 
+            this.mnuGuardar.Image = global::IAP.Win.Properties.Resources.SaveAll_32x32;
+            this.mnuGuardar.Name = "mnuGuardar";
+            this.mnuGuardar.Size = new System.Drawing.Size(152, 22);
+            this.mnuGuardar.Text = "Guardar Orden";
+            // 
             // gvwcabecera
             // 
             this.gvwcabecera.GridControl = this.gccabecera;
@@ -162,6 +177,7 @@
             this.gvwdetalle.GridControl = this.gcdetalle;
             this.gvwdetalle.Name = "gvwdetalle";
             this.gvwdetalle.OptionsView.ShowGroupPanel = false;
+            this.gvwdetalle.DoubleClick += new System.EventHandler(this.gvwdetalle_DoubleClick);
             // 
             // labelControl6
             // 
@@ -171,21 +187,6 @@
             this.labelControl6.Size = new System.Drawing.Size(37, 13);
             this.labelControl6.TabIndex = 11;
             this.labelControl6.Text = "Detalle:";
-            // 
-            // mnuMenu
-            // 
-            this.mnuMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuGuardar});
-            this.mnuMenu.Name = "mnuMenu";
-            this.mnuMenu.Size = new System.Drawing.Size(153, 26);
-            this.mnuMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.mnuMenu_ItemClicked);
-            // 
-            // mnuGuardar
-            // 
-            this.mnuGuardar.Image = global::IAP.Win.Properties.Resources.SaveAll_32x32;
-            this.mnuGuardar.Name = "mnuGuardar";
-            this.mnuGuardar.Size = new System.Drawing.Size(152, 22);
-            this.mnuGuardar.Text = "Guardar Orden";
             // 
             // frm_OrdenServicioTactil
             // 
@@ -207,10 +208,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtfechainicial.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtfechainicial.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gccabecera)).EndInit();
+            this.mnuMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gvwcabecera)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcdetalle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvwdetalle)).EndInit();
-            this.mnuMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

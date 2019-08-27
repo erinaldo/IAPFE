@@ -38,6 +38,7 @@ namespace IAP.BE
         public string Cod_Operario { get; set; }
         public DateTime? FechaInicioServicio { get; set; }
         public DateTime? FechaFinServicio { get; set; }
+        public string Tiempo { get; set; }
 
     }
 
@@ -57,6 +58,9 @@ namespace IAP.BE
         public string Cod_Operario { get; set; }
         public DateTime? FechaInicioServicio { get; set; }
         public DateTime? FechaFinServicio { get; set; }
+        public string ndocu { get; set; }
+        public string item { get; set; }
+        public string tiposervicio { get; set; }
 
     }
 
@@ -64,6 +68,26 @@ namespace IAP.BE
     {
         public OrdenServicio Cabecera { get; set; }
         public List<OrdenServicioLinea> Detalle { get; set; }
+    }
+
+    public class OrdenServicioPlantillaParametros
+    {
+        public string ndocu { get; set; }
+        public string cod_operario { get; set; }
+        public string codi { get; set; }
+        public string item { get; set; }
+        public double p1   {get;set;}
+        public double p2   {get;set;}
+        public double p3   {get;set;}
+        public double p4   {get;set;}
+        public double p5   {get;set;}
+        public double p6   {get;set;}
+        public double p7   {get;set;}
+        public double p8   {get;set;}
+        public double p9   {get;set;}
+        public double p10  {get;set;}
+        public double p11  {get;set;}
+        public double p12 { get; set; }
     }
 
 }

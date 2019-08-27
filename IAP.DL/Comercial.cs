@@ -10,6 +10,7 @@ using Microsoft.Practices.EnterpriseLibrary.Common;
 using IAP.BE;
 using System.Data.Common;
 using System.IO;
+using System.ComponentModel;
 
 namespace IAP.DL
 {
@@ -385,8 +386,9 @@ namespace IAP.DL
                     flag_Estadopedido = Convert.ToInt32(row["flag_Estadopedido"]),
                     EstadoPedido = row["EstadoPedido"].ToString(),
                     Cod_Operario = Convert.ToString(row["Cod_Operario"]),
-                    FechaInicioServicio= Convert.ToDateTime(row["FechaInicioServicio"] == DBNull.Value ? (DateTime?)null : row["FechaInicioServicio"]),
-                    FechaFinServicio = Convert.ToDateTime(row["FechaFinServicio"] == DBNull.Value ? (DateTime?)null : row["FechaFinServicio"])
+                    FechaInicioServicio= (row["FechaInicioServicio"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(row["FechaInicioServicio"])),
+                    FechaFinServicio = (row["FechaFinServicio"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(row["FechaFinServicio"])),
+                    Tiempo= row["Tiempo"].ToString().Trim()
 
 
                 });
@@ -467,8 +469,11 @@ namespace IAP.DL
                     tota = Convert.ToDouble(row["tota"]),
                     totn = Convert.ToDouble(row["totn"]),
                     Cod_Operario = Convert.ToString(row["CodOte"]),
-                    FechaInicioServicio = Convert.ToDateTime(row["FechaInicioServicio"] == DBNull.Value ? (DateTime?)null : row["FechaInicioServicio"]),
-                    FechaFinServicio = Convert.ToDateTime(row["FechaFinServicio"] == DBNull.Value ? (DateTime?)null : row["FechaFinServicio"])
+                    FechaInicioServicio = (row["FechaInicioServicio"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(row["FechaInicioServicio"])),
+                    FechaFinServicio = (row["FechaFinServicio"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(row["FechaFinServicio"])),
+                    ndocu= row["ndocu"].ToString(),
+                    item = row["item"].ToString(),
+                    tiposervicio= row["tiposervicio"].ToString().Trim()
 
                 });
             }
@@ -782,6 +787,93 @@ namespace IAP.DL
             }
             return lst;
         }
+
+        public void Actualizar_Operarios_OS(BindingList<OrdenServicioLinea> lstdetalle, string dbconexion)
+        {
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            DbCommand cmd;
+
+            foreach (OrdenServicioLinea l in lstdetalle)
+            {
+                cmd = db.GetStoredProcCommand("usp_udp_Actualizar_Operarios_OS", l.ndocu, Convert.ToInt32(l.item),l.Cod_Operario.Trim());
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandTimeout = 0;
+                db.ExecuteNonQuery(cmd);
+            }
+                
+        }
+
+        public void Actualizar_Fechas_proceso_OS(string ndocu, Int32 item,string cod_operario, string dbconexion)
+        {
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            DbCommand cmd;
+
+            cmd = db.GetStoredProcCommand("usp_udp_Actualizar_Fechas_Proceso_OS", ndocu, item,cod_operario);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+            db.ExecuteNonQuery(cmd);
+        }
+
+        public void Registrar_PlantillaParametros_OS(OrdenServicioPlantillaParametros plantilla, string dbconexion)
+        {
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            DbCommand cmd;
+
+            cmd = db.GetStoredProcCommand("usp_ins_Parametros_PlantillasOrdenServicio", plantilla.ndocu, plantilla.cod_operario, plantilla.codi, Convert.ToInt32(plantilla.item),
+                plantilla.p1,
+                plantilla.p2,
+                plantilla.p3,
+                plantilla.p4,
+                plantilla.p5,
+                plantilla.p6,
+                plantilla.p7,
+                plantilla.p8,
+                plantilla.p9,
+                plantilla.p10,
+                plantilla.p11,
+                plantilla.p12);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+            db.ExecuteNonQuery(cmd);
+        }
+
+        public OrdenServicioPlantillaParametros Obtener_PlantillaParametros_OS(string ndocu,string cod_operario,string codi,int item, string dbconexion)
+        {
+            OrdenServicioPlantillaParametros lst = new OrdenServicioPlantillaParametros();
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            DbCommand cmd;
+            cmd = db.GetStoredProcCommand("usp_sel_ParametrosPlantillaOrdenServicio", ndocu,cod_operario,codi,item);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+
+            DataSet ds = db.ExecuteDataSet(cmd);
+
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                lst=(new OrdenServicioPlantillaParametros
+                {
+                    ndocu = row["ndocu"].ToString().Trim(),
+                    cod_operario = row["cod_operario"].ToString().Trim(),
+                    codi = row["codi"].ToString().Trim(),
+                    item = row["item"].ToString().Trim(),
+                    p1 = Convert.ToDouble(row["p1"]),
+                    p2 = Convert.ToDouble(row["p2"]),
+                    p3 = Convert.ToDouble(row["p3"]),
+                    p4 = Convert.ToDouble(row["p4"]),
+                    p5 = Convert.ToDouble(row["p5"]),
+                    p6 = Convert.ToDouble(row["p6"]),
+                    p7 = Convert.ToDouble(row["p7"]),
+                    p8 = Convert.ToDouble(row["p8"]),
+                    p9 = Convert.ToDouble(row["p9"]),
+                    p10 = Convert.ToDouble(row["p10"]),
+                    p11 = Convert.ToDouble(row["p11"]),
+                    p12 = Convert.ToDouble(row["p12"])
+                });
+            }
+            return lst;
+        }
+
+
 
     }
 }

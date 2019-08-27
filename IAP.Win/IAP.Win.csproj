@@ -269,6 +269,18 @@
     <Compile Include="Comercial\frm_visor_resumenventas.Designer.cs">
       <DependentUpon>frm_visor_resumenventas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Comercial\frm_Contenedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comercial\frm_Contenedor.Designer.cs">
+      <DependentUpon>frm_Contenedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comercial\PlantillasOS\frm_plantilla1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comercial\PlantillasOS\frm_plantilla1.Designer.cs">
+      <DependentUpon>frm_plantilla1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Creditos\frmLetrasEmitidas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -436,6 +448,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Comercial\frm_VisorArchivos.resx">
       <DependentUpon>frm_VisorArchivos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comercial\frm_Contenedor.resx">
+      <DependentUpon>frm_Contenedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comercial\PlantillasOS\frm_plantilla1.resx">
+      <DependentUpon>frm_plantilla1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Creditos\frmLetrasEmitidas.resx">
       <DependentUpon>frmLetrasEmitidas.cs</DependentUpon>
@@ -767,6 +785,7 @@
     <Content Include="Resources\PCCOM15B.ICO" />
     <Content Include="Resources\pdf 16x16.jpg" />
     <Content Include="Resources\pdf.png" />
+    <Content Include="Resources\Plantilla1.jpg" />
     <Content Include="Resources\Preview_32x32.png" />
     <Content Include="Resources\Previous_32x32.png" />
     <Content Include="Resources\Print.bmp" />

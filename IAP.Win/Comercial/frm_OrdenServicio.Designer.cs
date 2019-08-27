@@ -198,7 +198,7 @@
             this.mnudescargar,
             this.mnuestados});
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(172, 76);
+            this.menu.Size = new System.Drawing.Size(181, 98);
             this.menu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menu_ItemClicked);
             // 
             // mnuasignar

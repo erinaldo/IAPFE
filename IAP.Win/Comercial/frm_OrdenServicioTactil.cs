@@ -13,7 +13,7 @@ using DevExpress.Utils;
 using IAP.Win.Clases;
 using IAP.Win.Comercial;
 using DevExpress.XtraGrid.Views.Grid;
-
+using IAP.Win.Comercial.PlantillasOS;
 
 namespace IAP.Win.Comercial
 {
@@ -69,14 +69,15 @@ namespace IAP.Win.Comercial
             CreateGridColumn(gvwcabecera, "Total IGV", "toti", 12, DevExpress.Utils.FormatType.Numeric, "d2", false, 80);
             CreateGridColumn(gvwcabecera, "Total", "totn", 13, DevExpress.Utils.FormatType.Numeric, "d2", true, 80);
             CreateGridColumn(gvwcabecera, "flagEstado", "flag", 14, DevExpress.Utils.FormatType.Numeric, "d", false, 80);
-            CreateGridColumn(gvwcabecera, "Estado", "flagnombre", 15, DevExpress.Utils.FormatType.Numeric, "d", true, 80);
+            CreateGridColumn(gvwcabecera, "Estado", "flagnombre", 15, DevExpress.Utils.FormatType.Numeric, "d", false, 80);
 
             
             CreateGridColumn(gvwcabecera, "Entrega", "DirEnt", 16, DevExpress.Utils.FormatType.Numeric, "d", false, 300);
             CreateGridColumn(gvwcabecera, "CodUsuarioRegistro", "CodUsuarioRegistro", 17, DevExpress.Utils.FormatType.Numeric, "d", false, 80);
             CreateGridColumn(gvwcabecera, "flag_Estadopedido", "flag_Estadopedido", 18, DevExpress.Utils.FormatType.Numeric, "d", false, 80);
-            
-
+            CreateGridColumn(gvwcabecera, "FechaInicioServicio", "FechaInicioServicio", 19, FormatType.DateTime, "dd/MM/yyyy HH:mm", true, 150);
+            CreateGridColumn(gvwcabecera, "FechaFinServicio", "FechaFinServicio", 20, FormatType.DateTime, "dd/MM/yyyy HH:mm", true, 150);
+            CreateGridColumn(gvwcabecera, "Tiempo Total", "Tiempo", 21, FormatType.None, "x", true, 80);
 
             gvwcabecera.EndUpdate();
 
@@ -105,20 +106,24 @@ namespace IAP.Win.Comercial
             gvwdetalle.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
             gvwdetalle.OptionsView.ShowFooter = true;
 
-            CreateGridColumn(gvwdetalle, "Codigo", "codf", 1, FormatType.None, "x", true, 150);
-            CreateGridColumn(gvwdetalle, "Codi", "codi", 2, FormatType.None, "x", true, 150);
+            CreateGridColumn(gvwdetalle, "Codigo", "codf", 1, FormatType.None, "x", true, 100);
+            CreateGridColumn(gvwdetalle, "Codi", "codi", 2, FormatType.None, "x", true, 100);
             CreateGridColumn(gvwdetalle, "Descripción", "descr", 3, FormatType.None, "x", true, 200);
 
-            CreateGridColumn(gvwdetalle, "Marca", "marc", 4, FormatType.None, "x", true, 100);
-            CreateGridColumn(gvwdetalle, "Medida", "umed", 5, FormatType.None, "x", true, 100);
-            CreateGridColumn(gvwdetalle, "Cantidad", "cant", 6, DevExpress.Utils.FormatType.Numeric, "d3", true, 80);
-            CreateGridColumn(gvwdetalle, "P. Unitario", "preu", 7, DevExpress.Utils.FormatType.Numeric, "d3", true, 80);
-            CreateGridColumn(gvwdetalle, "SubTotal", "tota", 8, DevExpress.Utils.FormatType.Numeric, "d3", true, 80);
+            CreateGridColumn(gvwdetalle, "Marca", "marc", 4, FormatType.None, "x", false, 100);
+            CreateGridColumn(gvwdetalle, "Medida", "umed", 5, FormatType.None, "x", true, 70);
+            CreateGridColumn(gvwdetalle, "Cant.", "cant", 6, DevExpress.Utils.FormatType.Numeric, "d3", true, 50);
+            CreateGridColumn(gvwdetalle, "P. Unitario", "preu", 7, DevExpress.Utils.FormatType.Numeric, "d3", false, 80);
+            CreateGridColumn(gvwdetalle, "SubTotal", "tota", 8, DevExpress.Utils.FormatType.Numeric, "d3", false, 80);
             CreateGridColumn(gvwdetalle, "Total", "totn", 9, DevExpress.Utils.FormatType.Numeric, "d3", true, 80);
 
-            CreateGridColumn(gvwdetalle, "Cod_Operario", "Cod_Operario", 10, FormatType.None, "x", true, 100);
-            CreateGridColumn(gvwdetalle, "FechaInicioServicio", "FechaInicioServicio", 11, FormatType.DateTime, "dd/MM/yyyy HH:mm", true, 100);
-            CreateGridColumn(gvwdetalle, "FechaFinServicio", "FechaFinServicio", 12, FormatType.DateTime, "dd/MM/yyyy HH:mm", true, 100);
+            CreateGridColumn(gvwdetalle, "Operario", "Cod_Operario", 10, FormatType.None, "x", true, 150);
+            CreateGridColumn(gvwdetalle, "FechaInicioServicio", "FechaInicioServicio", 11, FormatType.DateTime, "dd/MM/yyyy HH:mm", true, 150);
+            CreateGridColumn(gvwdetalle, "FechaFinServicio", "FechaFinServicio", 12, FormatType.DateTime, "dd/MM/yyyy HH:mm", true, 150);
+            CreateGridColumn(gvwdetalle, "ndocu", "ndocu", 13, FormatType.None, "x", false, 80);
+            CreateGridColumn(gvwdetalle, "item", "item", 14, FormatType.None, "x", false, 80);
+            CreateGridColumn(gvwdetalle, "tiposervicio", "tiposervicio", 15, FormatType.None, "x", false, 80);
+            
 
             gvwdetalle.EndUpdate();
         }
@@ -242,10 +247,17 @@ namespace IAP.Win.Comercial
         {
             try
             {
+                DevExpress.XtraEditors.LookUpEdit edit = (DevExpress.XtraEditors.LookUpEdit)gvwdetalle.ActiveEditor;
                 //gvCapaDetalle.SetRowCellValue(gvCapaDetalle.FocusedRowHandle, gvCapaDetalle.Columns["CodTecnico"], null);
                 //gvCapaDetalle.SetRowCellValue(gvCapaDetalle.FocusedRowHandle, gvCapaDetalle.Columns["Tipo"], null);
                 //gvCapaDetalle.SetRowCellValue(gvCapaDetalle.FocusedRowHandle, gvCapaDetalle.Columns["ItemId"], 0);
-                
+                foreach (OrdenServicioLinea l in _lstordenservicioLinea)
+                {
+                    if(l.ndocu==Convert.ToString(gvwdetalle.GetFocusedRowCellValue("ndocu")) && l.item== Convert.ToString(gvwdetalle.GetFocusedRowCellValue("item")))
+                    {
+                        l.Cod_Operario = edit.EditValue.ToString();
+                    }
+                }
                 
                 gcdetalle.RefreshDataSource();
             }
@@ -452,7 +464,11 @@ namespace IAP.Win.Comercial
                         {
                             if(MessageBox.Show("Desea guardar la Orden de Servicio con los operarios asignados?","Utilitario",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes)
                             {
-                                GuardarOS();
+                                using (WaitDialogForm waitDialog = new WaitDialogForm("<<<Registrando Operarios>>>>"))
+                                {
+                                    GuardarOS();
+                                }
+                                    
                             }
                         }
                         break;
@@ -474,8 +490,64 @@ namespace IAP.Win.Comercial
         private void GuardarOS()
         {
             string ndocu = gvwcabecera.GetFocusedRowCellValue("ndocu").ToString();
-            BindingList<OrdenServicioLinea> lst = new BindingList<OrdenServicioLinea>();
-            lst = _lstordenservicioLinea;
+            string flag = gvwcabecera.GetFocusedRowCellValue("flag").ToString();
+
+            if(flag.CompareTo("2")==0)
+            {
+                MessageBox.Show("La Orden de Servicio esta cerrada y no puede modificarse", "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            if(_lstordenservicioLinea.Where(x=> x.FechaInicioServicio != null).Any() || _lstordenservicioLinea.Where(x => x.FechaFinServicio != null).Any())
+            {
+                MessageBox.Show("La Orden de Servicio esta en proceso y no puede modificarse", "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            BL.Comercial objComercial = new BL.Comercial();
+            gcdetalle.RefreshDataSource();
+            objComercial.Actualizar_Operarios_OS(_lstordenservicioLinea,Global.vUserBaseDatos);
+            
+            
+        }
+
+        private void gvwdetalle_DoubleClick(object sender, EventArgs e)
+        {
+            if (gvwdetalle.RowCount == 0)
+                return;
+
+            if(gvwdetalle.GetFocusedRowCellValue("tiposervicio").ToString().ToUpper().Trim()==string.Empty)
+            {
+                MessageBox.Show("El item seleccionado no tiene relacionado una plantilla valida", "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            if(gvwdetalle.GetFocusedRowCellValue("Cod_Operario").ToString().Trim()==string.Empty)
+            {
+                MessageBox.Show("El item seleccionado no tiene relacionado un operario, asigne uno seleccionando de la lista.", "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            List<OrdenServicioLinea> lst = new List<OrdenServicioLinea>();
+            lst =(eCom.ObtenerOrdenServicioLinea(gvwdetalle.GetFocusedRowCellValue("ndocu").ToString(), Global.vUserBaseDatos));
+
+            if (!(lst.Where(
+                x=> x.Cod_Operario.Trim()== gvwdetalle.GetFocusedRowCellValue("Cod_Operario").ToString().Trim()
+                && x.item.Trim() == gvwdetalle.GetFocusedRowCellValue("item").ToString().Trim()).Any()))
+            {
+                MessageBox.Show("Tiene que guardar el registro antes de continuar.", "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            frm_Contenedor frm = new frm_Contenedor();
+            frm._NroDocumento = gvwdetalle.GetFocusedRowCellValue("ndocu").ToString();
+            frm._NombreEncargado = _lstOperarios.Where(x => x.Cod_Operario == gvwdetalle.GetFocusedRowCellValue("Cod_Operario").ToString().Trim()).Select(y => y.NombreOperario).First();
+            frm._CodOperario= gvwdetalle.GetFocusedRowCellValue("Cod_Operario").ToString();
+            frm._FechaInicio = gvwdetalle.GetFocusedRowCellValue("FechaInicioServicio") == null ? String.Empty : gvwdetalle.GetFocusedRowCellValue("FechaInicioServicio").ToString();
+            frm._FechaFin= gvwdetalle.GetFocusedRowCellValue("FechaFinServicio") == null ? string.Empty : gvwdetalle.GetFocusedRowCellValue("FechaFinServicio").ToString();
+            frm._TipoPlantilla = gvwdetalle.GetFocusedRowCellValue("tiposervicio").ToString().ToUpper();
+            frm._Codi= gvwdetalle.GetFocusedRowCellValue("codi").ToString().ToUpper();
+            frm._NroLinea = gvwdetalle.GetFocusedRowCellValue("item").ToString().ToUpper();
+            frm.ShowDialog();
+            ObtenerOrdenesServicio();
         }
     }
 }

@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using System.Net;
 using System.IO;
 using IAP.DL;
+using System.ComponentModel;
 
 namespace IAP.BL
 {
@@ -265,6 +266,43 @@ namespace IAP.BL
 
         }
 
+        public void Actualizar_Operarios_OS(BindingList<OrdenServicioLinea> lstdetalle, string dbconexion)
+        {
+            DL.Comercial cls = new DL.Comercial();
+            using (TransactionScope ts = new TransactionScope(TransactionScopeOption.Required))
+            {
+                
+                cls.Actualizar_Operarios_OS(lstdetalle, dbconexion);
+                ts.Complete();
+            }
+        }
+
+        public void Actualizar_Fechas_proceso_OS(string ndocu, Int32 item, string cod_operario, string dbconexion)
+        {
+            DL.Comercial cls = new DL.Comercial();
+            using (TransactionScope ts = new TransactionScope(TransactionScopeOption.Required))
+            {
+                cls.Actualizar_Fechas_proceso_OS(ndocu, item, cod_operario, dbconexion);
+                ts.Complete();
+            }
+        }
+
+        public void Registrar_PlantillaParametros_OS(OrdenServicioPlantillaParametros plantilla, string dbconexion)
+        {
+            DL.Comercial cls = new DL.Comercial();
+            using (TransactionScope ts = new TransactionScope(TransactionScopeOption.Required))
+            {
+
+                cls.Registrar_PlantillaParametros_OS(plantilla, dbconexion);
+                ts.Complete();
+            }
+        }
+
+        public OrdenServicioPlantillaParametros Obtener_PlantillaParametros_OS(string ndocu, string cod_operario, string codi, int item, string dbconexion)
+        {
+            DL.Comercial cls = new DL.Comercial();
+            return cls.Obtener_PlantillaParametros_OS(ndocu,cod_operario,codi,item, dbconexion);
+        }
 
     }
 }
