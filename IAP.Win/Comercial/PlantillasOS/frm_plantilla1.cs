@@ -189,7 +189,7 @@ namespace IAP.Win.Comercial.PlantillasOS
             BL.Comercial objCom = new BL.Comercial();
             _objParametrosOS = objCom.Obtener_PlantillaParametros_OS(_NroDocumento, _CodOperario, _Codi, Convert.ToInt32(_NroLinea), Global.vUserBaseDatos);
 
-            txtp1.Text = _objParametrosOS.p1.ToString();
+            txtp1.Text = _objParametrosOS.p1==null ? "" : _objParametrosOS.p1.ToString();
             txtp2.Text = _objParametrosOS.p2.ToString();
             txtp3.Text = _objParametrosOS.p3.ToString();
             txtp4.Text = _objParametrosOS.p4.ToString();
@@ -222,7 +222,7 @@ namespace IAP.Win.Comercial.PlantillasOS
                     _objParametrosOS.cod_operario = _CodOperario;
                     _objParametrosOS.codi = _Codi;
                     _objParametrosOS.item = _NroLinea;
-                    _objParametrosOS.p1 = Convert.ToDouble(txtp1.Text.Trim() == string.Empty ? "0" : txtp1.Text.Trim());
+                    _objParametrosOS.p1 = txtp1.Text.Trim();
                     _objParametrosOS.p2 = Convert.ToDouble(txtp2.Text.Trim() == string.Empty ? "0" : txtp2.Text.Trim());
                     _objParametrosOS.p3 = Convert.ToDouble(txtp3.Text.Trim() == string.Empty ? "0" : txtp3.Text.Trim());
                     _objParametrosOS.p4 = Convert.ToDouble(txtp4.Text.Trim() == string.Empty ? "0" : txtp4.Text.Trim());

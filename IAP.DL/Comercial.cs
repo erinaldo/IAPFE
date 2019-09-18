@@ -865,7 +865,7 @@ namespace IAP.DL
                     cod_operario = row["cod_operario"].ToString().Trim(),
                     codi = row["codi"].ToString().Trim(),
                     item = row["item"].ToString().Trim(),
-                    p1 = Convert.ToDouble(row["p1"]),
+                    p1 = (row["p1"]==DBNull.Value ? "" : row["p1"].ToString()),
                     p2 = Convert.ToDouble(row["p2"]),
                     p3 = Convert.ToDouble(row["p3"]),
                     p4 = Convert.ToDouble(row["p4"]),

@@ -76,7 +76,7 @@ namespace IAP.BE
         public string cod_operario { get; set; }
         public string codi { get; set; }
         public string item { get; set; }
-        public double p1   {get;set;}
+        public string p1   {get;set;}
         public double p2   {get;set;}
         public double p3   {get;set;}
         public double p4   {get;set;}
