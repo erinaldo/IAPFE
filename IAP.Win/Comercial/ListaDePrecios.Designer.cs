@@ -156,7 +156,7 @@
             this.cmbgrupo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.cmbgrupo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbgrupo.Size = new System.Drawing.Size(135, 18);
+            this.cmbgrupo.Size = new System.Drawing.Size(135, 19);
             this.cmbgrupo.TabIndex = 13;
             // 
             // cmbsubfamilia
@@ -170,7 +170,7 @@
             this.cmbsubfamilia.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.cmbsubfamilia.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbsubfamilia.Size = new System.Drawing.Size(135, 18);
+            this.cmbsubfamilia.Size = new System.Drawing.Size(135, 19);
             this.cmbsubfamilia.TabIndex = 12;
             this.cmbsubfamilia.EditValueChanged += new System.EventHandler(this.cmbsubfamilia_EditValueChanged);
             // 
@@ -185,7 +185,7 @@
             this.cmbfamilia.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.cmbfamilia.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbfamilia.Size = new System.Drawing.Size(135, 18);
+            this.cmbfamilia.Size = new System.Drawing.Size(135, 19);
             this.cmbfamilia.TabIndex = 11;
             this.cmbfamilia.EditValueChanged += new System.EventHandler(this.cmbfamilia_EditValueChanged);
             // 
@@ -299,33 +299,33 @@
             this.toolStripSeparator1,
             this.EnviarListaAndroid});
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(181, 98);
+            this.menu.Size = new System.Drawing.Size(179, 76);
             this.menu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menu_ItemClicked_1);
             // 
             // Marcatodo
             // 
             this.Marcatodo.Image = global::IAP.Win.Properties.Resources.Apply_32x32;
             this.Marcatodo.Name = "Marcatodo";
-            this.Marcatodo.Size = new System.Drawing.Size(180, 22);
+            this.Marcatodo.Size = new System.Drawing.Size(178, 22);
             this.Marcatodo.Text = "Marcar Todo";
             // 
             // Limpiatodo
             // 
             this.Limpiatodo.Image = global::IAP.Win.Properties.Resources.ClearFilter_32x32;
             this.Limpiatodo.Name = "Limpiatodo";
-            this.Limpiatodo.Size = new System.Drawing.Size(180, 22);
+            this.Limpiatodo.Size = new System.Drawing.Size(178, 22);
             this.Limpiatodo.Text = "Limpiar";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(175, 6);
             // 
             // EnviarListaAndroid
             // 
             this.EnviarListaAndroid.Image = global::IAP.Win.Properties.Resources.android;
             this.EnviarListaAndroid.Name = "EnviarListaAndroid";
-            this.EnviarListaAndroid.Size = new System.Drawing.Size(180, 22);
+            this.EnviarListaAndroid.Size = new System.Drawing.Size(178, 22);
             this.EnviarListaAndroid.Text = "Exportar Lista a APP";
             // 
             // gvwlista

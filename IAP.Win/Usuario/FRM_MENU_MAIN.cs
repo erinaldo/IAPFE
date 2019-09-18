@@ -101,7 +101,7 @@ namespace IAP.Win
 
                 string IdEmpresaFE = ConfigurationManager.AppSettings.Get("PROVEEDORFE");
                 string Empresa= ConfigurationManager.AppSettings.Get("EMPRESA");
-
+                Global.vUserRucEmpresa= ConfigurationManager.AppSettings.Get("RUCEMPRESA");
                 Global.vTelemovilAK= ConfigurationManager.AppSettings.Get("TELEMOVILAK");
                 Global.vTelemovilSK= ConfigurationManager.AppSettings.Get("TELEMOVILSK");
 

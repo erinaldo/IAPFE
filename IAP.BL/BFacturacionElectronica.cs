@@ -312,7 +312,16 @@ namespace IAP.BL
                 //string respuesta = ex.Message.ToString();// .Response.GetResponseStream()).ReadToEnd();
                 /// Y LO 'RETORNAMOS'
                 //return respuesta;
-                var respuesta = new StreamReader(ex.Response.GetResponseStream()).ReadToEnd();
+                var respuesta = string.Empty ;
+                if (ex.Response==null)
+                {
+                    respuesta = ex.Message;
+                }
+                else
+                {
+                    respuesta = new StreamReader(ex.Response.GetResponseStream()).ReadToEnd();
+                }
+                 
                 throw new Exception(respuesta.ToString());
             }
         }

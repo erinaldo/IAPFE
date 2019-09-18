@@ -88,6 +88,15 @@ namespace IAP.BE
         public double p10  {get;set;}
         public double p11  {get;set;}
         public double p12 { get; set; }
+        public double p13 {get;set;}
+        public double p14 {get;set;}
+        public double p15 {get;set;}
+        public double p16 {get;set;}
+        public double p17 {get;set;}
+        public double p18 {get;set;}
+        public double p19 {get;set;}
+        public double p20 { get; set; }
+
     }
 
 }

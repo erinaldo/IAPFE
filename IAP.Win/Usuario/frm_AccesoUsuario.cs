@@ -46,8 +46,8 @@ namespace IAP.Win
         private void frm_AccesoUsuario_Load(object sender, EventArgs e)
         {
             //txtBaseDatos.Text = "Hans-PC";
-            //txtBaseDatos.Text = "hans-pc";
             txtBaseDatos.Text = "HANS-PC";
+            //txtBaseDatos.Text = "HANS-PC";
             //txtBaseDatos.Text = "LOCALHOST";
             cmbbd.SelectedIndex = 0;
             txtUsuario.Text = "cliente";
@@ -82,6 +82,8 @@ namespace IAP.Win
         }
         private void Validar_Ingreso()
         {
+
+            
             if (txtBaseDatos.Text.Trim() == string.Empty || txtUsuario.Text.Trim() == string.Empty || txtPassword.Text.Trim() == string.Empty || cmbbd.Text.Trim() == string.Empty)
             {
                 MessageBox.Show("Debe llenar los campos requeridos para iniciar sesión", "Acceso al Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -99,6 +101,27 @@ namespace IAP.Win
                 Global.login_conforme = "si";
                 Global.vUserBaseDatos = cmbbd.SelectedIndex==0 ? "BdNava01" : "Bdnava02";
                 Global.vUserServer = cmbbd.Text;
+
+                /*
+                string password = "ª­¶²·š“  ";
+
+                password = password.Trim();
+                string p1;
+                int ascc, newascc;
+                char cadena;
+                char y;
+                string contrasena = "";
+                
+                foreach (char c in password)
+                {
+                    
+                    ascc = System.Convert.ToInt32(c);
+                    newascc = ascc - (210 / 2);
+                    cadena = (char)newascc;
+                    contrasena = contrasena + cadena;
+                }
+                */
+
                 if (txtUsuario.Text.Trim().ToUpper() == "ADMINISTRADOR")
                 {
                     Global.UserAdministrador = true;

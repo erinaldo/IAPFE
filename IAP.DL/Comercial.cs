@@ -699,7 +699,7 @@ namespace IAP.DL
             db.ExecuteNonQuery(cmd);
         }
 
-        public List<OrdenServicioDocumento> DescargarPedidosAndroid(DateTime fechai, DateTime fechaf, string dbconexion,string dbconexionAndroid)
+        public List<OrdenServicioDocumento> DescargarPedidosAndroid(DateTime fechai, DateTime fechaf,string ruc, string dbconexion,string dbconexionAndroid)
         {
             List<OrdenServicioDocumento> lst_OSDocumento = new List<OrdenServicioDocumento>();
             //List<OrdenServicio> lstOS_Cab = new List<OrdenServicio>();
@@ -707,7 +707,7 @@ namespace IAP.DL
             List<OrdenServicioLinea> lstOS_Det = new List<OrdenServicioLinea>();
             Database db = DatabaseFactory.CreateDatabase(dbconexionAndroid);
             DbCommand cmd;
-            cmd = db.GetStoredProcCommand("usp_sel_ObtenerPedidosSincronizacion", fechai, fechaf,"");
+            cmd = db.GetStoredProcCommand("usp_sel_ObtenerPedidosSincronizacion", fechai, fechaf,ruc);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandTimeout = 0;
 
@@ -831,7 +831,16 @@ namespace IAP.DL
                 plantilla.p9,
                 plantilla.p10,
                 plantilla.p11,
-                plantilla.p12);
+                plantilla.p12,
+                plantilla.p13,
+                plantilla.p14,
+                plantilla.p15,
+                plantilla.p16,
+                plantilla.p17,
+                plantilla.p18,
+                plantilla.p19,
+                plantilla.p20
+                );
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandTimeout = 0;
             db.ExecuteNonQuery(cmd);
@@ -867,7 +876,15 @@ namespace IAP.DL
                     p9 = Convert.ToDouble(row["p9"]),
                     p10 = Convert.ToDouble(row["p10"]),
                     p11 = Convert.ToDouble(row["p11"]),
-                    p12 = Convert.ToDouble(row["p12"])
+                    p12 = Convert.ToDouble(row["p12"]),
+                    p13 = Convert.ToDouble(row["p13"]),
+                    p14 = Convert.ToDouble(row["p14"]),
+                    p15 = Convert.ToDouble(row["p15"]),
+                    p16 = Convert.ToDouble(row["p16"]),
+                    p17 = Convert.ToDouble(row["p17"]),
+                    p18 = Convert.ToDouble(row["p18"]),
+                    p19 = Convert.ToDouble(row["p19"]),
+                    p20 = Convert.ToDouble(row["p20"])
                 });
             }
             return lst;

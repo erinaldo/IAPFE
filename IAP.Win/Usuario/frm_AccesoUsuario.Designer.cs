@@ -86,7 +86,8 @@
             this.cmbbd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbbd.Properties.Items.AddRange(new object[] {
-            "PERFILES METALICOS"});
+            "PERFILES METALICOS",
+            "ACEROS LC"});
             this.cmbbd.Properties.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxEdit1_Properties_KeyPress);
             this.cmbbd.Size = new System.Drawing.Size(109, 20);
             this.cmbbd.TabIndex = 22;

@@ -230,7 +230,7 @@ namespace IAP.Win.Comercial
                 
                 if(item.Name == "smnusiguienteestado")
                 {
-                    blComercial.Actualizar_FlagEstadoPedidos(IdPedido, "", Global.vUserBaseDatos, Global.vUserBaseDatosAndroid);
+                    blComercial.Actualizar_FlagEstadoPedidos(IdPedido, Global.vUserRucEmpresa, Global.vUserBaseDatos, Global.vUserBaseDatosAndroid);
                 }
                 else
                 {
@@ -259,7 +259,7 @@ namespace IAP.Win.Comercial
 
                     }
 
-                    blComercial.Actualizar_FlagEstadoPedidosManual(IdPedido, "", flag_Estado, Global.vUserBaseDatos, Global.vUserBaseDatosAndroid);
+                    blComercial.Actualizar_FlagEstadoPedidosManual(IdPedido, Global.vUserRucEmpresa, flag_Estado, Global.vUserBaseDatos, Global.vUserBaseDatosAndroid);
                 }
                 ObtenerOrdenesServicio();
 
@@ -339,6 +339,7 @@ namespace IAP.Win.Comercial
                     case "mnudescargar":
                         {
                             DescargarPedidosAndroid();
+                            ObtenerOrdenesServicio();
                         }
                         break;
                     case "mnuestados":
@@ -348,7 +349,7 @@ namespace IAP.Win.Comercial
                         break;
                     
                 }
-                ObtenerOrdenesServicio();
+                
 
             }
             catch (Exception err)
@@ -398,6 +399,7 @@ namespace IAP.Win.Comercial
                     using (WaitDialogForm waitDialog = new WaitDialogForm("<<<<Descargando y Registrando>>>>"))
                     {
                         objComercial.DescargarRegistrarPedidosAndroid(Convert.ToDateTime(dtfechainicial.EditValue), Convert.ToDateTime(dtfechafinal.EditValue),
+                            Global.vUserRucEmpresa,
                             Global.vUserBaseDatos, Global.vUserBaseDatosAndroid);
                         ObtenerOrdenesServicio();
                     }

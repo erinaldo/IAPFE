@@ -300,12 +300,18 @@
       <DependentUpon>frm_EnvioEmail.cs</DependentUpon>
     </Compile>
     <Compile Include="Ocr.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\frm_dvw_comercial_ventas.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reportes\frm_dvw_comercial_ventas.Designer.cs">
       <DependentUpon>frm_dvw_comercial_ventas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Class1.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Usuario\frm_AccesoUsuario.cs">
       <SubType>Form</SubType>
@@ -394,11 +400,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Service References\ServicioAndroid\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -785,7 +786,39 @@
     <Content Include="Resources\PCCOM15B.ICO" />
     <Content Include="Resources\pdf 16x16.jpg" />
     <Content Include="Resources\pdf.png" />
-    <Content Include="Resources\Plantilla1.jpg" />
+    <Content Include="Resources\PLANTILLA1.jpeg" />
+    <Content Include="Resources\PLANTILLA10.jpeg" />
+    <Content Include="Resources\PLANTILLA11.jpeg" />
+    <Content Include="Resources\PLANTILLA12.jpeg" />
+    <Content Include="Resources\PLANTILLA13.jpeg" />
+    <Content Include="Resources\PLANTILLA14.jpeg" />
+    <Content Include="Resources\PLANTILLA15.jpeg" />
+    <Content Include="Resources\PLANTILLA16.jpeg" />
+    <Content Include="Resources\PLANTILLA17.jpeg" />
+    <Content Include="Resources\PLANTILLA18.jpeg" />
+    <Content Include="Resources\PLANTILLA19.jpeg" />
+    <Content Include="Resources\PLANTILLA2.jpeg" />
+    <Content Include="Resources\PLANTILLA20.jpeg" />
+    <Content Include="Resources\PLANTILLA21.jpeg" />
+    <Content Include="Resources\PLANTILLA22.jpeg" />
+    <Content Include="Resources\PLANTILLA23.jpeg" />
+    <Content Include="Resources\PLANTILLA24.jpeg" />
+    <Content Include="Resources\PLANTILLA25.jpeg" />
+    <Content Include="Resources\PLANTILLA26.jpeg" />
+    <Content Include="Resources\PLANTILLA27.jpeg" />
+    <Content Include="Resources\PLANTILLA28.jpeg" />
+    <Content Include="Resources\PLANTILLA29.jpeg" />
+    <Content Include="Resources\PLANTILLA3.jpeg" />
+    <Content Include="Resources\PLANTILLA30.jpeg" />
+    <Content Include="Resources\PLANTILLA31.jpeg" />
+    <Content Include="Resources\PLANTILLA32.jpeg" />
+    <Content Include="Resources\PLANTILLA33.jpeg" />
+    <Content Include="Resources\PLANTILLA4.jpeg" />
+    <Content Include="Resources\PLANTILLA5.jpeg" />
+    <Content Include="Resources\PLANTILLA6.jpeg" />
+    <Content Include="Resources\PLANTILLA7.jpeg" />
+    <Content Include="Resources\PLANTILLA8.jpeg" />
+    <Content Include="Resources\PLANTILLA9.jpeg" />
     <Content Include="Resources\Preview_32x32.png" />
     <Content Include="Resources\Previous_32x32.png" />
     <Content Include="Resources\Print.bmp" />

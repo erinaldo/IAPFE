@@ -233,14 +233,14 @@ namespace IAP.BL
                 throw new Exception(ex.Message);
             }
         }
-        public void DescargarRegistrarPedidosAndroid(DateTime fechai, DateTime fechaf, string dbconexion, string dbconexionAndroid)
+        public void DescargarRegistrarPedidosAndroid(DateTime fechai, DateTime fechaf,string ruc, string dbconexion, string dbconexionAndroid)
         {
             DL.Comercial cls = new DL.Comercial();
             List<OrdenServicioDocumento> lstOSDoc = new List<OrdenServicioDocumento>();
             List<OrdenServicio> lstOS = new List<OrdenServicio>();
             using (TransactionScope ts = new TransactionScope(TransactionScopeOption.Required))
             {
-                lstOSDoc=cls.DescargarPedidosAndroid(fechai, fechaf, dbconexion, dbconexionAndroid);
+                lstOSDoc=cls.DescargarPedidosAndroid(fechai, fechaf,ruc, dbconexion, dbconexionAndroid);
                 ts.Complete();
             }
 

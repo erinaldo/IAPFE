@@ -877,7 +877,106 @@
   <data name="SPLASH" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\splash.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Plantilla1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\plantilla1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PLANTILLA10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla10.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla1.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA111" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla11.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA12" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla12.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA13" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla13.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA14" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla14.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA15" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla15.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla16.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA17" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla17.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA18" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla18.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA19" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla19.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla2.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA20" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla20.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA21" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla21.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA22" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla22.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA23" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla23.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla24.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA25" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla25.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA26" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla26.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA27" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla27.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA28" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla28.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA29" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla29.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla3.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA30" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla30.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA31" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla31.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla32.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA33" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla33.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla4.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla5.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla6.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla7.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla8.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA9" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla9.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PLANTILLA1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\plantilla1.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
