@@ -131,7 +131,7 @@ namespace IAP.Win
         private void LLenar_Familia()
         {
             DataSet ds_fam = new DataSet();
-            ds_fam = BL.Tablas_Maestras.Familias(Global.vUserBaseDatos);
+            ds_fam = BL.Tablas_Maestras.Familias(Global.vUserBaseDatos, Global.vUsuarioBD, Global.vPasswordBD, Global.vIpServidor);
             this.cmbfamilia.Properties.DisplayMember = "nomfam";
             this.cmbfamilia.Properties.ValueMember = "codfam";
             this.cmbfamilia.Properties.DataSource = ds_fam.Tables[0];
@@ -139,7 +139,7 @@ namespace IAP.Win
         private void Llenar_SubFamilia(string familias)
         {
             DataSet ds_Sfam = new DataSet();
-            ds_Sfam = BL.Tablas_Maestras.SubFamilias(familias, Global.vUserBaseDatos);
+            ds_Sfam = BL.Tablas_Maestras.SubFamilias(familias, Global.vUserBaseDatos, Global.vUsuarioBD, Global.vPasswordBD, Global.vIpServidor);
             this.cmbsubfamilia.Properties.DisplayMember = "nomsub";
             this.cmbsubfamilia.Properties.ValueMember = "codsub";
             this.cmbsubfamilia.Properties.DataSource = ds_Sfam.Tables[0];
@@ -147,7 +147,7 @@ namespace IAP.Win
         private void Llenar_Grupos(string subfamilias)
         {
             DataSet ds_gru = new DataSet();
-            ds_gru = BL.Tablas_Maestras.Listado_Grupos(subfamilias, Global.vUserBaseDatos);
+            ds_gru = BL.Tablas_Maestras.Listado_Grupos(subfamilias, Global.vUserBaseDatos, Global.vUsuarioBD, Global.vPasswordBD, Global.vIpServidor);
             this.cmbgrupo.Properties.DisplayMember = "nomgru";
             this.cmbgrupo.Properties.ValueMember = "codgru";
             this.cmbgrupo.Properties.DataSource = ds_gru.Tables[0];
@@ -163,7 +163,7 @@ namespace IAP.Win
                     chkcostomayorcero.Checked == true ? 1 : 0,
                     chkstockmayorcero.Checked == true ? 1 : 0,
                     txtcodf.Text.Trim(),txtbusqueda.Text.Trim(),
-                    Global.vUserBaseDatos);
+                    Global.vUserBaseDatos, Global.vUsuarioBD, Global.vPasswordBD, Global.vIpServidor);
                 if (_LSTLISTADEPRECIOS.Count() > 0)
                 {
                     txttc.Text = _LSTLISTADEPRECIOS.Select(x => x.Tcventa.ToString()).First();
@@ -334,7 +334,7 @@ namespace IAP.Win
                         List<listaprecio> lista = _LSTLISTADEPRECIOS.Where(x => x.FlgCheck == true && x.Ultcostocompradolar > 0 && x.Ultcostocomprasoles > 0).ToList();
                         lista.ForEach(x => x.Valorventaingreso = Convert.ToDouble(txtincremento.Text));
                         
-                        BL.Comercial.RegistrarListaPrecios(lista, Global.vUserBaseDatos);
+                        BL.Comercial.RegistrarListaPrecios(lista, Global.vUserBaseDatos, Global.vUsuarioBD, Global.vPasswordBD, Global.vIpServidor);
                     }
                     MessageBox.Show("Se registro correctamente la lista", "Sistema Administrativo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     BuscarArticulos();
@@ -387,7 +387,7 @@ namespace IAP.Win
                     using (WaitDialogForm waitDialog = new WaitDialogForm("Espere por favor...", "<<<<Guardando Información>>>>"))
                     {
                         List<listaprecio> lista = _LSTLISTADEPRECIOS.Where(x => x.FlgCheck == true && x.Valorventaingreso>0).ToList();
-                        BL.Comercial.RegistrarListaPrecios(lista, Global.vUserBaseDatos);
+                        BL.Comercial.RegistrarListaPrecios(lista, Global.vUserBaseDatos, Global.vUsuarioBD, Global.vPasswordBD, Global.vIpServidor);
                     }
                     MessageBox.Show("Se registro correctamente la lista", "Sistema Administrativo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     BuscarArticulos();

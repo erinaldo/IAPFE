@@ -9,21 +9,21 @@ namespace IAP.BL
 {
     public class Tablas_Maestras
     {
-        public static DataSet Vendedores (string db)
+        public static DataSet Vendedores (string db, string usuario, string password, string servidor)
         {
-            return DL.Tablas_Maestras.Listado_Vendedores(db);
+            return DL.Tablas_Maestras.Listado_Vendedores(db,usuario,password,servidor);
         }
-        public static DataSet Familias(string db)
+        public static DataSet Familias(string db, string usuario, string password, string servidor)
         {
-            return DL.Tablas_Maestras.Listado_Familia(db);
+            return DL.Tablas_Maestras.Listado_Familia(db,usuario,password,servidor);
         }
-        public static DataSet SubFamilias(string familias, string db)
+        public static DataSet SubFamilias(string familias, string db, string usuario, string password, string servidor)
         {
-            return DL.Tablas_Maestras.Listado_SubFamilia(familias, db);
+            return DL.Tablas_Maestras.Listado_SubFamilia(familias, db,usuario,password,servidor);
         }
-        public static DataSet Listado_Grupos(string subfamilia, string db)
+        public static DataSet Listado_Grupos(string subfamilia, string db, string usuario, string password, string servidor)
         {
-            return DL.Tablas_Maestras.Listado_Grupos(subfamilia, db);
+            return DL.Tablas_Maestras.Listado_Grupos(subfamilia, db,usuario,password,servidor);
         }
     }
 }

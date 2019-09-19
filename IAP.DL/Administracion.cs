@@ -9,7 +9,7 @@ namespace IAP.DL
 {
     public class Administracion
     {
-        public static bool Borrar_Documento(string numero, string tipo_docu, string tipo_eliminacion, string db)
+        public static bool Borrar_Documento(string numero, string tipo_docu, string tipo_eliminacion, string db,string usuario,string password,string servidor)
         {
             bool result=true;
             if (tipo_eliminacion == "F")
@@ -18,7 +18,7 @@ namespace IAP.DL
                 List<SqlParameter> arParams = new List<SqlParameter>();
                 arParams.Add(new SqlParameter("@ndocu", numero));
                 arParams.Add(new SqlParameter("@cdocu", tipo_docu));
-                Convert.ToInt32(SqlHelper.ExecuteScalar(ConexionDC.ConectarBD(db),CommandType.StoredProcedure, strSql, arParams.ToArray()));
+                Convert.ToInt32(SqlHelper.ExecuteScalar(ConexionDC.ConectarBD(db,usuario,password,servidor),CommandType.StoredProcedure, strSql, arParams.ToArray()));
                 //SqlHelper.ExecuteDataset(ConexionDC.ConectarBD(db), CommandType.StoredProcedure, strSql, arParams.ToArray());
                 //return orden_servicio_linea;
             }
@@ -27,12 +27,12 @@ namespace IAP.DL
                 string strSql = "sp_elimina_guideremision";
                 List<SqlParameter> arParams = new List<SqlParameter>();
                 arParams.Add(new SqlParameter("@ndocu", numero));
-                Convert.ToInt32(SqlHelper.ExecuteScalar(ConexionDC.ConectarBD(db), CommandType.StoredProcedure, strSql, arParams.ToArray()));
+                Convert.ToInt32(SqlHelper.ExecuteScalar(ConexionDC.ConectarBD(db,usuario,password,servidor), CommandType.StoredProcedure, strSql, arParams.ToArray()));
                 //SqlHelper.ExecuteDataset(ConexionDC.ConectarBD(db), CommandType.StoredProcedure, strSql, arParams.ToArray());
             }
             return result;
         }
-        public static DataTable Verificar_doc_eliminado(string cdocu, string ndocu,string tipo_operacion, string db)
+        public static DataTable Verificar_doc_eliminado(string cdocu, string ndocu,string tipo_operacion, string db, string usuario, string password, string servidor)
         {
             if (tipo_operacion == "F")
             {
@@ -41,7 +41,7 @@ namespace IAP.DL
                 List<SqlParameter> arParam = new List<SqlParameter>();
                 arParam.Add(new SqlParameter("@ndocu", ndocu));
                 arParam.Add(new SqlParameter("@cdocu", cdocu));
-                return SqlHelper.ExecuteDataset(ConexionDC.ConectarBD(db), CommandType.Text, strSql, arParam.ToArray()).Tables[0];
+                return SqlHelper.ExecuteDataset(ConexionDC.ConectarBD(db,usuario,password,servidor), CommandType.Text, strSql, arParam.ToArray()).Tables[0];
             }
             else
             {
@@ -50,23 +50,23 @@ namespace IAP.DL
                 List<SqlParameter> arParam = new List<SqlParameter>();
                 arParam.Add(new SqlParameter("@ndocu", ndocu));
                 arParam.Add(new SqlParameter("@cdocu", cdocu));
-                return SqlHelper.ExecuteDataset(ConexionDC.ConectarBD(db), CommandType.Text, strSql, arParam.ToArray()).Tables[0];
+                return SqlHelper.ExecuteDataset(ConexionDC.ConectarBD(db,usuario,password,servidor), CommandType.Text, strSql, arParam.ToArray()).Tables[0];
             }
         }
-        public static void Borrar_Arqueo(string num_planilla,string db)
+        public static void Borrar_Arqueo(string num_planilla,string db, string usuario, string password, string servidor)
         {
             string strsql;
             strsql = "delete  from dtl01pli where nplan=@nplan";
             List<SqlParameter> arParam = new List<SqlParameter>();
             arParam.Add(new SqlParameter("@nplan",num_planilla));
-            SqlHelper.ExecuteScalar(ConexionDC.ConectarBD(db), CommandType.Text, strsql, arParam.ToArray());           
+            SqlHelper.ExecuteScalar(ConexionDC.ConectarBD(db,usuario,password,servidor), CommandType.Text, strsql, arParam.ToArray());           
         }
-        public static void Script_sql(string archivo_leido, string db)
+        public static void Script_sql(string archivo_leido, string db, string usuario, string password, string servidor)
         {
             
-           SqlHelper.ExecuteNonQuery(ConexionDC.ConectarBD(db), CommandType.Text, archivo_leido);
+           SqlHelper.ExecuteNonQuery(ConexionDC.ConectarBD(db,usuario,password,servidor), CommandType.Text, archivo_leido);
         }
-        public static void Generar_Backup(string directorio, string db)
+        public static void Generar_Backup(string directorio, string db, string usuario, string password, string servidor)
         {
             string strSql = "SP_GENERAR_COPIA_SEGURIDAD";
             //List<SqlParameter> arParams = new List<SqlParameter>();
@@ -75,7 +75,7 @@ namespace IAP.DL
 
 
             string sqlCommand = strSql;
-            string connectionString = ConexionDC.ConectarBD(db);
+            string connectionString = ConexionDC.ConectarBD(db,usuario,password,servidor);
             //DataSet ds = new DataSet();
             using (SqlCommand cmd = new SqlCommand(sqlCommand, new SqlConnection(connectionString)))
             {

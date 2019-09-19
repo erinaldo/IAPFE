@@ -35,7 +35,7 @@ namespace IAP.Win
         private void LLenar_Familia()
         {
             DataSet ds_fam = new DataSet();
-            ds_fam = BL.Tablas_Maestras.Familias(Global.vUserBaseDatos);
+            ds_fam = BL.Tablas_Maestras.Familias(Global.vUserBaseDatos, Global.vUsuarioBD, Global.vPasswordBD, Global.vIpServidor);
             this.LookUpEdit_Familia.Properties.DataSource = ds_fam.Tables[0];
             this.LookUpEdit_Familia.Properties.DisplayMember = "nomfam";
             this.LookUpEdit_Familia.Properties.ValueMember = "codfam";
@@ -48,7 +48,7 @@ namespace IAP.Win
             this.lookUpEdit_SubFam.Text = string.Empty;
 
             DataSet ds_Sfam = new DataSet();
-            ds_Sfam = BL.Tablas_Maestras.SubFamilias(familias,Global.vUserBaseDatos);
+            ds_Sfam = BL.Tablas_Maestras.SubFamilias(familias,Global.vUserBaseDatos, Global.vUsuarioBD, Global.vPasswordBD, Global.vIpServidor);
             this.lookUpEdit_SubFam.Properties.DataSource = ds_Sfam.Tables[0];
             this.lookUpEdit_SubFam.Properties.DisplayMember = "nomsub";
             this.lookUpEdit_SubFam.Properties.ValueMember = "codsub";
@@ -58,7 +58,7 @@ namespace IAP.Win
         private void LLenar_Vendedor()
         {
             DataSet ds_fam = new DataSet();
-            ds_fam = BL.Tablas_Maestras.Vendedores(Global.vUserBaseDatos);
+            ds_fam = BL.Tablas_Maestras.Vendedores(Global.vUserBaseDatos, Global.vUsuarioBD, Global.vPasswordBD, Global.vIpServidor);
             this.lookUpEdit_Vendedor.Properties.DataSource = ds_fam.Tables[0];
             this.lookUpEdit_Vendedor.Properties.DisplayMember = "nomven";
             this.lookUpEdit_Vendedor.Properties.ValueMember = "codven";
@@ -80,7 +80,9 @@ namespace IAP.Win
             using (WaitDialogForm waitDialog = new WaitDialogForm("Espere por favor...", "<<<<Cargando Información>>>>"))
             {
                 DataSet ds_cdn = new DataSet();
-                ds_cdn = BL.Comercial.BL_CDN(dtpfechai.Text, dtpfechaf.Text, lookUpEdit_Vendedor.EditValue.ToString(), LookUpEdit_Familia.EditValue.ToString(), lookUpEdit_SubFam.EditValue.ToString(), Global.vUserBaseDatos);
+                ds_cdn = BL.Comercial.BL_CDN(dtpfechai.Text, dtpfechaf.Text, lookUpEdit_Vendedor.EditValue.ToString(), 
+                    LookUpEdit_Familia.EditValue.ToString(), lookUpEdit_SubFam.EditValue.ToString(),
+                    Global.vUserBaseDatos, Global.vUsuarioBD, Global.vPasswordBD, Global.vIpServidor);
                 gc_cdn.DataSource = ds_cdn.Tables[0];
                 gridView1.OptionsView.ColumnAutoWidth = false;
                 gridView1.BestFitColumns();

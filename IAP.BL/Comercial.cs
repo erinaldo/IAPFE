@@ -19,35 +19,37 @@ namespace IAP.BL
 
         DL.Comercial Dcom = new DL.Comercial();
 
-        public static DataSet BL_CDN(string fechai, string fechaf, string vendedor, string familia, string subfam, string db)
+        public static DataSet BL_CDN(string fechai, string fechaf, string vendedor, string familia, string subfam, string db, string usuario, string password, string servidor)
         {
-            return DL.Comercial.DL_CDN(fechai, fechaf, vendedor, familia, subfam, db);
+            return DL.Comercial.DL_CDN(fechai, fechaf, vendedor, familia, subfam, db,usuario,password,servidor);
         }
 
-        public static List<listaprecio> ObtenerListadePrecios(string familia, string subfamilia, string grupo, string moneda, int costomayorcero, int stockmayorcero, string codf, string descripcion, string db)
+        public static List<listaprecio> ObtenerListadePrecios(string familia, string subfamilia, string grupo, string moneda, int costomayorcero, 
+            int stockmayorcero, string codf, string descripcion, string db, string usuario, string password, string servidor)
         {
-            return DL.Comercial.ObtenerListadePrecios(familia, subfamilia, grupo, moneda, costomayorcero, stockmayorcero, codf, descripcion, db);
+            return DL.Comercial.ObtenerListadePrecios(familia, subfamilia, grupo, moneda, costomayorcero,
+                stockmayorcero, codf, descripcion, db,usuario,password,servidor);
         }
 
-        public static void RegistrarListaPrecios(List<listaprecio> l, string db)
+        public static void RegistrarListaPrecios(List<listaprecio> l, string db, string usuario, string password, string servidor)
         {
             listaprecio lista = new listaprecio();
             foreach (listaprecio ls in l)
             {
                 lista = new listaprecio();
                 lista = ls;
-                DL.Comercial.RegistrarListaPrecios(lista, db);
+                DL.Comercial.RegistrarListaPrecios(lista, db,usuario,password,servidor);
             }
         }
 
-        public static List<ClaveVenta> ObtenerClaveVenta(string db)
+        public static List<ClaveVenta> ObtenerClaveVenta(string db, string usuario, string password, string servidor)
         {
-            return DL.Comercial.ObtenerClaveVenta(db);
+            return DL.Comercial.ObtenerClaveVenta(db,usuario,password,servidor);
         }
 
-        public static void RegistrarClaveVenta(string clave, string db)
+        public static void RegistrarClaveVenta(string clave, string db, string usuario, string password, string servidor)
         {
-            DL.Comercial.RegistrarClaveVenta(clave, db);
+            DL.Comercial.RegistrarClaveVenta(clave, db,usuario,password,servidor);
         }
 
         public static List<TipoDocumento> ObtenerTipoDocumento(string dbconexion)

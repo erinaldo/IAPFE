@@ -96,7 +96,7 @@ namespace IAP.Win
             if (Global.login_conforme == "si")
             {
                 this.Text = "EMPRESA ACTUAL ::::::: " + Global.vUserServer;
-                IAP.DL.ConexionDC.IpServidor = Global.vIpServidor;
+                //IAP.DL.ConexionDC.IpServidor = Global.vIpServidor;
                 Accessos_Usuario(Global.UserAdministrador);
 
                 string IdEmpresaFE = ConfigurationManager.AppSettings.Get("PROVEEDORFE");
@@ -112,6 +112,9 @@ namespace IAP.Win
                 Global.vApiTELE_PdfFactura= ConfigurationManager.AppSettings.Get("TELE_PdfFactura");
                 Global.vApiTELE_PdfBoleta= ConfigurationManager.AppSettings.Get("TELE_PdfBoleta");
                 Global.vApiTELE_AnularDocumento= ConfigurationManager.AppSettings.Get("TELE_AnularDocumento");
+
+                Global.vUsuarioBD= ConfigurationManager.AppSettings.Get("USUARIOBD");
+                Global.vPasswordBD= ConfigurationManager.AppSettings.Get("PASSWORDBD"); 
 
                 if (Empresa== Global.vUserServer)
                 {

@@ -11,7 +11,7 @@ namespace IAP.DL
     public class Contabilidad
     {
 
-        public static string importar_asientos(string anno,DataTable dt_asientos,string db)
+        public static string importar_asientos(string anno,DataTable dt_asientos,string db, string usuario, string password, string servidor)
         {
             string compro=string.Empty;
             string co_origen, co_mes;
@@ -19,7 +19,7 @@ namespace IAP.DL
 
             co_origen = dr[4].ToString();
             co_mes = dr[1].ToString();
-            compro = ultimo_comprobante(co_origen, co_mes, anno, db);
+            compro = ultimo_comprobante(co_origen, co_mes, anno, db,usuario,password,servidor);
             //try
             //{
             //    insertar_asiento(anno, compro, dt_asientos, db);
@@ -28,10 +28,10 @@ namespace IAP.DL
             //{
                 
             //}
-            return insertar_asiento(anno, compro, dt_asientos, db);
+            return insertar_asiento(anno, compro, dt_asientos, db,usuario,password,servidor);
 
         }
-        private static string ultimo_comprobante(string origen, string mes_as, string anno, string db)
+        private static string ultimo_comprobante(string origen, string mes_as, string anno, string db, string usuario, string password, string servidor)
         {
             //select @compro=right('000000'+ltrim(rtrim(convert(char(6),max(compro)+1))),6) from cgm01022012 where origen=@origen and mes_as=@mes
             string SQL = "select ISNULL(right('000000'+ltrim(rtrim(convert(char(6),max(compro)+1))),6),'000001') as compro from cgm0102" + anno + " where origen=@origen and mes_as=@mes";
@@ -39,10 +39,10 @@ namespace IAP.DL
             List<SqlParameter> arparametros= new List<SqlParameter>();
             arparametros.Add(new SqlParameter("@origen", origen));
             arparametros.Add(new SqlParameter("@mes", mes_as));
-            resultado = SqlHelper.ExecuteScalar(ConexionDC.ConectarBD(db), CommandType.Text, SQL,arparametros.ToArray()).ToString();
+            resultado = SqlHelper.ExecuteScalar(ConexionDC.ConectarBD(db,usuario,password,servidor), CommandType.Text, SQL,arparametros.ToArray()).ToString();
             return resultado;
         }
-        private static string insertar_asiento(string anno,string compro,DataTable dt,string db)
+        private static string insertar_asiento(string anno,string compro,DataTable dt,string db, string usuario, string password, string servidor)
         {
             string estado;
             int numero_fila = 0;
@@ -52,7 +52,7 @@ namespace IAP.DL
             {
 
              // conn = new SqlConnection(ConexionDC.CadenaConexion_tran);
-              conn = new SqlConnection(ConexionDC.ConectarBD(db));
+              conn = new SqlConnection(ConexionDC.ConectarBD(db,usuario,password,servidor));
               conn.Open();
               trx = conn.BeginTransaction();
 

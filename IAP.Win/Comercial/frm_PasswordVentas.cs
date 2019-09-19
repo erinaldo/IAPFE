@@ -95,7 +95,7 @@ namespace IAP.Win.Comercial
 
         private void CargarGrilla()
         {
-            _LSTCLAVE_VENTAS = BL.Comercial.ObtenerClaveVenta(Global.vUserBaseDatos);
+            _LSTCLAVE_VENTAS = BL.Comercial.ObtenerClaveVenta(Global.vUserBaseDatos, Global.vUsuarioBD, Global.vPasswordBD, Global.vIpServidor);
             gcpassword.DataSource = _LSTCLAVE_VENTAS;
         }
         #endregion
@@ -118,7 +118,7 @@ namespace IAP.Win.Comercial
                 {
                     using (WaitDialogForm waitDialog = new WaitDialogForm("Espere por favor...", "<<<<Guardando Información>>>>"))
                     {
-                        BL.Comercial.RegistrarClaveVenta(txtclave.Text.Trim().ToUpper(), Global.vUserBaseDatos);
+                        BL.Comercial.RegistrarClaveVenta(txtclave.Text.Trim().ToUpper(), Global.vUserBaseDatos, Global.vUsuarioBD, Global.vPasswordBD, Global.vIpServidor);
                     }
                     MessageBox.Show("Se registro la clave correctamente", "Sistema Administrativo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarGrilla();

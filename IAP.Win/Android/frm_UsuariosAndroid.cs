@@ -134,7 +134,8 @@ namespace IAP.Win
                     {
                         using (WaitDialogForm waitDialog = new WaitDialogForm("Espere por favor...", "<<<<Cargando Información>>>>"))
                         {
-                            BL.Android.Insertar_usuario(txtid.Text, txtnombre.Text, txtapellidos.Text, cmbsexo.Text, txtusuario.Text, txtclave.Text, txtruc.Text, txtrazonsocial.Text, txtdireccion.Text, Global.vUserBaseDatosAndroid);
+                            BL.Android.Insertar_usuario(txtid.Text, txtnombre.Text, txtapellidos.Text, cmbsexo.Text, txtusuario.Text, txtclave.Text,
+                                txtruc.Text, txtrazonsocial.Text, txtdireccion.Text, Global.vUserBaseDatosAndroid, Global.vUsuarioBD, Global.vPasswordBD, Global.vIpServidor);
                         }
                         deshabilitar_controles();
                         Editar = false;
@@ -160,7 +161,8 @@ namespace IAP.Win
                     {
                         using (WaitDialogForm waitDialog = new WaitDialogForm("Espere por favor...", "<<<<Cargando Información>>>>"))
                         {
-                            BL.Android.Insertar_usuario(txtid.Text, txtnombre.Text, txtapellidos.Text, cmbsexo.Text, txtusuario.Text, txtclave.Text, txtruc.Text, txtrazonsocial.Text, txtdireccion.Text, Global.vUserBaseDatosAndroid);
+                            BL.Android.Insertar_usuario(txtid.Text, txtnombre.Text, txtapellidos.Text, cmbsexo.Text, txtusuario.Text, txtclave.Text, txtruc.Text, txtrazonsocial.Text,
+                                txtdireccion.Text, Global.vUserBaseDatosAndroid, Global.vUsuarioBD, Global.vPasswordBD, Global.vIpServidor);
                         }
                         deshabilitar_controles();
                         Nuevo = false;

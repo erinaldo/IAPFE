@@ -16,7 +16,11 @@ namespace IAP.Win
 
         public static Boolean UserAdministrador = false;
         public static string login_conforme="";
-
+        /*CREDENCIALES DE BD ANTIGUA FORMA */
+        public static string vUsuarioBD = "";
+        public static string vPasswordBD = "";
+        //public static string vServidorBD = "";
+        /* FIN*/
         /*CREDENCIALES DE USUARIO Y PASSWORD*/
         public static string vUserAdministrador = "administrador";
         public static string vUserPassAdministrador = "admin14$";

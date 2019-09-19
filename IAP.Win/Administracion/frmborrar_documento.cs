@@ -58,7 +58,7 @@ namespace IAP.Win
                 try
                 {
                     bool result;
-                    result=BL.Administracion.Borrar_Documento(this.txtnumero.Text.Trim(), tipo_documento, tipo_operacion, Global.vUserBaseDatos);
+                    result=BL.Administracion.Borrar_Documento(this.txtnumero.Text.Trim(), tipo_documento, tipo_operacion, Global.vUserBaseDatos,Global.vUsuarioBD,Global.vPasswordBD, Global.vIpServidor);
                     if (result==false)
                     {
                         MessageBox.Show("No existe el documento", "Administración del Sistema");
@@ -93,7 +93,7 @@ namespace IAP.Win
             DataTable dt;
             //DataRow dr;
             ListViewItem lvw= new ListViewItem();
-            dt = BL.Administracion.Verificar_Doc_Eliminado_BL(this.txtnumero.Text.Trim(), tipo_documento, tipo_operacion, Global.vUserBaseDatos);
+            dt = BL.Administracion.Verificar_Doc_Eliminado_BL(this.txtnumero.Text.Trim(), tipo_documento, tipo_operacion, Global.vUserBaseDatos, Global.vUsuarioBD, Global.vPasswordBD, Global.vIpServidor);
           
             foreach (DataRow row in dt.Rows)
             {

@@ -31,7 +31,7 @@ namespace IAP.Win
             {
                 try
                 {
-                    BL.Administracion.borrar_arqueo(this.txtplanilla.Text.Trim(), Global.vUserBaseDatos);
+                    BL.Administracion.borrar_arqueo(this.txtplanilla.Text.Trim(), Global.vUserBaseDatos, Global.vUsuarioBD, Global.vPasswordBD, Global.vIpServidor);
                     MessageBox.Show("Se borro el arqueo satisfactoriamente", "Administración del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.txtplanilla.Text=string.Empty;
                 }

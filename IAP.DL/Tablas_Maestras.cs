@@ -9,13 +9,13 @@ namespace IAP.DL
 {
     public class Tablas_Maestras
     {
-        public static DataSet Listado_Vendedores(string db)
+        public static DataSet Listado_Vendedores(string db, string usuario, string password, string servidor)
         {
             try
             {
                 DataSet ds_ = new DataSet();
                 string strSql = @"  SELECT codven,nomven FROM tbl01ven";
-                ds_= SqlHelper.ExecuteDataset(ConexionDC.ConectarBD(db), CommandType.Text, strSql);
+                ds_= SqlHelper.ExecuteDataset(ConexionDC.ConectarBD(db,usuario,password,servidor), CommandType.Text, strSql);
                 ds_.Tables[0].TableName = "VEN";
                 return ds_;
             }
@@ -25,13 +25,13 @@ namespace IAP.DL
             }
         }
 
-        public static DataSet Listado_Familia(string db)
+        public static DataSet Listado_Familia(string db, string usuario, string password, string servidor)
         {
             try
             {
                 DataSet ds_ = new DataSet();
                 string strSql = @"  SELECT RTRIM(codfam) codfam,RTRIM(nomfam) nomfam FROM tbl01fam ";
-                ds_ = SqlHelper.ExecuteDataset(ConexionDC.ConectarBD(db), CommandType.Text, strSql);
+                ds_ = SqlHelper.ExecuteDataset(ConexionDC.ConectarBD(db,usuario,password,servidor), CommandType.Text, strSql);
                 ds_.Tables[0].TableName = "FAM";
                 return ds_;
             }
@@ -41,7 +41,7 @@ namespace IAP.DL
             }
         }
 
-        public static DataSet Listado_SubFamilia(string familia, string db)
+        public static DataSet Listado_SubFamilia(string familia, string db, string usuario, string password, string servidor)
         {
             try
             {
@@ -49,7 +49,7 @@ namespace IAP.DL
                 string strSql = @"SP_VS_LISTADO_SUBFAMILIA";
                 List<SqlParameter> arParam = new List<SqlParameter>();
                 arParam.Add(new SqlParameter("@FAMILIA", familia));
-                ds_sf = SqlHelper.ExecuteDataset(ConexionDC.ConectarBD(db), CommandType.StoredProcedure, strSql, arParam.ToArray());
+                ds_sf = SqlHelper.ExecuteDataset(ConexionDC.ConectarBD(db,usuario,password,servidor), CommandType.StoredProcedure, strSql, arParam.ToArray());
                 ds_sf.Tables[0].TableName = "sf";
                 return ds_sf;
             }
@@ -58,7 +58,7 @@ namespace IAP.DL
                 throw new ArgumentException(ex.Message);
             }
         }
-        public static DataSet Listado_Grupos(string subfamilia,string db)
+        public static DataSet Listado_Grupos(string subfamilia,string db, string usuario, string password, string servidor)
         {
             try
             {
@@ -66,7 +66,7 @@ namespace IAP.DL
                 string strSql = @"sp_listadoGrupos";
                 List<SqlParameter> arParam = new List<SqlParameter>();
                 arParam.Add(new SqlParameter("@subfamilia", subfamilia));
-                ds_sf = SqlHelper.ExecuteDataset(ConexionDC.ConectarBD(db), CommandType.StoredProcedure, strSql, arParam.ToArray());
+                ds_sf = SqlHelper.ExecuteDataset(ConexionDC.ConectarBD(db,usuario,password,servidor), CommandType.StoredProcedure, strSql, arParam.ToArray());
                 ds_sf.Tables[0].TableName = "gp";
                 return ds_sf;
             }

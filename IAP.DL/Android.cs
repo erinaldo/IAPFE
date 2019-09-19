@@ -10,7 +10,7 @@ namespace IAP.DL
     public class Android
     {
         public static void Actualizar_usuario(string coduser,string nombre,string apellidos,string sexo,string usuario,string clave,
-            string ruccli,string nomcli,string dircli, string db)
+            string ruccli,string nomcli,string dircli, string db, string usuariobd, string password, string servidor)
         {
             string strSql = "sp_actualizar_usuario";
             /*
@@ -35,11 +35,11 @@ namespace IAP.DL
             arParams.Add(new SqlParameter("@nomcli", nomcli));
             arParams.Add(new SqlParameter("@dircli", dircli));
 
-            Convert.ToInt32(SqlHelper.ExecuteScalar(ConexionDC.ConectarBD(db), CommandType.StoredProcedure, strSql, arParams.ToArray()));
+            Convert.ToInt32(SqlHelper.ExecuteScalar(ConexionDC.ConectarBD(db,usuariobd,password,servidor), CommandType.StoredProcedure, strSql, arParams.ToArray()));
         }
 
         public static void Insertar_usuario(string coduser, string nombre, string apellidos, string sexo, string usuario, string clave,
-        string ruccli, string nomcli, string dircli, string db)
+        string ruccli, string nomcli, string dircli, string db, string usuariobd, string password, string servidor)
         {
             string strSql = "sp_insertar_usuario";
             /*
@@ -64,7 +64,7 @@ namespace IAP.DL
             arParams.Add(new SqlParameter("@nomcli", nomcli));
             arParams.Add(new SqlParameter("@dircli", dircli));
 
-            Convert.ToInt32(SqlHelper.ExecuteScalar(ConexionDC.ConectarBD(db), CommandType.StoredProcedure, strSql, arParams.ToArray()));
+            Convert.ToInt32(SqlHelper.ExecuteScalar(ConexionDC.ConectarBD(db,usuariobd,password,servidor), CommandType.StoredProcedure, strSql, arParams.ToArray()));
         }
     }
 }

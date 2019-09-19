@@ -35,7 +35,7 @@ namespace IAP.Win
                 {
                     using (WaitDialogForm waitDialog = new WaitDialogForm("Generando Copia de Seguridad...", "<<<<Cargando Información>>>>"))
                     {
-                        BL.Administracion.Generar_Backup(this.txtarchivo.Text.Trim(), Global.vUserBaseDatos);
+                        BL.Administracion.Generar_Backup(this.txtarchivo.Text.Trim(), Global.vUserBaseDatos, Global.vUsuarioBD, Global.vPasswordBD, Global.vIpServidor);
                         this.txtarchivo.Text = string.Empty;
                     }
                 }

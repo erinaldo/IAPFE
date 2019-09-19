@@ -15,20 +15,20 @@ namespace IAP.DL
         //    string strcadena = "Data Source=192.168.2.11;initial catalog=PRUEBA;user id=sa;password=EXQ*1410_$";
         //    return strcadena;
         //}
-        public static string IpServidor = "localhost";
-        public static string CadenaConexion_tran = "Data Source=" + IpServidor + ";Initial Catalog=bdNava01;user ID=sa;Password=perfiles**";
+        //public static string IpServidor = "localhost";
+        //public static string CadenaConexion_tran = "Data Source=" + IpServidor + ";Initial Catalog=bdNava01;user ID=sa;Password=perfiles**";
 
-        public static string ConectarBD(string base_datos)
+        public static string ConectarBD(string base_datos,string usuario,string password,string servidor)
         {
             string CadenaConexion = null;
             
             if (base_datos.ToUpper() == "BDNAVA01")
             {
-                CadenaConexion = "Data Source=" + IpServidor + ";Initial Catalog=bdNava01;user ID=sa;Password=perfiles**";
+                CadenaConexion = "Data Source=" + servidor + ";Initial Catalog=bdNava01;user ID=" + usuario + "; Password=" + password;
             }
             else if (base_datos.ToUpper() == "BDNAVA02")
             {
-                CadenaConexion = "Data Source=" + IpServidor + ";Initial Catalog=bdNava02;user ID=sa;Password=perfiles**";
+                CadenaConexion = "Data Source=" + servidor + ";Initial Catalog=bdNava02;user ID=" + usuario + "; Password=" + password;
             }
             else if (base_datos == "Android")
             {

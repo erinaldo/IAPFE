@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
+using System.Configuration;
+
 namespace IAP.Win
 {
     public partial class frm_AccesoUsuario : Form
@@ -45,10 +47,13 @@ namespace IAP.Win
 
         private void frm_AccesoUsuario_Load(object sender, EventArgs e)
         {
-            //txtBaseDatos.Text = "Hans-PC";
-            txtBaseDatos.Text = "HANS-PC";
+            txtBaseDatos.Text = ConfigurationManager.AppSettings.Get("SERVIDORDEFECTO");
+
+            //txtBaseDatos.Text = "HANS-PC";
             //txtBaseDatos.Text = "HANS-PC";
             //txtBaseDatos.Text = "LOCALHOST";
+            cmbbd.Properties.Items.Add(ConfigurationManager.AppSettings.Get("EMPRESA1"));
+            cmbbd.Properties.Items.Add(ConfigurationManager.AppSettings.Get("EMPRESA2"));
             cmbbd.SelectedIndex = 0;
             txtUsuario.Text = "cliente";
             txtPassword.Focus();

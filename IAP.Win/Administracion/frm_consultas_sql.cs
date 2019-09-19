@@ -44,7 +44,7 @@ namespace IAP.Win
                     sr.Close();
                     using (WaitDialogForm waitDialog = new WaitDialogForm("Ejecutando Consulta...", "<<<<Cargando Información>>>>"))
                     {
-                        BL.Administracion.Script_sql_BL(consulta, Global.vUserBaseDatos);
+                        BL.Administracion.Script_sql_BL(consulta, Global.vUserBaseDatos, Global.vUsuarioBD, Global.vPasswordBD, Global.vIpServidor);
                     }
                     MessageBox.Show("Se ejecuto el archivo correctamente", "Administración del Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.txtarchivo.Text = string.Empty;

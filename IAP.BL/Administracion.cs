@@ -12,11 +12,11 @@ namespace IAP.BL
     {
         public static string clave = "cadenadecifrado";
 
-        public static void Generar_Backup(string directorio, string bd)
+        public static void Generar_Backup(string directorio, string bd, string usuario, string password, string servidor)
         {
             try
             {
-                DL.Administracion.Generar_Backup(directorio, bd);
+                DL.Administracion.Generar_Backup(directorio, bd,usuario,password,servidor);
             }
             catch (Exception ex)
             {
@@ -25,11 +25,11 @@ namespace IAP.BL
         }
 
 
-        public static void Script_sql_BL(string Consulta_Archivo, string bd)
+        public static void Script_sql_BL(string Consulta_Archivo, string bd, string usuario, string password, string servidor)
         {
             try
             {
-                DL.Administracion.Script_sql(Consulta_Archivo, bd);
+                DL.Administracion.Script_sql(Consulta_Archivo, bd,usuario,password,servidor);
             }
             catch (Exception ex)
             {
@@ -37,22 +37,22 @@ namespace IAP.BL
             }
         }
 
-        public static bool Borrar_Documento(string numero_BL, string tipo_docu_BL, string tipo_eliminacion_BL, string db_BL)
+        public static bool Borrar_Documento(string numero_BL, string tipo_docu_BL, string tipo_eliminacion_BL, string db_BL, string usuario, string password, string servidor)
         {
             try
             {
-                return DL.Administracion.Borrar_Documento(numero_BL, tipo_docu_BL, tipo_eliminacion_BL, db_BL);
+                return DL.Administracion.Borrar_Documento(numero_BL, tipo_docu_BL, tipo_eliminacion_BL, db_BL,usuario,password,servidor);
             }
             catch (Exception ex)
             {
                 throw new ArgumentException(ex.Message);
             }
         }
-        public static void borrar_arqueo(string num_planilla, string bd)
+        public static void borrar_arqueo(string num_planilla, string bd, string usuario, string password, string servidor)
         {
             try
             {
-                DL.Administracion.Borrar_Arqueo(num_planilla, bd);
+                DL.Administracion.Borrar_Arqueo(num_planilla, bd,usuario,password,servidor);
             }
             catch (Exception ex)
             {
@@ -60,11 +60,11 @@ namespace IAP.BL
             }
         }
 
-        public static DataTable Verificar_Doc_Eliminado_BL(string ndocu, string cdocu,string tipo_operacion_bl, string bd)
+        public static DataTable Verificar_Doc_Eliminado_BL(string ndocu, string cdocu,string tipo_operacion_bl, string bd, string usuario, string password, string servidor)
         {
             try
             {
-                return DL.Administracion.Verificar_doc_eliminado(cdocu, ndocu,tipo_operacion_bl, bd);
+                return DL.Administracion.Verificar_doc_eliminado(cdocu, ndocu,tipo_operacion_bl, bd,usuario,password,servidor);
             }
             catch (Exception ex)
             {

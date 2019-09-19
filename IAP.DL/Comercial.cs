@@ -21,7 +21,7 @@ namespace IAP.DL
 
         }
 
-        public static DataSet DL_CDN(string fechai,string fechaf,string vendedor,string familia,string subfam,string db)
+        public static DataSet DL_CDN(string fechai,string fechaf,string vendedor,string familia,string subfam,string db, string usuario, string password, string servidor)
         {
             DataSet ds = new DataSet();
             string strSql = "SP_VS_CDN";
@@ -31,11 +31,11 @@ namespace IAP.DL
             arParams.Add(new SqlParameter("@VENDEDOR",vendedor));
             arParams.Add(new SqlParameter("@FAMILIA", familia));
             arParams.Add(new SqlParameter("@SUBFAM", subfam));
-            ds=SqlHelper.ExecuteDataset (ConexionDC.ConectarBD(db), CommandType.StoredProcedure, strSql, arParams.ToArray());
+            ds=SqlHelper.ExecuteDataset (ConexionDC.ConectarBD(db,usuario,password,servidor), CommandType.StoredProcedure, strSql, arParams.ToArray());
             return ds;
         }
 
-        public static void RegistrarListaPrecios(listaprecio l,string db)
+        public static void RegistrarListaPrecios(listaprecio l,string db, string usuario, string password, string servidor)
         {
             string strSql = "sp_RegistrarListadePrecios";
             List<SqlParameter> arParams = new List<SqlParameter>();
@@ -50,9 +50,10 @@ namespace IAP.DL
             arParams.Add(new SqlParameter("@marca", l.Marca));
             arParams.Add(new SqlParameter("@umed", l.Umedida));
             arParams.Add(new SqlParameter("@tcam", l.Tcventa));
-            SqlHelper.ExecuteNonQuery(ConexionDC.ConectarBD(db), CommandType.StoredProcedure, strSql, arParams.ToArray());
+            SqlHelper.ExecuteNonQuery(ConexionDC.ConectarBD(db,usuario,password,servidor), CommandType.StoredProcedure, strSql, arParams.ToArray());
         }
-        public static List<listaprecio> ObtenerListadePrecios(string familia, string subfamilia, string grupo, string moneda,int costomayorcero,int stockmayorcero,string codf ,string descripcion,string db)
+        public static List<listaprecio> ObtenerListadePrecios(string familia, string subfamilia, string grupo, string moneda,int costomayorcero,
+            int stockmayorcero,string codf ,string descripcion,string db, string usuario, string password, string servidor)
         {
             DataSet ds = new DataSet();
             string strSql = "sp_ObtenerListadePrecios";
@@ -66,7 +67,7 @@ namespace IAP.DL
             arParams.Add(new SqlParameter("@stockmayorcero", stockmayorcero));
             arParams.Add(new SqlParameter("@Descripcion", descripcion));
             
-            ds = SqlHelper.ExecuteDataset(ConexionDC.ConectarBD(db), CommandType.StoredProcedure, strSql, arParams.ToArray());
+            ds = SqlHelper.ExecuteDataset(ConexionDC.ConectarBD(db,usuario,password,servidor), CommandType.StoredProcedure, strSql, arParams.ToArray());
             List<listaprecio> list = new List<listaprecio>();
             foreach (DataRow row in ds.Tables[0].Rows)
             {
@@ -92,11 +93,11 @@ namespace IAP.DL
             return list;
         }
 
-        public static List<ClaveVenta> ObtenerClaveVenta(string db)
+        public static List<ClaveVenta> ObtenerClaveVenta(string db, string usuario, string password, string servidor)
         {
             DataSet ds = new DataSet();
             string strSql = "sp_ObtenerClaveVenta";
-            ds = SqlHelper.ExecuteDataset(ConexionDC.ConectarBD(db), CommandType.StoredProcedure, strSql);
+            ds = SqlHelper.ExecuteDataset(ConexionDC.ConectarBD(db,usuario,password,servidor), CommandType.StoredProcedure, strSql);
             List<ClaveVenta> list = new List<ClaveVenta>();
             foreach (DataRow row in ds.Tables[0].Rows)
             {
@@ -109,13 +110,13 @@ namespace IAP.DL
             return list;
         }
 
-        public static void RegistrarClaveVenta(string clave,string db)
+        public static void RegistrarClaveVenta(string clave,string db, string usuario, string password, string servidor)
         {
             DataSet ds = new DataSet();
             string strSql = "sp_RegistrarClaveVenta";
             List<SqlParameter> arParams = new List<SqlParameter>();
             arParams.Add(new SqlParameter("@clave", clave));
-            SqlHelper.ExecuteNonQuery(ConexionDC.ConectarBD(db), CommandType.StoredProcedure, strSql, arParams.ToArray());
+            SqlHelper.ExecuteNonQuery(ConexionDC.ConectarBD(db,usuario,password,servidor), CommandType.StoredProcedure, strSql, arParams.ToArray());
         }
 
         public static List<TipoDocumento> ObtenerTipoDocumento(string dbconexion)

@@ -95,7 +95,7 @@ namespace IAP.Win
                     using (WaitDialogForm waitDialog = new WaitDialogForm("Importando asientos a la BD", "Espere por favor..."))
                     {
 
-                        estado=BL.Contabilidad.importar_asientos(this.cmbanno.Text.Trim(), dt_asiento,Global.vUserBaseDatos);
+                        estado=BL.Contabilidad.importar_asientos(this.cmbanno.Text.Trim(), dt_asiento,Global.vUserBaseDatos, Global.vUsuarioBD, Global.vPasswordBD, Global.vIpServidor);
                         
                     }
                     if (estado.Equals("1"))
