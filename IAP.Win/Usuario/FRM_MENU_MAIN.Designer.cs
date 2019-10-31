@@ -40,6 +40,7 @@
             this.comercial_OS = new DevExpress.XtraNavBar.NavBarItem();
             this.comercial_ImportarCliente = new DevExpress.XtraNavBar.NavBarItem();
             this.comercial_arqueoOS = new DevExpress.XtraNavBar.NavBarItem();
+            this.comercial_OSPlanta = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupContabilidad = new DevExpress.XtraNavBar.NavBarGroup();
             this.contabilidad_importarasiento = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupReportes = new DevExpress.XtraNavBar.NavBarGroup();
@@ -73,7 +74,6 @@
             this.tp2 = new DevExpress.XtraTab.XtraTabPage();
             this.btnguardar = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.comercial_OSPlanta = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
@@ -210,6 +210,13 @@
             this.comercial_arqueoOS.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("comercial_arqueoOS.ImageOptions.SmallImage")));
             this.comercial_arqueoOS.Name = "comercial_arqueoOS";
             this.comercial_arqueoOS.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.comercial_arqueoOS_LinkClicked);
+            // 
+            // comercial_OSPlanta
+            // 
+            this.comercial_OSPlanta.Caption = "OS Planta";
+            this.comercial_OSPlanta.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("comercial_OSPlanta.ImageOptions.SmallImage")));
+            this.comercial_OSPlanta.Name = "comercial_OSPlanta";
+            this.comercial_OSPlanta.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.comercial_OSPlanta_LinkClicked);
             // 
             // navBarGroupContabilidad
             // 
@@ -474,13 +481,6 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(858, 694);
             this.panelControl1.TabIndex = 5;
-            // 
-            // comercial_OSPlanta
-            // 
-            this.comercial_OSPlanta.Caption = "OS Planta";
-            this.comercial_OSPlanta.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("comercial_OSPlanta.ImageOptions.SmallImage")));
-            this.comercial_OSPlanta.Name = "comercial_OSPlanta";
-            this.comercial_OSPlanta.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.comercial_OSPlanta_LinkClicked);
             // 
             // FRM_MENU_MAIN
             // 

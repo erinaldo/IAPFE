@@ -101,9 +101,9 @@ namespace IAP.Win
 
                 string IdEmpresaFE = ConfigurationManager.AppSettings.Get("PROVEEDORFE");
                 string Empresa= ConfigurationManager.AppSettings.Get("EMPRESA");
-                Global.vUserRucEmpresa= ConfigurationManager.AppSettings.Get("RUCEMPRESA");
-                Global.vTelemovilAK= ConfigurationManager.AppSettings.Get("TELEMOVILAK");
-                Global.vTelemovilSK= ConfigurationManager.AppSettings.Get("TELEMOVILSK");
+                //Global.vUserRucEmpresa= ConfigurationManager.AppSettings.Get("RUCEMPRESA");
+                //Global.vTelemovilAK= ConfigurationManager.AppSettings.Get("TELEMOVILAK");
+                //Global.vTelemovilSK= ConfigurationManager.AppSettings.Get("TELEMOVILSK");
 
                 Global.vApiTELE_EmisionFactura= ConfigurationManager.AppSettings.Get("TELE_EmisionFactura");
                 Global.vApiTELE_EmisionBoleta= ConfigurationManager.AppSettings.Get("TELE_EmisionBoleta");
@@ -114,7 +114,18 @@ namespace IAP.Win
                 Global.vApiTELE_AnularDocumento= ConfigurationManager.AppSettings.Get("TELE_AnularDocumento");
 
                 Global.vUsuarioBD= ConfigurationManager.AppSettings.Get("USUARIOBD");
-                Global.vPasswordBD= ConfigurationManager.AppSettings.Get("PASSWORDBD"); 
+                Global.vPasswordBD= ConfigurationManager.AppSettings.Get("PASSWORDBD");
+
+                Global.vDatosProveedor = eBL.ObtenerProveedorFE(Convert.ToInt32(IdEmpresaFE == string.Empty ? "0" : IdEmpresaFE), Global.vUserBaseDatos);
+                //this.dvw_costos.LoadDashboard(aOppFilm.Create<ISProcProduccion>().ObtenerXmlProcProduccion("CostosConsumo"));
+                Global.vDatosProveedor.IdEmpresa = IdEmpresaFE;
+
+                Global.vTelemovilAK = Global.vDatosProveedor.Ruta;
+                Global.vTelemovilSK = Global.vDatosProveedor.Token;
+
+                Global.vUserRucEmpresa = Global.vDatosProveedor.Ruc;
+
+                this.Text = this.Text + ":::: RUC : " + Global.vUserRucEmpresa;
 
                 if (Empresa== Global.vUserServer)
                 {
@@ -126,9 +137,7 @@ namespace IAP.Win
                 }
 
 
-                Global.vDatosProveedor = eBL.ObtenerProveedorFE(Convert.ToInt32(IdEmpresaFE==string.Empty ? "0" : IdEmpresaFE), Global.vUserBaseDatos);
-                //this.dvw_costos.LoadDashboard(aOppFilm.Create<ISProcProduccion>().ObtenerXmlProcProduccion("CostosConsumo"));
-                Global.vDatosProveedor.IdEmpresa = IdEmpresaFE;
+                
                 if(Global.vUserBaseDatos.Trim().ToUpper()=="BDNAVA02")
                 {
                     defaultLookAndFeel1.LookAndFeel.SkinName = "Sharp Plus";

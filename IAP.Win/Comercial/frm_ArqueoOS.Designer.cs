@@ -40,9 +40,11 @@
             this.gccabecera = new DevExpress.XtraGrid.GridControl();
             this.gvwcabecera = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.dtfechaFinal = new DevExpress.XtraEditors.DateEdit();
+            this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
             this.btnguardar = new DevExpress.XtraEditors.SimpleButton();
             this.btnbuscar = new DevExpress.XtraEditors.SimpleButton();
-            this.dtfecha = new DevExpress.XtraEditors.DateEdit();
+            this.dtfechaInicial = new DevExpress.XtraEditors.DateEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.tp2 = new DevExpress.XtraTab.XtraTabPage();
             this.panel_abono = new DevExpress.XtraEditors.PanelControl();
@@ -70,12 +72,17 @@
             this.gcos = new DevExpress.XtraGrid.GridControl();
             this.menu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuabonaros = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuestadocuenta = new System.Windows.Forms.ToolStripMenuItem();
             this.gvwos = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.dtfechacreditoFinal = new DevExpress.XtraEditors.DateEdit();
+            this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
             this.btnguardarCredito = new DevExpress.XtraEditors.SimpleButton();
             this.btnbuscarCredito = new DevExpress.XtraEditors.SimpleButton();
-            this.dtfechacredito = new DevExpress.XtraEditors.DateEdit();
+            this.dtfechacreditoInicial = new DevExpress.XtraEditors.DateEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.menu2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuestadocuenta2 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.tp1.SuspendLayout();
@@ -85,8 +92,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvwcabecera)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtfecha.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtfecha.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtfechaFinal.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtfechaFinal.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtfechaInicial.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtfechaInicial.Properties)).BeginInit();
             this.tp2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panel_abono)).BeginInit();
             this.panel_abono.SuspendLayout();
@@ -104,8 +113,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvwos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtfechacredito.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtfechacredito.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtfechacreditoFinal.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtfechacreditoFinal.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtfechacreditoInicial.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtfechacreditoInicial.Properties)).BeginInit();
+            this.menu2.SuspendLayout();
             this.SuspendLayout();
             // 
             // xtraTabControl1
@@ -207,6 +219,7 @@
             this.gccabecera.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gccabecera.ContextMenuStrip = this.menu2;
             this.gccabecera.Location = new System.Drawing.Point(4, 50);
             this.gccabecera.MainView = this.gvwcabecera;
             this.gccabecera.Name = "gccabecera";
@@ -225,19 +238,41 @@
             // 
             this.panelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelControl1.Controls.Add(this.dtfechaFinal);
+            this.panelControl1.Controls.Add(this.labelControl17);
             this.panelControl1.Controls.Add(this.btnguardar);
             this.panelControl1.Controls.Add(this.btnbuscar);
-            this.panelControl1.Controls.Add(this.dtfecha);
+            this.panelControl1.Controls.Add(this.dtfechaInicial);
             this.panelControl1.Controls.Add(this.labelControl1);
             this.panelControl1.Location = new System.Drawing.Point(3, 3);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(966, 45);
             this.panelControl1.TabIndex = 0;
             // 
+            // dtfechaFinal
+            // 
+            this.dtfechaFinal.EditValue = null;
+            this.dtfechaFinal.Location = new System.Drawing.Point(248, 7);
+            this.dtfechaFinal.Name = "dtfechaFinal";
+            this.dtfechaFinal.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtfechaFinal.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtfechaFinal.Size = new System.Drawing.Size(108, 20);
+            this.dtfechaFinal.TabIndex = 11;
+            // 
+            // labelControl17
+            // 
+            this.labelControl17.Location = new System.Drawing.Point(190, 11);
+            this.labelControl17.Name = "labelControl17";
+            this.labelControl17.Size = new System.Drawing.Size(54, 13);
+            this.labelControl17.TabIndex = 10;
+            this.labelControl17.Text = "Fecha Final";
+            // 
             // btnguardar
             // 
             this.btnguardar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnguardar.ImageOptions.Image")));
-            this.btnguardar.Location = new System.Drawing.Point(218, 5);
+            this.btnguardar.Location = new System.Drawing.Point(450, 2);
             this.btnguardar.Name = "btnguardar";
             this.btnguardar.Size = new System.Drawing.Size(29, 29);
             this.btnguardar.TabIndex = 9;
@@ -246,31 +281,31 @@
             // btnbuscar
             // 
             this.btnbuscar.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnbuscar.ImageOptions.Image")));
-            this.btnbuscar.Location = new System.Drawing.Point(183, 5);
+            this.btnbuscar.Location = new System.Drawing.Point(415, 2);
             this.btnbuscar.Name = "btnbuscar";
             this.btnbuscar.Size = new System.Drawing.Size(29, 29);
             this.btnbuscar.TabIndex = 8;
             this.btnbuscar.Click += new System.EventHandler(this.btnbuscar_Click);
             // 
-            // dtfecha
+            // dtfechaInicial
             // 
-            this.dtfecha.EditValue = null;
-            this.dtfecha.Location = new System.Drawing.Point(61, 6);
-            this.dtfecha.Name = "dtfecha";
-            this.dtfecha.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.dtfechaInicial.EditValue = null;
+            this.dtfechaInicial.Location = new System.Drawing.Point(73, 6);
+            this.dtfechaInicial.Name = "dtfechaInicial";
+            this.dtfechaInicial.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtfecha.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.dtfechaInicial.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtfecha.Size = new System.Drawing.Size(108, 20);
-            this.dtfecha.TabIndex = 1;
+            this.dtfechaInicial.Size = new System.Drawing.Size(108, 20);
+            this.dtfechaInicial.TabIndex = 1;
             // 
             // labelControl1
             // 
             this.labelControl1.Location = new System.Drawing.Point(5, 10);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(29, 13);
+            this.labelControl1.Size = new System.Drawing.Size(59, 13);
             this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "Fecha";
+            this.labelControl1.Text = "Fecha Inicial";
             // 
             // tp2
             // 
@@ -573,17 +608,25 @@
             // menu
             // 
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuabonaros});
+            this.mnuabonaros,
+            this.mnuestadocuenta});
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(132, 26);
+            this.menu.Size = new System.Drawing.Size(151, 48);
             this.menu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menu_ItemClicked);
             // 
             // mnuabonaros
             // 
             this.mnuabonaros.Image = global::IAP.Win.Properties.Resources.especialidades;
             this.mnuabonaros.Name = "mnuabonaros";
-            this.mnuabonaros.Size = new System.Drawing.Size(131, 22);
+            this.mnuabonaros.Size = new System.Drawing.Size(150, 22);
             this.mnuabonaros.Text = "Abonar OS";
+            // 
+            // mnuestadocuenta
+            // 
+            this.mnuestadocuenta.Image = global::IAP.Win.Properties.Resources.emisionnc_16x16;
+            this.mnuestadocuenta.Name = "mnuestadocuenta";
+            this.mnuestadocuenta.Size = new System.Drawing.Size(150, 22);
+            this.mnuestadocuenta.Text = "OS Pendientes";
             // 
             // gvwos
             // 
@@ -595,19 +638,41 @@
             // 
             this.panelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelControl2.Controls.Add(this.dtfechacreditoFinal);
+            this.panelControl2.Controls.Add(this.labelControl16);
             this.panelControl2.Controls.Add(this.btnguardarCredito);
             this.panelControl2.Controls.Add(this.btnbuscarCredito);
-            this.panelControl2.Controls.Add(this.dtfechacredito);
+            this.panelControl2.Controls.Add(this.dtfechacreditoInicial);
             this.panelControl2.Controls.Add(this.labelControl5);
             this.panelControl2.Location = new System.Drawing.Point(3, 3);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(966, 45);
             this.panelControl2.TabIndex = 1;
             // 
+            // dtfechacreditoFinal
+            // 
+            this.dtfechacreditoFinal.EditValue = null;
+            this.dtfechacreditoFinal.Location = new System.Drawing.Point(246, 6);
+            this.dtfechacreditoFinal.Name = "dtfechacreditoFinal";
+            this.dtfechacreditoFinal.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtfechacreditoFinal.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtfechacreditoFinal.Size = new System.Drawing.Size(108, 20);
+            this.dtfechacreditoFinal.TabIndex = 11;
+            // 
+            // labelControl16
+            // 
+            this.labelControl16.Location = new System.Drawing.Point(186, 10);
+            this.labelControl16.Name = "labelControl16";
+            this.labelControl16.Size = new System.Drawing.Size(54, 13);
+            this.labelControl16.TabIndex = 10;
+            this.labelControl16.Text = "Fecha Final";
+            // 
             // btnguardarCredito
             // 
             this.btnguardarCredito.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnguardarCredito.ImageOptions.Image")));
-            this.btnguardarCredito.Location = new System.Drawing.Point(218, 5);
+            this.btnguardarCredito.Location = new System.Drawing.Point(401, 5);
             this.btnguardarCredito.Name = "btnguardarCredito";
             this.btnguardarCredito.Size = new System.Drawing.Size(29, 29);
             this.btnguardarCredito.TabIndex = 9;
@@ -616,31 +681,46 @@
             // btnbuscarCredito
             // 
             this.btnbuscarCredito.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnbuscarCredito.ImageOptions.Image")));
-            this.btnbuscarCredito.Location = new System.Drawing.Point(183, 5);
+            this.btnbuscarCredito.Location = new System.Drawing.Point(366, 5);
             this.btnbuscarCredito.Name = "btnbuscarCredito";
             this.btnbuscarCredito.Size = new System.Drawing.Size(29, 29);
             this.btnbuscarCredito.TabIndex = 8;
             this.btnbuscarCredito.Click += new System.EventHandler(this.btnbuscarCredito_Click);
             // 
-            // dtfechacredito
+            // dtfechacreditoInicial
             // 
-            this.dtfechacredito.EditValue = null;
-            this.dtfechacredito.Location = new System.Drawing.Point(61, 6);
-            this.dtfechacredito.Name = "dtfechacredito";
-            this.dtfechacredito.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.dtfechacreditoInicial.EditValue = null;
+            this.dtfechacreditoInicial.Location = new System.Drawing.Point(71, 6);
+            this.dtfechacreditoInicial.Name = "dtfechacreditoInicial";
+            this.dtfechacreditoInicial.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtfechacredito.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.dtfechacreditoInicial.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtfechacredito.Size = new System.Drawing.Size(108, 20);
-            this.dtfechacredito.TabIndex = 1;
+            this.dtfechacreditoInicial.Size = new System.Drawing.Size(108, 20);
+            this.dtfechacreditoInicial.TabIndex = 1;
             // 
             // labelControl5
             // 
             this.labelControl5.Location = new System.Drawing.Point(5, 10);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(29, 13);
+            this.labelControl5.Size = new System.Drawing.Size(59, 13);
             this.labelControl5.TabIndex = 0;
-            this.labelControl5.Text = "Fecha";
+            this.labelControl5.Text = "Fecha Inicial";
+            // 
+            // menu2
+            // 
+            this.menu2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuestadocuenta2});
+            this.menu2.Name = "menu2";
+            this.menu2.Size = new System.Drawing.Size(151, 26);
+            this.menu2.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menu2_ItemClicked);
+            // 
+            // mnuestadocuenta2
+            // 
+            this.mnuestadocuenta2.Image = global::IAP.Win.Properties.Resources.emisionnc_16x16;
+            this.mnuestadocuenta2.Name = "mnuestadocuenta2";
+            this.mnuestadocuenta2.Size = new System.Drawing.Size(180, 22);
+            this.mnuestadocuenta2.Text = "OS Pendientes";
             // 
             // frm_ArqueoOS
             // 
@@ -662,8 +742,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtfecha.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtfecha.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtfechaFinal.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtfechaFinal.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtfechaInicial.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtfechaInicial.Properties)).EndInit();
             this.tp2.ResumeLayout(false);
             this.tp2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panel_abono)).EndInit();
@@ -684,8 +766,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtfechacredito.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtfechacredito.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtfechacreditoFinal.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtfechacreditoFinal.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtfechacreditoInicial.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtfechacreditoInicial.Properties)).EndInit();
+            this.menu2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -698,7 +783,7 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gvwcabecera;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.SimpleButton btnbuscar;
-        private DevExpress.XtraEditors.DateEdit dtfecha;
+        private DevExpress.XtraEditors.DateEdit dtfechaInicial;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.SimpleButton btnguardar;
         private DevExpress.XtraEditors.LabelControl labelControl4;
@@ -717,7 +802,7 @@
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.SimpleButton btnguardarCredito;
         private DevExpress.XtraEditors.SimpleButton btnbuscarCredito;
-        private DevExpress.XtraEditors.DateEdit dtfechacredito;
+        private DevExpress.XtraEditors.DateEdit dtfechacreditoInicial;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl9;
         private DevExpress.XtraEditors.TextEdit txttotaldolarescancelado_credito;
@@ -738,5 +823,12 @@
         private System.Windows.Forms.ContextMenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem mnuabonaros;
         private DevExpress.XtraEditors.TextEdit txtcdocu_credito;
+        private DevExpress.XtraEditors.DateEdit dtfechacreditoFinal;
+        private DevExpress.XtraEditors.LabelControl labelControl16;
+        private System.Windows.Forms.ToolStripMenuItem mnuestadocuenta;
+        private DevExpress.XtraEditors.DateEdit dtfechaFinal;
+        private DevExpress.XtraEditors.LabelControl labelControl17;
+        private System.Windows.Forms.ContextMenuStrip menu2;
+        private System.Windows.Forms.ToolStripMenuItem mnuestadocuenta2;
     }
 }

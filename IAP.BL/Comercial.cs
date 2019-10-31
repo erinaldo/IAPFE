@@ -159,10 +159,16 @@ namespace IAP.BL
                 ts.Complete();
             }
         }
-        public List<OrdenServicio> ObtenerArqueo_OS(DateTime fecha, string codcdv, string dbconexion)
+        public List<OrdenServicio> ObtenerArqueo_OS(DateTime fechaInicial,DateTime fechaFinal, string codcdv, string dbconexion)
         {
             DL.Comercial cls = new DL.Comercial();
-            return cls.ObtenerArqueo_OS(fecha, codcdv, dbconexion);
+            return cls.ObtenerArqueo_OS(fechaInicial,fechaFinal, codcdv, dbconexion);
+        }
+
+        public DataSet ObtenerOSPendientes(string codcli, string dbconexion)
+        {
+            DL.Comercial cls = new DL.Comercial();
+            return cls.ObtenerOSPendientes(codcli, dbconexion);
         }
 
         public void RegistrarArqueo_OS(DateTime fecha, bool estadoarqueo, string usuarioPC, string codcdv, double totals, double totald, string dbconexion)

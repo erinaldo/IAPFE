@@ -72,8 +72,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtcc.Location = new System.Drawing.Point(154, 51);
             this.txtcc.Name = "txtcc";
-            this.txtcc.Properties.Mask.EditMask = "[a-zA-Z0-9.-]+@[a-zA-Z0-9-]+\\.[A-Za-z]{2,6}";
-            this.txtcc.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtcc.Size = new System.Drawing.Size(263, 20);
             this.txtcc.TabIndex = 8;
             // 
@@ -108,8 +106,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtto.Location = new System.Drawing.Point(154, 26);
             this.txtto.Name = "txtto";
-            this.txtto.Properties.Mask.EditMask = "[a-zA-Z0-9.-]+@[a-zA-Z0-9-]+\\.[A-Za-z]{2,6}";
-            this.txtto.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.txtto.Size = new System.Drawing.Size(263, 20);
             this.txtto.TabIndex = 4;
             // 

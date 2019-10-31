@@ -51,14 +51,14 @@ namespace IAP.Win.Comercial
             CreateGridColumn(gvwcabecera, "Fecha", "fecha", 1, FormatType.DateTime, "dd/MM/yyyy", true, 100);
             CreateGridColumn(gvwcabecera, "Tipo", "cdocu", 2, FormatType.None, "x", false, 60);
             CreateGridColumn(gvwcabecera, "Numero Documento", "ndocu", 3, FormatType.None, "x", true, 100);
-            CreateGridColumn(gvwcabecera, "Nombre Cliente", "nomcli", 4, FormatType.None, "x", true, 40);
+            CreateGridColumn(gvwcabecera, "Nombre Cliente", "nomcli", 4, FormatType.None, "x", true, 250);
             CreateGridColumn(gvwcabecera, "RUC", "ruccli", 5, FormatType.None, "x", true, 60);
             CreateGridColumn(gvwcabecera, "codcdv", "codcdv", 6, FormatType.None, "x", false, 100);
-            CreateGridColumn(gvwcabecera, "Condicion Venta", "nomcodcdv", 7, FormatType.None, "x", true, 100);
+            CreateGridColumn(gvwcabecera, "Condicion", "nomcodcdv", 7, FormatType.None, "x", true, 80);
             CreateGridColumn(gvwcabecera, "Moneda", "mone", 8, FormatType.None, "x", true, 100);
             
             
-            CreateGridColumn(gvwcabecera, "Tipo Cambio", "tcam", 9, DevExpress.Utils.FormatType.Numeric, "d2", true, 80);
+            CreateGridColumn(gvwcabecera, "TC", "tcam", 9, DevExpress.Utils.FormatType.Numeric, "d2", true, 40);
             CreateGridColumn(gvwcabecera, "Total Neto", "tota", 10, DevExpress.Utils.FormatType.Numeric, "d2", false, 80);
             CreateGridColumn(gvwcabecera, "Total IGV", "toti", 11, DevExpress.Utils.FormatType.Numeric, "d2", false, 80);
             CreateGridColumn(gvwcabecera, "Total", "totn", 12, DevExpress.Utils.FormatType.Numeric, "d2", true, 80);
@@ -97,14 +97,14 @@ namespace IAP.Win.Comercial
             CreateGridColumn(gvwos, "Fecha", "fecha", 1, FormatType.DateTime, "dd/MM/yyyy", true, 100);
             CreateGridColumn(gvwos, "Tipo", "cdocu", 2, FormatType.None, "x", false, 60);
             CreateGridColumn(gvwos, "Numero Documento", "ndocu", 3, FormatType.None, "x", true, 100);
-            CreateGridColumn(gvwos, "Nombre Cliente", "nomcli", 4, FormatType.None, "x", true, 40);
+            CreateGridColumn(gvwos, "Nombre Cliente", "nomcli", 4, FormatType.None, "x", true, 250);
             CreateGridColumn(gvwos, "RUC", "ruccli", 5, FormatType.None, "x", false, 60);
             CreateGridColumn(gvwos, "codcdv", "codcdv", 6, FormatType.None, "x", false, 100);
-            CreateGridColumn(gvwos, "Condicion Venta", "nomcodcdv", 7, FormatType.None, "x", true, 100);
-            CreateGridColumn(gvwos, "Moneda", "mone", 8, FormatType.None, "x", true, 100);
+            CreateGridColumn(gvwos, "Condicion", "nomcodcdv", 7, FormatType.None, "x", true, 80);
+            CreateGridColumn(gvwos, "Moneda", "mone", 8, FormatType.None, "x", true, 50);
 
 
-            CreateGridColumn(gvwos, "Tipo Cambio", "tcam", 9, DevExpress.Utils.FormatType.Numeric, "d2", true, 80);
+            CreateGridColumn(gvwos, "TC", "tcam", 9, DevExpress.Utils.FormatType.Numeric, "d2", true, 40);
             CreateGridColumn(gvwos, "Total Neto", "tota", 10, DevExpress.Utils.FormatType.Numeric, "d2", false, 80);
             CreateGridColumn(gvwos, "Total IGV", "toti", 11, DevExpress.Utils.FormatType.Numeric, "d2", false, 80);
             CreateGridColumn(gvwos, "Total", "totn", 12, DevExpress.Utils.FormatType.Numeric, "d2", true, 80);
@@ -169,8 +169,10 @@ namespace IAP.Win.Comercial
             try
             {
                 OnFormatGrid();
-                dtfecha.EditValue = DateTime.Now;
-                dtfechacredito.EditValue = DateTime.Now;
+                dtfechaInicial.EditValue = DateTime.Now;
+                dtfechaFinal.EditValue = DateTime.Now;
+                dtfechacreditoInicial.EditValue = DateTime.Now;
+                dtfechacreditoFinal.EditValue = DateTime.Now;
             }
             catch(Exception ex)
             {
@@ -182,7 +184,11 @@ namespace IAP.Win.Comercial
         {
             try
             {
-                cargar_OS_Arqueo();
+                using (WaitDialogForm waitDialog = new WaitDialogForm("Espere por favor...", "<<<<Consultando>>>>"))
+                {
+                    cargar_OS_Arqueo();
+                }
+                    
             }
             catch(Exception ex)
             {
@@ -217,9 +223,9 @@ namespace IAP.Win.Comercial
         private void guardar_OS_Arqueo(Boolean estado,string codcdv)
         {
             if(codcdv=="01")
-                BLComercial.RegistrarArqueo_OS(Convert.ToDateTime(dtfecha.EditValue), estado, Dns.GetHostName(), codcdv, Convert.ToDouble(txttotalsoles.Text), Convert.ToDouble(txttotaldolares.Text),Global.vUserBaseDatos);
+                BLComercial.RegistrarArqueo_OS(Convert.ToDateTime(dtfechaInicial.EditValue), estado, Dns.GetHostName(), codcdv, Convert.ToDouble(txttotalsoles.Text), Convert.ToDouble(txttotaldolares.Text),Global.vUserBaseDatos);
             else
-                BLComercial.RegistrarArqueo_OS(Convert.ToDateTime(dtfechacredito.EditValue), estado, Dns.GetHostName(), "02", Convert.ToDouble(txttotalsolescancelado_credito.Text.Replace("S/","")), Convert.ToDouble(txttotaldolarescancelado_credito.Text.Replace("$", "")), Global.vUserBaseDatos);
+                BLComercial.RegistrarArqueo_OS(Convert.ToDateTime(dtfechacreditoInicial.EditValue), estado, Dns.GetHostName(), "02", Convert.ToDouble(txttotalsolescancelado_credito.Text.Replace("S/","")), Convert.ToDouble(txttotaldolarescancelado_credito.Text.Replace("$", "")), Global.vUserBaseDatos);
         }
         
         private void cargar_OS_Arqueo()
@@ -227,7 +233,7 @@ namespace IAP.Win.Comercial
             txttotalsoles.Text = string.Empty;
             txttotaldolares.Text = string.Empty;
             List<OrdenServicio> lst = new List<OrdenServicio>();
-            lst = BLComercial.ObtenerArqueo_OS(Convert.ToDateTime(dtfecha.EditValue),"01", Global.vUserBaseDatos);
+            lst = BLComercial.ObtenerArqueo_OS(Convert.ToDateTime(dtfechaInicial.EditValue), Convert.ToDateTime(dtfechaFinal.EditValue), "01", Global.vUserBaseDatos);
             gccabecera.DataSource = lst;
 
             double soles = Math.Round(lst.Where(x => x.mone == "S").Sum(x => x.totn),2);
@@ -241,8 +247,9 @@ namespace IAP.Win.Comercial
         {
             txttotalsoles_Credito.Text = string.Empty;
             txttotaldolares_credito.Text = string.Empty;
+
             List<OrdenServicio> lst = new List<OrdenServicio>();
-            lst = BLComercial.ObtenerArqueo_OS(Convert.ToDateTime(dtfechacredito.EditValue),"02", Global.vUserBaseDatos);
+            lst = BLComercial.ObtenerArqueo_OS(Convert.ToDateTime(dtfechacreditoInicial.EditValue), Convert.ToDateTime(dtfechacreditoFinal.EditValue), "02", Global.vUserBaseDatos);
             gcos.DataSource = lst;
 
             double soles = Math.Round(lst.Where(x => x.mone == "S").Sum(x => x.totn), 2);
@@ -330,6 +337,17 @@ namespace IAP.Win.Comercial
                             txtabonodocumento_credito.Text = gvwos.GetFocusedRowCellValue("saldo").ToString();
                             break;
                         }
+                    case "mnuestadocuenta":
+                        {
+                            string nomcli= gvwos.GetFocusedRowCellValue("nomcli").ToString().Trim();
+                            string ruccli= gvwos.GetFocusedRowCellValue("ruccli").ToString().Trim();
+                            DataSet ds = BLComercial.ObtenerOSPendientes(ruccli, Global.vUserBaseDatos);
+                            frm_ArqueoOS_Credito form = new frm_ArqueoOS_Credito();
+                            form._DsPendientes = ds;
+                            form._Cliente = nomcli;
+                            form.ShowDialog();
+                            break;
+                        }
                     default:
                         {
                             break;
@@ -390,6 +408,47 @@ namespace IAP.Win.Comercial
         {
             BLComercial.RegistrarAbono_OS(txtcdocu_credito.Text, txtdocumento_credito.Text,Convert.ToDouble(txtabonodocumento_credito.Text), Global.vUserBaseDatos);
             
+        }
+
+        private void menu2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            try
+            {
+                if (gvwcabecera.RowCount == 0)
+                    return;
+
+                this.Cursor = System.Windows.Forms.Cursors.AppStarting;
+                var x = gccabecera.MainView;
+                if (x.RowCount <= 0) return;
+                gccabecera.ContextMenuStrip.Visible = false;
+
+
+                switch (e.ClickedItem.Name)
+                {
+
+                    
+                    case "mnuestadocuenta2":
+                        {
+                            string nomcli = gvwcabecera.GetFocusedRowCellValue("nomcli").ToString().Trim();
+                            string ruccli = gvwcabecera.GetFocusedRowCellValue("ruccli").ToString().Trim();
+                            DataSet ds = BLComercial.ObtenerOSPendientes(ruccli, Global.vUserBaseDatos);
+                            frm_ArqueoOS_Credito form = new frm_ArqueoOS_Credito();
+                            form._DsPendientes = ds;
+                            form._Cliente = nomcli;
+                            form.ShowDialog();
+                            break;
+                        }
+                    default:
+                        {
+                            break;
+                        }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
     }
 }

@@ -524,12 +524,12 @@ namespace IAP.DL
         }
 
 
-        public List<OrdenServicio> ObtenerArqueo_OS(DateTime fecha,string codcdv, string dbconexion)
+        public List<OrdenServicio> ObtenerArqueo_OS(DateTime fechainicial,DateTime fechafinal,string codcdv, string dbconexion)
         {
             List<OrdenServicio> lst = new List<OrdenServicio>();
             Database db = DatabaseFactory.CreateDatabase(dbconexion);
             DbCommand cmd;
-            cmd = db.GetStoredProcCommand("USP_SEL_OS_ARQUEO",fecha,codcdv);
+            cmd = db.GetStoredProcCommand("USP_SEL_OS_ARQUEO", fechainicial, fechafinal, codcdv);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandTimeout = 0;
 
@@ -552,7 +552,7 @@ namespace IAP.DL
                     toti = Convert.ToDouble(row["toti"]),
                     totn = Convert.ToDouble(row["totn"]),
                     flag_arqueado=Convert.ToBoolean(row["flg_arqueado"]),
-                    fechaarqueo = Convert.ToDateTime(row["fechaarqueo"] == DBNull.Value ? (DateTime?)null : row["fechaarqueo"]),
+                    fechaarqueo = (row["fechaarqueo"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(row["fechaarqueo"])),
                     usuarioArqueo= Convert.ToString(row["usuarioArqueo"]),
                     saldo= Convert.ToDouble(row["saldo"]),
                     flag_cancelado = Convert.ToBoolean(row["flag_cancelado"])
@@ -561,6 +561,21 @@ namespace IAP.DL
 
             }
             return lst;
+        }
+
+        public DataSet ObtenerOSPendientes(string codcli, string dbconexion)
+        {
+            List<OrdenServicio> lst = new List<OrdenServicio>();
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            DbCommand cmd;
+            cmd = db.GetStoredProcCommand("USP_SEL_OS_PENDIENTES", codcli);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+
+            DataSet ds = db.ExecuteDataSet(cmd);
+
+            
+            return ds;
         }
 
         public void RegistrarArqueo_OS(DateTime fecha,bool estadoarqueo,string usuarioPC,string codcdv,double totals,double totald,string dbconexion)

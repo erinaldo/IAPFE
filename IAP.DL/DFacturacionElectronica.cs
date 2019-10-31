@@ -39,7 +39,7 @@ namespace IAP.DL
                 ep.Clave = row["Clave"].ToString();
                 ep.Ruta = row["Ruta"].ToString();
                 ep.Token= row["Token"].ToString();
-               
+                ep.Ruc= row["Ruc"].ToString();
             }
             return ep;
         }

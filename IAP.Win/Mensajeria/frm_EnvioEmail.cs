@@ -115,7 +115,7 @@ namespace IAP.Win.Mensajeria
             mensaje += "<td style=\"width: 86px; \" bgcolor=\"#DCDFF3\"><strong>Empresa</strong></td>";
             mensaje += "<td style=\"width: 293px; \">Perfiles Metalicos J&amp;J</td>";
             mensaje += "<td style=\"width: 118px; \" bgcolor=\"#DCDFF3\"><strong>RUC</strong></td>";
-            mensaje += "<td style=\"width: 118px; \">&nbsp;10461199599</td>";
+            mensaje += "<td style=\"width: 118px; \">&nbsp;" + Global.vUserRucEmpresa + " </td>";
             mensaje += "</tr>";
             mensaje += "<tr>";
             mensaje += "<td style=\"width: 86px; \" bgcolor=\"#DCDFF3\"><strong>Cliente</strong></td>";
@@ -148,7 +148,8 @@ namespace IAP.Win.Mensajeria
 
         private void frm_EnvioEmail_Load(object sender, EventArgs e)
         {
-            txtto.Text = ConfigurationSettings.AppSettings["SmtpCredentialUser"].ToString();
+            lblTo.Text = ConfigurationSettings.AppSettings["SmtpCredentialUser"].ToString();
+            txtto.Text = "";
             Cliente cli = BLFe.ObtenerEmailCliente(_ruccli, Global.vUserBaseDatos);
             txtto.Text = cli.Email;
 

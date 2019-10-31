@@ -7,7 +7,8 @@ UsuarioArqueo varchar(50)
 
 ALTER PROCEDURE [dbo].[USP_SEL_OS_ARQUEO]
 (
-	@fecha date,
+	@fechainicial date,
+	@fechafinal date,
 	@codcdv char(2)
 )
 AS
@@ -31,10 +32,12 @@ end
 	cast(case (ROUND(totn,4)-ROUND(Cancelado,4)) when 0 then 1 else 0 end as bit) Flag_Cancelado
 	from Mst_Orden_Servicio os
 	inner join tbl01cdv cv on os.codcdv=cv.codcdv
-	where fecha=cast(@fecha as date)
+	where fecha between cast(@fechainicial as date) and cast(@fechafinal as date)
 	and os.flag <> '*'
 	and os.codcdv in(select codcdv from @tbl)
 end
+
+go
 
 ALTER procedure [dbo].[USP_UDP_GUARDAR_CANCELACION_OS]
 (
@@ -116,4 +119,23 @@ begin
 				values(GETDATE(),'C',@totalS,@TotalD)
 			end
 	end
+end
+
+
+ALTER PROCEDURE [dbo].[USP_SEL_OS_PENDIENTES]
+(
+	@CODCLI VARCHAR(50)
+)
+AS
+begin
+
+	select Fecha,ndocu NumeroDocumento,cv.nomcdv CondicionVenta,mone Moneda,totn Total,
+	ROUND(isnull((totn-isnull(Cancelado,0)),0),4) Saldo
+	
+	from Mst_Orden_Servicio os
+	inner join tbl01cdv cv on os.codcdv=cv.codcdv
+	where LTRIM(RTRIM(os.ruccli))=LTRIM(RTRIM(@CODCLI))
+	AND ROUND(isnull((totn-isnull(Cancelado,0)),0),4)>0
+	and os.flag<>'*'
+	order by os.fecha asc
 end

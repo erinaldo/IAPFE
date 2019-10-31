@@ -14,7 +14,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <PublishUrl>publicar\</PublishUrl>
+    <PublishUrl>C:\Utilitario Aplication\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -423,6 +423,9 @@
     <EmbeddedResource Include="Comercial\frm_ArqueoOS.resx">
       <DependentUpon>frm_ArqueoOS.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Comercial\frm_ArqueoOS_Credito.resx">
+      <DependentUpon>frm_ArqueoOS_Credito.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Comercial\frm_ConsultaEstadoFe.resx">
       <DependentUpon>frm_ConsultaEstadoFe.cs</DependentUpon>
     </EmbeddedResource>
@@ -465,7 +468,6 @@
     <EmbeddedResource Include="Mensajeria\frm_EnvioEmail.resx">
       <DependentUpon>frm_EnvioEmail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Reportes\frm_dvw_comercial_ventas.resx">
       <DependentUpon>frm_dvw_comercial_ventas.cs</DependentUpon>
     </EmbeddedResource>

@@ -44,7 +44,11 @@ namespace IAP.Win
             try
             {
                 this.Cursor = Cursors.AppStarting;
-                CargarDocumentosv();
+                using (WaitDialogForm waitDialog = new WaitDialogForm("Espere por favor...", "<<<<Consultando>>>>"))
+                {
+                    CargarDocumentosv();
+                }
+                    
             }
             catch (Exception err)
             {
@@ -336,7 +340,7 @@ namespace IAP.Win
                             using (WaitDialogForm waitDialog = new WaitDialogForm("Espere por favor...", "<<<<Enviando Documentos>>>>"))
                             {
                                 Bfe.TelesolucionesEnviarFactura(lst, string.Empty, Global.vToken, Global.vUserBaseDatos, ref telsol_serie, ref telsol_numero, Global.vApiTELE_EmisionFactura, Global.vApiTELE_EmisionBoleta,
-                                Global.vApiTELE_ConstanciaFactura, Global.vApiTELE_ConstanciaBoleta);
+                                Global.vApiTELE_ConstanciaFactura, Global.vApiTELE_ConstanciaBoleta, Global.vTelemovilAK, Global.vTelemovilSK);
                             }
                                 
                             //if (telsol_serie != "")
@@ -383,7 +387,7 @@ namespace IAP.Win
                 List<Documentov> lst = lstcabcecera.Where(x => x.FlgCheck == true && x.Flg_Fe == 1 && x.TeleSol_IdFactura.Trim() != string.Empty && x.TeleSol_IdComunicacionBaja.Trim() == string.Empty && x.TeleSol_IdConstancia==string.Empty).Select(x => new Documentov(x.Cdocu, x.Ndocu, x.Flag, x.Flg_Fe, x.TeleSol_IdFactura,x.TeleSol_Serie,x.TeleSol_Numero)).OrderBy(x => x.Cdocu + x.Ndocu).ToList();
 
 
-                Bfe.TelesolucionesObtenerConstancia(lst, string.Empty, Global.vToken, Global.vUserBaseDatos,Global.vApiTELE_ConstanciaFactura,Global.vApiTELE_ConstanciaBoleta);
+                Bfe.TelesolucionesObtenerConstancia(lst, string.Empty, Global.vToken, Global.vUserBaseDatos,Global.vApiTELE_ConstanciaFactura,Global.vApiTELE_ConstanciaBoleta, Global.vTelemovilAK, Global.vTelemovilSK);
 
 
                 MessageBox.Show("Se actualizo correctamente", "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -414,7 +418,11 @@ namespace IAP.Win
                     {
                         List<DocumentovDet> lstdetalle = new List<DocumentovDet>();
                         lstdetalle = Bfe.ObtenerDocumentosDetalleFBNC(lst.Select(x => x.Cdocu).First(), lst.Select(x => x.Ndocu).First(), Global.vUserBaseDatos);
-                        Bfe.TelesolucionesAnularDocumento(lst.First(), lstdetalle, Global.vDatosProveedor.Ruta, Global.vDatosProveedor.Token, Global.vUserBaseDatos,Global.vApiTELE_AnularDocumento);
+                        using (WaitDialogForm waitDialog = new WaitDialogForm("Espere por favor...", "<<<<Anulando>>>>"))
+                        {
+
+                            Bfe.TelesolucionesAnularDocumento(lst.First(), lstdetalle, Global.vDatosProveedor.Ruta, Global.vDatosProveedor.Token, Global.vUserBaseDatos, Global.vApiTELE_AnularDocumento, Global.vTelemovilAK, Global.vTelemovilSK);
+                        }
                     }
 
                     
@@ -625,7 +633,11 @@ namespace IAP.Win
                             }
 
                             SunatEnviardocumentosFBN();
-                            CargarDocumentosv();
+                            using (WaitDialogForm waitDialog = new WaitDialogForm("Espere por favor...", "<<<<Consultando>>>>"))
+                            {
+                                CargarDocumentosv();
+                            }
+                                
                             break;
                         }
                     case "mnuconstancia":
@@ -694,7 +706,10 @@ namespace IAP.Win
                                 return;
                             }
                             SunatAnulardocumentosFBN();
-                            CargarDocumentosv();
+                            using (WaitDialogForm waitDialog = new WaitDialogForm("Espere por favor...", "<<<<Consultando>>>>"))
+                            {
+                                CargarDocumentosv();
+                            }
                             break;
                             
                         }
@@ -738,8 +753,16 @@ namespace IAP.Win
                         }
                     case "mnuemail":
                         {
-                            
-                            EnviarEmail();
+                            if (Global.vDatosProveedor.IdEmpresa == "1")
+                            {
+                                MessageBox.Show("Opcion no disponible para Grupo IAP", "utilitario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                return;
+                            }
+                            else
+                            {
+                                EnviarEmail();
+                            }
+                                
 
 
                             break;
@@ -821,7 +844,7 @@ namespace IAP.Win
                 MessageBox.Show("El documento no ha sido registrado en sunat.", "Utilitario", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            System.IO.MemoryStream ms = Bfe.ObtenerPdfTelesoluciones(tipodocumento.Substring(0, 1).Trim(), idFactura,Global.vApiTELE_PdfFactura,Global.vApiTELE_PdfBoleta);
+            System.IO.MemoryStream ms = Bfe.ObtenerPdfTelesoluciones(tipodocumento.Substring(0, 1).Trim(), idFactura,Global.vApiTELE_PdfFactura,Global.vApiTELE_PdfBoleta, Global.vTelemovilAK, Global.vTelemovilSK);
             frm_FacturasVisorPdf form = new frm_FacturasVisorPdf(string.Empty, ms, "TELESOLUCIONES");
             form.ShowDialog();
         }

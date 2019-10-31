@@ -23,7 +23,7 @@ namespace EnvioDocElectronico
             try
             {
                 lst = blFE.ObtenerDocumentosPendientes_EnvioFE(basedatos);
-                foreach (EnvioEmailFE e in lst)
+                foreach (EnvioEmailFE e in lst.Where(x=> x.Correo.Trim()!= string.Empty).ToList())
                 {
                     try
                     {
@@ -60,6 +60,7 @@ namespace EnvioDocElectronico
                     var port = ConfigurationSettings.AppSettings["SmtpPort"];
                     var credentialUser = ConfigurationSettings.AppSettings["SmtpCredentialUser"];
                     var credentialPass = ConfigurationSettings.AppSettings["SmtpCredentialPass"];
+                    string rucEmisor= ConfigurationSettings.AppSettings["RucEmisor"];
 
                     client.Host = host.ToString();
                     client.Port = int.Parse(port);
@@ -75,7 +76,7 @@ namespace EnvioDocElectronico
                     //if (ccCorreo != null && cc != null) message.CC.Add(new MailAddress(ccCorreo, cc));
                     message.Subject = asunto;
 
-                    message.Body = Mensaje(cdocu, ndocu, cliente, fecha, monto, moneda);
+                    message.Body = Mensaje(cdocu, ndocu, cliente, fecha, monto, moneda, rucEmisor);
                     //message.BodyEncoding = Encoding.UTF8;
                     message.IsBodyHtml = true;
                     client.Send(message);
@@ -90,7 +91,7 @@ namespace EnvioDocElectronico
 
             }
         }
-        public static string Mensaje(string cdocu, string ndocu, string cliente, DateTime fecha, double monto, string moneda)
+        public static string Mensaje(string cdocu, string ndocu, string cliente, DateTime fecha, double monto, string moneda,string rucEmisor)
         {
             string mensaje = "";
             mensaje += "<html>";
@@ -104,7 +105,7 @@ namespace EnvioDocElectronico
             mensaje += "<td style=\"width: 86px; \" bgcolor=\"#DCDFF3\"><strong>Empresa</strong></td>";
             mensaje += "<td style=\"width: 293px; \">Perfiles Metalicos J&amp;J</td>";
             mensaje += "<td style=\"width: 118px; \" bgcolor=\"#DCDFF3\"><strong>RUC</strong></td>";
-            mensaje += "<td style=\"width: 118px; \">&nbsp;10461199599</td>";
+            mensaje += "<td style=\"width: 118px; \">&nbsp;" + rucEmisor  +"</td>";
             mensaje += "</tr>";
             mensaje += "<tr>";
             mensaje += "<td style=\"width: 86px; \" bgcolor=\"#DCDFF3\"><strong>Cliente</strong></td>";

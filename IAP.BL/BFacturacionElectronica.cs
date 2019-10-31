@@ -329,7 +329,7 @@ namespace IAP.BL
 
         /* ENVIO DE FACTURA ELECTRONICA TELESOLUCIONES */
 
-        public void TelesolucionesAnularDocumento(Documentov eFac, List<DocumentovDet> lstdetalle, string ruta, string token, string dbconexion,string rutaAnularDocumento)
+        public void TelesolucionesAnularDocumento(Documentov eFac, List<DocumentovDet> lstdetalle, string ruta, string token, string dbconexion,string rutaAnularDocumento, string Key_teleSo, string Ruta_teleSo)
         {
             int flg_fe = 0;
             //ruta = "https://api2.facturaonline.pe/comunicacionbaja";
@@ -369,7 +369,7 @@ namespace IAP.BL
             flg_fe = 0;
 
 
-            eRespuesta = EnviarTelesolucionesBaja(eAnulacion, ruta, token);
+            eRespuesta = EnviarTelesolucionesBaja(eAnulacion, ruta, token,Key_teleSo,Ruta_teleSo);
 
             if (string.IsNullOrEmpty(eRespuesta.status))
             {
@@ -385,7 +385,7 @@ namespace IAP.BL
 
 
         public void TelesolucionesEnviarFactura(List<Documentov> lst, string ruta, string token, string dbconexion, ref string telsol_serie, ref string telsol_numero,
-            string rutaEmisionFactura,string rutaEmisionBoleta,string rutaConstanciaFactura,string rutaConstanciaBoleta)
+            string rutaEmisionFactura,string rutaEmisionBoleta,string rutaConstanciaFactura,string rutaConstanciaBoleta, string Key_teleSo, string Ruta_teleSo)
         {
             string errorsunat = string.Empty;
             string tipodocumento;
@@ -416,7 +416,7 @@ namespace IAP.BL
                     //ruta = tipodocumento == "F" ? "https://api2.facturaonline.pe/factura" : "https://api2.facturaonline.pe/boleta";
                     ruta = tipodocumento == "F" ? rutaEmisionFactura : rutaEmisionBoleta;
 
-                    eRespuestaFactura = EnviarTelesoluciones(lista, ruta, token);
+                    eRespuestaFactura = EnviarTelesoluciones(lista, ruta, token,Key_teleSo,Ruta_teleSo);
 
                     if (eRespuestaFactura.idDocumento != 0)
                     {
@@ -436,7 +436,7 @@ namespace IAP.BL
 
                         Dfe.GuardarRespuestaSunatTelesoluciones(eRespuestaFactura, eConsR, flg_fe, dbconexion);
 
-                        eConsR = ObtenerConstanciaDocumento(string.Empty, rutaConstanacia, token);
+                        eConsR = ObtenerConstanciaDocumento(string.Empty, rutaConstanacia, token,Key_teleSo,Ruta_teleSo);
                         //}
 
 
@@ -469,7 +469,7 @@ namespace IAP.BL
             }
         }
 
-        private TelesolucionesRespuestaFactura EnviarTelesoluciones(Object entidad, string ruta, string token)
+        private TelesolucionesRespuestaFactura EnviarTelesoluciones(Object entidad, string ruta, string token, string Key_teleSo, string Ruta_teleSo)
         {
             TelesolucionesFactura lstfacturaTemp = (TelesolucionesFactura)entidad;
             string json = string.Empty;
@@ -508,7 +508,7 @@ namespace IAP.BL
             //enviar a nubefact
             string json_de_respuesta = string.Empty;
 
-            json_de_respuesta = TelesolucionesSendJson(ruta, json_en_utf_8, token, "FACTURA"); //falta la ruta y el token
+            json_de_respuesta = TelesolucionesSendJson(ruta, json_en_utf_8, token, "FACTURA", Key_teleSo, Ruta_teleSo); //falta la ruta y el token
 
 
 
@@ -554,7 +554,7 @@ namespace IAP.BL
             //eRespuesta.errors = leer_respuesta.errors == null ? "N" : Convert.ToString(leer_respuesta.errors);
             return eRespuesta;
         }
-        private TelesolucionesBajaDocumentoRespuesta EnviarTelesolucionesBaja(Object entidad, string ruta, string token)
+        private TelesolucionesBajaDocumentoRespuesta EnviarTelesolucionesBaja(Object entidad, string ruta, string token, string Key_teleSo, string Ruta_teleSo)
         {
             string json = JsonConvert.SerializeObject(entidad, Formatting.Indented);
             byte[] bytes = Encoding.Default.GetBytes(json);
@@ -563,7 +563,7 @@ namespace IAP.BL
             //enviar a nubefact
             string json_de_respuesta = string.Empty;
 
-            json_de_respuesta = TelesolucionesSendJson(ruta, json_en_utf_8, token, "BAJA"); //falta la ruta y el token
+            json_de_respuesta = TelesolucionesSendJson(ruta, json_en_utf_8, token, "BAJA",Key_teleSo,Ruta_teleSo); //falta la ruta y el token
 
 
 
@@ -588,7 +588,7 @@ namespace IAP.BL
             return eRespuesta;
         }
 
-        private TelesolucionesConstanciaRespuesta ObtenerConstanciaDocumento(Object entidad, string ruta, string token)
+        private TelesolucionesConstanciaRespuesta ObtenerConstanciaDocumento(Object entidad, string ruta, string token, string Key_teleSo, string Ruta_teleSo)
         {
             string json = JsonConvert.SerializeObject(entidad, Formatting.Indented);
             byte[] bytes = Encoding.Default.GetBytes(json);
@@ -597,7 +597,7 @@ namespace IAP.BL
 
             string json_de_respuesta = string.Empty;
 
-            json_de_respuesta = TelesolucionesSendJson(ruta, string.Empty, token, "CONSTANCIA"); //falta la ruta y el token
+            json_de_respuesta = TelesolucionesSendJson(ruta, string.Empty, token, "CONSTANCIA",Key_teleSo,Ruta_teleSo); //falta la ruta y el token
 
 
 
@@ -623,15 +623,15 @@ namespace IAP.BL
             return eRespuesta;
         }
 
-        public MemoryStream ObtenerPdfTelesoluciones(string tipodocumento, string idFactura,string rutaPdfFactura,string rutaPdfBoleta)
+        public MemoryStream ObtenerPdfTelesoluciones(string tipodocumento, string idFactura,string rutaPdfFactura,string rutaPdfBoleta, string Key_teleSo, string Ruta_teleSo)
         {
             //idFactura = "43107";
             //string ruta = tipodocumento == "F" ? ("https://api2.facturaonline.pe/factura/" + idFactura + "/exportar") : ("https://api2.facturaonline.pe/boleta/" + idFactura + "/exportar");
             string ruta = tipodocumento == "F" ? (rutaPdfFactura + idFactura + "/exportar") : (rutaPdfBoleta + idFactura + "/exportar");
-            string RespuestaPDF = TelesolucionesSendJson(ruta, string.Empty, string.Empty, "PDF");
+            string RespuestaPDF = TelesolucionesSendJson(ruta, string.Empty, string.Empty, "PDF",Key_teleSo,Ruta_teleSo);
             return PDFTelesoluciones;
         }
-        string TelesolucionesSendJson(string ruta, string json, string token, string tipoOperacion)
+        string TelesolucionesSendJson(string ruta, string json, string token, string tipoOperacion,string Key_teleSo,string Ruta_teleSo)
         {
             try
             {
@@ -650,8 +650,10 @@ namespace IAP.BL
                     //string Ky = "7cb2040d868a8ed6d044fef4d6d37bcded6fd47425bab1b1973e6e66e440f3c2";
 
                     //CREDENCIALES PRODUCCION
-                    string aK = "d28a27c097baedcd36c9d83e4f9bb88002db4b1bfc1433da08aedd3c0415be36";
-                    string Ky = "6e02181887cc0a63991ea0812e6ff0bfe76df3257ef22ff05b7795bd6b97c6b4";
+                    //string aK = "d28a27c097baedcd36c9d83e4f9bb88002db4b1bfc1433da08aedd3c0415be36";
+                    //string Ky = "6e02181887cc0a63991ea0812e6ff0bfe76df3257ef22ff05b7795bd6b97c6b4";
+                    string aK = Key_teleSo;
+                    string Ky = Ruta_teleSo;
 
                     string ToHash = string.Join("|", aK, unixTS);
                     string Hash = xHashString(ToHash, Ky);
@@ -721,7 +723,7 @@ namespace IAP.BL
         }
 
 
-        public void TelesolucionesObtenerConstancia(List<Documentov> lst, string ruta, string token, string dbconexion,string rutaConstanciaFactura,string rutaConstanciaBoleta)
+        public void TelesolucionesObtenerConstancia(List<Documentov> lst, string ruta, string token, string dbconexion,string rutaConstanciaFactura,string rutaConstanciaBoleta, string Key_teleSo, string Ruta_teleSo)
         {
             string errorsunat = string.Empty;
             string tipodocumento;
@@ -744,7 +746,7 @@ namespace IAP.BL
 
                 //Dfe.GuardarRespuestaSunatTelesoluciones(eRespuestaFactura, eConsR, flg_fe, dbconexion);
 
-                eConsR = ObtenerConstanciaDocumento(string.Empty, rutaConstanacia, token);
+                eConsR = ObtenerConstanciaDocumento(string.Empty, rutaConstanacia, token,Key_teleSo,Ruta_teleSo);
 
                 Dfe.GuardarConstanciaSunatTelesoluciones(lista.Cdocu, lista.Ndocu, eConsR, dbconexion);
 

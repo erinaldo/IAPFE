@@ -82,6 +82,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OrdenesServicioOperario", "OrdenesServicioOperario", "{82C5FFA8-F8EC-4F30-A96B-936D3F380BB7}"
 	ProjectSection(SolutionItems) = preProject
 		OS.sql = OS.sql
+		Tablas.sql = Tablas.sql
 	EndProjectSection
 EndProject
 Global
