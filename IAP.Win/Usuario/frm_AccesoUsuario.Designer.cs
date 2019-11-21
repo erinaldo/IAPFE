@@ -68,7 +68,7 @@
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(240, 180);
             this.groupControl1.TabIndex = 0;
-            this.groupControl1.Text = "Version: 19092019";
+            this.groupControl1.Text = "Version: 07112019";
             this.groupControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControl1_Paint);
             // 
             // labelControl3

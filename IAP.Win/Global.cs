@@ -53,5 +53,7 @@ namespace IAP.Win
         public static string vApiTELE_PdfFactura;
         public static string vApiTELE_PdfBoleta;
         public static string vApiTELE_AnularDocumento;
+        public static string vApiTELE_EmisionGuiaRemision;
+        public static string vApiTELE_ConstanciaGuia;
     }
 }

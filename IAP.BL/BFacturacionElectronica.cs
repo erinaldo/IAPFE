@@ -691,6 +691,10 @@ namespace IAP.BL
                     {
                         respuesta = client.UploadString(ruta, "POST", json);
                     }
+                    if(tipoOperacion=="GUIA")
+                    {
+                        respuesta = client.UploadString(ruta, "POST", json);
+                    }
 
 
                     /// Y LA 'RETORNAMOS'
@@ -763,5 +767,196 @@ namespace IAP.BL
         {
             return Dfe.ObtenerDocumentosPendientes_EnvioFE(dbEmpresa);
         }
+
+
+        /* INICIO DE GUIAS DE REMISION */
+        public List<GuiaVenta_Sunat> ObtenerDocumentosGuiasRemision(DateTime fechai, DateTime fechaf, Int32 enviadosunat, int anulado, string dbconexion)
+        {
+            return Dfe.ObtenerDocumentosGuiasRemision(fechai, fechaf, enviadosunat, anulado, dbconexion);
+        }
+        public List<GuiaVentaLinea_Sunat> ObtenerDocumentosGuiasRemisionLinea(string ndocu, string dbconexion)
+        {
+            return Dfe.ObtenerDocumentosGuiasRemisionLinea(ndocu, dbconexion);
+        }
+
+        public void TelesolucionesEnviarGuia(List<GuiaVenta_Sunat> lst, string ruta, string token, string dbconexion, ref string telsol_serie, ref string telsol_numero,
+            string rutaEmisionGuia, string rutaConstanciaGuia, string Key_teleSo, string Ruta_teleSo)
+        {
+            string errorsunat = string.Empty;
+            
+            List<TelesolucionesGuiaRemision> lsunat = new List<TelesolucionesGuiaRemision>();
+            
+            TelesolucionesRespuestaGuiaRemision eRespuestaGuia = new TelesolucionesRespuestaGuiaRemision();
+            int flg_fe = 0;
+            //using (TransactionScope ts = new TransactionScope(TransactionScopeOption.Required))
+            //{
+            foreach (GuiaVenta_Sunat e in lst) //por cada documento
+            {
+
+                lsunat.Add(Dfe.TelesolucionesObtenerGuiaRemision(e, dbconexion));
+            }
+
+            if (!lsunat.Any())
+            {
+                throw new Exception("Por favor verificar los datos de la guai de remision");
+            }
+
+            foreach (TelesolucionesGuiaRemision lista in lsunat)
+            {
+                try
+                {
+                    eRespuestaGuia = new TelesolucionesRespuestaGuiaRemision();
+
+
+                    flg_fe = 0;
+
+
+                    eRespuestaGuia = EnviarTelesolucionesGuiaRemision(lista, rutaEmisionGuia, token, Key_teleSo, Ruta_teleSo);
+
+                    if (eRespuestaGuia.idGuiaRemitente != 0)
+                    {
+                        telsol_serie = eRespuestaGuia.serie;
+                        telsol_numero = eRespuestaGuia.numero.ToString();
+                        flg_fe = 1;//eRespuesta.aceptada_por_sunat == true ? 1 : 0;
+                        //TelesolucionesConstaciaGuiaRemision econs = new TelesolucionesConstaciaGuiaRemision();
+                        
+
+                        TelesolucionesRespuestaConstanciaGuiaRemision eConsR = new TelesolucionesRespuestaConstanciaGuiaRemision();
+                        //if (eConsR.status.ToString().Trim() == string.Empty)
+                        //{
+                        //string rutaConstanacia = tipodocumento == "F" ? "https://api2.facturaonline.pe/factura/" + econs.id + "/constancia" : "https://api2.facturaonline.pe/boleta/" + econs.id + "/constancia";
+                        string rutaConstancia =rutaConstanciaGuia + telsol_serie+telsol_numero + "/constancia"  ;
+
+                        Dfe.GuardarRespuestaSunatTelesolucionesGuia(eRespuestaGuia, eConsR, flg_fe, dbconexion);
+
+                        eConsR = ObtenerConstanciaGuiaremision(string.Empty, rutaConstancia, token, Key_teleSo, Ruta_teleSo);
+                        //}
+
+
+
+                        //falta guardar respuesta
+
+                        Dfe.GuardarRespuestaSunatTelesolucionesGuia(eRespuestaGuia, eConsR, flg_fe, dbconexion);
+                        if (!string.IsNullOrEmpty(eConsR.status.ToString()))
+                        {
+                            throw new Exception(eConsR.message.ToString());
+                        }
+
+
+                    }
+                    else
+                    {
+                        //errorsunat = "Tipo Documento: " + lista.cdocu + "\n" + "Numero Documento: " + lista.ndocu + "\n" + "Error Sunat: " + Convert.ToString(eRespuesta.errors);
+                        //throw new Exception(errorsunat);
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (lsunat.Count() == 1)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                }
+
+            }
+        }
+
+        private TelesolucionesRespuestaGuiaRemision EnviarTelesolucionesGuiaRemision(Object entidad, string ruta, string token, string Key_teleSo, string Ruta_teleSo)
+        {
+            TelesolucionesGuiaRemision lstGuiaTemp = (TelesolucionesGuiaRemision)entidad;
+            string json = string.Empty;
+            JsonSerializerSettings settings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
+            json = JsonConvert.SerializeObject(entidad, Formatting.Indented);
+            json = JsonConvert.SerializeObject(entidad, settings);
+
+            var guia = (Newtonsoft.Json.Linq.JObject)JsonConvert.DeserializeObject(json);
+            //if (lstGuiaTemp.modalidadTraslado.ToString()=="02")//transpoprte privado
+            //{
+                
+                
+            //    guia.Property("adicional.numeroRucTransportista").Remove();
+            //    //json = JsonConvert.SerializeObject(guia, Formatting.Indented);
+            //}
+            //else
+            //{
+                
+            //    guia.Property("adicional.numeroPlacaVehiculo").Remove();
+            //    guia.Property("adicional.numeroDocumentoConductor").Remove();
+
+            //}
+            json = JsonConvert.SerializeObject(guia, Formatting.Indented);
+
+            byte[] bytes = Encoding.Default.GetBytes(json);
+            string json_en_utf_8 = Encoding.UTF8.GetString(bytes);
+
+            //enviar a nubefact
+            string json_de_respuesta = string.Empty;
+
+            json_de_respuesta = TelesolucionesSendJson(ruta, json_en_utf_8, token, "GUIA", Key_teleSo, Ruta_teleSo); //falta la ruta y el token
+
+
+            dynamic leer_respuesta = JsonConvert.DeserializeObject<TelesolucionesRespuestaGuiaRemision>(json_de_respuesta);
+            TelesolucionesRespuestaGuiaRemision eRespuesta = new TelesolucionesRespuestaGuiaRemision();
+            //eRespuesta.tipo_de_comprobante = leer_respuesta.tipo_de_comprobante;
+            eRespuesta.fechaEmision = leer_respuesta.fechaEmision;
+            //eRespuesta.fechaEmitido = leer_respuesta.fechaEmitido== Convert.ToDateTime("01/01/0001") ? (DateTime?)null : leer_respuesta.fechaEmitido;
+            eRespuesta.codigoComprobante = leer_respuesta.codigoComprobante;
+            eRespuesta.idGuiaRemitente = Convert.ToInt32(leer_respuesta.idGuiaRemitente);
+            eRespuesta.serie = leer_respuesta.serie;
+            eRespuesta.numero = Convert.ToInt32(leer_respuesta.numero);
+            eRespuesta.emitido = Convert.ToInt32(leer_respuesta.emitido);
+            eRespuesta.baja = Convert.ToInt32(leer_respuesta.baja);
+            eRespuesta.digestValue = (leer_respuesta.digestValue);
+            eRespuesta.signatureValue = leer_respuesta.signatureValue;
+            eRespuesta.idConstancia = Convert.ToInt32(leer_respuesta.idConstancia);
+            
+            return eRespuesta;
+        }
+
+        private TelesolucionesRespuestaConstanciaGuiaRemision ObtenerConstanciaGuiaremision(Object entidad, string ruta, string token, string Key_teleSo, string Ruta_teleSo)
+        {
+            string json = JsonConvert.SerializeObject(entidad, Formatting.Indented);
+            byte[] bytes = Encoding.Default.GetBytes(json);
+            string json_en_utf_8 = Encoding.UTF8.GetString(bytes);
+
+
+            string json_de_respuesta = string.Empty;
+
+            json_de_respuesta = TelesolucionesSendJson(ruta, string.Empty, token, "CONSTANCIA", Key_teleSo, Ruta_teleSo); //falta la ruta y el token
+
+
+
+            dynamic leer_respuesta = JsonConvert.DeserializeObject<TelesolucionesRespuestaConstanciaGuiaRemision>(json_de_respuesta);
+            TelesolucionesRespuestaConstanciaGuiaRemision eRespuesta = new TelesolucionesRespuestaConstanciaGuiaRemision();
+
+            eRespuesta.fechaEmision = leer_respuesta.fechaEmision;
+            eRespuesta.idConstancia = leer_respuesta.idConstancia;
+
+            eRespuesta.idRespuesta = leer_respuesta.idRespuesta;
+            eRespuesta.serie = leer_respuesta.serie;
+            eRespuesta.numero = leer_respuesta.numero;
+            eRespuesta.tipo = leer_respuesta.tipo;
+            eRespuesta.codigo = leer_respuesta.codigo;
+            eRespuesta.notas = leer_respuesta.notas;
+            eRespuesta.descripcion = leer_respuesta.descripcion;
+            //ERROR
+            eRespuesta.code = leer_respuesta.code;
+            eRespuesta.status = leer_respuesta.status;
+            eRespuesta.message = leer_respuesta.message;
+
+
+            return eRespuesta;
+        }
+
+        public List<TelesolucionesGuiaRemisionLineaFormato> TelesolucionesObtenerGuiaRemisionLineaFormato(string ndocu, string dbconexion)
+        {
+            return Dfe.TelesolucionesObtenerGuiaRemisionLineaFormato(ndocu, dbconexion);
+        }
+        public TelesolucionesGuiaRemisionFormato TelesolucionesObtenerGuiaRemisionFormato(string ndocu, string dbconexion)
+        {
+            return Dfe.TelesolucionesObtenerGuiaRemisionFormato(ndocu, dbconexion);
+        }
+
     }
 }

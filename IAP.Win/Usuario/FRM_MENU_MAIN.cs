@@ -101,7 +101,7 @@ namespace IAP.Win
 
                 string IdEmpresaFE = ConfigurationManager.AppSettings.Get("PROVEEDORFE");
                 string Empresa= ConfigurationManager.AppSettings.Get("EMPRESA");
-                //Global.vUserRucEmpresa= ConfigurationManager.AppSettings.Get("RUCEMPRESA");
+                Global.vUserRucEmpresa= ConfigurationManager.AppSettings.Get("RUCEMPRESA");
                 //Global.vTelemovilAK= ConfigurationManager.AppSettings.Get("TELEMOVILAK");
                 //Global.vTelemovilSK= ConfigurationManager.AppSettings.Get("TELEMOVILSK");
 
@@ -112,6 +112,10 @@ namespace IAP.Win
                 Global.vApiTELE_PdfFactura= ConfigurationManager.AppSettings.Get("TELE_PdfFactura");
                 Global.vApiTELE_PdfBoleta= ConfigurationManager.AppSettings.Get("TELE_PdfBoleta");
                 Global.vApiTELE_AnularDocumento= ConfigurationManager.AppSettings.Get("TELE_AnularDocumento");
+                Global.vApiTELE_EmisionGuiaRemision = ConfigurationManager.AppSettings.Get("TELE_EmisionGuia");
+                Global.vApiTELE_ConstanciaGuia = ConfigurationManager.AppSettings.Get("TELE_ConstanciaGuia");
+
+
 
                 Global.vUsuarioBD= ConfigurationManager.AppSettings.Get("USUARIOBD");
                 Global.vPasswordBD= ConfigurationManager.AppSettings.Get("PASSWORDBD");
@@ -120,8 +124,13 @@ namespace IAP.Win
                 //this.dvw_costos.LoadDashboard(aOppFilm.Create<ISProcProduccion>().ObtenerXmlProcProduccion("CostosConsumo"));
                 Global.vDatosProveedor.IdEmpresa = IdEmpresaFE;
 
+                /* CREDENCIALES DE PRUEBA */
                 Global.vTelemovilAK = Global.vDatosProveedor.Ruta;
                 Global.vTelemovilSK = Global.vDatosProveedor.Token;
+
+                //Global.vTelemovilAK = "c73ed3b5f2085ffdd429044b4757b97917c7ea775c0d12eae388e6e9bf19bb17";
+                //Global.vTelemovilSK = "7cb2040d868a8ed6d044fef4d6d37bcded6fd47425bab1b1973e6e66e440f3c2";
+
 
                 Global.vUserRucEmpresa = Global.vDatosProveedor.Ruc;
 
@@ -399,6 +408,13 @@ namespace IAP.Win
         {
             frm_OrdenServicioTactil form = new frm_OrdenServicioTactil();
             string nombreForm = comercial_OSPlanta.Caption;
+            AgregarFormularioEnTabPage(form, nombreForm);
+        }
+
+        private void comercial_GuiaE_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            frm_guiasRemision form = new frm_guiasRemision();
+            string nombreForm = comercial_GuiaE.Caption;
             AgregarFormularioEnTabPage(form, nombreForm);
         }
     }

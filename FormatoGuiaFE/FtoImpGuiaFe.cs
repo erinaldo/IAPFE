@@ -20,11 +20,12 @@ namespace FormatoGuiaFE
 {
     public partial class FtoImpGuiaFe : Form
     {
-        Guia _eGuia = new Guia();
-        List<Guia> _lstguia = new List<Guia>();
-        List<DetalleGuia> _lstdet = new List<DetalleGuia>();
+        List<TelesolucionesGuiaRemisionFormato> Cab = new List<TelesolucionesGuiaRemisionFormato>();
+        List<TelesolucionesGuiaRemisionLineaFormato> Det = new List<TelesolucionesGuiaRemisionLineaFormato>();
+
         Comercial objCom = new Comercial();
-        
+        BFacturacionElectronica eBFE = new BFacturacionElectronica();
+
         string cdocu;
         string ndocu;
         public FtoImpGuiaFe()
@@ -53,12 +54,16 @@ namespace FormatoGuiaFE
                     //MessageBox.Show("Parámetro :" + parametros[i]);
                 }
             }
-           
+
             //string cn = ConfigurationManager.AppSettings["bdNava01"];
-            objCom.ObtenerCabeceraGuia(cdocu, ndocu, "bdNava01", ref _eGuia, ref _lstdet);
+            TelesolucionesGuiaRemisionFormato ecab = new TelesolucionesGuiaRemisionFormato();
+            ecab = eBFE.TelesolucionesObtenerGuiaRemisionFormato(ndocu, "BdNava01");
+            Cab.Add(ecab);
+            Det = eBFE.TelesolucionesObtenerGuiaRemisionLineaFormato(ndocu, "BdNava01");
+
+            //objCom.ObtenerCabeceraGuia(cdocu, ndocu, "bdNava01", ref _eGuia, ref _lstdet);
             
             
-            _lstguia.Add(_eGuia);
             //lstfactura.Add(new Factura(cdocu, ndocu, "Andy Ex", "46119959", "", img));
             cargar_reportveawer();
             
@@ -71,17 +76,17 @@ namespace FormatoGuiaFE
 
             rpvwguia.LocalReport.DataSources.Clear();
             ReportDataSource rds = new ReportDataSource();
-            rds.Name = "dsCabGuia";
-            rds.Value = _lstguia;
+            rds.Name = "dsCabecera";
+            rds.Value = Cab;
             this.rpvwguia.LocalReport.DataSources.Add(rds);
 
             rds = new ReportDataSource();
-            rds.Name = "dsDetGuia";
-            rds.Value = _lstdet;
+            rds.Name = "dsDetalle";
+            rds.Value = Det;
             this.rpvwguia.LocalReport.DataSources.Add(rds);
 
             this.rpvwguia.LocalReport.ReportEmbeddedResource =
-                "FormatoGuiaFE.RptGuia.rdlc";
+                "FormatoGuiaFE.RptGuiaFE.rdlc";
 
             //ReportParameter[] pa = new ReportParameter[1];
             //pa[0] = new ReportParameter("UsuarioEncargado", usuario.UsuCod.ToString());

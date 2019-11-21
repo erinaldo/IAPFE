@@ -198,26 +198,26 @@
             this.mnudescargar,
             this.mnuestados});
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(181, 98);
+            this.menu.Size = new System.Drawing.Size(172, 76);
             this.menu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menu_ItemClicked);
             // 
             // mnuasignar
             // 
             this.mnuasignar.Image = global::IAP.Win.Properties.Resources.FindCustomers_16x16;
             this.mnuasignar.Name = "mnuasignar";
-            this.mnuasignar.Size = new System.Drawing.Size(180, 22);
+            this.mnuasignar.Size = new System.Drawing.Size(171, 22);
             this.mnuasignar.Text = "Reasignar Cliente";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(168, 6);
             // 
             // mnudescargar
             // 
             this.mnudescargar.Image = global::IAP.Win.Properties.Resources.android1;
             this.mnudescargar.Name = "mnudescargar";
-            this.mnudescargar.Size = new System.Drawing.Size(180, 22);
+            this.mnudescargar.Size = new System.Drawing.Size(171, 22);
             this.mnudescargar.Text = "Descargar Pedidos";
             // 
             // mnuestados
@@ -230,7 +230,7 @@
             this.smnudespachado,
             this.smnuentregado});
             this.mnuestados.Name = "mnuestados";
-            this.mnuestados.Size = new System.Drawing.Size(180, 22);
+            this.mnuestados.Size = new System.Drawing.Size(171, 22);
             this.mnuestados.Text = "Estados Pedido";
             // 
             // smnusiguienteestado

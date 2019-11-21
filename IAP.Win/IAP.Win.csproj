@@ -233,6 +233,12 @@
     <Compile Include="Comercial\frm_FacturasVisorPdf.Designer.cs">
       <DependentUpon>frm_FacturasVisorPdf.cs</DependentUpon>
     </Compile>
+    <Compile Include="Comercial\frm_guiasRemision.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comercial\frm_guiasRemision.Designer.cs">
+      <DependentUpon>frm_guiasRemision.cs</DependentUpon>
+    </Compile>
     <Compile Include="Comercial\frm_OrdenServicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -437,6 +443,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Comercial\frm_FacturasVisorPdf.resx">
       <DependentUpon>frm_FacturasVisorPdf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comercial\frm_guiasRemision.resx">
+      <DependentUpon>frm_guiasRemision.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comercial\frm_OrdenServicio.resx">
       <DependentUpon>frm_OrdenServicio.cs</DependentUpon>

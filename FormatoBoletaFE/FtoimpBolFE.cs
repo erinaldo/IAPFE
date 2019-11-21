@@ -51,8 +51,8 @@ namespace FormatoBoletaFE
                 }
             }
             
-            //string cn = ConfigurationManager.AppSettings["bdNava01"];
-            objCom.ObtenerCabeceraFBNCND(cdocu, ndocu, "bdNava01", ref _efactura, ref _lstdet);
+            string bd = ConfigurationManager.AppSettings["BD"];
+            objCom.ObtenerCabeceraFBNCND(cdocu, ndocu, bd, ref _efactura, ref _lstdet);
             string serie = _efactura.Cdocu == "01" ? "F" + _efactura.Ndocu.Substring(0, 3) : "B" + _efactura.Ndocu.Substring(0, 3);
             int numero = Convert.ToInt32(_efactura.Ndocu.Substring(4, 8));
             string contenidoQR = rucEmpresa + "|" + _efactura.Cdocu + "|" + serie + "|" + numero.ToString() + "|" + _efactura.Toti.ToString() + "|" + _efactura.Totn + "|" +

@@ -74,6 +74,8 @@
             this.tp2 = new DevExpress.XtraTab.XtraTabPage();
             this.btnguardar = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.navBarSeparatorItem2 = new DevExpress.XtraNavBar.NavBarSeparatorItem();
+            this.comercial_GuiaE = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
@@ -126,7 +128,9 @@
             this.comercial_ImportarCliente,
             this.creditos_letrasemitidas,
             this.comercial_arqueoOS,
-            this.comercial_OSPlanta});
+            this.comercial_OSPlanta,
+            this.navBarSeparatorItem2,
+            this.comercial_GuiaE});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 201;
@@ -152,7 +156,9 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_OS),
             new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_ImportarCliente),
             new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_arqueoOS),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_OSPlanta)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_OSPlanta),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarSeparatorItem2),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.comercial_GuiaE)});
             this.navBarGroupComercial.Name = "navBarGroupComercial";
             // 
             // comercial_listaprecio
@@ -482,6 +488,20 @@
             this.panelControl1.Size = new System.Drawing.Size(858, 694);
             this.panelControl1.TabIndex = 5;
             // 
+            // navBarSeparatorItem2
+            // 
+            this.navBarSeparatorItem2.CanDrag = false;
+            this.navBarSeparatorItem2.Enabled = false;
+            this.navBarSeparatorItem2.Hint = null;
+            this.navBarSeparatorItem2.Name = "navBarSeparatorItem2";
+            // 
+            // comercial_GuiaE
+            // 
+            this.comercial_GuiaE.Caption = "Guia Electronica";
+            this.comercial_GuiaE.ImageOptions.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem3.ImageOptions.SmallImage")));
+            this.comercial_GuiaE.Name = "comercial_GuiaE";
+            this.comercial_GuiaE.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.comercial_GuiaE_LinkClicked);
+            // 
             // FRM_MENU_MAIN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -554,5 +574,7 @@
         private DevExpress.XtraNavBar.NavBarItem creditos_letrasemitidas;
         private DevExpress.XtraNavBar.NavBarItem comercial_arqueoOS;
         private DevExpress.XtraNavBar.NavBarItem comercial_OSPlanta;
+        private DevExpress.XtraNavBar.NavBarSeparatorItem navBarSeparatorItem2;
+        private DevExpress.XtraNavBar.NavBarItem comercial_GuiaE;
     }
 }

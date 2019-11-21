@@ -677,6 +677,248 @@ namespace IAP.DL
             return ls;
         }
 
+        /* PARTE DE GUIAS DE REMISION ELECTRONICAS */
+
+        public List<GuiaVenta_Sunat> ObtenerDocumentosGuiasRemision(DateTime fechai, DateTime fechaf,Int32 enviadosunat, int anulado, string dbconexion)
+        {
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            DbCommand cmd;
+            cmd = db.GetStoredProcCommand("usp_Sel_GuiasRemision",fechai, fechaf, enviadosunat, anulado);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+
+            DataSet ds = db.ExecuteDataSet(cmd);
+            List<GuiaVenta_Sunat> ls = new List<GuiaVenta_Sunat>();
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                ls.Add(new GuiaVenta_Sunat
+                {
+
+                    Fecha = Convert.ToDateTime(row["fecha"]),
+                    Cdocu = Convert.ToString(row["cdocu"]),
+                    Ndocu = Convert.ToString(row["ndocu"]),
+                    Nomcli = Convert.ToString(row["nomcli"]),
+                    Ruccli = Convert.ToString(row["ruccli"]),
+                    Crefe = Convert.ToString(row["crefe"]),
+                    Nrefe = Convert.ToString(row["nrefe"]),
+                    MotAnu = Convert.ToString(row["motanu"]),
+                    Tota = Convert.ToDouble(row["tota"]),
+                    Toti= Convert.ToDouble(row["toti"]),
+                    Totn= Convert.ToDouble(row["totn"]),
+                    Telesoluciones_FechaEmisionCliente= row["Telesoluciones_FechaEmisionCliente"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(row["Telesoluciones_FechaEmisionCliente"]),
+                    Telesoluciones_FechaEmisionSunat=  row["Telesoluciones_FechaEmisionSunat"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(row["Telesoluciones_FechaEmisionSunat"]),
+                    Telesoluciones_CodigoComprobanteSunat= row["Telesoluciones_CodigoComprobanteSunat"].ToString(),
+                    Telesoluciones_IdGuiaRemitente=  row["Telesoluciones_IdGuiaRemitente"] == DBNull.Value ? (Int32?)null : Convert.ToInt32(row["Telesoluciones_IdGuiaRemitente"]),
+                    Telesoluciones_Serie= row["Telesoluciones_Serie"].ToString(),
+                    Telesoluciones_Numero= row["Telesoluciones_Numero"] == DBNull.Value ? (Int32?)null : Convert.ToInt32(row["Telesoluciones_Numero"]),
+                    Telesoluciones_Emitido= row["Telesoluciones_Emitido"] == DBNull.Value ? (Int32?)null : Convert.ToInt32(row["Telesoluciones_Emitido"]),
+                    Telesoluciones_Baja= row["Telesoluciones_Baja"] == DBNull.Value ? (Int32?)null : Convert.ToInt32(row["Telesoluciones_Baja"]),
+                    Telesoluciones_DigestValue= row["Telesoluciones_DigestValue"].ToString(),
+                    Telesoluciones_SignatureValue= row["Telesoluciones_SignatureValue"].ToString(),
+                    Telesoluciones_IdConstancia= row["Telesoluciones_IdConstancia"] == DBNull.Value ? (Int32?)null : Convert.ToInt32(row["Telesoluciones_IdConstancia"]),
+                    Telesoluciones_FlagEnviadoSunat= Convert.ToBoolean(row["Telesoluciones_FlagEnviadoSunat"]),
+                    Flag= Convert.ToString(row["Estado"])
+                });
+            }
+            return ls;
+        }
+
+        public List<GuiaVentaLinea_Sunat> ObtenerDocumentosGuiasRemisionLinea(string ndocu, string dbconexion)
+        {
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            DbCommand cmd;
+            cmd = db.GetStoredProcCommand("usp_Sel_GuiasRemisionDetalle", ndocu);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+
+            DataSet ds = db.ExecuteDataSet(cmd);
+            List<GuiaVentaLinea_Sunat> ls = new List<GuiaVentaLinea_Sunat>();
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                ls.Add(new GuiaVentaLinea_Sunat
+                {
+                    Codi= Convert.ToString(row["codi"]),
+                    Codf= Convert.ToString(row["codf"]),
+                    Marc= Convert.ToString(row["marc"]),
+                    Descr= Convert.ToString(row["descr"]),
+                    Umed= Convert.ToString(row["umed"]),
+                    Cantidad=Convert.ToDouble(row["cant"]),
+                    Preu= Convert.ToDouble(row["preu"]),
+                    Totn= Convert.ToDouble(row["totn"])
+                });
+            }
+            return ls;
+        }
+
+
+        public TelesolucionesGuiaRemision TelesolucionesObtenerGuiaRemision(GuiaVenta_Sunat lst, string dbconexion)
+        {
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            
+            DbCommand cmd;
+            cmd = db.GetStoredProcCommand("usp_SunatTelesoluciones_EnviarGuiaRemision",lst.Ndocu);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+
+            DataSet ds = db.ExecuteDataSet(cmd);
+
+            TelesolucionesGuiaRemision tf = new TelesolucionesGuiaRemision();
+           
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                tf = new TelesolucionesGuiaRemision
+                {
+                    serie = row["serie"].ToString().Trim(),
+                    numero = Convert.ToInt32(row["numero"]),
+                    tipoDocumentoGuia = row["tipoDocumentoGuia"].ToString().Trim(),
+                    motivoTraslado = row["motivoTraslado"].ToString().Trim(),
+                    pesoBrutoTotal = Convert.ToDouble(row["pesoBrutoTotal"]),
+                    unidadPesoBruto = row["unidadPesoBruto"].ToString().Trim(),
+                    modalidadTraslado = row["modalidadTraslado"].ToString().Trim(),
+                    fechaInicioTraslado = Convert.ToDateTime(row["fechaInicioTraslado"]),
+                    ubigeoLlegada = row["ubigeoLlegada"].ToString().Trim(),
+                    direccionLlegada = row["direccionLlegada"].ToString().Trim(),
+                    ubigeoPartida = row["ubigeoPartida"].ToString().Trim(),
+                    direccionPartida = row["direccionPartida"].ToString().Trim(),
+                    adicional= new TelesolucionesAdicionalGuia
+                    {
+                        observaciones = row["Adicional_Observaciones"].ToString().Trim(),
+                        denominacionTransportista = row["Adicional_denominacionTransportista"].ToString().Trim(),
+                        numeroPlacaVehiculo = row["Adicional_numeroPlacaVehiculo"]== DBNull.Value ? null :
+                        Convert.ToString(row["Adicional_numeroPlacaVehiculo"].ToString().Trim()),
+                        numeroDocumentoConductor = row["Adicional_numeroDocumentoConductor"]== DBNull.Value ? null : row["Adicional_numeroDocumentoConductor"].ToString().Trim(),
+                        tipoDocumentoConductor = row["Adicional_tipoDocumentoConductor"].ToString().Trim(),
+                        numeroRucTransportista=row["Adicional_RucTransportista"]== DBNull.Value ? null : row["Adicional_RucTransportista"].ToString().Trim()
+                    },
+                    receptor= new TelesolucionesReceptorGuia
+                    {
+                        tipo = row["Receptor_tipo"].ToString().Trim(),
+                        nro = row["Receptor_Numero"].ToString().Trim(),
+                    }
+                    
+                };
+
+                
+
+                
+                DbCommand cmd2;
+                cmd2 = db.GetStoredProcCommand("usp_SunatTelesoluciones_EnviarGuiaRemisionDetalle", lst.Ndocu);
+                cmd2.CommandType = CommandType.StoredProcedure;
+                cmd2.CommandTimeout = 0;
+
+                DataSet ds2 = db.ExecuteDataSet(cmd2);
+                List<TelesolucionesGuiaRemisionLinea> item = new List<TelesolucionesGuiaRemisionLinea>();
+
+                foreach (DataRow row2 in ds2.Tables[0].Rows)
+                {
+                    item.Add(new TelesolucionesGuiaRemisionLinea
+                    {
+                        cantidad = Convert.ToDouble(row2["cantidad"]),
+                        unidadMedida = row2["unidadMedida"].ToString().Trim(),
+                        descripcion = row2["descripcion"].ToString().Trim(),
+                        codigoItem = row2["codigoItem"].ToString().Trim(),
+                        codigoProductoSunat=row2["codigoProductoSunat"].ToString().Trim()
+                    });
+                }
+                tf.items = item;
+            }
+
+            return tf;
+
+        }
+
+        public void GuardarRespuestaSunatTelesolucionesGuia(TelesolucionesRespuestaGuiaRemision e, TelesolucionesRespuestaConstanciaGuiaRemision eC, int flg_fe, string dbconexion)
+        {
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            db.ExecuteNonQuery("usp_SunatGuardarRespuestaSunatTelesolucionesGuia",
+                e.fechaEmision,
+                 //e.fechaEmitido, 
+                 null,
+                e.codigoComprobante, e.idGuiaRemitente, e.serie, e.numero, e.emitido, e.baja, e.digestValue,
+                e.signatureValue, eC.idConstancia, 1
+                );
+        }
+
+
+        /* INICIO DE FORMATOS GUIA DE REMISION */
+
+        public List<TelesolucionesGuiaRemisionLineaFormato> TelesolucionesObtenerGuiaRemisionLineaFormato(string ndocu,string dbconexion)
+        {
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+            DbCommand cmd2;
+            cmd2 = db.GetStoredProcCommand("usp_SunatTelesoluciones_EnviarGuiaRemisionDetalle", ndocu);
+            cmd2.CommandType = CommandType.StoredProcedure;
+            cmd2.CommandTimeout = 0;
+
+            DataSet ds2 = db.ExecuteDataSet(cmd2);
+            List<TelesolucionesGuiaRemisionLineaFormato> item = new List<TelesolucionesGuiaRemisionLineaFormato>();
+
+            foreach (DataRow row2 in ds2.Tables[0].Rows)
+            {
+                item.Add(new TelesolucionesGuiaRemisionLineaFormato
+                {
+                    cantidad = Convert.ToDouble(row2["cantidad"]),
+                    unidadMedida = row2["unidadMedida"].ToString().Trim(),
+                    descripcion = row2["descripcion"].ToString().Trim(),
+                    codigoItem = row2["codigoItem"].ToString().Trim(),
+                    codigoProductoSunat = row2["codigoProductoSunat"].ToString().Trim()
+                });
+            }
+            return item;
+        }
+        public TelesolucionesGuiaRemisionFormato TelesolucionesObtenerGuiaRemisionFormato(string ndocu, string dbconexion)
+        {
+            Database db = DatabaseFactory.CreateDatabase(dbconexion);
+
+            DbCommand cmd;
+            cmd = db.GetStoredProcCommand("usp_SunatTelesoluciones_EnviarGuiaRemision_Formato", ndocu);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 0;
+
+            DataSet ds = db.ExecuteDataSet(cmd);
+
+            TelesolucionesGuiaRemisionFormato tf = new TelesolucionesGuiaRemisionFormato();
+
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                tf = new TelesolucionesGuiaRemisionFormato
+                {
+                    serie = row["serie"].ToString().Trim(),
+                    numero = Convert.ToInt32(row["numero"]),
+                    nomcli= row["nomcli"].ToString().Trim(),
+                    dircli= row["DireccionCliente"].ToString().Trim(),
+                    tipoDocumentoGuia = row["tipoDocumentoGuia"].ToString().Trim(),
+                    motivoTraslado = row["motivoTraslado"].ToString().Trim(),
+                    pesoBrutoTotal = Convert.ToDouble(row["pesoBrutoTotal"]),
+                    unidadPesoBruto = row["unidadPesoBruto"].ToString().Trim(),
+                    modalidadTraslado = row["modalidadTraslado"].ToString().Trim(),
+                    fechaInicioTraslado = Convert.ToDateTime(row["fechaInicioTraslado"]),
+                    ubigeoLlegada = row["ubigeoLlegada"].ToString().Trim(),
+                    direccionLlegada = row["direccionLlegada"].ToString().Trim(),
+                    ubigeoPartida = row["ubigeoPartida"].ToString().Trim(),
+                    direccionPartida = row["direccionPartida"].ToString().Trim(),
+                   
+                    adicional_observaciones = row["Adicional_Observaciones"].ToString().Trim(),
+                    adicional_denominacionTransportista = row["Adicional_denominacionTransportista"].ToString().Trim(),
+                    adicional_numeroPlacaVehiculo = row["Adicional_numeroPlacaVehiculo"] == DBNull.Value ? null :                        Convert.ToString(row["Adicional_numeroPlacaVehiculo"].ToString().Trim()),
+                    adicional_numeroDocumentoConductor = row["Adicional_numeroDocumentoConductor"] == DBNull.Value ? null : row["Adicional_numeroDocumentoConductor"].ToString().Trim(),
+                    adicional_tipoDocumentoConductor = row["Adicional_tipoDocumentoConductor"].ToString().Trim(),
+                    adicional_numeroRucTransportista = row["Adicional_RucTransportista"] == DBNull.Value ? null : row["Adicional_RucTransportista"].ToString().Trim(),
+                    ruccli = row["Receptor_Numero"].ToString().Trim()
+                    
+
+                };
+
+
+
+
+                
+            }
+
+            return tf;
+
+        }
+
 
     }
 }

@@ -226,6 +226,8 @@ namespace IAP.BE
         public string status { get; set; }
         public string message { get; set; }
 
+
+
     }
 
     public class TelesolucionesConstancia
@@ -247,6 +249,128 @@ namespace IAP.BE
         public string code { get; set; }
         public string status { get; set; }
         public string message { get; set; }
+
+    }
+
+
+    public class TelesolucionesGuiaRemision
+    {
+        public string serie { get; set; }
+        public int numero { get; set; }
+        public string tipoDocumentoGuia { get; set; }
+        public string motivoTraslado { get; set; }
+        public double pesoBrutoTotal { get; set; }
+        public string unidadPesoBruto { get; set; }
+        public string modalidadTraslado { get; set; }
+        public DateTime fechaInicioTraslado { get; set; }
+        public string ubigeoLlegada { get; set; }
+        public string direccionLlegada { get; set; }
+        public string ubigeoPartida { get; set; }
+        public string direccionPartida { get; set; }
+        public TelesolucionesAdicionalGuia adicional { get; set; }
+        public TelesolucionesReceptorGuia receptor { get; set; }
+        
+        public List<TelesolucionesGuiaRemisionLinea> items { get; set; }
+
+
+    }
+    public class TelesolucionesAdicionalGuia
+    {
+        public string observaciones { get; set; }
+        public string denominacionTransportista { get; set; }
+        public object numeroPlacaVehiculo { get; set; }
+        public object numeroDocumentoConductor { get; set; }
+        public string tipoDocumentoConductor { get; set; }
+        public string numeroRucTransportista { get; set; }
+
+
+    }
+    public class TelesolucionesReceptorGuia
+    {
+        public string tipo { get; set; }
+        public string nro { get; set; }
+    }
+    public class TelesolucionesGuiaRemisionLinea
+    {
+        public double cantidad { get; set; }
+        public string unidadMedida { get; set; }
+        public string descripcion { get; set; }
+        public string codigoItem { get; set; }
+        public string codigoProductoSunat { get; set; }
+
+    }
+
+    public class TelesolucionesRespuestaGuiaRemision
+    {
+        public DateTime fechaEmision { get; set; }
+        public DateTime? fechaEmitido { get; set; }
+        public string codigoComprobante { get; set; }
+        public int idGuiaRemitente { get; set; }
+        public string serie { get; set; }
+        public int numero { get; set; }
+        public int emitido { get; set; }
+        public int baja { get; set; }
+        public string digestValue { get; set; }
+        public string signatureValue { get; set; }
+        public int idConstancia { get; set; }
+
+    }
+
+    public class TelesolucionesRespuestaConstanciaGuiaRemision
+    {
+        public DateTime fechaEmision { get; set; }
+        public string idConstancia { get; set; }
+        public string idRespuesta { get; set; }
+        public string serie { get; set; }
+        public string numero { get; set; }
+        public string tipo { get; set; }
+        public string codigo { get; set; }
+        public string notas { get; set; }
+        public string descripcion { get; set; }
+        public int code { get; set; }
+        public int status { get; set; }
+        public string message { get; set; }
+
+    }
+
+
+    public class TelesolucionesGuiaRemisionFormato
+    {
+        public string serie { get; set; }
+        public int numero { get; set; }
+        public string tipoDocumentoGuia { get; set; }
+        public string motivoTraslado { get; set; }
+        public double pesoBrutoTotal { get; set; }
+        public string unidadPesoBruto { get; set; }
+        public string modalidadTraslado { get; set; }
+        public DateTime fechaInicioTraslado { get; set; }
+        public string ubigeoLlegada { get; set; }
+        public string direccionLlegada { get; set; }
+        public string ubigeoPartida { get; set; }
+        public string direccionPartida { get; set; }
+        //public TelesolucionesAdicionalGuia adicional { get; set; }
+
+        public string adicional_observaciones { get; set; }
+        public string adicional_denominacionTransportista { get; set; }
+        public object adicional_numeroPlacaVehiculo { get; set; }
+        public object adicional_numeroDocumentoConductor { get; set; }
+        public string adicional_tipoDocumentoConductor { get; set; }
+        public string adicional_numeroRucTransportista { get; set; }
+
+        public string ruccli { get; set; }
+        //public TelesolucionesReceptorGuia receptor { get; set; }
+        public string nomcli { get; set; }
+        public string dircli { get; set; }
+        
+    }
+
+    public class TelesolucionesGuiaRemisionLineaFormato
+    {
+        public double cantidad { get; set; }
+        public string unidadMedida { get; set; }
+        public string descripcion { get; set; }
+        public string codigoItem { get; set; }
+        public string codigoProductoSunat { get; set; }
 
     }
 }

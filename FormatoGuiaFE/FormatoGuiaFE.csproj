@@ -90,6 +90,8 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\IAP.BE.DetalleGuia.datasource" />
     <None Include="Properties\DataSources\IAP.BE.Guia.datasource" />
+    <None Include="Properties\DataSources\IAP.BE.TelesolucionesGuiaRemisionFormato.datasource" />
+    <None Include="Properties\DataSources\IAP.BE.TelesolucionesGuiaRemisionLineaFormato.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
