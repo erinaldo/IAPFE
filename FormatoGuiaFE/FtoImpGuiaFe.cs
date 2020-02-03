@@ -56,10 +56,11 @@ namespace FormatoGuiaFE
             }
 
             //string cn = ConfigurationManager.AppSettings["bdNava01"];
+            string bd = ConfigurationManager.AppSettings["BD"];
             TelesolucionesGuiaRemisionFormato ecab = new TelesolucionesGuiaRemisionFormato();
-            ecab = eBFE.TelesolucionesObtenerGuiaRemisionFormato(ndocu, "BdNava01");
+            ecab = eBFE.TelesolucionesObtenerGuiaRemisionFormato(ndocu, bd);
             Cab.Add(ecab);
-            Det = eBFE.TelesolucionesObtenerGuiaRemisionLineaFormato(ndocu, "BdNava01");
+            Det = eBFE.TelesolucionesObtenerGuiaRemisionLineaFormato(ndocu, bd);
 
             //objCom.ObtenerCabeceraGuia(cdocu, ndocu, "bdNava01", ref _eGuia, ref _lstdet);
             

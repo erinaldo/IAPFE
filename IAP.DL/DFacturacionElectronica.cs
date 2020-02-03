@@ -40,6 +40,8 @@ namespace IAP.DL
                 ep.Ruta = row["Ruta"].ToString();
                 ep.Token= row["Token"].ToString();
                 ep.Ruc= row["Ruc"].ToString();
+                ep.Empresa = row["Empresa"].ToString();
+
             }
             return ep;
         }

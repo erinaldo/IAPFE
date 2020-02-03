@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_guiasRemision));
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.tp1 = new DevExpress.XtraTab.XtraTabPage();
@@ -36,6 +35,11 @@
             this.gcdetalle = new DevExpress.XtraGrid.GridControl();
             this.gvwdetalle = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gccabecera = new DevExpress.XtraGrid.GridControl();
+            this.menu = new System.Windows.Forms.ContextMenuStrip();
+            this.mnuMarcarTodo = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuQuitarTodo = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuEnviarGuiar = new System.Windows.Forms.ToolStripMenuItem();
             this.gvwcabecera = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.chkanulados = new DevExpress.XtraEditors.CheckEdit();
@@ -46,18 +50,13 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.dtfechainicial = new DevExpress.XtraEditors.DateEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.menu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mnuMarcarTodo = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuQuitarTodo = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuEnviarGuiar = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuAnularGuia = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.tp1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcdetalle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvwdetalle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gccabecera)).BeginInit();
+            this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvwcabecera)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -67,7 +66,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtfechafinal.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtfechainicial.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtfechainicial.Properties)).BeginInit();
-            this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // xtraTabControl1
@@ -90,7 +88,7 @@
             this.tp1.Controls.Add(this.gccabecera);
             this.tp1.Controls.Add(this.panelControl1);
             this.tp1.Name = "tp1";
-            this.tp1.Size = new System.Drawing.Size(855, 672);
+            this.tp1.Size = new System.Drawing.Size(854, 670);
             this.tp1.Text = "Consultas";
             // 
             // labelControl5
@@ -135,6 +133,43 @@
             this.gccabecera.TabIndex = 7;
             this.gccabecera.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvwcabecera});
+            // 
+            // menu
+            // 
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuMarcarTodo,
+            this.mnuQuitarTodo,
+            this.toolStripSeparator1,
+            this.mnuEnviarGuiar});
+            this.menu.Name = "menu";
+            this.menu.Size = new System.Drawing.Size(168, 76);
+            this.menu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menu_ItemClicked);
+            // 
+            // mnuMarcarTodo
+            // 
+            this.mnuMarcarTodo.Image = global::IAP.Win.Properties.Resources.check;
+            this.mnuMarcarTodo.Name = "mnuMarcarTodo";
+            this.mnuMarcarTodo.Size = new System.Drawing.Size(167, 22);
+            this.mnuMarcarTodo.Text = "Marcar todo";
+            // 
+            // mnuQuitarTodo
+            // 
+            this.mnuQuitarTodo.Image = global::IAP.Win.Properties.Resources.ClearFilter_32x32;
+            this.mnuQuitarTodo.Name = "mnuQuitarTodo";
+            this.mnuQuitarTodo.Size = new System.Drawing.Size(167, 22);
+            this.mnuQuitarTodo.Text = "Limpiar Seleccion";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(164, 6);
+            // 
+            // mnuEnviarGuiar
+            // 
+            this.mnuEnviarGuiar.Image = global::IAP.Win.Properties.Resources.Sunat;
+            this.mnuEnviarGuiar.Name = "mnuEnviarGuiar";
+            this.mnuEnviarGuiar.Size = new System.Drawing.Size(167, 22);
+            this.mnuEnviarGuiar.Text = "Enviar Guia";
             // 
             // gvwcabecera
             // 
@@ -237,51 +272,6 @@
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "F. Inicial";
             // 
-            // menu
-            // 
-            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuMarcarTodo,
-            this.mnuQuitarTodo,
-            this.toolStripSeparator1,
-            this.mnuEnviarGuiar,
-            this.mnuAnularGuia});
-            this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(168, 98);
-            this.menu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menu_ItemClicked);
-            // 
-            // mnuMarcarTodo
-            // 
-            this.mnuMarcarTodo.Image = global::IAP.Win.Properties.Resources.check;
-            this.mnuMarcarTodo.Name = "mnuMarcarTodo";
-            this.mnuMarcarTodo.Size = new System.Drawing.Size(167, 22);
-            this.mnuMarcarTodo.Text = "Marcar todo";
-            // 
-            // mnuQuitarTodo
-            // 
-            this.mnuQuitarTodo.Image = global::IAP.Win.Properties.Resources.ClearFilter_32x32;
-            this.mnuQuitarTodo.Name = "mnuQuitarTodo";
-            this.mnuQuitarTodo.Size = new System.Drawing.Size(167, 22);
-            this.mnuQuitarTodo.Text = "Limpiar Seleccion";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(164, 6);
-            // 
-            // mnuEnviarGuiar
-            // 
-            this.mnuEnviarGuiar.Image = global::IAP.Win.Properties.Resources.Sunat;
-            this.mnuEnviarGuiar.Name = "mnuEnviarGuiar";
-            this.mnuEnviarGuiar.Size = new System.Drawing.Size(167, 22);
-            this.mnuEnviarGuiar.Text = "Enviar Guia";
-            // 
-            // mnuAnularGuia
-            // 
-            this.mnuAnularGuia.Image = global::IAP.Win.Properties.Resources.Cancel_32x32;
-            this.mnuAnularGuia.Name = "mnuAnularGuia";
-            this.mnuAnularGuia.Size = new System.Drawing.Size(167, 22);
-            this.mnuAnularGuia.Text = "Anular Guia";
-            // 
             // frm_guiasRemision
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -298,6 +288,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcdetalle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvwdetalle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gccabecera)).EndInit();
+            this.menu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gvwcabecera)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
@@ -308,7 +299,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtfechafinal.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtfechainicial.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtfechainicial.Properties)).EndInit();
-            this.menu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -336,6 +326,5 @@
         private System.Windows.Forms.ToolStripMenuItem mnuQuitarTodo;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem mnuEnviarGuiar;
-        private System.Windows.Forms.ToolStripMenuItem mnuAnularGuia;
     }
 }

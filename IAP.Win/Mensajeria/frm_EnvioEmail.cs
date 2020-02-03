@@ -80,7 +80,7 @@ namespace IAP.Win.Mensajeria
 
 
                     MailMessage message = new MailMessage();
-                    message.From = new MailAddress(credentialUser.ToString(), "Ventas Perfiles Metalicos J&J");
+                    message.From = new MailAddress(credentialUser.ToString(), "Ventas " + Global.vUserNombreEmpresa);
 
                     message.To.Add(new MailAddress(toCorreo, to));
                     if (ccCorreo != null && cc != null) message.CC.Add(new MailAddress(ccCorreo, ccCorreo));
@@ -113,7 +113,7 @@ namespace IAP.Win.Mensajeria
             mensaje += "<tbody>";
             mensaje += "<tr>";
             mensaje += "<td style=\"width: 86px; \" bgcolor=\"#DCDFF3\"><strong>Empresa</strong></td>";
-            mensaje += "<td style=\"width: 293px; \">Perfiles Metalicos J&amp;J</td>";
+            mensaje += "<td style=\"width: 293px; \">" + Global.vUserNombreEmpresa +  "</td>";
             mensaje += "<td style=\"width: 118px; \" bgcolor=\"#DCDFF3\"><strong>RUC</strong></td>";
             mensaje += "<td style=\"width: 118px; \">&nbsp;" + Global.vUserRucEmpresa + " </td>";
             mensaje += "</tr>";

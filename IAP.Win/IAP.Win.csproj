@@ -477,6 +477,7 @@
     <EmbeddedResource Include="Mensajeria\frm_EnvioEmail.resx">
       <DependentUpon>frm_EnvioEmail.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Reportes\frm_dvw_comercial_ventas.resx">
       <DependentUpon>frm_dvw_comercial_ventas.cs</DependentUpon>
     </EmbeddedResource>

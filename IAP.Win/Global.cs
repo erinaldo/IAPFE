@@ -28,6 +28,7 @@ namespace IAP.Win
         public static string vUserCliente = "cliente";
         public static string vUserPassCliente = "cliente";
         public static string vUserRucEmpresa = "";
+        public static string vUserNombreEmpresa = "";
 
         //CLAVE DE IAP
         //public static string vRuta = "https://www.nubefact.com/api/v1/9c5d5d5f-5287-4412-91bd-632b7e8e89c0";

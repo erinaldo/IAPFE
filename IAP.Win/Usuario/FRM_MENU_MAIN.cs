@@ -95,7 +95,7 @@ namespace IAP.Win
 
             if (Global.login_conforme == "si")
             {
-                this.Text = "EMPRESA ACTUAL ::::::: " + Global.vUserServer;
+                //this.Text = "EMPRESA ACTUAL ::::::: " + Global.vUserServer;
                 //IAP.DL.ConexionDC.IpServidor = Global.vIpServidor;
                 Accessos_Usuario(Global.UserAdministrador);
 
@@ -124,16 +124,18 @@ namespace IAP.Win
                 //this.dvw_costos.LoadDashboard(aOppFilm.Create<ISProcProduccion>().ObtenerXmlProcProduccion("CostosConsumo"));
                 Global.vDatosProveedor.IdEmpresa = IdEmpresaFE;
 
-                /* CREDENCIALES DE PRUEBA */
+                
                 Global.vTelemovilAK = Global.vDatosProveedor.Ruta;
                 Global.vTelemovilSK = Global.vDatosProveedor.Token;
 
+                /* CREDENCIALES DE PRUEBA */
                 //Global.vTelemovilAK = "c73ed3b5f2085ffdd429044b4757b97917c7ea775c0d12eae388e6e9bf19bb17";
                 //Global.vTelemovilSK = "7cb2040d868a8ed6d044fef4d6d37bcded6fd47425bab1b1973e6e66e440f3c2";
 
 
                 Global.vUserRucEmpresa = Global.vDatosProveedor.Ruc;
-
+                Global.vUserNombreEmpresa = Global.vDatosProveedor.Empresa;
+                this.Text = "EMPRESA ACTUAL ::::::: " + Global.vUserNombreEmpresa;
                 this.Text = this.Text + ":::: RUC : " + Global.vUserRucEmpresa;
 
                 if (Empresa== Global.vUserServer)
